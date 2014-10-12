@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Music Downloader</title>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript">
+			var count = 0;
+
+			$(document).ready(function() {
+				$('#artist').keyup(function(e){
+    				if(e.keyCode == 13) {
+       					download();
+    				}
+				});
+
+				$('#song').keyup(function(e){
+    				if(e.keyCode == 13) {
+       					download();	
+    				}
+				});
+			});
+
+			function toggleVisibility() {
+				$('#dynamic').toggle();
+			}
+
+			function download() {
+				artist = $('#artist').val();
+				song = $('#song').val();
+				$('#artist').val('');
+				$('#song').val('');
+				$('#artist').focus();
+
+				if (count == 0)
+					toggleVisibility();
+
+				var info = document.createElement('p');
+				info.setAttribute('id', 'para_' + song);
+				info.innerHTML = song;
+				$('#dynamic').append(info);
+				count++;
+
+				if (artist == '' || song == '') {
+					alert('You need to give both a song name and an artist for accurate results.');
+					return;
+				}
+
+				$.ajax({
+					url: 'http://ryguy.me/music/',
+					type: 'POST',
+					data: {
+						'song': song,
+						'artist': artist
+					},
+
+					success: function(data) {
+						window.location.href = data.url;
+						var elem = document.getElementById('para_' + song);
+						document.getElementById('dynamic').removeChild(elem);
+						count--;
+
+						if (count == 0)
+							toggleVisibility();
+					}
+				});
+			}
+
+			function remove(item) {
+				$(item).hide();
+			}
+		</script>
+		<style>
+			li {
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+
+	<body style="background:#EFEFEF">
+		<div style="margin-top:25px" id="main" align="center">
+			<ul style="list-style-type:none">
+				<li><h2>Easy Music Downloader</h2></li>
+				<li><h3>Just type in the artist and song to download the track.</h3></li>
+			</ul>
+
+			<div id="dynamic" hidden>
+				<h4 id="download_title">Current Downloads:</h4>
+				<h5>Note that downloads may take up to 5 seconds to process.</h5> 
+			</div>
+
+			<ul style="list-style-type:none;margin-top:25px">
+				<li>Artist: <input type="text" id="artist"></li>
+				<li>Song: <input type="text" id="song"></li>
+				<li><input type="button" value="Download" id="button" onclick="download()"></li>
+			</ul>
+		</div>
+	</body>
+</html>
