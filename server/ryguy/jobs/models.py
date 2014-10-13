@@ -6,7 +6,9 @@ class Profile(models.Model):
 	age = models.IntegerField()
 	skills = models.TextField()
 	city_code = models.CharField(max_length=16)
-	profile_id = models.CharField(max_length=64)
+	profile_id = models.CharField(max_length=256)
+	date_created = models.CharField(max_length=50)
 
 	class Meta:
-		verbose_name = profile_id
+		verbose_name = 'profile'
+		verbose_name_plural = 'profiles'

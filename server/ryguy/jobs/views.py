@@ -1,5 +1,6 @@
 from django.shortcuts import render
-import profile
+from django.http import HttpResponse
+import profile as mod_profile
 import json
 
 '''
@@ -31,12 +32,9 @@ We want to limit personal information for users to prevent discrimination.
 
 def profile(request):
 	if request.method == 'GET':
-		data = request.GET
+		data = request.GET.copy()
 
-		operation = data['request']
-		profile_id = data['profile_id']
-
-		result, err_code = profile.operation()
+		result, err_code = mod_profile.get(data['profile_id'])
 
 		if err_code is None: # result will be a dictionary to send back to client.
 			return HttpResponse(json.dumps(result), content_type='application/json')
@@ -46,17 +44,12 @@ def profile(request):
 			pass
 
 	elif request.method == 'POST':
-		data = request.POST
-
-		first_name = data['first_name']
-		last_name = data['last_name']
-		city = data['city_code'] # Each city will have a unique code in our databases
-		skills = data['skills'] # Possibly long description/list of skills
-		age = data['age']
+		data = request.POST.copy()
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
+		del data['request']
 
-		result, err_code = profile.operation()
+		result, err_code = getattr(mod_profile, operation)(data)
 
 		if result:
 			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
