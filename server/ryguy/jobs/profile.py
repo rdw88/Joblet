@@ -6,7 +6,7 @@ a success flag, or an error code.
 '''
 
 from models import Profile
-from error import ERROR_NO_SUCH_PROFILE
+from error import ERROR_NO_SUCH_PROFILE, ERROR_INCORRECT_PASSWORD
 import base64
 import datetime
 
@@ -29,9 +29,7 @@ def create(args):
 	date_time = datetime.datetime.now()
 	encode = '%s%s%s%s' % (args['first_name'], args['last_name'], args['city_code'], date_time)
 	profile_id = base64.b64encode(encode, '-_')
-	args['profile_id'] = profile_id
-	args['date_created'] = date_time
-	profile = Profile(first_name=args['first_name'], last_name=args['last_name'], age=args['age'], skills=args['skills'], city_code=args['city_code'], profile_id=profile_id, date_created=date_time)
+	profile = Profile(first_name=args['first_name'], last_name=args['last_name'], password=args['password'], age=args['age'], skills=args['skills'], city_code=args['city_code'], profile_id=profile_id, date_created=date_time)
 	profile.save()
 	return True, None
 
@@ -53,6 +51,9 @@ def edit(args):
 	del args['profile_id']
 	prof = prof[0]
 
+	if str(prof.password) != args['password']:
+		return None, ERROR_INCORRECT_PASSWORD
+
 	for key in args:
 		prof.__dict__[key] = args[key]
 
@@ -71,6 +72,9 @@ def delete(args):
 
 	if not profile:
 		return None, ERROR_NO_SUCH_PROFILE
+
+	if str(profile[0].password) != args['password']:
+		return None, ERROR_INCORRECT_PASSWORD
 
 	profile[0].delete()
 	return True, None

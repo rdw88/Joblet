@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import profile as mod_profile
+import listing
 import json
 
 '''
@@ -48,6 +49,47 @@ def profile(request):
 		del data['request']
 
 		result, err_code = getattr(mod_profile, operation)(data)
+
+		if not err_code:
+			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
+		else:
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+
+
+'''
+
+The main view function that handles all incoming requests regarding listings.
+
+We want the following functionality with listings:
+
+	- Create Listings
+	- Fetch/Search Listings (with sorting)
+	- Update Listings from user interaction
+	- Edit Listing settings
+	- Delete Listings
+
+Listings, like profiles will have unique listing_ids
+
+'''
+
+def listings(request):
+	if request.method == 'GET':
+		data = request.GET.copy()
+
+		result, err_code = listing.get(data['listing_id'])
+
+		if not err_code:
+			return HttpResponse(json.dumps(result), content_type='application/json')
+		else:
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+
+	elif request.method = 'POST':
+		data = request.POST.copy()
+		
+		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
+		del data['request']
+
+		result, err_code = getattr(listing, operation)(data)
 
 		if not err_code:
 			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
