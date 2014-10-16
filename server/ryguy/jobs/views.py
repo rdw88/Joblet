@@ -36,12 +36,10 @@ def profile(request):
 
 		result, err_code = mod_profile.get(data['profile_id'])
 
-		if err_code is None: # result will be a dictionary to send back to client.
+		if not err_code: # result will be a dictionary to send back to client.
 			return HttpResponse(json.dumps(result), content_type='application/json')
-
 		else:
-			# Deal with error code
-			pass
+			return HttpResponse(json.dumps({ 'error': err_code }), content_type='application/json')
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
@@ -51,9 +49,7 @@ def profile(request):
 
 		result, err_code = getattr(mod_profile, operation)(data)
 
-		if result:
+		if not err_code:
 			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
-
 		else:
-			# Deal with error code
-			pass
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')

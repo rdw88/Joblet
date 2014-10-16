@@ -6,6 +6,7 @@ a success flag, or an error code.
 '''
 
 from models import Profile
+from error import ERROR_NO_SUCH_PROFILE
 import base64
 import datetime
 
@@ -44,19 +45,19 @@ profile that is supplied in args.
 
 def edit(args):
 	profile_id = args['profile_id']
-	prof, error_code = get(args)
-	del args['profile_id']
+	prof = _fetch(profile_id)
 
 	if not prof:
-		return prof, error_code
+		return None, ERROR_NO_SUCH_PROFILE
 
-	for key, value in args:
-		prof.__dict__[key] = value
+	del args['profile_id']
+	prof = prof[0]
+
+	for key in args:
+		prof.__dict__[key] = args[key]
 
 	prof.save()
 	return True, None
-
-	#return False, None # Deal with error code, args are not valid
 
 
 '''
@@ -66,12 +67,12 @@ Completely removes a user's profile from the database.
 '''
 
 def delete(args):
-	profile, err_code = get(args)
+	profile = _fetch(args['profile_id'])
 
 	if not profile:
-		return profile, err_code
+		return None, ERROR_NO_SUCH_PROFILE
 
-	profile.delete()
+	profile[0].delete()
 	return True, None
 
 
@@ -83,15 +84,14 @@ unique profile ID.
 '''
 
 def get(profile_id):
-	'''profiles = Profile.objects.get(profile)
+	profile = _fetch(profile_id)
 
-	if len(profiles) == 0:
-		# return False, error_code
-		# Deal with error code, no profile with profile_id found.
-		return False, None
+	if not profile:
+		return None, ERROR_NO_SUCH_PROFILE
 
-	return profiles[0]'''
-	return Profile.objects.get(profile_id=profile_id)
+	vals = profile.values('first_name', 'last_name', 'age', 'city_code', 'skills', 'date_created')
+	return str(vals).translate(None, '[]'), None # Maintain proper JSON parse format.
+
 
 '''
 
@@ -101,3 +101,19 @@ Searches the database given a dictionary of queries to collectively filter throu
 
 def search(args):
 	return Profile.objects.filter(args)
+
+
+'''
+
+Fetches a profile from the database based on its profile_id. Returns None
+if the profile id does not match a profile.
+
+'''
+
+def _fetch(profile_id):
+	profile = Profile.objects.filter(profile_id=profile_id)
+
+	if len(profile) == 0:
+		return None
+
+	return profile
