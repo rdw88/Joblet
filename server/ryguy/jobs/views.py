@@ -83,7 +83,7 @@ def listings(request):
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
 
-	elif request.method = 'POST':
+	elif request.method == 'POST':
 		data = request.POST.copy()
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
@@ -92,6 +92,6 @@ def listings(request):
 		result, err_code = getattr(listing, operation)(data)
 
 		if not err_code:
-			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
+			return HttpResponse(json.dumps(result), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')

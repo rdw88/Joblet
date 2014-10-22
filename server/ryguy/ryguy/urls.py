@@ -12,5 +12,5 @@ urlpatterns = patterns('',
 	url(r'^$', 'home.views.home'),
 	url(r'^music/', 'music.views.music'),
 	url(r'^profile/', 'jobs.views.profile'),
-	url(r'^listings/', 'jobs.views.listings'),
+	url(r'^listing/', 'jobs.views.listings'),
 )

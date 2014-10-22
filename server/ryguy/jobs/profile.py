@@ -1,7 +1,7 @@
 '''
 
-All functions in this file MUST return either meaningful data, 
-a success flag, or an error code.
+All functions connected to the request field in the POST data in this file 
+MUST return either meaningful data, a success flag, or an error code.
 
 '''
 
@@ -121,3 +121,7 @@ def _fetch(profile_id):
 		return None
 
 	return profile
+
+
+def check_password(profile_id, password):
+	return password == str(_fetch(profile_id).password)

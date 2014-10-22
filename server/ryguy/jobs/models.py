@@ -18,14 +18,15 @@ class Profile(models.Model):
 class Listing(models.Model):
 	job_title = models.CharField(max_length=256)
 	job_picture = models.CharField(max_length=256)
-	starting_amount = models.CharField(max_length=32)
-	current_bid = models.CharField(max_length=32)
+	starting_amount = models.FloatField()
+	current_bid = models.FloatField()
 	min_reputation = models.IntegerField()
 	job_location = models.CharField(max_length=256)
 	active_time = models.IntegerField() # Stored in minutes.
 	profile_id = models.CharField(max_length=256)
 	listing_id = models.CharField(max_length=256)
 	time_created = models.CharField(max_length=64)
+	is_active = models.BooleanField(default=False) # Active means this listing is publicly available
 
 	class Meta:
 		verbose_name = 'listing'
