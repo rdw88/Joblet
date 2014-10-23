@@ -1,5 +1,11 @@
 <resources>
 
     <string name="app_name">Jobs</string>
+    <string name="user_name">Username</string>
+    <string name="user_currentLocation">currentLocation</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_sectionMid">Main</string>
+    <string name="title_sectionLeft">JobListings</string>
+    <string name="title_sectionRight">ListJob</string>
 
 </resources>

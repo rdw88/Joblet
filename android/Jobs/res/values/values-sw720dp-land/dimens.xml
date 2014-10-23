@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- This is dimensions for sw720dp devices (ex: 10" tablets) in landscape -->
+    <dimen name="activity_horizontal_margin">128dp</dimen>
+
+</resources>
