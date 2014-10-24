@@ -51,7 +51,7 @@ def profile(request):
 		result, err_code = getattr(mod_profile, operation)(data)
 
 		if not err_code:
-			return HttpResponse(json.dumps({'success' : '1'}), content_type='application/json')
+			return HttpResponse(json.dumps({ 'error': 'NULL' }), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
 
@@ -92,6 +92,6 @@ def listings(request):
 		result, err_code = getattr(listing, operation)(data)
 
 		if not err_code:
-			return HttpResponse(json.dumps(result), content_type='application/json')
+			return HttpResponse(json.dumps({ 'error' : 'NULL' }), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
