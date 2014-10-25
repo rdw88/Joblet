@@ -93,8 +93,9 @@ def get(profile_id):
 	if not profile:
 		return None, ERROR_NO_SUCH_PROFILE
 
-	vals = profile.values('first_name', 'last_name', 'age', 'city_code', 'skills', 'date_created')
-	return str(vals).translate(None, '[]'), None # Maintain proper JSON parse format.
+	vals = profile.values('first_name', 'last_name', 'age', 'city_code', 'skills', 'date_created')[0]
+	vals['date_created'] = vals['date_created'][:10]
+	return str(vals), None
 
 
 '''
