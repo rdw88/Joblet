@@ -2,10 +2,18 @@
 
     <string name="app_name">Jobs</string>
     <string name="user_name">Username</string>
+    <string name="login">Login</string>
+    <string name="button_ok">Ok</string>
+    <string name="button_cancel">Cancel</string>
     <string name="user_currentLocation">currentLocation</string>
     <string name="action_settings">Settings</string>
     <string name="title_sectionMid">Main</string>
     <string name="title_sectionLeft">JobListings</string>
     <string name="title_sectionRight">ListJob</string>
+    <string name="pb_login_title">Logging In...</string>
+    <string name="pb_login_message">Please wait while we confirm your credentials.</string>
+    <string name="ad_wrong_password">The email address and password entered do not match, please try again.</string>
+    <string name="ad_wrong_password_title">Incorrect Credentials</string>
+
 
 </resources>

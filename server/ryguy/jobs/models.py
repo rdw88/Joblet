@@ -9,6 +9,7 @@ class Profile(models.Model):
 	profile_id = models.CharField(max_length=256)
 	date_created = models.CharField(max_length=64)
 	password = models.CharField(max_length=32)
+	email = models.CharField(max_length=128)
 
 	class Meta:
 		verbose_name = 'profile'

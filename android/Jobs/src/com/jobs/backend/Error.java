@@ -6,4 +6,5 @@ public class Error {
 	public static final int ERROR_NO_SUCH_LISTING = 0xff47efd3;
 	public static final int ERROR_INCORRECT_LISTING_OWNERSHIP = 0xca38a3f3;
 	public static final int ERROR_SERVER_COMMUNICATION = 0xff010101;
+    public static final int ERROR_EMAIL_IN_USE = 0xff30dfce;
 }

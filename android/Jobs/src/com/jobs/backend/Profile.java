@@ -18,7 +18,7 @@ public class Profile {
 	/*
 	 * Returns -1 if created successfully, and and error code otherwise.
 	 */
-	public static int createProfile(String firstName, String lastName, int age, String skills, String cityCode, String password) {
+	public static int createProfile(String firstName, String lastName, String email, int age, String skills, String cityCode, String password) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("request", "create");
 		map.put("first_name", firstName);
@@ -27,6 +27,7 @@ public class Profile {
 		map.put("age", Integer.toString(age));
 		map.put("skills", skills);
 		map.put("city_code", cityCode);
+        map.put("email", email);
 
 		try {
 			return post(map, Address.PROFILE);
@@ -35,6 +36,19 @@ public class Profile {
 			return Error.ERROR_SERVER_COMMUNICATION;
 		}
 	}
+
+    public static int login(String email, String password) {
+        Map<String, String> data = new HashMap<>();
+        data.put("request", "login");
+        data.put("email", email);
+        data.put("password", password);
+
+        try {
+            return post(data, Address.PROFILE);
+        } catch (IOException | JSONException e) {
+            return Error.ERROR_SERVER_COMMUNICATION;
+        }
+    }
 
 	public static int editProfile(String profileId, String password, Map<String, String> args) {
 		args.put("request", "edit");
@@ -51,6 +65,7 @@ public class Profile {
 
 	public static JSONObject getProfile(String profileId) {
 		Map<String, String> map = new HashMap<String, String>();
+        map.put("request", "profile");
 		map.put("profile_id", profileId);
 
 		try {
@@ -84,6 +99,19 @@ public class Profile {
 		}
 	}
 
+    public static String getID(String email) {
+        Map<String, String> data = new HashMap<>();
+        data.put("request", "get_id");
+        data.put("email", email);
+
+        try {
+            return get(data, Address.PROFILE).getString("profile_id");
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return Integer.toString(Error.ERROR_SERVER_COMMUNICATION);
+        }
+    }
+
 	/*
 	 * Sends parameters to server at the specified address. Returns an error code if there was an error on the server.
 	 */
@@ -108,11 +136,6 @@ public class Profile {
 		URL url = new URL(address + "?" + urlEncoded);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-		conn.setRequestProperty("Content-Length", "" + Integer.toString(urlEncoded.getBytes("UTF-8").length));
-		conn.setUseCaches(false);
-		conn.setDoInput(true);
-		conn.setDoOutput(true);
 
 		return send(conn, null);
 	}
@@ -125,18 +148,16 @@ public class Profile {
 			os.close();
 		}
 
-		DataInputStream is = new DataInputStream(conn.getInputStream());
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String line;
 		String response = "";
 		while ((line = reader.readLine()) != null) {
 			response += line;
 		}
 
-		response = response.replaceAll("\"", "");
+		//response = response.replaceAll("\"", "");
 
 		reader.close();
-		is.close();
 		conn.disconnect();
 		JSONObject obj = new JSONObject(response);
 

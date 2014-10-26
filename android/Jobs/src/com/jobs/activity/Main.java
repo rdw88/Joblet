@@ -1,22 +1,20 @@
 package com.jobs.activity;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 
+import android.widget.TextView;
 import com.jobs.android.R;
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class Main extends Activity {
+    private String data;
 
 	// Provides fragments for each section, need to switch to AndroidStatePagerAdapter if this
 	// gets memory intensive
 	// SectionsPagerAdapter mSectionsPagerAdapter;
 
 	// The {@link ViewPager} that will host the section contents.
-	ViewPager mViewPager;
+	// ViewPager mViewPager;
 
 	// Create the activity. Sets up {@link android.app.Actionbar} with pre set tabs. We won't use
 	// tab creation because we only have 3 tabs we want the viewer to be able to navigate to
@@ -34,18 +32,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		setContentView(R.layout.activity_main);
 	}
 
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
-	}
+    protected void onStart() {
+        super.onStart();
+        data = getIntent().getStringExtra("data");
+        TextView view = (TextView) findViewById(R.id.text);
+        view.setText(data);
+    }
 }
