@@ -3,11 +3,11 @@ from django.db import models
 class Profile(models.Model):
 	first_name = models.CharField(max_length=32)
 	last_name = models.CharField(max_length=32)
-	age = models.IntegerField()
+	dob = models.DateField()
 	skills = models.TextField()
 	city_code = models.CharField(max_length=16)
 	profile_id = models.CharField(max_length=256)
-	date_created = models.CharField(max_length=64)
+	date_created = models.DateField()
 	password = models.CharField(max_length=32)
 	email = models.CharField(max_length=128)
 

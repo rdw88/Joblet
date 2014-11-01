@@ -1,36 +1,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jobs"
-    android:versionCode="1"
-    android:versionName="0.1" >
+          package="com.jobs"
+          android:versionCode="1"
+          android:versionName="0.1">
 
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="21" />
+            android:minSdkVersion="11"
+            android:targetSdkVersion="21"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+            android:allowBackup="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
         <!-- Standard Activity invocation for MainActivity. -->
         <activity
-            android:name="com.jobs.activity.Login"
-            android:label="@string/login" >
+                android:name="com.jobs.activity.Login"
+                android:label="@string/login">
             <intent-filter>
-                <action android:name="android.intent.action.Main" />
+                <action android:name="android.intent.action.Main"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            </activity>
+        </activity>
 
         <activity android:name="com.jobs.activity.Main"
-                android:label="@string/app_name">
+                  android:label="@string/app_name"></activity>
 
-        </activity>
+        <activity android:name="com.jobs.activity.CreateAccount"
+                  android:label="Create Account"></activity>
+
+
     </application>
-
 
 
 </manifest>

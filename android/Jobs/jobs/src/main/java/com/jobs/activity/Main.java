@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import android.widget.TextView;
 import com.jobs.R;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Main extends Activity {
-    private String data;
+    private String firstName, lastName, skills, city, email;
 
 	// Provides fragments for each section, need to switch to AndroidStatePagerAdapter if this
 	// gets memory intensive
@@ -34,8 +36,20 @@ public class Main extends Activity {
 
     protected void onStart() {
         super.onStart();
-        data = getIntent().getStringExtra("data");
+        String data = getIntent().getStringExtra("data");
+
+        try {
+            JSONObject obj = new JSONObject(data);
+            firstName = obj.getString("first_name");
+            lastName = obj.getString("last_name");
+            skills = obj.getString("skills");
+            city = obj.getString("city_code");
+            email = obj.getString("email");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         TextView view = (TextView) findViewById(R.id.text);
-        view.setText(data);
+        view.setText(firstName + " " + lastName + "'s landing page.");
     }
 }
