@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import android.widget.TextView;
-import com.jobs.android.R;
+import com.jobs.R;
 
 public class Main extends Activity {
     private String data;

@@ -8,12 +8,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import com.jobs.R;
 import android.widget.Button;
 import android.widget.EditText;
-import com.jobs.android.R;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
