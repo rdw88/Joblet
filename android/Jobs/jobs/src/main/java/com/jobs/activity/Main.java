@@ -1,37 +1,34 @@
 package com.jobs.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import com.jobs.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Main extends Activity {
+public class Main extends FragmentActivity {
+    private static final int[] PAGE_ORDER = {R.layout.check_listing, R.layout.landing_page, R.layout.create_listing};
+    private static final int MAIN_PAGE = 1;
+
     private String firstName, lastName, skills, city, email;
-
-	// Provides fragments for each section, need to switch to AndroidStatePagerAdapter if this
-	// gets memory intensive
-	// SectionsPagerAdapter mSectionsPagerAdapter;
-
-	// The {@link ViewPager} that will host the section contents.
-	// ViewPager mViewPager;
-
-	// Create the activity. Sets up {@link android.app.Actionbar} with pre set tabs. We won't use
-	// tab creation because we only have 3 tabs we want the viewer to be able to navigate to
-	// these tabs with respect to location are listed here:
-	// |Job Listings|Main|Create Listing|
-	//
-	// <p>A {@link SectionsPagerAdapter} will be instantiated to hold the different pages of
-	// fragments that are to be displayed.
-	// {@link android.support.v4.view.ViewPager.SimplleOnPageChangeListener} will be configured
-	// to recieve callbacks when the user swipes between pages in the ViewPager
+    private MainPagerAdapter adapter;
+    private ViewPager pager;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Load the UI from res/layout/activity_main.xml
 		setContentView(R.layout.activity_main);
+        adapter = new MainPagerAdapter(getSupportFragmentManager());
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
+        pager.setCurrentItem(MAIN_PAGE);
 	}
 
     protected void onStart() {
@@ -48,8 +45,34 @@ public class Main extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
-        TextView view = (TextView) findViewById(R.id.text);
-        view.setText(firstName + " " + lastName + "'s landing page.");
+    public class MainPagerAdapter extends FragmentPagerAdapter {
+        public MainPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public Fragment getItem(int i) {
+            Fragment fragment = new FragmentObject();
+            Bundle args = new Bundle();
+            args.putInt("page", i);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public int getCount() {
+            return PAGE_ORDER.length;
+        }
+
+        public CharSequence getPageTitle(int position) {
+            return "page " + position;
+        }
+    }
+
+    public static class FragmentObject extends Fragment {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            int page = getArguments().getInt("page");
+            return inflater.inflate(PAGE_ORDER[page], container, false);
+        }
     }
 }
