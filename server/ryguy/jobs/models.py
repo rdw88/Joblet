@@ -11,6 +11,12 @@ class Profile(models.Model):
 	password = models.CharField(max_length=32)
 	email = models.CharField(max_length=128)
 
+	positive_reputation = models.IntegerField()
+	negative_reputation = models.IntegerField()
+	jobs_completed = models.IntegerField()
+	listings_completed = models.IntegerField()
+
+
 	class Meta:
 		verbose_name = 'profile'
 		verbose_name_plural = 'profiles'

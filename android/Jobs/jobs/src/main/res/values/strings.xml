@@ -3,6 +3,8 @@
     <string name="app_name">Jobs</string>
     <string name="user_name">Username</string>
     <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="button_ok">Ok</string>
     <string name="button_cancel">Cancel</string>
     <string name="user_currentLocation">currentLocation</string>

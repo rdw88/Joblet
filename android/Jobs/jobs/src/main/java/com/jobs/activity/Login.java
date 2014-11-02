@@ -34,14 +34,6 @@ public class Login extends Activity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
-        Button createAccount = (Button) findViewById(R.id.create_acc);
-        createAccount.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, CreateAccount.class);
-                startActivity(intent);
-            }
-        });
-
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme">
         <!-- Standard Activity invocation for MainActivity. -->
         <activity
-                android:name="com.jobs.activity.Login"
+                android:name="com.jobs.activity.Welcome"
                 android:label="@string/login">
             <intent-filter>
                 <action android:name="android.intent.action.Main"/>
@@ -29,6 +29,9 @@
                   android:label="@string/app_name"></activity>
 
         <activity android:name="com.jobs.activity.CreateAccount"
+                  android:label="Create Account"></activity>
+
+        <activity android:name="com.jobs.activity.Login"
                   android:label="Create Account"></activity>
 
 

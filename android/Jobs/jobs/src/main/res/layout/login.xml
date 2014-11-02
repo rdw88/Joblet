@@ -32,11 +32,4 @@
             android:layout_marginTop="25dp"
             android:id="@+id/login"/>
 
-    <Button android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:id="@+id/create_acc"/>
-
 </LinearLayout>
