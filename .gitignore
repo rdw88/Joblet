@@ -1,6 +1,2 @@
 *.pyc
-RemoteSystemsTempFiles/
-.metadata/
-.settings/
-.idea/
 *.class
