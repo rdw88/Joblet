@@ -75,8 +75,10 @@ Listings, like profiles will have unique listing_ids
 def listings(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
+		operation = data['request']
+		del data['request']
 
-		result, err_code = listing.get(data['listing_id'])
+		result, err_code = getattr(listing, operation)(data)
 
 		if not err_code:
 			return HttpResponse(json.dumps(result), content_type='application/json')

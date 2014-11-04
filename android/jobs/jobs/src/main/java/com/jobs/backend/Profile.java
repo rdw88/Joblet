@@ -30,7 +30,7 @@ public class Profile {
         map.put("email", email);
 
 		try {
-			return post(map, Address.PROFILE);
+			return Address.post(map, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			return Error.ERROR_SERVER_COMMUNICATION;
@@ -44,7 +44,7 @@ public class Profile {
         data.put("password", password);
 
         try {
-            return post(data, Address.PROFILE);
+            return Address.post(data, Address.PROFILE);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return Error.ERROR_SERVER_COMMUNICATION;
@@ -57,7 +57,7 @@ public class Profile {
 		args.put("password", password);
 
 		try {
-			return post(args, Address.PROFILE);
+			return Address.post(args, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			return Error.ERROR_SERVER_COMMUNICATION;
@@ -70,7 +70,7 @@ public class Profile {
 		map.put("profile_id", profileId);
 
 		try {
-			return get(map, Address.PROFILE);
+			return Address.get(map, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			JSONObject error = new JSONObject();
@@ -92,7 +92,7 @@ public class Profile {
 		data.put("password", password);
 
 		try {
-			return post(data, Address.PROFILE);
+			return Address.post(data, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			return Error.ERROR_SERVER_COMMUNICATION;
@@ -106,62 +106,12 @@ public class Profile {
         data.put("email", email);
 
         try {
-            return get(data, Address.PROFILE).getString("profile_id");
+            return Address.get(data, Address.PROFILE).getString("profile_id");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return Integer.toString(Error.ERROR_SERVER_COMMUNICATION);
         }
     }
 
-	/*
-	 * Sends parameters to server at the specified address. Returns an error code if there was an error on the server.
-	 */
-	private static int post(Map<String, String> params, String address) throws IOException, JSONException {
-		String urlEncoded = Address.urlEncode(params);
 
-		URL url = new URL(address);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-		conn.setRequestProperty("Content-Length", "" + Integer.toString(urlEncoded.getBytes("UTF-8").length));
-		conn.setUseCaches(false);
-		conn.setDoInput(true);
-		conn.setDoOutput(true);
-
-		JSONObject response = send(conn, urlEncoded);
-		return response.getInt("error");
-	}
-
-	private static JSONObject get(Map<String, String> params, String address) throws IOException, JSONException {
-		String urlEncoded = Address.urlEncode(params);
-		URL url = new URL(address + "?" + urlEncoded);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-
-		return send(conn, null);
-	}
-
-	private static JSONObject send(HttpURLConnection conn, String data) throws IOException, JSONException {
-		if (data != null) {
-			DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-			os.writeBytes(data);
-			os.flush();
-			os.close();
-		}
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String line;
-		String response = "";
-		while ((line = reader.readLine()) != null) {
-			response += line;
-		}
-
-		//response = response.replaceAll("\"", "");
-
-		reader.close();
-		conn.disconnect();
-		JSONObject obj = new JSONObject(response);
-
-		return obj;
-	}
 }

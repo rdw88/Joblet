@@ -2,7 +2,7 @@ import base64
 import datetime
 import re
 from profile import check_password
-from models import Listing
+from models import Listing, Profile
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
 
 '''
@@ -21,7 +21,12 @@ def create(args):
 	current_time = datetime.datetime.now()
 	encode = '%s%s%s' % (args['job_title'], args['job_location'], current_time)
 	listing_id = base64.b64encode(encode, '-_')
-	listing = Listing(job_title=args['job_title'], job_picture='None', starting_amount=args['starting_amount'], current_bid=0, min_reputation=args['min_reputation'], job_location=args['job_location'], active_time=args['active_time'], profile_id=args['profile_id'], listing_id=listing_id, time_created=current_time)
+
+	listing = Listing(job_title=args['job_title'], job_picture='None', starting_amount=args['starting_amount'],
+		current_bid=0, min_reputation=args['min_reputation'], job_location=args['job_location'],
+		active_time=args['active_time'], profile_id=args['profile_id'], listing_id=listing_id,
+		time_created=current_time)
+
 	listing.save()
 	return True, None
 
@@ -105,16 +110,17 @@ Edits require the creator's profile_id and password.
 '''
 
 def edit(args):
-	profile_id = args.pop('profile_id')
+	email = args.pop('email')
 	password = args.pop('password')
+	prof = Profile.objects.get(email=email)
 
-	if not check_password(profile_id, password):
+	if str(prof.password) != password:
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args.pop('listing_id')
 	listing = Listing.objects.get(listing_id=listing_id)
 
-	if str(listing.profile_id) != profile_id:
+	if str(listing.profile_id) != str(prof.profile_id):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
 
 	for key in args:
@@ -131,16 +137,17 @@ Completely removes listing from database.
 '''
 
 def delete(args):
-	profile_id = args.pop('profile_id')
+	email = args.pop('email')
 	password = args.pop('password')
+	prof = Profile.objects.get(email=email)
 
-	if not check_password(profile_id, password):
+	if prof.password != password:
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args.pop('listing_id')
 	listing = Listing.objects.get(listing_id=listing_id)
 
-	if str(listing.profile_id) != profile_id:
+	if str(listing.profile_id) != str(prof.profile_id):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
 
 	listing.delete()
