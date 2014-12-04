@@ -40,12 +40,13 @@ public class Main extends FragmentActivity {
                 fragment = new CreateListing();
             } else if (i == 1) {
                 fragment = new LandingPage();
-                Bundle args = new Bundle();
-                args.putString("data", data);
-                fragment.setArguments(args);
             } else if (i == 2) {
                 fragment = new CheckListings();
             }
+
+            Bundle args = new Bundle();
+            args.putString("data", data);
+            fragment.setArguments(args);
 
             return fragment;
         }

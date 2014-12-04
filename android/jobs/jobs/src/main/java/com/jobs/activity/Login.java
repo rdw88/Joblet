@@ -71,10 +71,10 @@ public class Login extends Activity {
             }
 
             protected void onPostExecute(String result) {
-                dialog.dismiss();
                 Intent intent = new Intent(Login.this, Main.class);
                 intent.putExtra("data", response);
                 startActivity(intent);
+                dialog.dismiss();
             }
         }.execute();
     }

@@ -1,7 +1,8 @@
 import base64
 import datetime
 import re
-from profile import check_password
+import profile
+import json
 from models import Listing, Profile
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
 
@@ -21,11 +22,16 @@ def create(args):
 	current_time = datetime.datetime.now()
 	encode = '%s%s%s' % (args['job_title'], args['job_location'], current_time)
 	listing_id = base64.b64encode(encode, '-_')
+	prof, err = profile.get(args['profile_id'])
+	neg = prof['negative_reputation']
+	pos = prof['positive_reputation']
+	rep = (pos / (pos + neg)) * 100 if pos + neg != 0 else 0
+	owner_name = '%s %s' % (prof['first_name'], prof['last_name'])
 
 	listing = Listing(job_title=args['job_title'], job_picture='None', starting_amount=args['starting_amount'],
 		current_bid=0, min_reputation=args['min_reputation'], job_location=args['job_location'],
-		active_time=args['active_time'], profile_id=args['profile_id'], listing_id=listing_id,
-		time_created=current_time)
+		active_time=args['active_time'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
+		time_created=current_time, tag=args['tag'], owner_reputation=rep)
 
 	listing.save()
 	return True, None
@@ -55,22 +61,18 @@ If more than one listing is found, we want to sort the results by the given toke
 '''
 
 def search(tokens):
-	sort_by = None
+	tags = tokens['tags'].split(',')
+	results_list = list()
 
-	try:
-		sort_by = tokens['sort_by']
-		del tokens['sort_by']
-	except KeyError:
-		pass
+	for tag in tags:
+		results = Listing.objects.filter(tag=tag)
+		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'owner_name')))
 
-	d = dict()
-	for token in tokens:
-		d[token] = tokens[token]
+	for i in range(1, len(results_list)):
+		for k in range(len(results_list[i])):
+			results_list[0].append(results_list[i][k])
 
-	results = Listing.objects.filter(**d).order_by(sort_by) if sort_by else Listing.objects.filter(**d)
-	results_list = [str(result.listing_id) for result in results]
-
-	return results_list, None
+	return results_list[0], None
 
 	
 

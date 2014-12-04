@@ -18,14 +18,14 @@ public class Profile {
 	/*
 	 * Returns -1 if created successfully, and and error code otherwise.
 	 */
-	public static int createProfile(String firstName, String lastName, String email, String dob, String skills, String cityCode, String password) {
+	public static int createProfile(String firstName, String lastName, String email, String dob, String tags, String cityCode, String password) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("request", "create");
 		map.put("first_name", firstName);
 		map.put("last_name", lastName);
 		map.put("password", password);
 		map.put("dob", dob);
-		map.put("skills", skills);
+		map.put("tags", tags);
 		map.put("city_code", cityCode);
         map.put("email", email);
 
@@ -70,7 +70,7 @@ public class Profile {
 		map.put("profile_id", profileId);
 
 		try {
-			return Address.get(map, Address.PROFILE);
+			return new JSONObject(Address.get(map, Address.PROFILE));
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
 			JSONObject error = new JSONObject();
@@ -106,7 +106,7 @@ public class Profile {
         data.put("email", email);
 
         try {
-            return Address.get(data, Address.PROFILE).getString("profile_id");
+            return new JSONObject(Address.get(data, Address.PROFILE)).getString("profile_id");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return Integer.toString(Error.ERROR_SERVER_COMMUNICATION);

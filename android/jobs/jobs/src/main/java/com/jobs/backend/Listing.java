@@ -1,5 +1,6 @@
 package com.jobs.backend;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class Listing {
 
-    public static int create(String title, String startingAmount, String minReputation, String jobLocation, String activeTime, String profileID) {
+    public static int create(String title, String startingAmount, String minReputation, String jobLocation, String activeTime, String profileID, String tag) {
         Map<String, String> map = new HashMap<>();
         map.put("request", "create");
         map.put("job_title", title);
@@ -18,6 +19,7 @@ public class Listing {
         map.put("job_location", jobLocation);
         map.put("active_time", activeTime);
         map.put("profile_id", profileID);
+        map.put("tag", tag);
 
         try {
             return Address.post(map, Address.LISTING);
@@ -33,7 +35,7 @@ public class Listing {
         map.put("listing_id", listingID);
 
         try {
-            return Address.get(map, Address.LISTING);
+            return new JSONObject(Address.get(map, Address.LISTING));
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             JSONObject obj = new JSONObject();
@@ -48,21 +50,15 @@ public class Listing {
         }
     }
 
-    public static JSONObject search(HashMap<String, String> map) {
+    public static JSONArray search(HashMap<String, String> map) {
         map.put("request", "search");
 
         try {
-            return Address.get(map, Address.LISTING);
+            return new JSONArray(Address.get(map, Address.LISTING));
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            JSONObject obj = new JSONObject();
-
-            try {
-                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
-
+            JSONArray obj = new JSONArray();
+            obj.put(Error.ERROR_SERVER_COMMUNICATION);
             return obj;
         }
     }

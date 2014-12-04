@@ -16,7 +16,6 @@ class Profile(models.Model):
 	jobs_completed = models.IntegerField()
 	listings_completed = models.IntegerField()
 
-
 	class Meta:
 		verbose_name = 'profile'
 		verbose_name_plural = 'profiles'
@@ -35,7 +34,9 @@ class Listing(models.Model):
 	listing_id = models.CharField(max_length=256)
 	time_created = models.CharField(max_length=64)
 	is_active = models.BooleanField(default=False) # Active means this listing is publicly available
-	tags = models.TextField() # Stored as a JSON object
+	tag = models.CharField(max_length=64)
+	owner_reputation = models.FloatField() # store as percent positive reputation?
+	owner_name = models.CharField(max_length=256)
 
 	class Meta:
 		verbose_name = 'listing'

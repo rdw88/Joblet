@@ -1031,6 +1031,8 @@
     <string name="action_settings">Settings</string>
     <string name="ad_create_account_success">Account created successfully!</string>
     <string name="ad_create_account_success_title">Success</string>
+    <string name="ad_create_listing_success">Listing created successfully!</string>
+    <string name="ad_create_listing_success_title">Success</string>
     <string name="ad_email_in_use">The email address provided is already in use. If you forgot your password, please click the "Forgot Password" button located on the login screen.</string>
     <string name="ad_email_in_use_title">Email In Use</string>
     <string name="ad_error_server_comm">Error communicating with server, please try again later.</string>
@@ -1039,7 +1041,7 @@
     <string name="ad_password_mismatch_title">Password Mismatch</string>
     <string name="ad_wrong_password">The email address and password entered do not match, please try again.</string>
     <string name="ad_wrong_password_title">Incorrect Credentials</string>
-    <string name="app_name">Jobs</string>
+    <string name="app_name">Helpr</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">Ok</string>
     <string name="create_account">Create Account</string>

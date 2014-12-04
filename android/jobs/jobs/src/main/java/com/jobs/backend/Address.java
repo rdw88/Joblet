@@ -50,11 +50,11 @@ public class Address {
         conn.setDoInput(true);
         conn.setDoOutput(true);
 
-        JSONObject response = send(conn, urlEncoded);
+        JSONObject response = new JSONObject(send(conn, urlEncoded));
         return response.getInt("error");
     }
 
-    public static JSONObject get(Map<String, String> params, String address) throws IOException, JSONException {
+    public static String get(Map<String, String> params, String address) throws IOException, JSONException {
         String urlEncoded = Address.urlEncode(params);
         URL url = new URL(address + "?" + urlEncoded);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -63,7 +63,7 @@ public class Address {
         return send(conn, null);
     }
 
-    public static JSONObject send(HttpURLConnection conn, String data) throws IOException, JSONException {
+    public static String send(HttpURLConnection conn, String data) throws IOException, JSONException {
         if (data != null) {
             DataOutputStream os = new DataOutputStream(conn.getOutputStream());
             os.writeBytes(data);
@@ -82,8 +82,6 @@ public class Address {
 
         reader.close();
         conn.disconnect();
-        JSONObject obj = new JSONObject(response);
-
-        return obj;
+        return response;
     }
 }

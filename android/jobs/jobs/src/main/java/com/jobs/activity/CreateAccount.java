@@ -14,7 +14,7 @@ import com.jobs.backend.Profile;
 import com.jobs.backend.Error;
 
 public class CreateAccount extends Activity {
-    private EditText firstName, lastName, email, password, passwordRetry, skills, city;
+    private EditText firstName, lastName, email, password, passwordRetry, tags, city;
     private Button create;
     private DatePicker dob;
 
@@ -32,7 +32,7 @@ public class CreateAccount extends Activity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         passwordRetry = (EditText) findViewById(R.id.password2);
-        skills = (EditText) findViewById(R.id.skills);
+        tags = (EditText) findViewById(R.id.tags);
         city = (EditText) findViewById(R.id.city);
         create = (Button) findViewById(R.id.button_create);
 
@@ -55,9 +55,11 @@ public class CreateAccount extends Activity {
         final String ln = lastName.getText().toString();
         final String em = email.getText().toString();
         final String pw = password.getText().toString();
-        final String sk = skills.getText().toString();
         final String db = dob.getMonth() + "-" + dob.getDayOfMonth() + "-" + dob.getYear();
         final String c = city.getText().toString();
+
+        String userTags = tags.getText().toString();
+        final String sk = userTags.replaceAll(" ", "");
 
         new AsyncTask<String, Void, String>() {
             private int response;

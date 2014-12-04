@@ -41,7 +41,7 @@ def create(args):
 	profile_id = base64.b64encode(encode, '-_')
 
 	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=args['password'], 
-		dob=dob, skills=args['skills'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created,
+		dob=dob, tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created,
 		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0)
 
 	profile.save()
@@ -129,8 +129,8 @@ def get(profile_id):
 	if not profile:
 		return None, ERROR_NO_SUCH_PROFILE
 
-	vals = profile.values('first_name', 'last_name', 'dob', 'email', 'city_code', 'skills', 'date_created', 
-		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed')[0]
+	vals = profile.values('first_name', 'last_name', 'dob', 'email', 'city_code', 'tags', 'date_created', 
+		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id')[0]
 	vals['dob'] = vals['dob'].strftime('%m-%d-%Y')
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 

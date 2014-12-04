@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Jobs</string>
+    <string name="app_name">Helpr</string>
     <string name="user_name">Username</string>
     <string name="login">Login</string>
     <string name="create_account">Create Account</string>
@@ -24,6 +24,8 @@
     <string name="ad_email_in_use_title">Email In Use</string>
     <string name="ad_error_server_comm">Error communicating with server, please try again later.</string>
     <string name="ad_error_server_comm_title">Server Communication Error</string>
+    <string name="ad_create_listing_success">Listing created successfully!</string>
+    <string name="ad_create_listing_success_title">Success</string>
 
 
 </resources>
