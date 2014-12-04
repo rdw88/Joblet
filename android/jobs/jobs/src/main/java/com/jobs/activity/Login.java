@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import com.jobs.R;
+
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import com.jobs.backend.*;
@@ -25,6 +27,7 @@ public class Login extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login);
     }
 

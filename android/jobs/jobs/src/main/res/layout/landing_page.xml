@@ -1,112 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_theme_color"
+    android:id="@+id/landing"
+    android:weightSum="1">
 
     <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:layout_marginTop="15dp"
-              android:textSize="32dp"
-              android:id="@+id/view_name"
-            />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:hint="NAME"
+        android:textColor="#ecf0f1"
+        android:textSize="32dp"
+        android:id="@+id/view_name"
+        />
 
     <ImageView android:layout_width="150dp"
-               android:layout_height="150dp"
-               android:id="@+id/profile_picture"
-               android:layout_gravity="center_horizontal"
-               android:layout_marginTop="15dp"
-               android:src="@drawable/default_picture"/>
+        android:layout_height="150dp"
+        android:id="@+id/profile_picture"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/default_picture"/>
 
     <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_horizontal"
-              android:layout_marginTop="20dp"
-              android:textSize="18dp"
-              android:id="@+id/location"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:id="@+id/location"
+        />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:textSize="28dp"
+        android:text="Reputation"
+        android:textColor="#ecf0f1"/>
+    <RelativeLayout android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/reputation_layout"
+        android:background="#40D47D"
+
+        android:layout_weight="0.16">
+
+        <ImageView android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:id="@+id/smile"
+            android:src="@drawable/smile"
+            android:layout_marginLeft="5dp" />
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/smile"
+            android:hint="00"
+            android:id="@+id/positive_reputation"
+            android:textSize="24dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="5dp"
             />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="75dp"
-              android:layout_marginTop="25dp"
-              android:textSize="21dp"
-              android:text="Reputation"/>
-
-    <RelativeLayout android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/reputation_layout">
-
         <ImageView android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:layout_marginLeft="30dp"
-                   android:layout_marginTop="10dp"
-                   android:id="@+id/smile"
-                   android:src="@drawable/smile"/>
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/frown"
+            android:layout_toRightOf="@id/positive_reputation"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/frown"/>
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_toRightOf="@id/smile"
-                  android:id="@+id/positive_reputation"
-                  android:textSize="24dp"
-                  android:layout_marginTop="20dp"
-                  android:layout_marginLeft="5dp"
-               />
-
-        <ImageView android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:layout_marginLeft="30dp"
-                   android:id="@+id/frown"
-                   android:layout_toRightOf="@id/positive_reputation"
-                   android:layout_marginTop="10dp"
-                   android:src="@drawable/frown"/>
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/frown"
+            android:id="@+id/negative_reputation"
+            android:textSize="24dp"
+            android:hint="00"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="5dp"
+            />
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_toRightOf="@id/frown"
-                  android:id="@+id/negative_reputation"
-                  android:textSize="24dp"
-                  android:layout_marginTop="20dp"
-                  android:layout_marginLeft="5dp"
-                  />
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:text="Lists:"
+            android:layout_marginTop="25dp"
+            android:id="@+id/lists_label"
+            android:layout_toRightOf="@id/negative_reputation"
+            android:layout_marginLeft="50dp"/>
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="21dp"
-                  android:textStyle="bold"
-                  android:text="Lists:"
-                  android:layout_marginTop="5dp"
-                  android:id="@+id/lists_label"
-                  android:layout_toRightOf="@id/negative_reputation"
-                  android:layout_marginLeft="50dp"/>
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:hint="00"
+            android:layout_marginTop="25dp"
+            android:id="@+id/lists_completed"
+            android:layout_toRightOf="@id/lists_label"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="21dp"
-                  android:layout_marginTop="5dp"
-                  android:id="@+id/lists_completed"
-                  android:layout_toRightOf="@id/lists_label"
-                  android:layout_marginLeft="5dp"/>
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:text="Jobs:"
+            android:id="@+id/jobs_label"
+            android:layout_below="@id/lists_label"
+            android:layout_toRightOf="@id/negative_reputation"
+            android:layout_marginLeft="50dp"/>
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="21dp"
-                  android:textStyle="bold"
-                  android:text="Jobs:"
-                  android:id="@+id/jobs_label"
-                  android:layout_below="@id/lists_label"
-                  android:layout_toRightOf="@id/negative_reputation"
-                  android:layout_marginLeft="50dp"/>
-
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:hint="00"
+            android:id="@+id/jobs_completed"
+            android:layout_toRightOf="@id/jobs_label"
+            android:layout_below="@id/lists_label"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="21dp"
-                  android:id="@+id/jobs_completed"
-                  android:layout_toRightOf="@id/jobs_label"
-                  android:layout_below="@id/lists_label"
-                  android:layout_marginLeft="5dp"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/license"
+            android:text="License:"
+            android:textColor="#ecf0f1"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="normal"
+            android:textSize="25sp" />
+
 
     </RelativeLayout>
 

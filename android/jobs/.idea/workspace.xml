@@ -22,39 +22,204 @@
   </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
-      <GlobalState />
+      <GlobalState>
+        <option name="visible" value="false" />
+      </GlobalState>
     </option>
   </component>
   <component name="AndroidLayouts">
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml">
+        <config>
+          <theme>@android:style/Theme.Holo.Light.Dialog.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml">
+        <config>
+          <theme>@android:style/Theme.Holo.Light.Dialog.NoActionBar</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
+        <config>
+          <theme>@android:style/Theme.Holo.Light.Dialog.NoActionBar</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.jobs" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d4eb62f-78fc-42dc-bb8b-5fb3bf177986" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/drawable/logo.png" afterPath="$PROJECT_DIR$/jobs/src/main/res/drawable/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Address.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Address.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/AndroidManifest.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/AndroidManifest.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/generated/source/buildConfig/debug/com/jobs/BuildConfig.java" afterPath="$PROJECT_DIR$/jobs/build/generated/source/buildConfig/debug/com/jobs/BuildConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CreateListing.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CreateListing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Listing.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Listing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/aidl/android/support/v4/app/INotificationSideChannel.aidl" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/aidl/android/support/v4/app/INotificationSideChannel.aidl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Login.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Profile.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Profile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/jobs/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/generated/source/r/debug/com/jobs/R.java" afterPath="$PROJECT_DIR$/jobs/build/generated/source/r/debug/com/jobs/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/R.txt" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java" afterPath="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_title_item.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_title_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_up_container.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_up_container.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_view_list_nav_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_bar_view_list_nav_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_menu_item_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_menu_item_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_menu_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_menu_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_mode_bar.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_mode_bar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_mode_close_item_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_action_mode_close_item_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view_include.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view_include.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view_list_item.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_activity_chooser_view_list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_background_cache_hint_selector_material_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_background_cache_hint_selector_material_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_background_cache_hint_selector_material_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_background_cache_hint_selector_material_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_btn_check_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_btn_check_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_btn_radio_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_btn_radio_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_cab_background_internal_bg.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_cab_background_internal_bg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_cab_background_top_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_cab_background_top_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_edit_text_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_edit_text_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_expanded_menu_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_expanded_menu_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_fade_in.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_fade_in.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_fade_out.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_fade_out.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_item_background_holo_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_item_background_holo_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_item_background_holo_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_item_background_holo_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_checkbox.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_checkbox.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_icon.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_icon.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_radio.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_list_menu_item_radio.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_background_transition_holo_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_background_transition_holo_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_background_transition_holo_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_background_transition_holo_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_holo_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_holo_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_holo_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_list_selector_holo_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_popup_menu_item_layout.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_popup_menu_item_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_disable_only_material_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_disable_only_material_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_disable_only_material_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_disable_only_material_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_material_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_material_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_material_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_primary_text_material_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_content_include.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_content_include.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout-v11/abc_screen_content_include.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout-v11/abc_screen_content_include.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_simple.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_simple.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_simple_overlay_action_mode.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_simple_overlay_action_mode.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_toolbar.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_screen_toolbar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_search_dropdown_item_icons_2line.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_search_dropdown_item_icons_2line.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_search_url_text.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_search_url_text.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_search_view.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_search_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_secondary_text_material_dark.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_secondary_text_material_dark.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_secondary_text_material_light.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_secondary_text_material_light.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_simple_dropdown_hint.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/abc_simple_dropdown_hint.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_bottom.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_bottom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_top.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_top.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_out_bottom.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_out_bottom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_out_top.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_out_top.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_switch_thumb_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_switch_thumb_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_tab_indicator_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_tab_indicator_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_textfield_search_material.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/drawable/abc_textfield_search_material.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build.gradle" afterPath="$PROJECT_DIR$/jobs/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/create_listing.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/create_listing.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../server/ryguy/jobs/listing.py" afterPath="$PROJECT_DIR$/../../server/ryguy/jobs/listing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../server/ryguy/jobs/models.py" afterPath="$PROJECT_DIR$/../../server/ryguy/jobs/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../server/ryguy/jobs/profile.py" afterPath="$PROJECT_DIR$/../../server/ryguy/jobs/profile.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/jobs-jobs.iml" afterPath="$PROJECT_DIR$/jobs/jobs-jobs.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/layout/login.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/layout/login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/jobs/src/main/res/values/styles.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/support_simple_spinner_dropdown_item.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/layout/support_simple_spinner_dropdown_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-af/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-af/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-am/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-am/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ar/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ar/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-bg/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-bg/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-bn-rBD/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-bn-rBD/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ca/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ca/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-cs/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-cs/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-da/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-da/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-de/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-de/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-el/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-el/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-en-rGB/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-en-rGB/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-en-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-en-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-es/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-es/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-es-rUS/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-es-rUS/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-et-rEE/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-et-rEE/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-eu-rES/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-eu-rES/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fa/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fa/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fi/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fi/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fr/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fr/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fr-rCA/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-fr-rCA/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-gl-rES/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-gl-rES/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hi/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hi/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hr/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hr/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hu/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hu/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hy-rAM/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-hy-rAM/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-in/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-in/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-is-rIS/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-is-rIS/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-it/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-it/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-iw/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-iw/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ja/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ja/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ka-rGE/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ka-rGE/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-kk-rKZ/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-kk-rKZ/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-km-rKH/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-km-rKH/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-kn-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-kn-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ko/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ko/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ky-rKG/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ky-rKG/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-land/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-land/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-large/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-large/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lo-rLA/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lo-rLA/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lt/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lt/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lv/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-lv/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mk-rMK/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mk-rMK/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ml-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ml-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mn-rMN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mn-rMN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mr-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-mr-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ms-rMY/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ms-rMY/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-my-rMM/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-my-rMM/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-nb/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-nb/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ne-rNP/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ne-rNP/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-nl/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-nl/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pl/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pl/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-port/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-port/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pt/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pt/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pt-rPT/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-pt-rPT/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ro/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ro/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ru/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ru/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-si-rLK/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-si-rLK/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sk/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sk/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sl/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sl/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sr/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sr/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sv/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sv/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sw/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sw/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sw600dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-sw600dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ta-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ta-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-te-rIN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-te-rIN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-th/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-th/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-tl/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-tl/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-tr/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-tr/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-uk/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-uk/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ur-rPK/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-ur-rPK/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-uz-rUZ/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-uz-rUZ/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v11/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v11/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v14/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v14/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v17/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v17/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v21/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-v21/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-vi/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-vi/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w360dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w360dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w480dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w480dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w500dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w500dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w600dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w600dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w720dp/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-w720dp/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-xlarge/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-xlarge/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-xlarge-land/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-xlarge-land/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rCN/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rCN/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rHK/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rHK/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rTW/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zh-rTW/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zu/values.xml" afterPath="$PROJECT_DIR$/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values-zu/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Jobs.iws" />
@@ -109,31 +274,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="create_listing.xml" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_listing.xml">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.71032184" vertical-offset="0" max-vertical-offset="1232">
-                    <caret line="40" column="82" selection-start-line="37" selection-start-column="16" selection-end-line="40" selection-end-column="49" />
-                    <folding />
-                  </state>
-                </provider>
-                <provider editor-type-id="android-designer">
-                  <state />
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -141,86 +283,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="check_listings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml">
+      <file leaf-file-name="CreateAccount.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.851851" vertical-offset="0" max-vertical-offset="416">
-              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckListings.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="1984">
-              <caret line="99" column="42" selection-start-line="99" selection-start-column="42" selection-end-line="99" selection-end-column="42" />
-              <folding>
-                <element signature="e#1126#1142#0" expanded="true" />
-                <element signature="e#4032#4061#0" expanded="true" />
-                <element signature="e#4089#4124#0" expanded="true" />
-                <element signature="e#4340#4358#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_account.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-49.77778" vertical-offset="0" max-vertical-offset="1648">
-              <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateListing.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CreateListing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="e#1483#3242#0" expanded="true" />
-                <element signature="e#3231#3232#0" expanded="true" />
-                <element signature="e#3650#3684#0" expanded="true" />
-                <element signature="e#3712#3752#0" expanded="true" />
-                <element signature="e#3968#3986#0" expanded="true" />
-                <element signature="e#4297#4326#0" expanded="true" />
-                <element signature="e#4354#4389#0" expanded="true" />
-                <element signature="e#4605#4623#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="752">
-              <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
-              <folding>
-                <element signature="e#459#477#0" expanded="true" />
-                <element signature="e#692#710#0" expanded="true" />
-                <element signature="e#1023#1041#0" expanded="true" />
-                <element signature="e#1152#1176#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="800">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.55988026" vertical-offset="0" max-vertical-offset="850">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -229,43 +306,33 @@
       <file leaf-file-name="Welcome.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+              <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Login.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20285262" vertical-offset="512" max-vertical-offset="1376">
-              <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
+              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list_item.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
+      <file leaf-file-name="login.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.259259" vertical-offset="0" max-vertical-offset="960">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+            <state vertical-scroll-proportion="-19.962963" vertical-offset="362" max-vertical-offset="1003">
+              <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateAccount.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2320">
-              <caret line="137" column="64" selection-start-line="137" selection-start-column="64" selection-end-line="137" selection-end-column="64" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -1092,7 +1159,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$/.." value="4244428861054" />
-        <entry key="$PROJECT_DIR$" value="4244439954852" />
+        <entry key="$PROJECT_DIR$" value="4253023261460" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1246,11 +1313,11 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcpkix-jdk15on/1.48/28b7614b908a47844bb27e3c94b45b6893656265/bcpkix-jdk15on-1.48.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/0.12.2/cbbbe556e0103ceb734ac7a269ecb9a9e2f33d4c/builder-0.12.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/0.12.2/3673e1c415b054caccc3231dcdff959cfcb315f6/builder-0.12.2.jar" />
-                            <option value="$PROJECT_DIR$/../../../Android SDK/sdk/extras/android/m2repository/com/android/support/appcompat-v7/21.0.0/appcompat-v7-21.0.0.aar" />
-                            <option value="$PROJECT_DIR$/../../../Android SDK/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0-sources.jar" />
-                            <option value="$PROJECT_DIR$/../../../Android SDK/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar" />
-                            <option value="$PROJECT_DIR$/../../../Android SDK/sdk/extras/android/m2repository/com/android/support/support-v4/21.0.0/support-v4-21.0.0-sources.jar" />
-                            <option value="$PROJECT_DIR$/../../../Android SDK/sdk/extras/android/m2repository/com/android/support/support-v4/21.0.0/support-v4-21.0.0.aar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/appcompat-v7/21.0.0/appcompat-v7-21.0.0.aar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v4/21.0.0/support-v4-21.0.0-sources.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v4/21.0.0/support-v4-21.0.0.aar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/jobs" />
@@ -1358,30 +1425,31 @@
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Alert.java" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/check_listing.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/LandingPage.java" />
-        <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java" />
-        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/login.xml" />
-        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Address.java" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Listing.java" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/backend/Profile.java" />
-        <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/create_listing.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CreateListing.java" />
-        <option value="$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java" />
+        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/login.xml" />
+        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml" />
+        <option value="$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml" />
+        <option value="$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/jobs/build.gradle" />
+        <option value="$PROJECT_DIR$/jobs/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Login.java" />
+        <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java" />
+        <option value="$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
@@ -1399,7 +1467,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -1410,7 +1478,217 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jobs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -1419,7 +1697,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="gradle.compiler" />
+    <property name="options.lastSelected" value="appearance" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -1427,9 +1705,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.6.101:5555" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="n7" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="99a5eb5d" />
     <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Android Application.Welcome">
     <configuration default="false" name="Login" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
@@ -1452,12 +1730,6 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <RunnerSettings RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
-      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -1489,19 +1761,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1527,6 +1786,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1660,31 +1932,32 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="0" width="960" height="1040" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="960" height="1040" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20022246" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15555556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32918552" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.299117" sideWeight="0.36819637" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23153253" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21291053" sideWeight="0.63180363" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23076923" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21266969" sideWeight="0.63180363" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24894068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2488889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1718,34 +1991,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="560">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="736">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="816">
           <caret line="2" column="15" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/strings.xml">
@@ -1760,43 +2014,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2016">
           <caret line="109" column="73" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="320" max-vertical-offset="416">
           <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1440">
           <caret line="40" column="8" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#1126#1142#0" expanded="true" />
-            <element signature="e#4032#4061#0" expanded="true" />
-            <element signature="e#4089#4124#0" expanded="true" />
-            <element signature="e#4340#4358#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="816">
           <caret line="2" column="15" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/strings.xml">
@@ -1822,25 +2070,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="512" max-vertical-offset="640">
           <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="736">
           <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/strings.xml">
@@ -1866,25 +2114,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="512" max-vertical-offset="640">
           <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="592" max-vertical-offset="736">
           <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/strings.xml">
@@ -1903,14 +2151,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="752">
           <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java">
@@ -1926,9 +2174,7 @@
           <caret line="18" column="69" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
           <folding>
             <element signature="e#459#477#0" expanded="true" />
-            <element signature="e#692#710#0" expanded="true" />
-            <element signature="e#1023#1041#0" expanded="true" />
-            <element signature="e#1152#1176#0" expanded="true" />
+            <element signature="e#1279#1294#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1963,83 +2209,42 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="384">
           <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1392" max-vertical-offset="1680">
           <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Android SDK/sdk/sources/android-21/android/support/v4/view/ViewPager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9364238" vertical-offset="3548" max-vertical-offset="44752">
-          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0076143" vertical-offset="1267" max-vertical-offset="1888">
-          <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18735363" vertical-offset="0" max-vertical-offset="427">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="512" max-vertical-offset="640">
-          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/welcome.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="736">
           <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/LandingPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2047,7 +2252,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="256">
           <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2071,7 +2275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1344">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2079,7 +2282,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="512" max-vertical-offset="1856">
           <caret line="60" column="34" selection-start-line="60" selection-start-column="34" selection-end-line="60" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2087,117 +2289,157 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#1483#3242#0" expanded="true" />
-            <element signature="e#3231#3232#0" expanded="true" />
-            <element signature="e#3650#3684#0" expanded="true" />
-            <element signature="e#3712#3752#0" expanded="true" />
-            <element signature="e#3968#3986#0" expanded="true" />
-            <element signature="e#4297#4326#0" expanded="true" />
-            <element signature="e#4354#4389#0" expanded="true" />
-            <element signature="e#4605#4623#0" expanded="true" />
-          </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.851851" vertical-offset="0" max-vertical-offset="416">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2320">
-          <caret line="137" column="64" selection-start-line="137" selection-start-column="64" selection-end-line="137" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-49.77778" vertical-offset="0" max-vertical-offset="1648">
-          <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="800">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="752">
-          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
-          <folding>
-            <element signature="e#459#477#0" expanded="true" />
-            <element signature="e#692#710#0" expanded="true" />
-            <element signature="e#1023#1041#0" expanded="true" />
-            <element signature="e#1152#1176#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.259259" vertical-offset="0" max-vertical-offset="960">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/fragment/CheckListings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="1984">
           <caret line="99" column="42" selection-start-line="99" selection-start-column="42" selection-end-line="99" selection-end-column="42" />
-          <folding>
-            <element signature="e#1126#1142#0" expanded="true" />
-            <element signature="e#4032#4061#0" expanded="true" />
-            <element signature="e#4089#4124#0" expanded="true" />
-            <element signature="e#4340#4358#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1020">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/landing_page.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.0" vertical-offset="1614" max-vertical-offset="2431">
+          <caret line="137" column="15" selection-start-line="137" selection-start-column="15" selection-end-line="137" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/check_listings.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.518518" vertical-offset="23" max-vertical-offset="680">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_listing.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71032184" vertical-offset="0" max-vertical-offset="1232">
-          <caret line="40" column="82" selection-start-line="37" selection-start-column="16" selection-end-line="40" selection-end-column="49" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="34" max-vertical-offset="1309">
+          <caret line="2" column="0" selection-start-line="37" selection-start-column="16" selection-end-line="40" selection-end-column="49" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13535032" vertical-offset="0" max-vertical-offset="628">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/create_account.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5210608" vertical-offset="1094" max-vertical-offset="1751">
+          <caret line="84" column="56" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="655">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="816">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="799">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="e#459#477#0" expanded="true" />
+            <element signature="e#1279#1294#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20285262" vertical-offset="512" max-vertical-offset="1376">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/layout/login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.962963" vertical-offset="362" max-vertical-offset="1003">
+          <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20763358" vertical-offset="0" max-vertical-offset="655">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/CreateAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Welcome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jobs/src/main/java/com/jobs/activity/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55988026" vertical-offset="0" max-vertical-offset="850">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>

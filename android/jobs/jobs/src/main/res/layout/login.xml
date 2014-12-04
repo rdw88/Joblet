@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#EFEFEF"
-              >
-
-        <EditText android:layout_width="250dp"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center_horizontal"
-                  android:hint="Email Address"
-                  android:layout_marginTop="150dp"
-                  android:inputType="text"
-                  android:id="@+id/email"
-                />
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_theme_color"
+    android:weightSum="1">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Helpr"
+        android:textColor="#ecf0f1"
+        android:textSize="75sp"
+        android:layout_gravity="center_horizontal" />
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:src="@drawable/logo"
+        android:layout_weight="0"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal" />
+    <EditText android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="  Email Address"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:id="@+id/email"
+        android:background="#ecf0f1"
+        />
 
     <EditText android:layout_width="250dp"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_horizontal"
-              android:layout_marginTop="15dp"
-              android:hint="Password"
-              android:inputType="textPassword"
-              android:id="@+id/password"
-            />
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:hint=" Password"
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:background="#ecf0f1"
+        />
 
     <Button android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:id="@+id/login"/>
+        android:layout_height="50dp"
+        android:text="Login"
+        android:textSize="25dp"
+        android:textColor="#2c3e50"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:background="#40D47D"
+        android:id="@+id/login"/>
 
 </LinearLayout>
