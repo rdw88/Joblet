@@ -13,7 +13,7 @@
                android:layout_marginTop="50dp"
                android:id="@+id/logo_welcome"
                android:src="@drawable/logo"
-        android:background="@android:drawable/dialog_holo_dark_frame"
+               android:background="@android:drawable/dialog_holo_dark_frame"
         />
 
     <Button android:layout_width="275dp"
