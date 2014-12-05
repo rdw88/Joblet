@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
     <attr name="drawerArrowStyle" format="reference" />
@@ -34,11 +34,11 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <color name="custom_theme_color">#27ae60</color>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
@@ -991,12 +991,12 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
@@ -1005,11 +1005,11 @@
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item name="disabled_alpha_material_dark" format="float" type="dimen">0.30</item>
     <item name="disabled_alpha_material_light" format="float" type="dimen">0.26</item>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="filter_on">75dp</dimen>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
     <item name="action_bar_activity_content" type="id"/>
@@ -1039,7 +1039,7 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="action_settings">Settings</string>
@@ -1049,6 +1049,10 @@
     <string name="ad_create_listing_success_title">Success</string>
     <string name="ad_email_in_use">The email address provided is already in use. If you forgot your password, please click the "Forgot Password" button located on the login screen.</string>
     <string name="ad_email_in_use_title">Email In Use</string>
+    <string name="ad_error_need_tags">You need to have at least one tag associated with your account!</string>
+    <string name="ad_error_need_tags_title">Need Tag</string>
+    <string name="ad_error_needs_listing_tag">You need to supply a tag to your listing so people can find your offer!</string>
+    <string name="ad_error_needs_listing_tag_title">Need Tag</string>
     <string name="ad_error_server_comm">Error communicating with server, please try again later.</string>
     <string name="ad_error_server_comm_title">Server Communication Error</string>
     <string name="ad_password_mismatch">Passwords do not match! Please try again.</string>
@@ -1063,7 +1067,7 @@
     <string name="login">Login</string>
     <string name="pb_login_message">Please wait while we confirm your credentials.</string>
     <string name="pb_login_title">Logging In...</string>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/base-strings.xml -->
     <eat-comment />
 
     <string name="splash_message">
@@ -1073,7 +1077,7 @@
 
         ]]>
     </string>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="title_sectionLeft">JobListings</string>
@@ -1081,7 +1085,7 @@
     <string name="title_sectionRight">ListJob</string>
     <string name="user_currentLocation">currentLocation</string>
     <string name="user_name">Username</string>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar">
@@ -1094,7 +1098,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance">

@@ -1,8 +1,10 @@
 package com.jobs.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.jobs.R;
+import com.jobs.activity.ListingTags;
 import com.jobs.activity.Main;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
@@ -25,7 +29,8 @@ import java.util.HashMap;
 
 public class CreateListing extends Fragment {
     private String userData;
-    private EditText jobTitle, startingAmount, minRep, jobLocation, activeTime, tag;
+    private EditText jobTitle, startingAmount, minRep, jobLocation, activeTime;
+    private TextView tag;
 
     public void onStart() {
         super.onStart();
@@ -35,12 +40,24 @@ public class CreateListing extends Fragment {
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
         jobLocation = (EditText) getActivity().findViewById(R.id.job_location);
         activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        tag = (EditText) getActivity().findViewById(R.id.tag);
+        tag = (TextView) getActivity().findViewById(R.id.listing_tag);
         Button create = (Button) getActivity().findViewById(R.id.button_createlisting);
+        Button setTag = (Button) getActivity().findViewById(R.id.set_tag);
+
+        setTag.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListingTags.class);
+                startActivityForResult(intent, 0xf1);
+            }
+        });
 
         create.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 //final ProgressDialog dialog = ProgressDialog.show(getActivity().getApplicationContext(), "Creating Listing", "Creating listing, please wait...", true);
+                if (!tag.getText().toString().contains("Tag:")) {
+                    alertNeedsTag();
+                    return;
+                }
 
                 new AsyncTask<String, Void, String>() {
                     private int response;
@@ -51,7 +68,7 @@ public class CreateListing extends Fragment {
                         String mr = minRep.getText().toString();
                         String jl = jobLocation.getText().toString();
                         String at = activeTime.getText().toString();
-                        String t = tag.getText().toString();
+                        String t = tag.getText().toString().substring(5);
                         String profileID = null;
 
                         try {
@@ -77,6 +94,21 @@ public class CreateListing extends Fragment {
                 }.execute();
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 0xf1:
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle b = data.getExtras();
+                    String s = b.getString("tag");
+                    tag.setText("Tag: " + s);
+                }
+
+                break;
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,6 +137,23 @@ public class CreateListing extends Fragment {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.ad_error_server_comm);
         builder.setTitle(R.string.ad_error_server_comm_title);
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface di, int i) {
+            }
+        };
+
+        builder.setPositiveButton(R.string.button_ok, listener);
+        //builder.setNegativeButton(R.string.button_cancel, listener);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void alertNeedsTag() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.ad_error_needs_listing_tag);
+        builder.setTitle(R.string.ad_error_needs_listing_tag_title);
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {

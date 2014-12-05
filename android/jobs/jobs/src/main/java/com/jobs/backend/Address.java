@@ -55,8 +55,15 @@ public class Address {
     }
 
     public static String get(Map<String, String> params, String address) throws IOException, JSONException {
-        String urlEncoded = Address.urlEncode(params);
-        URL url = new URL(address + "?" + urlEncoded);
+        URL url = null;
+
+        if (params != null) {
+            String urlEncoded = Address.urlEncode(params);
+            url = new URL(address + "?" + urlEncoded);
+        } else {
+            url = new URL(address);
+        }
+
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 

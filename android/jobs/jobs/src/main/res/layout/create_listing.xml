@@ -53,20 +53,29 @@
               android:id="@+id/active_time"
               android:layout_marginTop="15dp"/>
 
-    <EditText android:layout_height="wrap_content"
-              android:layout_width="match_parent"
-              android:layout_marginLeft="50dp"
-              android:layout_marginRight="50dp"
-              android:hint="Tag"
-              android:id="@+id/tag"
-              android:layout_marginTop="15dp"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="21dp"
+            android:layout_marginLeft="50dp"
+            android:textStyle="bold"
+            android:id="@+id/listing_tag"
+            />
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Tag"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textAllCaps="false"
+            android:id="@+id/set_tag"/>
 
     <Button android:layout_height="wrap_content"
             android:layout_width="150dp"
             android:text="Create"
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/button_createlisting"/>
 
 </LinearLayout>
