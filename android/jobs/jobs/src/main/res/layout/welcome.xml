@@ -25,6 +25,10 @@
         style="@style/button_text"
         android:layout_gravity="center_horizontal"
         android:elegantTextHeight="false" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"></RelativeLayout>
 
     <Button
         android:background="@drawable/button"
@@ -35,6 +39,11 @@
         style="@style/button_text"
         android:layout_gravity="center_horizontal"
          />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"></RelativeLayout>
 
     <Button
         android:background="@drawable/button"
