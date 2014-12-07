@@ -33,7 +33,7 @@ public class CreateAccount extends Activity {
     protected void onStart() {
         super.onStart();
 
-        //dob = (DatePicker) findViewById(R.id.dob);
+        dob = (DatePicker) findViewById(R.id.dob);
         firstName = (EditText) findViewById(R.id.first_name);
         lastName = (EditText) findViewById(R.id.last_name);
         email = (EditText) findViewById(R.id.email);

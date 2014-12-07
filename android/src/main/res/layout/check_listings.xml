@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Check Listings"
-            android:textColor="#FFFFFF"
+            android:textColor="#F2FDFE"
             android:textSize="36dp"
             android:id="@+id/title_landing_page"
             android:layout_centerInParent="true"

@@ -9,7 +9,7 @@
     <color name="cementInfo">#000000</color>
     ecf0f1
     <color name="button">#FFE158</color>
-    <color name="title_color">#4A5163</color>
+    <color name="title_color">#7f8c8d</color>
     2A52BE
     <color name="custom_theme_color">#658BF3</color>
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar">

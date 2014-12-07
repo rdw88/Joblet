@@ -20,12 +20,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Create Account"
-                android:textColor="#FFFFFF"
+                android:textColor="#F2FDFE"
                 android:textSize="36dp"
                 android:id="@+id/title_create_listing"
                 android:layout_centerInParent="true"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
         </RelativeLayout>
 
 
@@ -35,7 +35,6 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="125dp"
             android:layout_marginTop="40dp"/>
 
         <EditText android:layout_width="250dp"
@@ -54,7 +53,6 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="125dp"
             android:layout_marginTop="20dp"/>
 
         <EditText android:layout_width="250dp"
@@ -73,7 +71,6 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="185dp"
             android:layout_marginTop="20dp"/>
 
         <EditText android:layout_width="250dp"
@@ -93,7 +90,6 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="130dp"
             android:layout_marginTop="20dp"/>
 
 
@@ -121,7 +117,6 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="200dp"
             android:layout_marginTop="20dp"/>
 
         <EditText android:layout_width="250dp"
@@ -139,24 +134,26 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:background="@drawable/button"
+            android:id="@+id/dob"
+            android:layout_width="175dp"
+            android:layout_height="50dp"
+            android:text="Pick Date"
+            style="@style/button_text_medium"
+            android:layout_gravity="center_horizontal" />
 
                 />
 
-    <!--    <DatePicker android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:id="@+id/dob"/>
-
-<<<<<<< HEAD
--->
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tags:"
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="190dp"
             android:layout_marginTop="20dp"/>
         />
         <TextView android:layout_width="wrap_content"
@@ -165,7 +162,6 @@
             android:textSize="16sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:paddingRight="55dp"
             android:layout_marginTop="5dp"/>
         />
         <EditText android:layout_width="250dp"
@@ -192,29 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"></RelativeLayout>
-=======
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginRight="50dp"
-                  android:layout_marginLeft="50dp"
-                  android:id="@+id/tags"/>
 
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Tags"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="false"
-                android:layout_marginTop="15dp"
-                android:id="@+id/button_add_tags"/>
-
-        <Button android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Create Account"
-                android:textAllCaps="false"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:id="@+id/button_create"/>
->>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
 
     </LinearLayout>
 

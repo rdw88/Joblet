@@ -26,8 +26,11 @@
     <string name="ad_error_server_comm_title">Server Communication Error</string>
     <string name="ad_create_listing_success">Listing created successfully!</string>
     <string name="ad_create_listing_success_title">Success</string>
-<<<<<<< HEAD
+    <string name="list_currentBid">$00.00</string>
     <string name="title_backgroungTint">#755C15</string>
+    <string name="list_title">ListTitle</string>
+    <string name="owner_reputation">00</string>
+    <string name="owner_listNumber">00</string>
 =======
     <string name="ad_error_need_tags">You need to have at least one tag associated with your account!</string>
     <string name="ad_error_need_tags_title">Need Tag</string>
