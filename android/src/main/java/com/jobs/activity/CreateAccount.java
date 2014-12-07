@@ -2,6 +2,7 @@ package com.jobs.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,12 +18,15 @@ import com.jobs.backend.Profile;
 import com.jobs.backend.Error;
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 public class CreateAccount extends Activity {
     private EditText firstName, lastName, email, password, passwordRetry, city;
     private Button addTags, create;
     private TextView tags;
-    private DatePicker dob;
+    private EditText dob;
     private String[] addedTags;
+    private Calendar date;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +37,32 @@ public class CreateAccount extends Activity {
     protected void onStart() {
         super.onStart();
 
-        dob = (DatePicker) findViewById(R.id.dob);
+        date = Calendar.getInstance();
+        dob = (EditText) findViewById(R.id.dob);
         firstName = (EditText) findViewById(R.id.first_name);
         lastName = (EditText) findViewById(R.id.last_name);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         passwordRetry = (EditText) findViewById(R.id.password2);
-<<<<<<< HEAD
-        tags = (EditText) findViewById(R.id.profile_tags);
-=======
         tags = (TextView) findViewById(R.id.tags);
->>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         city = (EditText) findViewById(R.id.city);
-        addTags = (Button) findViewById(R.id.button_add_tags);
+        addTags = (Button) findViewById(R.id.add_tags);
         create = (Button) findViewById(R.id.button_create);
+
+        final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                date.set(Calendar.YEAR, year);
+                date.set(Calendar.MONTH, monthOfYear);
+                date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                dob.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
+            }
+        };
+
+        dob.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                new DatePickerDialog(CreateAccount.this, dateListener, date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         addTags.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -104,7 +120,7 @@ public class CreateAccount extends Activity {
         final String ln = lastName.getText().toString();
         final String em = email.getText().toString();
         final String pw = password.getText().toString();
-        final String db = dob.getMonth() + "-" + dob.getDayOfMonth() + "-" + dob.getYear();
+        final String db = dob.getText().toString();
         final String c = city.getText().toString();
 
         String userTags = tags.getText().toString();

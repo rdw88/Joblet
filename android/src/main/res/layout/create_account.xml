@@ -137,16 +137,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
 
-        <Button
-            android:background="@drawable/button"
+        <EditText
             android:id="@+id/dob"
-            android:layout_width="175dp"
+            android:layout_width="250dp"
             android:layout_height="50dp"
-            android:text="Pick Date"
-            style="@style/button_text_medium"
+            android:hint="Pick Date"
+            android:background="#ecf0f1"
             android:layout_gravity="center_horizontal" />
-
-                />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -154,25 +151,18 @@
             android:textSize="26sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"/>
-        />
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seperate Tags by commas:"
-            android:textSize="16sp"
-            android:textColor="@color/cementInfo"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"/>
-        />
-        <EditText android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:hint=" Tags"
-            android:id="@+id/profile_tags"
-            android:inputType="textCapWords"
-            android:layout_marginTop="10dp"
-            android:background="#ecf0f1"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginTop="20dp"
+            android:id="@+id/tags"/>
+
+        <Button android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button"
+                android:id="@+id/add_tags"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:text="Add Tags"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"/>
 
         <Button
             android:background="@drawable/button"

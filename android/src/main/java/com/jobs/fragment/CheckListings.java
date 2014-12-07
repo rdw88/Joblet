@@ -94,15 +94,15 @@ public class CheckListings extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.list_item, parent, false);
 
-            //TextView title = (TextView) row.findViewById(R.id.job_name);
+            TextView title = (TextView) row.findViewById(R.id.job_name);
             //TextView owner = (TextView) row.findViewById(R.id.user;
-            TextView tags = (TextView) row.findViewById(R.id.listing_tags);
-            //TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
-            //title.setText(items.get(position).title);
+            //TextView tags = (TextView) row.findViewById(R.id.listing_tags);
+            TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
+            title.setText(items.get(position).title);
             //owner.setText(items.get(position).owner);
-            String ts = items.get(position).tag;
-            tags.setText(ts);
-            //reputation.setText(Double.toString(items.get(position).reputation));
+            //String ts = items.get(position).tag;
+            //tags.setText(ts);
+            reputation.setText(Double.toString(items.get(position).reputation));
 
             return row;
         }

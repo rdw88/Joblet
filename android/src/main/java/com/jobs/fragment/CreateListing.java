@@ -40,35 +40,32 @@ public class CreateListing extends Fragment {
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
-<<<<<<< HEAD
         jobLocation = (EditText) getActivity().findViewById(R.id.listing_location);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        tag = (EditText) getActivity().findViewById(R.id.listing_tags);
+        tag = (TextView) getActivity().findViewById(R.id.chosen_tag);
         Button create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
+
         pickDate.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 DialogFragment newFragment = new TimePickerFragment();
                 newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
-=======
-        jobLocation = (EditText) getActivity().findViewById(R.id.job_location);
-        activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        tag = (TextView) getActivity().findViewById(R.id.listing_tag);
-        Button create = (Button) getActivity().findViewById(R.id.button_createlisting);
+            }
+        });
+
         Button setTag = (Button) getActivity().findViewById(R.id.set_tag);
 
         setTag.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ListingTags.class);
                 startActivityForResult(intent, 0xf1);
->>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
             }
         });
 
         create.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 //final ProgressDialog dialog = ProgressDialog.show(getActivity().getApplicationContext(), "Creating Listing", "Creating listing, please wait...", true);
-                if (!tag.getText().toString().contains("Tag:")) {
+                if (!tag.getText().toString().equals("Tag:")) {
                     alertNeedsTag();
                     return;
                 }
