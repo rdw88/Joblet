@@ -17,4 +17,4 @@
            android:interpolator="@android:anim/decelerate_interpolator"
            android:fromYDelta="50%p" android:toYDelta="0"
            android:duration="@android:integer/config_mediumAnimTime"/>
-<!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_bottom.xml -->
+<!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/anim/abc_slide_in_bottom.xml -->

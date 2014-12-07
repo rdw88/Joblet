@@ -52,14 +52,16 @@ public class CheckListings extends Fragment {
 
             protected void onPostExecute(String result) {
                 try {
-                    if (response.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
-                        alertErrorServer();
-                    }
+                    if (response.length() != 0) {
+                        if (response.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
+                            alertErrorServer();
+                        }
 
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject obj = (JSONObject) response.get(i);
-                        Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getString("owner_name"), obj.getDouble("owner_reputation"));
-                        list.add(item);
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj = (JSONObject) response.get(i);
+                            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getString("owner_name"), obj.getDouble("owner_reputation"));
+                            list.add(item);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

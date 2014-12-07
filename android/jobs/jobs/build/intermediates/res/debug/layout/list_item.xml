@@ -165,5 +165,9 @@
             android:id="@+id/button_createListing_postListing"/>
 
 
+<<<<<<< HEAD
     </LinearLayout>
 </ScrollView><!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/layout/list_item.xml -->
+=======
+</RelativeLayout><!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/src/main/res/layout/list_item.xml -->
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786

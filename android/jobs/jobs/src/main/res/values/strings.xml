@@ -26,7 +26,14 @@
     <string name="ad_error_server_comm_title">Server Communication Error</string>
     <string name="ad_create_listing_success">Listing created successfully!</string>
     <string name="ad_create_listing_success_title">Success</string>
+<<<<<<< HEAD
     <string name="title_backgroungTint">#755C15</string>
+=======
+    <string name="ad_error_need_tags">You need to have at least one tag associated with your account!</string>
+    <string name="ad_error_need_tags_title">Need Tag</string>
+    <string name="ad_error_needs_listing_tag">You need to supply a tag to your listing so people can find your offer!</string>
+    <string name="ad_error_needs_listing_tag_title">Need Tag</string>
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
 
 
 </resources>

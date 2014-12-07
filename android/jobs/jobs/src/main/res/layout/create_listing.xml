@@ -148,6 +148,7 @@
             />
         </RelativeLayout>
 
+<<<<<<< HEAD
         <Button
             android:background="@drawable/button"
             android:id="@+id/button_createListing_removeCheckedPicture"
@@ -257,6 +258,72 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"></RelativeLayout>
 
+=======
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginRight="50dp"
+              android:hint="Job Title"
+              android:id="@+id/job_title"
+              android:layout_marginTop="15dp"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginRight="50dp"
+              android:hint="Starting Amount"
+              android:id="@+id/starting_amount"
+              android:layout_marginTop="15dp"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginRight="50dp"
+              android:hint="Minimum Reputation (1-100)"
+              android:id="@+id/min_reputation"
+              android:layout_marginTop="15dp"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginRight="50dp"
+              android:hint="Job Location"
+              android:id="@+id/job_location"
+              android:layout_marginTop="15dp"/>
+
+    <EditText android:layout_height="wrap_content"
+              android:layout_width="match_parent"
+              android:layout_marginLeft="50dp"
+              android:layout_marginRight="50dp"
+              android:hint="Search Time"
+              android:id="@+id/active_time"
+              android:layout_marginTop="15dp"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="21dp"
+            android:layout_marginLeft="50dp"
+            android:textStyle="bold"
+            android:id="@+id/listing_tag"
+            />
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Tag"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:textAllCaps="false"
+            android:id="@+id/set_tag"/>
+
+    <Button android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:text="Create"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_createlisting"/>
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
 
     </LinearLayout>
 </ScrollView>

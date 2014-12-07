@@ -18,4 +18,4 @@
     <item android:state_pressed="true" android:color="@color/abc_search_url_text_pressed"/>
     <item android:state_selected="true" android:color="@color/abc_search_url_text_selected"/>
     <item android:color="@color/abc_search_url_text_normal"/>
-</selector><!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_search_url_text.xml -->
+</selector><!-- From: file:/C:/Users/Ryan/Documents/Coding%20Projects/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/color/abc_search_url_text.xml -->

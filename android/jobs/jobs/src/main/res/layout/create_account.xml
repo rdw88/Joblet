@@ -148,6 +148,7 @@
                     android:calendarViewShown="false"
                     android:id="@+id/dob"/>
 
+<<<<<<< HEAD
 -->
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,6 +192,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"></RelativeLayout>
+=======
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginRight="50dp"
+                  android:layout_marginLeft="50dp"
+                  android:id="@+id/tags"/>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Tags"
+                android:layout_gravity="center_horizontal"
+                android:textAllCaps="false"
+                android:layout_marginTop="15dp"
+                android:id="@+id/button_add_tags"/>
+
+        <Button android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Create Account"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:id="@+id/button_create"/>
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
 
     </LinearLayout>
 

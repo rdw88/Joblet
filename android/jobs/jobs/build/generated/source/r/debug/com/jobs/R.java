@@ -1629,16 +1629,22 @@ containing a value of this type.
         public static final int action_bar_spinner=0x7f080001;
         public static final int action_bar_subtitle=0x7f080021;
         public static final int action_bar_title=0x7f080020;
+        public static final int action_confirm=0x7f080072;
         public static final int action_context_bar=0x7f080034;
         public static final int action_menu_divider=0x7f080002;
         public static final int action_menu_presenter=0x7f080003;
         public static final int action_mode_bar=0x7f080030;
         public static final int action_mode_bar_stub=0x7f08002f;
         public static final int action_mode_close_button=0x7f080022;
+<<<<<<< HEAD
+=======
+        public static final int active_time=0x7f080051;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int activity_chooser_view_content=0x7f080023;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
         public static final int bottom=0x7f08001e;
+<<<<<<< HEAD
         public static final int button_create=0x7f08004d;
         public static final int button_createListing_pickDate=0x7f080055;
         public static final int button_createListing_postListing=0x7f080056;
@@ -1648,6 +1654,14 @@ containing a value of this type.
         public static final int button_forgot_pass=0x7f080069;
         public static final int button_login=0x7f080067;
         public static final int checkListings_filter=0x7f080043;
+=======
+        public static final int button_add_tags=0x7f08004b;
+        public static final int button_create=0x7f08004c;
+        public static final int button_createacc=0x7f080070;
+        public static final int button_createlisting=0x7f080054;
+        public static final int button_forgot_pass=0x7f080071;
+        public static final int button_login=0x7f08006f;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int checkbox=0x7f08002b;
         public static final int city=0x7f08004b;
         public static final int collapseActionView=0x7f080017;
@@ -1662,12 +1676,18 @@ containing a value of this type.
         public static final int end=0x7f080014;
         public static final int expand_activities_button=0x7f080024;
         public static final int expanded_menu=0x7f08002a;
+<<<<<<< HEAD
         public static final int first_name=0x7f080046;
+=======
+        public static final int first_name=0x7f080043;
+        public static final int frown=0x7f08005c;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f080028;
         public static final int ifRoom=0x7f080018;
         public static final int image=0x7f080025;
+<<<<<<< HEAD
         public static final int jobs_completed=0x7f080063;
         public static final int jobs_label=0x7f080062;
         public static final int landing=0x7f080057;
@@ -1701,6 +1721,44 @@ containing a value of this type.
         public static final int reputationDown=0x7f08005e;
         public static final int reputationUp=0x7f08005c;
         public static final int reputation_layout=0x7f08005b;
+=======
+        public static final int job_location=0x7f080050;
+        public static final int job_name=0x7f080063;
+        public static final int job_title=0x7f08004d;
+        public static final int jobs_completed=0x7f080061;
+        public static final int jobs_label=0x7f080060;
+        public static final int landing=0x7f080055;
+        public static final int last_name=0x7f080044;
+        public static final int license=0x7f080062;
+        public static final int listMode=0x7f080009;
+        public static final int list_item=0x7f080027;
+        public static final int listing_list=0x7f080042;
+        public static final int listing_tag=0x7f080052;
+        public static final int listing_tags=0x7f080065;
+        public static final int listing_tags_list_view=0x7f080068;
+        public static final int lists_completed=0x7f08005f;
+        public static final int lists_label=0x7f08005e;
+        public static final int location=0x7f080058;
+        public static final int login=0x7f08006b;
+        public static final int logo_welcome=0x7f08006a;
+        public static final int middle=0x7f080015;
+        public static final int min_reputation=0x7f08004f;
+        public static final int negative_reputation=0x7f08005d;
+        public static final int never=0x7f080019;
+        public static final int none=0x7f08000e;
+        public static final int normal=0x7f08000a;
+        public static final int owner=0x7f080064;
+        public static final int owner_reputation=0x7f080066;
+        public static final int pager=0x7f080041;
+        public static final int password=0x7f080046;
+        public static final int password2=0x7f080047;
+        public static final int positive_reputation=0x7f08005b;
+        public static final int profile_picture=0x7f080057;
+        public static final int progress_circular=0x7f080005;
+        public static final int progress_horizontal=0x7f080006;
+        public static final int radio=0x7f08002d;
+        public static final int reputation_layout=0x7f080059;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int search_badge=0x7f080037;
         public static final int search_bar=0x7f080036;
         public static final int search_button=0x7f080038;
@@ -1711,21 +1769,40 @@ containing a value of this type.
         public static final int search_plate=0x7f08003b;
         public static final int search_src_text=0x7f08003c;
         public static final int search_voice_btn=0x7f080040;
+        public static final int set_tag=0x7f080053;
         public static final int shortcut=0x7f08002c;
         public static final int showCustom=0x7f08000f;
         public static final int showHome=0x7f080010;
         public static final int showTitle=0x7f080011;
+<<<<<<< HEAD
         public static final int split_action_bar=0x7f080007;
         public static final int starting_amount=0x7f080053;
         public static final int submit_area=0x7f08003e;
         public static final int tabMode=0x7f08000b;
+=======
+        public static final int smile=0x7f08005a;
+        public static final int smile_pic=0x7f080067;
+        public static final int split_action_bar=0x7f080007;
+        public static final int starting_amount=0x7f08004e;
+        public static final int submit_area=0x7f08003e;
+        public static final int tabMode=0x7f08000b;
+        public static final int tag=0x7f080069;
+        public static final int tag_checkbox=0x7f08006c;
+        public static final int tag_list=0x7f08006e;
+        public static final int tag_name=0x7f08006d;
+        public static final int tags=0x7f08004a;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int title=0x7f080029;
         public static final int title_create_listing=0x7f080045;
         public static final int title_landing_page=0x7f080042;
         public static final int top=0x7f08001f;
         public static final int up=0x7f080008;
         public static final int useLogo=0x7f080012;
+<<<<<<< HEAD
         public static final int user_name=0x7f080058;
+=======
+        public static final int view_name=0x7f080056;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
         public static final int withText=0x7f08001a;
         public static final int wrap_content=0x7f08001d;
     }
@@ -1762,10 +1839,17 @@ containing a value of this type.
         public static final int create_listing=0x7f03001a;
         public static final int landing_page=0x7f03001b;
         public static final int list_item=0x7f03001c;
-        public static final int login=0x7f03001d;
-        public static final int sample_main=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
-        public static final int welcome=0x7f030020;
+        public static final int listing_tags=0x7f03001d;
+        public static final int listing_tags_list_item=0x7f03001e;
+        public static final int login=0x7f03001f;
+        public static final int sample_main=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int tag_list_item=0x7f030022;
+        public static final int tag_selector=0x7f030023;
+        public static final int welcome=0x7f030024;
+    }
+    public static final class menu {
+        public static final int tag_selector_action_bar=0x7f0c0000;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0a0000;
@@ -1790,6 +1874,7 @@ containing a value of this type.
         public static final int ad_create_listing_success_title=0x7f0a0013;
         public static final int ad_email_in_use=0x7f0a0014;
         public static final int ad_email_in_use_title=0x7f0a0015;
+<<<<<<< HEAD
         public static final int ad_error_server_comm=0x7f0a0016;
         public static final int ad_error_server_comm_title=0x7f0a0017;
         public static final int ad_password_mismatch=0x7f0a0018;
@@ -1811,6 +1896,32 @@ containing a value of this type.
         public static final int title_sectionRight=0x7f0a0028;
         public static final int user_currentLocation=0x7f0a0029;
         public static final int user_name=0x7f0a002a;
+=======
+        public static final int ad_error_need_tags=0x7f0a0016;
+        public static final int ad_error_need_tags_title=0x7f0a0017;
+        public static final int ad_error_needs_listing_tag=0x7f0a0018;
+        public static final int ad_error_needs_listing_tag_title=0x7f0a0019;
+        public static final int ad_error_server_comm=0x7f0a001a;
+        public static final int ad_error_server_comm_title=0x7f0a001b;
+        public static final int ad_password_mismatch=0x7f0a001c;
+        public static final int ad_password_mismatch_title=0x7f0a001d;
+        public static final int ad_wrong_password=0x7f0a001e;
+        public static final int ad_wrong_password_title=0x7f0a001f;
+        public static final int app_name=0x7f0a0020;
+        public static final int button_cancel=0x7f0a0021;
+        public static final int button_ok=0x7f0a0022;
+        public static final int create_account=0x7f0a0023;
+        public static final int forgot_password=0x7f0a0024;
+        public static final int login=0x7f0a0025;
+        public static final int pb_login_message=0x7f0a0026;
+        public static final int pb_login_title=0x7f0a0027;
+        public static final int splash_message=0x7f0a0028;
+        public static final int title_sectionLeft=0x7f0a0029;
+        public static final int title_sectionMid=0x7f0a002a;
+        public static final int title_sectionRight=0x7f0a002b;
+        public static final int user_currentLocation=0x7f0a002c;
+        public static final int user_name=0x7f0a002d;
+>>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
