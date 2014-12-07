@@ -9,16 +9,16 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:background="#F8CC00"
+        android:background="@color/title_color"
         android:layout_marginBottom="20dp"
         >
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Check Listings"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="36dp"
             android:id="@+id/title_landing_page"
             android:layout_centerInParent="true"
@@ -28,11 +28,11 @@
     <Button
         android:background="@drawable/button"
         android:id="@+id/checkListings_filter"
-        android:layout_width="65dp"
+        android:layout_width="75dp"
         android:layout_height="40dp"
         android:text="Filter"
         style="@style/button_text_small"
-        android:layout_gravity="left" />
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
