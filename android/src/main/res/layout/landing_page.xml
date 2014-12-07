@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_theme_color"
+    android:id="@+id/landing"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_name"
+        android:textSize="32sp"
+        android:textColor="#ecf0f1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+    <ImageView android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:id="@+id/profile_picture"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/default_picture"
+        android:background="@android:drawable/dialog_holo_dark_frame"/>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:id="@+id/location"
+        android:text="Location" />
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28dp"
+        android:text="Reputation"
+        android:textColor="#ecf0f1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"/>
+
+    <RelativeLayout android:layout_width="300dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:id="@+id/reputation_layout"
+        android:background="#FFE970"
+        android:layout_marginBottom="20dp">
+
+        <ImageView android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/reputationUp"
+            android:src="@drawable/reputation_up"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true" />
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00"
+            android:id="@+id/positive_reputation"
+            android:textSize="24dp"
+            android:layout_alignTop="@+id/reputationUp"
+            android:layout_toRightOf="@+id/reputationUp"
+            android:layout_toEndOf="@+id/reputationUp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp" />
+
+        <ImageView android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/reputationDown"
+            android:src="@drawable/reputation_down"
+            android:layout_toStartOf="@+id/positive_reputation"
+            android:layout_below="@+id/reputationUp"
+            android:layout_toLeftOf="@+id/positive_reputation" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/negative_reputation"
+            android:textSize="24dp"
+            android:hint="00"
+            android:layout_alignTop="@+id/reputationDown"
+            android:layout_alignLeft="@+id/positive_reputation"
+            android:layout_alignStart="@+id/positive_reputation"
+            android:layout_marginTop="10dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:text="Lists:"
+            android:textColor="#2c3e50"
+            android:id="@+id/lists_label"
+            android:layout_alignTop="@+id/lists_completed"
+            android:layout_toLeftOf="@+id/lists_completed"
+            android:layout_toStartOf="@+id/lists_completed" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:hint="00"
+            android:id="@+id/lists_completed"
+            android:layout_marginRight="49dp"
+            android:layout_alignTop="@+id/positive_reputation"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:text="Jobs:"
+            android:textColor="#2c3e50"
+            android:id="@+id/jobs_label"
+            android:layout_alignTop="@+id/reputationDown"
+            android:layout_alignLeft="@+id/lists_label"
+            android:layout_alignStart="@+id/lists_label" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="21dp"
+            android:hint="00"
+            android:id="@+id/jobs_completed"
+            android:layout_alignTop="@+id/jobs_label"
+            android:layout_alignLeft="@+id/lists_completed"
+            android:layout_alignStart="@+id/lists_completed" />
+
+    </RelativeLayout>
+
+    <Button
+        android:background="@drawable/button"
+        android:id="@+id/editProfile"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:text="Edit Profile"
+        style="@style/button_text"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
