@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Job Name:"
                 android:textSize="26sp"
+                android:textColor="#2c3e50"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="40dp"/>
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Owner of Listing:"
             android:textSize="26sp"
+            android:textColor="#2c3e50"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"/>
@@ -70,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/user_name"
-                android:textColor="#ecf0f1"
+                android:textColor="#2c3e50"
                 android:textSize="30dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -81,6 +83,7 @@
             android:layout_height="wrap_content"
             android:text="Tags:"
             android:textSize="26sp"
+            android:textColor="#2c3e50"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"/>
@@ -89,6 +92,7 @@
             android:layout_height="wrap_content"
             android:text="Seperate Tags by commas:"
             android:textSize="16sp"
+            android:textColor="#2c3e50"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"/>
@@ -104,7 +108,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             />
-        <Button android:layout_width="200dp"
+        <Button android:layout_width="220dp"
             android:layout_height="50dp"
             android:text="Choose Picture"
             android:textSize="25dp"
@@ -136,7 +140,7 @@
                 />
             </RelativeLayout>
 
-        <Button android:layout_width="140dp"
+        <Button android:layout_width="150dp"
             android:layout_height="30dp"
             android:text="Remove Checked"
             android:textSize="16dp"
@@ -158,7 +162,7 @@
             android:layout_marginBottom="15dp"
             android:backgroundTint="#31EB63"
             android:background="@android:drawable/editbox_dropdown_light_frame"
-            android:id="@+id/button_createListing_uploadPicture"/>
+            android:id="@+id/button_createListing_postListing"/>
 
 
     </LinearLayout>

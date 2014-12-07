@@ -26,6 +26,7 @@
     <string name="ad_error_server_comm_title">Server Communication Error</string>
     <string name="ad_create_listing_success">Listing created successfully!</string>
     <string name="ad_create_listing_success_title">Success</string>
+    <string name="title_backgroungTint">#755C15</string>
 
 
 </resources>

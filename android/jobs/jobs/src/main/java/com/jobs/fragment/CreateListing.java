@@ -1,10 +1,12 @@
 package com.jobs.fragment;
 
 import android.app.AlertDialog;
+
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -30,13 +32,20 @@ public class CreateListing extends Fragment {
     public void onStart() {
         super.onStart();
 
-        jobTitle = (EditText) getActivity().findViewById(R.id.job_title);
+        jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
-        jobLocation = (EditText) getActivity().findViewById(R.id.job_location);
-        activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        tag = (EditText) getActivity().findViewById(R.id.tag);
-        Button create = (Button) getActivity().findViewById(R.id.button_createlisting);
+        jobLocation = (EditText) getActivity().findViewById(R.id.listing_location);
+        //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
+        tag = (EditText) getActivity().findViewById(R.id.listing_tags);
+        Button create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
+        Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
+        pickDate.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
+            }
+        });
 
         create.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

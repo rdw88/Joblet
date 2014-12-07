@@ -32,12 +32,20 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <color name="button">#FFE158</color>
+    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment />
+
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
     <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
     <eat-comment />
 
-    <color name="custom_theme_color">#27ae60</color>
+    <color name="cementInfo">#000000</color>
+    <color name="custom_theme_color">#658BF3</color>
     <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
     <eat-comment />
 
@@ -72,6 +80,12 @@
     <color name="secondary_text_disabled_material_light">#24000000</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
+    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <color name="title_color">#FF7F00</color>
+    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/res/values/values.xml -->
+    <eat-comment />
 
     <declare-styleable name="ActionBar">
 
@@ -1076,6 +1090,7 @@
     <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/strings.xml -->
     <eat-comment />
 
+    <string name="title_backgroungTint">#755C15</string>
     <string name="title_sectionLeft">JobListings</string>
     <string name="title_sectionMid">Main</string>
     <string name="title_sectionRight">ListJob</string>
@@ -2361,5 +2376,29 @@ m>                <item name="android:textColorLink">@color/link_text_material_d
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar" />
 
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation" />
+    <!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="button_text">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="button_text_medium" parent="button_text">
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="button_text_small" parent="button_text">
+        <item name="android:textSize">18dp</item>
+    </style>
 
 </resources>

@@ -18,7 +18,7 @@ public class LandingPage extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.landing_page, container, false);
-        name = (TextView) view.findViewById(R.id.view_name);
+        name = (TextView) view.findViewById(R.id.user_name);
         location = (TextView) view.findViewById(R.id.location);
         positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);
         negativeReputation = (TextView) view.findViewById(R.id.negative_reputation);

@@ -7,8 +7,8 @@
     android:background="@color/custom_theme_color"
     android:weightSum="1">
 
-    <ImageView android:layout_width="230dp"
-        android:layout_height="230dp"
+    <ImageView android:layout_width="225dp"
+        android:layout_height="225dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:id="@+id/logo_welcome"
@@ -31,21 +31,20 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
         android:hint=" Password"
         android:inputType="textPassword"
         android:id="@+id/password"
         android:background="#ecf0f1"
         />
 
-    <Button android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Login"
-        android:textSize="25dp"
-        android:textColor="#2c3e50"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="#31EB63"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:id="@+id/login"/>
+    <Button
+        android:background="@drawable/button"
+        android:id="@+id/login"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:text="Log In"
+        style="@style/button_text"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout><!-- From: file:/C:/Users/Jondar/.android/Jobs/android/jobs/jobs/src/main/res/layout/login.xml -->

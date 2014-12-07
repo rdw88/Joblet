@@ -28,13 +28,13 @@ public class CreateAccount extends Activity {
     protected void onStart() {
         super.onStart();
 
-        dob = (DatePicker) findViewById(R.id.dob);
+        //dob = (DatePicker) findViewById(R.id.dob);
         firstName = (EditText) findViewById(R.id.first_name);
         lastName = (EditText) findViewById(R.id.last_name);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         passwordRetry = (EditText) findViewById(R.id.password2);
-        tags = (EditText) findViewById(R.id.tags);
+        tags = (EditText) findViewById(R.id.profile_tags);
         city = (EditText) findViewById(R.id.city);
         create = (Button) findViewById(R.id.button_create);
 
