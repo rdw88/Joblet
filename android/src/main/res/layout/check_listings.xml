@@ -28,7 +28,7 @@
     <Button
         android:background="@drawable/button"
         android:id="@+id/checkListings_filter"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="40dp"
         android:text="Filter"
         style="@style/button_text_small"

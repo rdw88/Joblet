@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Window;
+
 import com.jobs.R;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
@@ -19,6 +21,7 @@ public class Main extends FragmentActivity {
     private String data;
 
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         data = getIntent().getExtras().getString("data");

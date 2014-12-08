@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/user_name"
         android:textSize="32sp"
-        android:textColor="#ecf0f1"
+        android:textColor="#FFD619"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         />
@@ -31,14 +31,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:textSize="18dp"
+        android:textColor="#FFFFFF"
         android:id="@+id/location"
-        android:text="Location" />
+        android:text="@string/user_currentLocation" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="28dp"
-        android:text="Reputation"
-        android:textColor="#ecf0f1"
+        android:text="Reputation:"
+        android:textColor="#FFD619"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"/>
 
@@ -46,7 +47,7 @@
         android:layout_height="125dp"
         android:layout_gravity="center"
         android:id="@+id/reputation_layout"
-        android:background="#FFE970"
+        android:background="#FFDE46"
         android:layout_marginBottom="20dp">
 
         <ImageView android:layout_width="50dp"
@@ -90,7 +91,7 @@
             android:textSize="21dp"
             android:textStyle="bold"
             android:text="Lists:"
-            android:textColor="#2c3e50"
+            android:textColor="#000000"
             android:id="@+id/lists_label"
             android:layout_alignTop="@+id/lists_completed"
             android:layout_toLeftOf="@+id/lists_completed"
@@ -112,7 +113,7 @@
             android:textSize="21dp"
             android:textStyle="bold"
             android:text="Jobs:"
-            android:textColor="#2c3e50"
+            android:textColor="#000000"
             android:id="@+id/jobs_label"
             android:layout_alignTop="@+id/reputationDown"
             android:layout_alignLeft="@+id/lists_label"

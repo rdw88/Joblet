@@ -36,7 +36,6 @@ public class Login extends Activity {
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

@@ -18,6 +18,7 @@ public class TagSelector extends Activity {
     private final ArrayList<String> selected = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tag_selector);
     }

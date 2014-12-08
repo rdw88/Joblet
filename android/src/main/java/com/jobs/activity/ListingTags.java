@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 import com.jobs.R;
 import com.jobs.backend.Address;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class ListingTags extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listing_tags);
     }
