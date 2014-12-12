@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/custom_theme_color"
+    android:background="#2A52BE"
     android:id="@+id/landing"
     android:weightSum="1">
 

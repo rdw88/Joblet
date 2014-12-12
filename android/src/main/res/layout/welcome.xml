@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/custom_theme_color"
+              android:background="@drawable/background"
     android:focusable="true">
 
     <ImageView android:layout_width="250dp"
@@ -14,25 +14,26 @@
                android:id="@+id/logo_welcome"
                android:src="@drawable/logo"
         android:background="@android:drawable/alert_dark_frame"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:background="@drawable/button"
-        android:id="@+id/button_login"
+        android:id="@+id/welcome_button_login"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:text="Login"
         style="@style/button_text"
         android:layout_gravity="center_horizontal"
         android:elegantTextHeight="false" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"></RelativeLayout>
+        android:layout_marginBottom="10dp"></RelativeLayout>
 
     <Button
         android:background="@drawable/button"
-        android:id="@+id/button_createacc"
+        android:id="@+id/welcome_button_createacc"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:text="Create Account"
@@ -43,11 +44,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"></RelativeLayout>
+        android:layout_marginBottom="10dp"></RelativeLayout>
 
     <Button
         android:background="@drawable/button"
-        android:id="@+id/button_forgot_pass"
+        android:id="@+id/welcome_button_forgotpass"
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:text="Forgot Password"

@@ -11,12 +11,13 @@
     <color name="button">#FFE158</color>
     <color name="title_color">#FFD619</color>
     2A52BE
-    <color name="custom_theme_color">#658BF3</color>
+    <color name="white_background">#FFFFFF</color>+
+    658BF3
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/custom_theme_color</item>
-        <item name="android:colorBackground">@color/custom_theme_color</item>
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:colorBackground">@drawable/background</item>
     </style>
 
     <style name="button_text" >

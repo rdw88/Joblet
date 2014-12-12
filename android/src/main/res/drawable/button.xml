@@ -1,39 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" >
-        <shape>
-            <solid
-                android:color="#FFE158">
 
-                </solid>
-            <stroke
-                android:width="1dp"
-                android:color="#FFE158" />
-            <corners
-                android:radius="6dp" />
-            <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:bottom="2dp" android:top="2dp" android:left="1dp"
+        android:right="1dp">
+        <shape android:shape="rectangle">
+            <gradient android:gradientRadius="0"
+                android:type="radial"
+                android:centerX="50%"
+                android:centerY="50%"
+                android:startColor="#000000"
+                android:endColor="#55000000"
+                />
+            <corners android:radius="100dp" />
         </shape>
     </item>
-    <item>
-        <shape>
-            <gradient
-                android:startColor="#FFE158"
+    <item android:bottom="5dp" android:top="1dp" android:left="2dp"
+        android:right="2dp">
+        <shape android:shape="rectangle">
+            <gradient android:angle="270"
+                android:startColor="#FFEA8C"
                 android:endColor="#FFD619"
-                android:angle="270"/>
-            <stroke
-                android:width="1dp"
-                android:color="#FFD619" />
-            <corners
-                android:radius="100dp" />
-            <padding
-                android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
+                />
+            <corners android:radius="100dp" />
         </shape>
     </item>
-</selector>
+</layer-list>
