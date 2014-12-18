@@ -31,12 +31,12 @@
     <string name="list_title">ListTitle</string>
     <string name="owner_reputation">00</string>
     <string name="owner_listNumber">00</string>
-=======
     <string name="ad_error_need_tags">You need to have at least one tag associated with your account!</string>
     <string name="ad_error_need_tags_title">Need Tag</string>
     <string name="ad_error_needs_listing_tag">You need to supply a tag to your listing so people can find your offer!</string>
     <string name="ad_error_needs_listing_tag_title">Need Tag</string>
->>>>>>> 1c117e7b7725e889fce580f410254744e8b4c786
+    <string name="ad_error_no_such_listing_title">No Such Listing</string>
+    <string name="ad_error_no_such_listing">The listing you are trying to view does not exist!</string>
 
 
 </resources>

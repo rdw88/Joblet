@@ -26,6 +26,13 @@ public class TagSelector extends Activity {
     public void onStart() {
         super.onStart();
 
+        Button confirm = (Button) findViewById(R.id.createacc_tags_confirm);
+        confirm.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                confirm();
+            }
+        });
+
         Bundle b = getIntent().getExtras();
 
         if (b != null) {
@@ -74,36 +81,12 @@ public class TagSelector extends Activity {
         }.execute();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.tag_selector_action_bar, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_confirm:
-                confirm();
-                return true;
-            //case R.id.action_cancel:
-             //   cancel();
-              //  return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     private void confirm() {
         String[] s = new String[selected.size()];
         selected.toArray(s);
         Intent result = new Intent();
         result.putExtra("array", s);
         setResult(Activity.RESULT_OK, result);
-        finish();
-    }
-
-    private void cancel() {
-        setResult(Activity.RESULT_CANCELED);
         finish();
     }
 

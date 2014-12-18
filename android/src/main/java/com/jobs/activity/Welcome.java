@@ -20,9 +20,9 @@ public class Welcome extends Activity {
     protected void onStart() {
         super.onStart();
 
-        login = (Button) findViewById(R.id.button_login);
-        createAccount = (Button) findViewById(R.id.button_createacc);
-        forgotPassword = (Button) findViewById(R.id.button_forgot_pass);
+        login = (Button) findViewById(R.id.welcome_button_login);
+        createAccount = (Button) findViewById(R.id.welcome_button_createacc);
+        forgotPassword = (Button) findViewById(R.id.welcome_button_forgotpass);
 
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

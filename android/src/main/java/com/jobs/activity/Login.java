@@ -3,8 +3,10 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.jobs.R;
 
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
@@ -36,10 +39,26 @@ public class Login extends Activity {
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
+        final CheckBox rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
+
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        if (prefs.contains("email") && prefs.contains("password")) {
+            email.setText(prefs.getString("email", null));
+            password.setText(prefs.getString("password", null));
+            rememberMe.setChecked(true);
+        }
+
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 dialog = ProgressDialog.show(Login.this, getResources().getString(R.string.pb_login_title), getResources().getString(R.string.pb_login_message));
+                if (rememberMe.isChecked()) {
+                    SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString("email", email.getText().toString());
+                    editor.putString("password", password.getText().toString());
+                    editor.apply();
+                }
 
                 new AsyncTask<String, Void, String>() {
                     private int response;

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_listing_title"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"
+        />
+    
+    <ImageView
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:id="@+id/listing_picture"
+        android:src="@drawable/default_picture"
+        android:background="@android:drawable/dialog_holo_dark_frame"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_listing_current_bid"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/view_listing_owner_reputation"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/view_listing_job_location"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/view_listing_owner_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/view_listing_time_created"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/view_listing_tag"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="Make A Bid"
+        android:textAllCaps="false"
+        android:id="@+id/view_listing_make_bid"/>
+
+</LinearLayout>

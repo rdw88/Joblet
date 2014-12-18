@@ -38,6 +38,14 @@
         android:background="#ecf0f1"
         />
 
+    <CheckBox
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/checkbox_remember_me"
+        android:text="Remember Me"/>
+
     <Button
         android:background="@drawable/button"
         android:id="@+id/login"

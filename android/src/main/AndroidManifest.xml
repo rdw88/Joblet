@@ -40,6 +40,9 @@
         <activity android:name="com.jobs.activity.ListingTags"
                   android:label="@string/app_name"></activity>
 
+        <activity android:name="com.jobs.activity.ViewListing"
+            android:label="@string/app_name"></activity>
+
 
     </application>
 
