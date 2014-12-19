@@ -12,6 +12,8 @@ import android.view.Window;
 import android.widget.*;
 import com.jobs.R;
 import com.jobs.backend.Address;
+import com.jobs.backend.Resource;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -27,40 +29,18 @@ public class ListingTags extends Activity {
     public void onStart() {
         super.onStart();
 
-        new AsyncTask<String, Void, String>() {
-            private String response;
-
-            protected String doInBackground(String... urls) {
-                try {
-                    response = Address.get(null, "http://ryguy.me/files/tags.json");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
+        final ArrayList<String> items = Resource.TAGS;
+        ListView listings = (ListView) findViewById(R.id.listing_tags_list_view);
+        ListAdapter adapter = new ListAdapter(ListingTags.this, items);
+        listings.setAdapter(adapter);
+        listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent response = new Intent();
+                response.putExtra("tag", items.get(position));
+                setResult(Activity.RESULT_OK, response);
+                finish();
             }
-
-            protected void onPostExecute(String result) {
-                final ArrayList<String> items = new ArrayList<String>();
-                String[] tags = response.split(",");
-
-                for (int i = 0; i < tags.length; i++)
-                    items.add(tags[i]);
-
-                ListView listings = (ListView) findViewById(R.id.listing_tags_list_view);
-                ListAdapter adapter = new ListAdapter(ListingTags.this, items);
-                listings.setAdapter(adapter);
-                listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent response = new Intent();
-                        response.putExtra("tag", items.get(position));
-                        setResult(Activity.RESULT_OK, response);
-                        finish();
-                    }
-                });
-            }
-        }.execute();
+        });
     }
 
     private class ListAdapter extends ArrayAdapter<String> {

@@ -7,8 +7,11 @@ MUST return either meaningful data, a success flag, or an error code.
 
 from models import Profile
 from error import ERROR_NO_SUCH_PROFILE, ERROR_INCORRECT_PASSWORD, ERROR_EMAIL_IN_USE
+from ryguy.settings import BASE_DIR
 import base64
 import datetime
+import os
+import shutil
 
 '''
 
@@ -45,6 +48,7 @@ def create(args):
 		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0)
 
 	profile.save()
+	os.mkdir(os.path.join(BASE_DIR, 'static/jobs/%s' % profile_id))
 	return True, None
 
 '''
@@ -113,6 +117,7 @@ def delete(args):
 		return None, ERROR_INCORRECT_PASSWORD
 
 	profile[0].delete()
+	shutil.rmtree(os.path.join(BASE_DIR, 'static/jobs/%s' % args['profile_id']))
 	return True, None
 
 

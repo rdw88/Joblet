@@ -97,3 +97,21 @@ def listings(request):
 			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+
+
+def upload(request):
+	if request.method == 'POST':
+		data = request.POST.copy()
+		destination = data['destination'] # listing or profile picture?
+		result = None
+		err_code = None
+		
+		if destination == 'profile':
+			pass
+		elif destination == 'listing':
+			result, err_code = listing.upload(data, request.FILES['file'])
+
+		if not err_code:
+			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
+		else:
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')

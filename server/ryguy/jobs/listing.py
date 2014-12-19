@@ -3,8 +3,12 @@ import datetime
 import re
 import profile
 import json
+import os
 from models import Listing, Profile
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from ryguy.settings import BASE_DIR
 
 '''
 
@@ -29,7 +33,7 @@ def create(args):
 	rep = (pos / (pos + neg)) * 100 if pos + neg != 0 else 0
 	owner_name = '%s %s' % (prof['first_name'], prof['last_name'])
 
-	listing = Listing(job_title=args['job_title'], job_picture='None', starting_amount=args['starting_amount'],
+	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
 		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
 		active_time=args['active_time'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
 		time_created=time_created, tag=args['tag'], owner_reputation=rep)
@@ -159,4 +163,51 @@ def delete(args):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
 
 	listing.delete()
+	return True, None
+
+'''
+
+Uploads pictures associated with a listing.
+
+'''
+def upload(args, uploaded_file):
+	listing_id = args['listing_id']
+	email = args['email']
+	password = args['password']
+	name = args['file_name']
+
+	listing = Listing.objects.filter(listing_id=listing_id)
+
+	if len(listing) == 0:
+		return False, ERROR_NO_SUCH_LISTING
+
+	profile = Profile.objects.get(email=email)
+
+	if profile.password != password:
+		return False, ERROR_INCORRECT_PASSWORD
+
+	listing = listing[0]
+	if str(listing.profile_id) != str(profile.profile_id):
+		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
+
+	file_name = os.path.join(BASE_DIR, 'static/jobs/%s' % name)
+	with open(file_name, 'wb') as dest:
+		for chunk in uploaded_file.chunks():
+			dest.write(chunk)
+			dest.flush()
+
+		dest.close()
+
+	conn = S3Connection('AKIAJZTMLPRDUJK6K45A', 'JfKclDtSGZC29w803XnsGq82qRcRKWI+g6TDqmLJ')
+	bucket = conn.get_bucket('helpr')
+	k = Key(bucket)
+	k.key = 'listing/images/%s' % name
+	k.set_contents_from_filename(file_name)
+	os.remove(file_name)
+
+	pictures = json.loads(listing.__dict__['job_picture'])
+	pictures.append(k.key)
+	listing.__dict__['job_picture'] = json.dumps(pictures)
+	listing.save()
+
 	return True, None

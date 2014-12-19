@@ -42,43 +42,21 @@ public class TagSelector extends Activity {
             }
         }
 
-        new AsyncTask<String, Void, String>() {
-            private String response;
+        final ArrayList<String> items = Resource.TAGS;
+        ListView listings = (ListView) findViewById(R.id.tag_list);
+        ListAdapter adapter = new ListAdapter(TagSelector.this, items);
+        listings.setAdapter(adapter);
+        listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
+                box.setChecked(!box.isChecked());
 
-            protected String doInBackground(String... urls) {
-                try {
-                    response = Address.get(null, "http://ryguy.me/files/tags.json");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
+                if (box.isChecked())
+                    selected.add(items.get(position));
+                else
+                    selected.remove(items.get(position));
             }
-
-            protected void onPostExecute(String result) {
-                final ArrayList<String> items = new ArrayList<String>();
-                String[] tags = response.split(",");
-
-                for (int i = 0; i < tags.length; i++)
-                    items.add(tags[i]);
-
-                ListView listings = (ListView) findViewById(R.id.tag_list);
-                ListAdapter adapter = new ListAdapter(TagSelector.this, items);
-                listings.setAdapter(adapter);
-                listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
-                        box.setChecked(!box.isChecked());
-
-                        if (box.isChecked())
-                            selected.add(items.get(position));
-                        else
-                            selected.remove(items.get(position));
-                    }
-                });
-            }
-        }.execute();
+        });
     }
 
     private void confirm() {

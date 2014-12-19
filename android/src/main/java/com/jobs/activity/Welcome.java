@@ -16,11 +16,12 @@ public class Welcome extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.welcome);
+        Resource.initLocations(this);
+        Resource.initTags(this);
     }
 
     protected void onStart() {
         super.onStart();
-        Resource.initLocations(this);
 
         login = (Button) findViewById(R.id.welcome_button_login);
         createAccount = (Button) findViewById(R.id.welcome_button_createacc);
