@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,17 +18,30 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.backend.Profile;
 import com.jobs.backend.Error;
+import com.jobs.backend.Resource;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateAccount extends Activity {
-    private EditText firstName, lastName, email, password, passwordRetry, city;
+    private EditText firstName, lastName, email, password, passwordRetry;
+    private AutoCompleteTextView city;
     private Button addTags, create;
     private TextView tags;
     private EditText dob;
     private String[] addedTags;
     private Calendar date;
+    private ArrayList<String> locations = Resource.LOCATIONS;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +60,12 @@ public class CreateAccount extends Activity {
         password = (EditText) findViewById(R.id.password);
         passwordRetry = (EditText) findViewById(R.id.password2);
         tags = (TextView) findViewById(R.id.tags);
-        city = (EditText) findViewById(R.id.city);
+        city = (AutoCompleteTextView) findViewById(R.id.city);
         addTags = (Button) findViewById(R.id.add_tags);
         create = (Button) findViewById(R.id.button_create);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, locations);
+        city.setAdapter(adapter);
 
         final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

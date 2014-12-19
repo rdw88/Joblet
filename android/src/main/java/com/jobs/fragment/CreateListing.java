@@ -64,7 +64,7 @@ public class CreateListing extends Fragment {
 
         create.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                //final ProgressDialog dialog = ProgressDialog.show(getActivity().getApplicationContext(), "Creating Listing", "Creating listing, please wait...", true);
+                //locations ProgressDialog dialog = ProgressDialog.show(getActivity().getApplicationContext(), "Creating Listing", "Creating listing, please wait...", true);
                 if (!tag.getText().toString().equals("Tag:")) {
                     alertNeedsTag();
                     return;

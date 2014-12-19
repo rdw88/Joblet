@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import com.jobs.R;
+import com.jobs.backend.Resource;
 
 public class Welcome extends Activity {
     private Button login, createAccount, forgotPassword;
@@ -19,6 +20,7 @@ public class Welcome extends Activity {
 
     protected void onStart() {
         super.onStart();
+        Resource.initLocations(this);
 
         login = (Button) findViewById(R.id.welcome_button_login);
         createAccount = (Button) findViewById(R.id.welcome_button_createacc);

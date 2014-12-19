@@ -1,5 +1,6 @@
 package com.jobs.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,10 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jobs.R;
+import com.jobs.activity.TagSelector;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
@@ -27,28 +29,102 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CheckListings extends Fragment {
     private ListView listings;
     private String profileData;
-    private final ArrayList<Item> list = new ArrayList<>();
+    private String[] searchedTags;
+    private ListingAdapter adapter;
+    private boolean filtered;
+
+    private final ArrayList<Item> elements = new ArrayList<>();
+
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            searchedTags = savedInstanceState.getStringArray("elements");
+        }
+    }
 
     public void onStart() {
         super.onStart();
+
+        if (searchedTags == null) {
+            try {
+                JSONObject obj = new JSONObject(profileData);
+                String tags = obj.getString("tags");
+                String[] tagsArray = tags.split(",");
+                searchedTags = new String[tagsArray.length];
+
+                for (int i = 0; i < searchedTags.length; i++) {
+                    searchedTags[i] = tagsArray[i];
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Button filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
+        filter.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TagSelector.class);
+                intent.putExtra("array", searchedTags);
+                startActivityForResult(intent, 0xf2);
+            }
+        });
+
+        fill();
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArray("elements", searchedTags);
+    }
+
+    public void onStop() {
+        super.onStop();
+        elements.removeAll(elements);
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        profileData = getArguments().getString("data");
+        return inflater.inflate(R.layout.check_listings, container, false);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 0xf2:
+                if (resultCode == Activity.RESULT_OK) {
+                    searchedTags = data.getExtras().getStringArray("array");
+                    filtered = true;
+                }
+
+                break;
+        }
+    }
+
+    private void fill() {
+        if (searchedTags.length == 0) {
+            adapter.clear();
+            adapter.notifyDataSetChanged();
+            return;
+        }
 
         new AsyncTask<String, Void, String>() {
             private JSONArray response;
 
             protected String doInBackground(String... urls) {
                 HashMap<String, String> map = new HashMap<String, String>();
-
-                try {
-                    JSONObject obj = new JSONObject(profileData);
-                    map.put("tags", obj.getString("tags"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                String tags = "";
+                for (int i = 0; i < searchedTags.length - 1; i++) {
+                    tags += searchedTags[i] + ",";
                 }
+
+                tags += searchedTags[searchedTags.length - 1];
+                map.put("tags", tags);
 
                 response = Listing.search(map);
                 return null;
@@ -60,11 +136,12 @@ public class CheckListings extends Fragment {
                         if (response.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
                             alertErrorServer();
                         }
+                        elements.removeAll(elements);
 
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = (JSONObject) response.get(i);
                             Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"), obj.getDouble("owner_reputation"), obj.getString("listing_id"));
-                            list.add(item);
+                            elements.add(item);
                         }
                     }
                 } catch (JSONException e) {
@@ -74,30 +151,23 @@ public class CheckListings extends Fragment {
                 listings = (ListView) getActivity().findViewById(R.id.listing_list);
                 listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String listingID = list.get(position).listingID;
+                        String listingID = elements.get(position).listingID;
                         Intent intent = new Intent(getActivity(), ViewListing.class);
                         intent.putExtra("listing_id", listingID);
                         startActivity(intent);
                     }
                 });
-                ListingAdapter adapter = new ListingAdapter(getActivity(), list);
+                adapter = new ListingAdapter(getActivity(), elements);
                 listings.setAdapter(adapter);
             }
         }.execute();
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        profileData = getArguments().getString("data");
-        return inflater.inflate(R.layout.check_listings, container, false);
-    }
-
     private class ListingAdapter extends ArrayAdapter<Item> {
-        private Context context;
         private ArrayList<Item> items;
 
         public ListingAdapter(Context context, ArrayList<Item> items) {
             super(context, R.layout.list_item, items);
-            this.context = context;
             this.items = items;
         }
 
@@ -116,6 +186,10 @@ public class CheckListings extends Fragment {
             reputation.setText(Double.toString(items.get(position).reputation));
 
             return row;
+        }
+
+        public int getCount() {
+            return items.size();
         }
     }
 

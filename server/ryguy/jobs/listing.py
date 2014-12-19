@@ -104,7 +104,7 @@ def update(args):
 		return True, None
 
 	elif operation == 'update_current_bid':
-		listing.__dict__['current_bid'] = args['current_bid']
+		listing.__dict__['current_bid'] = args['current_bid']		
 		listing.save()
 		return True, None
 
