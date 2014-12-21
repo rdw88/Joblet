@@ -3,24 +3,29 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ViewListing extends Activity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag;
     private Button makeBid;
+    private ImageView picture;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +43,30 @@ public class ViewListing extends Activity {
         timeCreated = (TextView) findViewById(R.id.view_listing_time_created);
         tag = (TextView) findViewById(R.id.view_listing_tag);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
+        picture = (ImageView) findViewById(R.id.listing_picture);
 
         Bundle b = getIntent().getExtras();
         final String listingID = b.getString("listing_id");
-        System.out.println(listingID);
 
         new AsyncTask<String, Void, String>() {
             private JSONObject response;
+            private Bitmap bitmap;
 
             protected String doInBackground(String... urls) {
                 response = Listing.get(listingID);
+                try {
+                    JSONArray arr = new JSONArray(response.getString("job_picture"));
+                    String pictureURL = arr.getString(0);
+
+                    try {
+                        bitmap = Address.fetchPicture(Address.FILES + pictureURL);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
 
@@ -67,6 +86,7 @@ public class ViewListing extends Activity {
                     ownerName.setText("Owner: " + response.getString("owner_name"));
                     timeCreated.setText("Date Created: " + response.getString("time_created"));
                     tag.setText("Tag: " + response.getString("tag"));
+                    picture.setImageBitmap(bitmap);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

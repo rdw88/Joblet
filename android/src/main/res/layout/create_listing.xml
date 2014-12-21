@@ -120,6 +120,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"></RelativeLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/uploaded_picture"
+            android:layout_marginBottom="15dp"
+            android:visibility="gone"
+            android:background="@android:drawable/dialog_holo_dark_frame"/>
+
         <Button
                 android:background="@drawable/button_blue"
                 android:id="@+id/button_createListing_uploadPicture"

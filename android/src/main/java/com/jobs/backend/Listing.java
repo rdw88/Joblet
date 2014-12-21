@@ -1,16 +1,38 @@
 package com.jobs.backend;
 
+import android.graphics.Bitmap;
+
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.File;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.util.EntityUtils;
+
 public class Listing {
 
-    public static int create(String title, String startingAmount, String minReputation, String jobLocation, String activeTime, String profileID, String tag) {
+    public static JSONObject create(String title, String startingAmount, String minReputation, String jobLocation, String activeTime, String profileID, String tag, String password) {
         Map<String, String> map = new HashMap<>();
         map.put("request", "create");
         map.put("job_title", title);
@@ -20,12 +42,21 @@ public class Listing {
         map.put("active_time", activeTime);
         map.put("profile_id", profileID);
         map.put("tag", tag);
+        map.put("password", password);
 
         try {
             return Address.post(map, Address.LISTING);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject obj = new JSONObject();
+
+            try {
+                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return obj;
         }
     }
 
@@ -63,12 +94,44 @@ public class Listing {
         }
     }
 
+    public static int upload(String image, String listingID, String email, String password) {
+        HttpClient httpclient = new DefaultHttpClient();
+        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+
+        HttpPost httppost = new HttpPost(Address.UPLOAD);
+        File file = new File(image);
+
+        try {
+            MultipartEntity mpEntity = new MultipartEntity();
+            ContentBody b = new FileBody(file);
+            mpEntity.addPart("file", b);
+            mpEntity.addPart("listing_id", new StringBody(listingID));
+            mpEntity.addPart("destination", new StringBody("listing"));
+            mpEntity.addPart("email", new StringBody(email));
+            mpEntity.addPart("password", new StringBody(password));
+            httppost.setEntity(mpEntity);
+
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity resEntity = response.getEntity();
+
+            if (resEntity != null) {
+                resEntity.consumeContent();
+            }
+
+            httpclient.getConnectionManager().shutdown();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
     /*
     updateOperation tells the server what we are updating to the listing with the associated
     listingID. The args HashMap are additional arguments that the server may need to process an update.
     The passed HashMap can be null.
      */
-    public static int update(String updateOperation, String listingID, HashMap<String, String> args) {
+    public static JSONObject update(String updateOperation, String listingID, HashMap<String, String> args) {
         HashMap<String, String> map = args == null ? new HashMap<String, String>() : args;
         map.put("request", "update");
         map.put("listing_id", listingID);
@@ -78,14 +141,22 @@ public class Listing {
             return Address.post(map, Address.LISTING);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject obj = new JSONObject();
+
+            try {
+                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return obj;
         }
     }
 
     /*
     Edits the private side of a listing that only the owner of the listing can edit.
      */
-    public static int edit(String email, String password, String listingID, HashMap<String, String> map) {
+    public static JSONObject edit(String email, String password, String listingID, HashMap<String, String> map) {
         map.put("request", "edit");
         map.put("email", email);
         map.put("password", password);
@@ -95,11 +166,19 @@ public class Listing {
             return Address.post(map, Address.LISTING);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject obj = new JSONObject();
+
+            try {
+                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return obj;
         }
     }
 
-    public static int delete(String email, String password, String listingID) {
+    public static JSONObject delete(String email, String password, String listingID) {
         Map<String, String> map = new HashMap<>();
         map.put("request", "delete");
         map.put("email", email);
@@ -110,7 +189,15 @@ public class Listing {
             return Address.post(map, Address.LISTING);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject obj = new JSONObject();
+
+            try {
+                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return obj;
         }
     }
 }

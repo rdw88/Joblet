@@ -18,6 +18,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -64,7 +66,11 @@ public class Login extends Activity {
                     private int response;
 
                     protected String doInBackground(String... urls) {
-                        response = Profile.login(email.getText().toString(), password.getText().toString());
+                        try {
+                            response = Profile.login(email.getText().toString(), password.getText().toString()).getInt("error");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         return null;
                     }
 

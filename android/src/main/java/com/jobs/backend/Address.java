@@ -1,5 +1,8 @@
 package com.jobs.backend;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +17,8 @@ import java.util.Set;
 public class Address {
 	public static final String PROFILE = "http://ryguy.me/profile/";
 	public static final String LISTING = "http://ryguy.me/listing/";
+    public static final String UPLOAD = "http://ryguy.me/upload/";
+    public static final String FILES = "http://helpr.s3-website-us-west-1.amazonaws.com/";
 
 	public static String urlEncode(Map<String, String> map) {
 		Set<String> keys = map.keySet();
@@ -35,10 +40,22 @@ public class Address {
 		return encoded;
 	}
 
+    public static Bitmap fetchPicture(String address) throws IOException {
+        URL url = new URL(address);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        DataInputStream is = new DataInputStream(conn.getInputStream());
+        Bitmap bitmap = BitmapFactory.decodeStream(is);
+        is.close();
+        conn.disconnect();
+        return bitmap;
+    }
+
     /*
 	 * Sends parameters to server at the specified address. Returns an error code if there was an error on the server.
 	 */
-    public static int post(Map<String, String> params, String address) throws IOException, JSONException {
+    public static JSONObject post(Map<String, String> params, String address) throws IOException, JSONException {
         String urlEncoded = Address.urlEncode(params);
 
         URL url = new URL(address);
@@ -51,7 +68,7 @@ public class Address {
         conn.setDoOutput(true);
 
         JSONObject response = new JSONObject(send(conn, urlEncoded));
-        return response.getInt("error");
+        return response;
     }
 
     public static String get(Map<String, String> params, String address) throws IOException, JSONException {

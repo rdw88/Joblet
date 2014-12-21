@@ -148,7 +148,11 @@ public class CreateAccount extends Activity {
             private int response;
 
             protected String doInBackground(String... urls) {
-                response = Profile.createProfile(fn, ln, em, db, sk, c, pw);
+                try {
+                    response = Profile.createProfile(fn, ln, em, db, sk, c, pw).getInt("error");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 return null;
             }
 

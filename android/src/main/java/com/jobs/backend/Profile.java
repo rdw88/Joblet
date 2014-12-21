@@ -18,7 +18,7 @@ public class Profile {
 	/*
 	 * Returns -1 if created successfully, and and error code otherwise.
 	 */
-	public static int createProfile(String firstName, String lastName, String email, String dob, String tags, String cityCode, String password) {
+	public static JSONObject createProfile(String firstName, String lastName, String email, String dob, String tags, String cityCode, String password) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("request", "create");
 		map.put("first_name", firstName);
@@ -33,11 +33,19 @@ public class Profile {
 			return Address.post(map, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
-			return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject error = new JSONObject();
+
+            try {
+                error.put("error", Integer.toString(Error.ERROR_SERVER_COMMUNICATION));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return error;
 		}
 	}
 
-    public static int login(String email, String password) {
+    public static JSONObject login(String email, String password) {
         Map<String, String> data = new HashMap<>();
         data.put("request", "login");
         data.put("email", email);
@@ -47,11 +55,19 @@ public class Profile {
             return Address.post(data, Address.PROFILE);
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject error = new JSONObject();
+
+            try {
+                error.put("error", Integer.toString(Error.ERROR_SERVER_COMMUNICATION));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return error;
         }
     }
 
-	public static int editProfile(String profileId, String password, Map<String, String> args) {
+	public static JSONObject editProfile(String profileId, String password, Map<String, String> args) {
 		args.put("request", "edit");
 		args.put("profile_id", profileId);
 		args.put("password", password);
@@ -60,7 +76,15 @@ public class Profile {
 			return Address.post(args, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
-			return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject error = new JSONObject();
+
+            try {
+                error.put("error", Integer.toString(Error.ERROR_SERVER_COMMUNICATION));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return error;
 		}
 	}
 
@@ -85,7 +109,7 @@ public class Profile {
 		}
 	}
 
-	public static int deleteProfile(String profileId, String password) {
+	public static JSONObject deleteProfile(String profileId, String password) {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("request", "delete");
 		data.put("profile_id", profileId);
@@ -95,8 +119,15 @@ public class Profile {
 			return Address.post(data, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
-			return Error.ERROR_SERVER_COMMUNICATION;
+            JSONObject error = new JSONObject();
 
+            try {
+                error.put("error", Integer.toString(Error.ERROR_SERVER_COMMUNICATION));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return error;
 		}
 	}
 

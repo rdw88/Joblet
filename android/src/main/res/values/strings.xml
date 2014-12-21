@@ -3,6 +3,7 @@
     <string name="app_name">Helpr</string>
     <string name="user_name">Username</string>
     <string name="login">Login</string>
+    <string name="confirm">Confirm</string>
     <string name="create_account">Create Account</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="button_ok">Ok</string>
@@ -26,17 +27,21 @@
     <string name="ad_error_server_comm_title">Server Communication Error</string>
     <string name="ad_create_listing_success">Listing created successfully!</string>
     <string name="ad_create_listing_success_title">Success</string>
-    <string name="list_currentBid">$00.00</string>
-    <string name="title_backgroungTint">#755C15</string>
-    <string name="list_title">ListTitle</string>
-    <string name="owner_reputation">00</string>
-    <string name="owner_listNumber">00</string>
     <string name="ad_error_need_tags">You need to have at least one tag associated with your account!</string>
     <string name="ad_error_need_tags_title">Need Tag</string>
     <string name="ad_error_needs_listing_tag">You need to supply a tag to your listing so people can find your offer!</string>
     <string name="ad_error_needs_listing_tag_title">Need Tag</string>
     <string name="ad_error_no_such_listing_title">No Such Listing</string>
     <string name="ad_error_no_such_listing">The listing you are trying to view does not exist!</string>
+    <string name="ad_confirm_password_title">Confirm Password</string>
+    <string name="ad_confirmed_password_incorrect_title">Password Incorrect</string>
+    <string name="ad_confirmed_password_incorrect">The password entered was incorrect. Please try again!</string>
+    <string name="list_currentBid">$00.00</string>
+    <string name="title_backgroungTint">#755C15</string>
+    <string name="list_title">ListTitle</string>
+    <string name="owner_reputation">00</string>
+    <string name="owner_listNumber">00</string>
+
 
 
 </resources>

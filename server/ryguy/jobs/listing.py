@@ -23,15 +23,19 @@ TODO: - Implement job picture functionality.
 '''
 
 def create(args):
+	prof = Profile.objects.get(profile_id=args['profile_id'])
+
+	if prof.password != args['password']:
+		return False, ERROR_INCORRECT_PASSWORD
+
 	dt = datetime.datetime.now()
 	time_created = dt.strftime('%m-%d-%Y %I:%M%p')
 	encode = '%s%s%s' % (args['job_title'], args['job_location'], dt)
 	listing_id = base64.b64encode(encode, '-_')
-	prof, err = profile.get(args['profile_id'])
-	neg = prof['negative_reputation']
-	pos = prof['positive_reputation']
+	neg = prof.negative_reputation
+	pos = prof.positive_reputation
 	rep = (pos / (pos + neg)) * 100 if pos + neg != 0 else 0
-	owner_name = '%s %s' % (prof['first_name'], prof['last_name'])
+	owner_name = '%s %s' % (prof.first_name, prof.last_name)
 
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
 		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
@@ -39,7 +43,13 @@ def create(args):
 		time_created=time_created, tag=args['tag'], owner_reputation=rep)
 
 	listing.save()
-	return True, None
+
+	owned_listings = json.loads(prof.owned_listings)
+	owned_listings.append(listing_id)
+	prof.__dict__['owned_listings'] = json.dumps(owned_listings)
+	prof.save()
+	
+	return { 'error': -1, 'listing_id' : listing_id }, None
 
 
 '''
@@ -174,7 +184,8 @@ def upload(args, uploaded_file):
 	listing_id = args['listing_id']
 	email = args['email']
 	password = args['password']
-	name = args['file_name']
+	encode = '%s%s' % (email, datetime.datetime.now())
+	name = base64.b64encode(encode, '-_') + '.png'
 
 	listing = Listing.objects.filter(listing_id=listing_id)
 

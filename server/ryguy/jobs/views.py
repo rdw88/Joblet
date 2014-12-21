@@ -93,8 +93,14 @@ def listings(request):
 
 		result, err_code = getattr(listing, operation)(data)
 
-		if not err_code:
-			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
+		if result:
+			response = None
+			if isinstance(result, dict):
+				response = result
+			else:
+				response = { 'error' : -1 }
+
+			return HttpResponse(json.dumps(response), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
 

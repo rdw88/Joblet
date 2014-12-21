@@ -45,7 +45,7 @@ def create(args):
 
 	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=args['password'], 
 		dob=dob, tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created,
-		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0)
+		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0, owned_listings='[]')
 
 	profile.save()
 	os.mkdir(os.path.join(BASE_DIR, 'static/jobs/%s' % profile_id))
