@@ -1,6 +1,9 @@
 package com.jobs.backend;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
@@ -11,6 +14,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -100,6 +105,26 @@ public class Listing {
 
         HttpPost httppost = new HttpPost(Address.UPLOAD);
         File file = new File(image);
+        Bitmap original = BitmapFactory.decodeFile(file.getAbsolutePath());
+        Matrix matrix = new Matrix();
+        matrix.postRotate(getImageOrientation(file));
+        Bitmap rotated = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+
+        try {
+            FileOutputStream out = new FileOutputStream(file, false);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            rotated.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+            byte[] bitmapData = bos.toByteArray();
+
+            for (int i = 0; i < bitmapData.length; i++) {
+                out.write(bitmapData[i]);
+            }
+
+            out.close();
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             MultipartEntity mpEntity = new MultipartEntity();
@@ -124,6 +149,28 @@ public class Listing {
         }
 
         return -1;
+    }
+
+    private static int getImageOrientation(File file) {
+        try{
+            ExifInterface exif = new ExifInterface(file.getAbsolutePath());
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+
+            switch(orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    return 270;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    return 180;
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    return 90;
+                default:
+                    return 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 
     /*
