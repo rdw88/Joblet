@@ -51,10 +51,10 @@ public class CreateListing extends Fragment {
     private String tagSelected, imagePath;
     private ProgressDialog creatingProgress;
     TextView t;
+
     public void onStart() {
         super.onStart();
-        getActivity().getActionBar().setHomeButtonEnabled(true);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
