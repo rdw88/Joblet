@@ -2,13 +2,13 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="?android:attr/listPreferredItemHeight"
+                android:layout_height="100dp"
                 android:background="#FFFB6C"
                 >
 
 
-    <ImageView android:layout_width="50dp"
-        android:layout_height="50dp"
+    <ImageView android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/profile_picture"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/default_picture"
@@ -22,7 +22,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginLeft="75dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginLeft="110dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +41,8 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginLeft="75dp"
-        android:layout_marginTop="35dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +52,8 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginLeft="145dp"
-        android:layout_marginTop="35dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,7 +80,8 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:layout_marginLeft="255dp"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="35dp"
+        android:id="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,6 +93,21 @@
         android:layout_marginLeft="300dp"
         android:layout_marginTop="35dp" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#434343"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relativeLayout">
+
+        </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"></FrameLayout>
 
 
 </RelativeLayout>

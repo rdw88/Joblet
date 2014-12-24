@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -42,16 +43,24 @@ public class CreateAccount extends Activity {
     private String[] addedTags;
     private Calendar date;
     private ArrayList<String> locations = Resource.LOCATIONS;
+    TextView t;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
+
+        t = (TextView) findViewById(R.id.text_accountDetails_createAccount);
+        t.setTypeface(customFont);
+        t = (TextView) findViewById(R.id.tags);
+        t.setTypeface(customFont);
+
     }
 
     protected void onStart() {
         super.onStart();
-
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         date = Calendar.getInstance();
         dob = (EditText) findViewById(R.id.dob);
         firstName = (EditText) findViewById(R.id.first_name);
@@ -63,6 +72,7 @@ public class CreateAccount extends Activity {
         city = (AutoCompleteTextView) findViewById(R.id.city);
         addTags = (Button) findViewById(R.id.add_tags);
         create = (Button) findViewById(R.id.button_create);
+        create.setTypeface(customFont);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, locations);
         city.setAdapter(adapter);
@@ -98,7 +108,6 @@ public class CreateAccount extends Activity {
             public void onClick(View v) {
                 String pw = password.getText().toString();
                 String retry = passwordRetry.getText().toString();
-
                 if (tags.getText().toString().equals("")){
                     alertNeedsTags();
                 } else if (!pw.equals(retry)) {

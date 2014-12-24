@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,20 +50,32 @@ public class CreateListing extends Fragment {
 
     private String tagSelected, imagePath;
     private ProgressDialog creatingProgress;
-
+    TextView t;
     public void onStart() {
         super.onStart();
-
+        getActivity().getActionBar().setHomeButtonEnabled(true);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
         jobLocation = (EditText) getActivity().findViewById(R.id.listing_location);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        tag = (TextView) getActivity().findViewById(R.id.chosen_tag);
+        tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
+        create.setTypeface(customFont);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_uploadPicture);
         preview = (ImageView) getActivity().findViewById(R.id.uploaded_picture);
+
+        t = (TextView) getActivity().findViewById(R.id.text_jobName_createListing);
+        t.setTypeface(customFont);
+
+        t = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
+        t.setTypeface(customFont);
+
+        t = (TextView) getActivity().findViewById(R.id.text_picturesSelected_createListing);
+        t.setTypeface(customFont);
 
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

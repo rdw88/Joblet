@@ -4,9 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A52BE"
+    android:background="@drawable/background"
     android:id="@+id/landing"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:icon="@drawable/logo"
+    android:label="Joblet"
+    >
 
     <TextView
         android:id="@+id/user_name"
@@ -18,8 +21,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         />
-    <ImageView android:layout_width="175dp"
-        android:layout_height="175dp"
+    <ImageView android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/profile_picture"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
@@ -36,6 +39,7 @@
         android:text="@string/user_currentLocation" />
 
     <TextView android:layout_width="wrap_content"
+        android:id="@+id/text_reputation_landingPage"
         android:layout_height="wrap_content"
         android:textSize="28dp"
         android:text="Reputation:"
@@ -44,14 +48,14 @@
         android:layout_marginBottom="10dp"/>
 
     <RelativeLayout android:layout_width="300dp"
-        android:layout_height="125dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:id="@+id/reputation_layout"
         android:background="#FFDE46"
         android:layout_marginBottom="10dp">
 
-        <ImageView android:layout_width="50dp"
-            android:layout_height="50dp"
+        <ImageView android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:id="@+id/reputationUp"
             android:src="@drawable/reputation_up"
@@ -66,10 +70,11 @@
             android:layout_toRightOf="@+id/reputationUp"
             android:layout_toEndOf="@+id/reputationUp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp" />
 
-        <ImageView android:layout_width="50dp"
-            android:layout_height="50dp"
+        <ImageView android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/reputationDown"
             android:src="@drawable/reputation_down"
             android:layout_toStartOf="@+id/positive_reputation"
@@ -84,7 +89,7 @@
             android:layout_alignTop="@+id/reputationDown"
             android:layout_alignLeft="@+id/positive_reputation"
             android:layout_alignStart="@+id/positive_reputation"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp" />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,19 +139,19 @@
         android:background="@drawable/button"
         android:id="@+id/editProfile"
         android:layout_width="200dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:text="Edit Profile"
-        style="@style/button_text"
+        style="@style/button_text_medium"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:background="@drawable/button"
         android:id="@+id/my_listings"
         android:layout_width="200dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:text="My Listings"
-        style="@style/button_text"
+        style="@style/button_text_medium"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

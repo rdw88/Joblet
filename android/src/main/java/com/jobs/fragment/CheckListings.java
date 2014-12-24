@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jobs.R;
+import com.jobs.activity.Main;
 import com.jobs.activity.TagSelector;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
@@ -41,7 +42,9 @@ public class CheckListings extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        getActivity().setTitle("Browse Listings");
+        getActivity().getActionBar().setHomeButtonEnabled(true);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         if (savedInstanceState != null) {
             searchedTags = savedInstanceState.getStringArray("elements");
         }

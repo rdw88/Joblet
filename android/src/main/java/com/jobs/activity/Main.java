@@ -1,5 +1,6 @@
 package com.jobs.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentActivity;
@@ -7,21 +8,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.Window;
+import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
 
-public class Main extends FragmentActivity {
+public class Main extends FragmentActivity  {
     private static final int MAIN_PAGE = 1;
     private MainPagerAdapter adapter;
     private ViewPager pager;
     private String data;
 
+
     protected void onCreate(Bundle savedInstanceState) {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         data = getIntent().getExtras().getString("data");
@@ -29,7 +30,10 @@ public class Main extends FragmentActivity {
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
+
+
     }
+
 
     public class MainPagerAdapter extends FragmentPagerAdapter {
         public MainPagerAdapter(FragmentManager fm) {
@@ -41,10 +45,13 @@ public class Main extends FragmentActivity {
 
             if (i == 0) {
                 fragment = new CreateListing();
+
             } else if (i == 1) {
                 fragment = new LandingPage();
+
             } else if (i == 2) {
                 fragment = new CheckListings();
+
             }
 
             Bundle args = new Bundle();
@@ -58,4 +65,5 @@ public class Main extends FragmentActivity {
             return 3;
         }
     }
+
 }
