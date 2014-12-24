@@ -44,7 +44,7 @@ public class Listing {
         map.put("starting_amount", startingAmount);
         map.put("min_reputation", minReputation);
         map.put("job_location", jobLocation);
-        map.put("active_time", activeTime);
+        map.put("active_until", activeTime);
         map.put("profile_id", profileID);
         map.put("tag", tag);
         map.put("password", password);
@@ -113,7 +113,7 @@ public class Listing {
         try {
             FileOutputStream out = new FileOutputStream(file, false);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            rotated.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+            rotated.compress(Bitmap.CompressFormat.PNG, 0, bos);
             byte[] bitmapData = bos.toByteArray();
 
             for (int i = 0; i < bitmapData.length; i++) {

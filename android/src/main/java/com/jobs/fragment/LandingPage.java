@@ -1,15 +1,18 @@
 package com.jobs.fragment;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.activity.Main;
+import com.jobs.activity.MyListings;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +20,7 @@ import org.json.JSONObject;
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs;
     private ImageView profilePicture;
+    private Button myListings;
     private JSONObject data;
     TextView t;
 
@@ -33,7 +37,15 @@ public class LandingPage extends Fragment {
         t = (TextView) view.findViewById(R.id.text_reputation_landingPage);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/leaguegothic.ttf");
         t.setTypeface(customFont);
+        myListings = (Button) view.findViewById(R.id.my_listings);
 
+        myListings.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyListings.class);
+                intent.putExtra("data", data.toString());
+                startActivity(intent);
+            }
+        });
 
         try {
             data = new JSONObject(getArguments().getString("data"));

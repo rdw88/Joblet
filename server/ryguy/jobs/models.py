@@ -30,7 +30,7 @@ class Listing(models.Model):
 	min_reputation = models.IntegerField()
 	job_location = models.CharField(max_length=256)
 	job_description = models.TextField()
-	active_time = models.IntegerField() # Stored in minutes.
+	active_until = models.CharField(max_length=128) # Date and time it closes
 	profile_id = models.CharField(max_length=256)
 	listing_id = models.CharField(max_length=256)
 	time_created = models.CharField(max_length=64)

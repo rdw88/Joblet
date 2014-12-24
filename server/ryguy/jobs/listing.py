@@ -39,7 +39,7 @@ def create(args):
 
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
 		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
-		active_time=args['active_time'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
+		active_until=args['active_until'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
 		time_created=time_created, tag=args['tag'], owner_reputation=rep)
 
 	listing.save()
@@ -86,7 +86,7 @@ def search(tokens):
 
 	for tag in tags:
 		results = Listing.objects.filter(tag=tag)
-		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id')))
+		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'is_active', 'active_until')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):

@@ -202,7 +202,10 @@ public class CreateListing extends Fragment {
 
             protected void onPostExecute(String result) {
                 if (response == -1) {
-                    uploadPictures(listingID, password);
+                    if (imagePath != null)
+                        uploadPictures(listingID, password);
+                    else
+                        alertCreateListingSuccess(listingID);
                 } else if (response == Error.ERROR_SERVER_COMMUNICATION) {
                     alertErrorServer();
                 } else if (response == Error.ERROR_INCORRECT_PASSWORD) {
@@ -230,7 +233,6 @@ public class CreateListing extends Fragment {
             }
 
             protected void onPostExecute(String result) {
-                creatingProgress.dismiss();
                 if (response == -1) {
                     alertCreateListingSuccess(listingID);
                 }
@@ -248,6 +250,7 @@ public class CreateListing extends Fragment {
     }
 
     private void alertCreateListingSuccess(final String listingID) {
+        creatingProgress.dismiss();
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.ad_create_listing_success);
         builder.setTitle(R.string.ad_create_listing_success_title);

@@ -135,7 +135,7 @@ def get(profile_id):
 		return None, ERROR_NO_SUCH_PROFILE
 
 	vals = profile.values('first_name', 'last_name', 'dob', 'email', 'city_code', 'tags', 'date_created', 
-		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id')[0]
+		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings')[0]
 	vals['dob'] = vals['dob'].strftime('%m-%d-%Y')
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 
