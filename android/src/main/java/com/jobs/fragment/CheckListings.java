@@ -42,7 +42,9 @@ public class CheckListings extends Fragment {
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        getActivity().setTitle("Browse Listings");
+        getActivity().getActionBar().setHomeButtonEnabled(true);
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         if (savedInstanceState != null) {
             searchedTags = savedInstanceState.getStringArray("elements");
         }

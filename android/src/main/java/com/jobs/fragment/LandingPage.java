@@ -19,10 +19,9 @@ public class LandingPage extends Fragment {
     private ImageView profilePicture;
     private JSONObject data;
     TextView t;
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.landing_page, container, false);
-
+        getActivity().setTitle("Joblet");
         name = (TextView) view.findViewById(R.id.user_name);
         location = (TextView) view.findViewById(R.id.location);
         positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);
@@ -31,7 +30,7 @@ public class LandingPage extends Fragment {
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
         profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
         t = (TextView) view.findViewById(R.id.text_reputation_landingPage);
-        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/leaguegothic.ttf");
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
         t.setTypeface(customFont);
 
 

@@ -8,11 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.TextView;
 
 import com.jobs.R;
-import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
@@ -30,23 +28,10 @@ public class Main extends FragmentActivity  {
         data = getIntent().getExtras().getString("data");
         adapter = new MainPagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
-
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
-            public void onPageSelected(int page) {
-                getActionBar().setTitle(Resource.PAGE_ORDER[page]);
-            }
-
-            public void onPageScrollStateChanged(int page) {
-            }
-            public void onPageScrolled(int page, float f, int i) {
-            }
-        });
-
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
+
+
     }
 
 

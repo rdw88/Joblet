@@ -19,8 +19,6 @@ public class Resource {
     public static final ArrayList<String> LOCATIONS = new ArrayList<String>();
     public static final ArrayList<String> TAGS = new ArrayList<String>();
 
-    public static final String[] PAGE_ORDER = {"Create Listing", "Joblet", "Browse Listings"};
-
     public static void initLocations(Context context) {
         InputStream is = context.getResources().openRawResource(R.raw.locations);
         Writer writer = new StringWriter();

@@ -95,12 +95,19 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1px"
         android:background="#434343"
         android:layout_alignParentBottom="true"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/list_item_topShadow">
+     </RelativeLayout>
 
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#D9434343"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/list_item_bottomShadow">
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="fill_parent"

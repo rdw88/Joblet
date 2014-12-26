@@ -4,9 +4,14 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@drawable/background"
+              android:background="#5F7EC6"
               android:icon="@drawable/logo"
               android:label="Browse Listings">
+
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" />
 
 
 
@@ -16,7 +21,7 @@
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:text="Filter"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         style="@style/button_text_small"
         android:layout_gravity="center_horizontal" />
 
@@ -43,8 +48,8 @@
 
     <ListView android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:layout_marginTop="15dp"
+              android:layout_marginTop="10dp"
               android:id="@+id/listing_list"
-              android:background="#FFFB6C"/>
+              android:background="#F9F9F9"/>
 
 </LinearLayout>
