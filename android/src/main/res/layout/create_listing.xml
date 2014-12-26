@@ -122,7 +122,7 @@
             android:layout_height="75dp">
 
             <Button
-                android:background="@drawable/button_gallery"
+                android:background="@drawable/dynamic_button_gallery"
                 android:id="@+id/button_createListing_uploadPicture"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
@@ -131,7 +131,7 @@
                 android:layout_toStartOf="@+id/set_tag" />
 
             <Button
-                android:background="@drawable/button_tag"
+                android:background="@drawable/dynamic_button_tag"
                 android:id="@+id/set_tag"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
@@ -143,7 +143,7 @@
             <Button
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:background="@drawable/button_camera"
+                android:background="@drawable/dynamic_button_camera"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/set_tag"
                 android:layout_toEndOf="@+id/set_tag" />
@@ -170,7 +170,7 @@
 
 
         <Button
-                android:background="@drawable/button_expirationdate"
+                android:background="@drawable/dynamic_button_expirationdate"
                 android:id="@+id/button_createListing_pickDate"
                 android:layout_width="165dp"
                 android:layout_height="60dp"
@@ -182,11 +182,12 @@
 
 
         <Button
-                android:background="@drawable/button_blue"
+                android:background="@drawable/whatever"
                 android:id="@+id/button_createListing_postListing"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:text="Post Listing"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:layout_gravity="center_horizontal"/>
 

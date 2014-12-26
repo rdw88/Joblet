@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#5F7EC6"
+              android:background="#F9F9F9"
               android:icon="@drawable/logo"
               android:label="Browse Listings">
 
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="10dp" />
-
-
+    <ListView android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="0dp"
+              android:id="@+id/listing_list"
+              android:background="#F9F9F9"/>
 
     <Button
-        android:background="@drawable/button"
+        android:background="@drawable/whatever"
         android:id="@+id/checkListings_filter"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
         android:text="Filter"
+        android:textColor="#F9F9F9"
         android:layout_marginBottom="5dp"
-        style="@style/button_text_small"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"
+        android:layout_marginRight="8dp" />
 
   <!--  <TextView
         android:layout_width="wrap_content"
@@ -46,10 +49,4 @@
         android:textIsSelectable="true" /> -->
 
 
-    <ListView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_marginTop="10dp"
-              android:id="@+id/listing_list"
-              android:background="#F9F9F9"/>
-
-</LinearLayout>
+</RelativeLayout>

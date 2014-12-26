@@ -41,17 +41,17 @@
     <TextView android:layout_width="wrap_content"
         android:id="@+id/text_reputation_landingPage"
         android:layout_height="wrap_content"
-        android:textSize="28dp"
+        android:textSize="24dp"
         android:text="Reputation:"
         android:textColor="#000000"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"/>
 
     <RelativeLayout android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="105dp"
         android:layout_gravity="center"
         android:id="@+id/reputation_layout"
-        android:background="#313131"
+        android:background="#ecf0f1"
         android:layout_marginBottom="10dp">
 
         <ImageView android:layout_width="40dp"
@@ -64,7 +64,7 @@
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="00"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:id="@+id/positive_reputation"
             android:textSize="24dp"
             android:layout_alignTop="@+id/reputationUp"
@@ -87,7 +87,7 @@
             android:id="@+id/negative_reputation"
             android:textSize="24dp"
             android:hint="00"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:layout_alignTop="@+id/reputationDown"
             android:layout_alignLeft="@+id/positive_reputation"
             android:layout_alignStart="@+id/positive_reputation"
@@ -98,7 +98,7 @@
             android:textSize="21dp"
             android:textStyle="bold"
             android:text="Lists:"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:id="@+id/lists_label"
             android:layout_alignTop="@+id/lists_completed"
             android:layout_toLeftOf="@+id/lists_completed"
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:textSize="21dp"
             android:hint="00"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:id="@+id/lists_completed"
             android:layout_marginRight="49dp"
             android:layout_alignTop="@+id/positive_reputation"
@@ -121,7 +121,7 @@
             android:textSize="21dp"
             android:textStyle="bold"
             android:text="Jobs:"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:id="@+id/jobs_label"
             android:layout_alignTop="@+id/reputationDown"
             android:layout_alignLeft="@+id/lists_label"
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:textSize="21dp"
             android:hint="00"
-            android:textColor="#F9F9F9"
+            android:textColor="#000000"
             android:id="@+id/jobs_completed"
             android:layout_alignTop="@+id/jobs_label"
             android:layout_alignLeft="@+id/lists_completed"
@@ -140,21 +140,23 @@
     </RelativeLayout>
 
     <Button
-        android:background="@drawable/button"
+        android:background="@drawable/whatever"
         android:id="@+id/editProfile"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:text="Edit Profile"
+        android:textColor="#F9F9F9"
         style="@style/button_text_medium"
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:background="@drawable/button"
+        android:background="@drawable/whatever"
         android:id="@+id/my_listings"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:text="My Listings"
+        android:textColor="#F9F9F9"
         style="@style/button_text_medium"
         android:layout_gravity="center_horizontal" />
 
