@@ -183,10 +183,12 @@ public class CheckListings extends Fragment {
 
             TextView title = (TextView) row.findViewById(R.id.job_name);
             TextView currentBid = (TextView) row.findViewById(R.id.list_currentBid);
+            TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
             currentBid.setText("$" + format.format(items.get(position).currentBid));
             TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
             title.setText(items.get(position).title);
             reputation.setText(Double.toString(items.get(position).reputation));
+            tags.setText(tags.getText() + items.get(position).tag);
 
             return row;
         }

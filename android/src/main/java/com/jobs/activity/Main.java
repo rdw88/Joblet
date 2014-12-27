@@ -10,11 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-<<<<<<< HEAD
-=======
+
 import android.view.MenuItem;
-import android.view.View;
->>>>>>> 4aa62b0a3bee4b16d2fd6da6b6f6f20eeb564c35
 import android.widget.TextView;
 
 import com.jobs.R;
@@ -35,27 +32,8 @@ public class Main extends FragmentActivity  {
         data = getIntent().getExtras().getString("data");
         adapter = new MainPagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
-<<<<<<< HEAD
-=======
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
-            public void onPageSelected(int page) {
-                getActionBar().setTitle(Resource.PAGE_ORDER[page]);
-            }
-
-            public void onPageScrollStateChanged(int page) {
-            }
-            public void onPageScrolled(int page, float f, int i) {
-            }
-        });
-
->>>>>>> 4aa62b0a3bee4b16d2fd6da6b6f6f20eeb564c35
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
-
-
     }
 
 
