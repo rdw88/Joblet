@@ -3,14 +3,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/button_selector"
+    android:background="#ecf0f1"
     android:orientation="vertical">
 
 <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="125dp"
-                android:background="#F9F9F9"
+                android:background="#ecf0f1"
                 >
+
+    <RelativeLayout
+        android:layout_width="3dp"
+        android:layout_height="fill_parent"
+        android:background="#BABABA">
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -31,11 +37,11 @@
 
     <RelativeLayout
         android:layout_width="135dp"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:background="#18A010"
-        android:layout_marginTop="0dp"
         android:layout_toRightOf="@+id/profile_picture"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/relativeLayout">
 
         <TextView
@@ -68,9 +74,11 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/profile_picture"
         android:layout_marginLeft="15dp"
-        android:background="#91E78C"
+        android:background="#ecf0f1"
         android:layout_below="@+id/relativeLayout"
         android:id="@+id/relativeLayout2">
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,13 +88,14 @@
             android:textSize="16sp"
             android:id="@+id/textView3"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:layout_above="@+id/listItem_text_tags" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tags:"
+            android:text="Tag: "
             android:textColor="#000000"
             android:textSize="16sp"
             android:id="@+id/listItem_text_tags"
@@ -104,7 +113,8 @@
             android:textSize="16sp"
             android:layout_toRightOf="@+id/textView3"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_alignBottom="@+id/textView3" />
 
         </RelativeLayout>
 
@@ -113,9 +123,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@+id/relativeLayout"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
         android:layout_above="@+id/relativeLayout2"
-        android:background="#96DDDA">
+        android:background="#5F7EC6">
 
 
         <TextView
@@ -193,5 +203,11 @@
 
 
 </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:background="#BABABA">
+        </RelativeLayout>
+
 
 </LinearLayout>

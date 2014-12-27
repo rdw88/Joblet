@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -37,17 +38,26 @@ public class ViewListing extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
     public void onStart() {
         super.onStart();
 
         title = (TextView) findViewById(R.id.view_listing_title);
+        title.setTypeface(customFont);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
+        currentBid.setTypeface(customFont);
         ownerReputation = (TextView) findViewById(R.id.view_listing_owner_reputation);
+        ownerReputation.setTypeface(customFont);
         jobLocation = (TextView) findViewById(R.id.view_listing_job_location);
+        jobLocation.setTypeface(customFont);
         ownerName = (TextView) findViewById(R.id.view_listing_owner_name);
+        ownerName.setTypeface(customFont);
         timeCreated = (TextView) findViewById(R.id.view_listing_time_created);
+        timeCreated.setTypeface(customFont);
         tag = (TextView) findViewById(R.id.view_listing_tag);
+        tag.setTypeface(customFont);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
+        makeBid.setTypeface(customFont);
         picture = (ImageView) findViewById(R.id.listing_picture);
 
         Bundle b = getIntent().getExtras();
