@@ -48,7 +48,6 @@ def create(args):
 		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0, owned_listings='[]')
 
 	profile.save()
-	os.mkdir(os.path.join(BASE_DIR, 'static/jobs/%s' % profile_id))
 	return True, None
 
 '''

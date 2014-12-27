@@ -105,12 +105,12 @@ public class Listing {
 
         HttpPost httppost = new HttpPost(Address.UPLOAD);
         File file = new File(image);
-        Bitmap original = BitmapFactory.decodeFile(file.getAbsolutePath());
-        Matrix matrix = new Matrix();
-        matrix.postRotate(getImageOrientation(file));
-        Bitmap rotated = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
+        //Bitmap original = BitmapFactory.decodeFile(file.getAbsolutePath());
+        //Matrix matrix = new Matrix();
+        //matrix.postRotate(getImageOrientation(file));
+        //Bitmap rotated = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
 
-        try {
+        /*try {
             FileOutputStream out = new FileOutputStream(file, false);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             rotated.compress(Bitmap.CompressFormat.PNG, 0, bos);
@@ -124,7 +124,7 @@ public class Listing {
             bos.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         try {
             MultipartEntity mpEntity = new MultipartEntity();

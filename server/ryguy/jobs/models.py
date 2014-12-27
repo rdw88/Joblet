@@ -25,6 +25,7 @@ class Profile(models.Model):
 class Listing(models.Model):
 	job_title = models.CharField(max_length=256)
 	job_picture = models.TextField() # JSON object to support multiple pictures
+	thumbnail = models.TextField()
 	starting_amount = models.FloatField()
 	current_bid = models.FloatField()
 	min_reputation = models.IntegerField()

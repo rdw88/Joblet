@@ -124,11 +124,10 @@ public class ViewListing extends Activity {
             protected String doInBackground(String... urls) {
                 response = Listing.get(getIntent().getExtras().getString("listing_id"));
                 try {
-                    JSONArray arr = new JSONArray(response.getString("job_picture"));
-                    String pictureURL = arr.getString(0);
+                    String pictureURL = response.getString("thumbnail");
 
                     try {
-                        bitmap = Address.fetchPicture(Address.FILES + pictureURL);
+                        bitmap = Address.fetchPicture(pictureURL);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

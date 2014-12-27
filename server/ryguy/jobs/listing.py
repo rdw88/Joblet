@@ -4,6 +4,7 @@ import re
 import profile
 import json
 import os
+from PIL import Image
 from models import Listing, Profile
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
 from boto.s3.connection import S3Connection
@@ -65,7 +66,7 @@ def get(args):
 	if len(listings) == 0:
 		return None, ERROR_NO_SUCH_LISTING
 
-	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 'is_active', 'owner_reputation', 'owner_name', 'tag')[0]
+	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 'is_active', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
@@ -86,7 +87,7 @@ def search(tokens):
 
 	for tag in tags:
 		results = Listing.objects.filter(tag=tag)
-		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'is_active', 'active_until')))
+		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'is_active', 'active_until', 'thumbnail')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):
@@ -185,7 +186,7 @@ def upload(args, uploaded_file):
 	email = args['email']
 	password = args['password']
 	encode = '%s%s' % (email, datetime.datetime.now())
-	name = base64.b64encode(encode, '-_') + '.png'
+	name = base64.b64encode(encode, '-_')
 
 	listing = Listing.objects.filter(listing_id=listing_id)
 
@@ -201,7 +202,7 @@ def upload(args, uploaded_file):
 	if str(listing.profile_id) != str(profile.profile_id):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
 
-	file_name = os.path.join(BASE_DIR, 'static/jobs/%s' % name)
+	file_name = os.path.join(BASE_DIR, 'static/jobs/%s.png' % name)
 	with open(file_name, 'wb') as dest:
 		for chunk in uploaded_file.chunks():
 			dest.write(chunk)
@@ -209,16 +210,32 @@ def upload(args, uploaded_file):
 
 		dest.close()
 
+	picture_url = 'listing/images/%s.png' % name
+	thumbnail_url = 'listing/thumbnails/%s.thumbnail' % name
 	conn = S3Connection('AKIAJZTMLPRDUJK6K45A', 'JfKclDtSGZC29w803XnsGq82qRcRKWI+g6TDqmLJ')
 	bucket = conn.get_bucket('helpr')
 	k = Key(bucket)
-	k.key = 'listing/images/%s' % name
+	k.key = picture_url
 	k.set_contents_from_filename(file_name)
+
+	thumbnail_file = os.path.join(BASE_DIR, 'static/jobs/%s.thumbnail' % name)
+
+	size = 128, 128
+	im = Image.open(file_name)
+	im.thumbnail(size, Image.ANTIALIAS)
+	im.save(thumbnail_file, 'PNG')
+
+	k = Key(bucket)
+	k.key = thumbnail_url
+	k.set_contents_from_filename(thumbnail_file)
+
 	os.remove(file_name)
+	os.remove(thumbnail_file)
 
 	pictures = json.loads(listing.__dict__['job_picture'])
-	pictures.append(k.key)
+	pictures.append(picture_url)
 	listing.__dict__['job_picture'] = json.dumps(pictures)
+	listing.__dict__['thumbnail'] = thumbnail_url
 	listing.save()
 
 	return True, None

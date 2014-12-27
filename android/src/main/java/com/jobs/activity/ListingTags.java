@@ -3,7 +3,6 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.*;
 import com.jobs.R;
-import com.jobs.backend.Address;
 import com.jobs.backend.Resource;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListingTags extends Activity {
@@ -48,7 +43,7 @@ public class ListingTags extends Activity {
         private ArrayList<String> items;
 
         public ListAdapter(Context context, ArrayList<String> items) {
-            super(context, R.layout.list_item, items);
+            super(context, R.layout.check_listing_list_item, items);
             this.context = context;
             this.items = items;
         }

@@ -6,11 +6,11 @@
               android:descendantFocusability="blocksDescendants"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#FFFB6C">
+              android:background="@color/white_background">
 
     <CheckBox android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:id="@+id/tag_checkbox"
             />
@@ -18,12 +18,12 @@
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
             android:id="@+id/tag_name"
-            android:textSize="24dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:layout_toRightOf="@id/tag_checkbox"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"/>
 
 </RelativeLayout>

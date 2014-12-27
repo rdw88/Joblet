@@ -94,13 +94,13 @@ public class CreateAccount extends Activity {
 
         addTags.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccount.this, TagSelector.class);
+               // Intent intent = new Intent(CreateAccount.this, TagSelector.class);
 
-                if (addedTags != null) {
-                    intent.putExtra("array", addedTags);
-                }
+               // if (addedTags != null) {
+               //     intent.putExtra("array", addedTags);
+               // }
 
-                startActivityForResult(intent, 0xf2);
+               // startActivityForResult(intent, 0xf2);
             }
         });
 
@@ -158,7 +158,7 @@ public class CreateAccount extends Activity {
 
             protected String doInBackground(String... urls) {
                 try {
-                    response = Profile.createProfile(fn, ln, em, db, sk, c, pw).getInt("error");
+                    response = Profile.createProfile(fn, ln, em, db, "Programming", c, pw).getInt("error");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

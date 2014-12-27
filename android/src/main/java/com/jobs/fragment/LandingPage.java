@@ -22,10 +22,10 @@ public class LandingPage extends Fragment {
     private ImageView profilePicture;
     private Button myListings;
     private JSONObject data;
-    TextView t;
+    private TextView t;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.landing_page, container, false);
-        getActivity().setTitle("Joblet");
+
         name = (TextView) view.findViewById(R.id.user_name);
         location = (TextView) view.findViewById(R.id.location);
         positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);

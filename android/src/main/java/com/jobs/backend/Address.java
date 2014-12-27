@@ -41,7 +41,7 @@ public class Address {
 	}
 
     public static Bitmap fetchPicture(String address) throws IOException {
-        URL url = new URL(address);
+        URL url = new URL(Address.FILES + address);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 
