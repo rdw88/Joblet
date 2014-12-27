@@ -30,6 +30,7 @@ public class ViewListing extends Activity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag;
     private Button makeBid;
     private ImageView picture;
+    private Typeface customFont;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +39,10 @@ public class ViewListing extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
     public void onStart() {
         super.onStart();
 
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         title = (TextView) findViewById(R.id.view_listing_title);
         title.setTypeface(customFont);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
