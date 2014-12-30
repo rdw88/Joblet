@@ -166,7 +166,7 @@
         android:id="@+id/my_listings"
         android:layout_width="300dp"
         android:layout_height="75dp"
-        android:layout_marginTop="10dp"
+
         android:text="My Listings"
         android:textColor="#F9F9F9"
         android:textSize="28sp"

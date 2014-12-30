@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,29 +17,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jobs.R;
-import com.jobs.activity.ListingTags;
-import com.jobs.activity.Main;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class CreateListing extends Fragment {
     private String userData;
@@ -69,9 +67,6 @@ public class CreateListing extends Fragment {
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_uploadPicture);
         preview = (ImageView) getActivity().findViewById(R.id.uploaded_picture);
 
-
-
-
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
@@ -91,8 +86,25 @@ public class CreateListing extends Fragment {
 
         setTag.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ListingTags.class);
-                startActivityForResult(intent, 0xf1);
+                final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
+                ListView listView = (ListView) view.findViewById(R.id.tag_list);
+
+                FilterAdapter adapter = new FilterAdapter(getActivity(), Resource.TAGS);
+                listView.setAdapter(adapter);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.ad_select_tag);
+                builder.setView(view);
+                final AlertDialog dialog = builder.show();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String s = Resource.TAGS.get(position);
+                        tag.setText("Tag: " + s);
+                        tagSelected = s;
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
@@ -123,16 +135,6 @@ public class CreateListing extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case 0xf1:
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle b = data.getExtras();
-                    String s = b.getString("tag");
-                    tag.setText("Tag: " + s);
-                    tagSelected = s;
-                }
-
-                break;
-
             case 0xab:
                 if (resultCode == Activity.RESULT_OK) {
                     Uri selectedImage = data.getData();
@@ -233,6 +235,25 @@ public class CreateListing extends Fragment {
                 }
             }
         }.execute();
+    }
+
+    private class FilterAdapter extends ArrayAdapter<String> {
+        private ArrayList<String> items;
+
+        public FilterAdapter(Context context, ArrayList<String> items) {
+            super(context, R.layout.listing_tags_list_item, items);
+            this.items = items;
+        }
+
+        public View getView(final int position, View currentView, ViewGroup parent) {
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View row = inflater.inflate(R.layout.listing_tags_list_item, parent, false);
+
+            TextView tag = (TextView) row.findViewById(R.id.tag);
+            tag.setText(items.get(position));
+
+            return row;
+        }
     }
 
     private String getRealPathFromURI(Uri contentUri) {

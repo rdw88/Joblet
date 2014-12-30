@@ -28,13 +28,14 @@ public class Login extends Activity {
     private EditText email;
     private EditText password;
 
-    private JSONObject obj;
     private ProgressDialog dialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.login);
+        Resource.initLocations(this);
+        Resource.initTags(this);
     }
 
     protected void onStart() {
@@ -87,6 +88,14 @@ public class Login extends Activity {
                         }
                     }
                 }.execute();
+            }
+        });
+
+        Button createAccount = (Button) findViewById(R.id.btn_create_account);
+        createAccount.setTypeface(customFont);
+        createAccount.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, CreateAccount.class));
             }
         });
     }

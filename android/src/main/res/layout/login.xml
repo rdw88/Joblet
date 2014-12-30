@@ -7,11 +7,11 @@
     android:background="@color/background_launch"
     android:weightSum="1">
 
-    <ImageView android:layout_width="225dp"
-        android:layout_height="225dp"
+    <ImageView android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/logo_welcome"
         android:src="@drawable/logo"
         android:background="@android:drawable/dialog_holo_dark_frame"
@@ -32,7 +32,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:hint=" Password"
         android:inputType="textPassword"
         android:id="@+id/password"
@@ -44,17 +44,27 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/checkbox_remember_me"
         android:text="Remember Me"/>
 
     <Button
         android:background="@drawable/whatever"
         android:id="@+id/login"
-        android:layout_width="300dp"
-        android:layout_height="75dp"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
         android:textColor="#F9F9F9"
         android:text="Log In"
+        android:textSize="28sp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:background="@drawable/whatever"
+        android:id="@+id/btn_create_account"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:textColor="#F9F9F9"
+        android:text="Create Account"
         android:textSize="28sp"
         android:layout_gravity="center_horizontal" />
 

@@ -3,18 +3,24 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.backend.Profile;
@@ -40,22 +46,25 @@ public class CreateAccount extends Activity {
     private Button addTags, create;
     private TextView tags;
     private EditText dob;
-    private String[] addedTags;
     private Calendar date;
-    private ArrayList<String> locations = Resource.LOCATIONS;
-    TextView t;
-    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+    private TextView t;
+    private Typeface customFont;
+
+    private final ArrayList<String> locations = Resource.LOCATIONS;
+    private final ArrayList<String> selectedTags = new ArrayList<>();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+
         t = (TextView) findViewById(R.id.text_accountDetails_createAccount);
         t.setTypeface(customFont);
         t = (TextView) findViewById(R.id.tags);
         t.setTypeface(customFont);
-
     }
 
     protected void onStart() {
@@ -96,13 +105,42 @@ public class CreateAccount extends Activity {
 
         addTags.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-               // Intent intent = new Intent(CreateAccount.this, TagSelector.class);
+                final View view = getLayoutInflater().inflate(R.layout.tag_selector, null);
+                ListView listView = (ListView) view.findViewById(R.id.tag_list);
 
-               // if (addedTags != null) {
-               //     intent.putExtra("array", addedTags);
-               // }
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
+                        box.setChecked(!box.isChecked());
 
-               // startActivityForResult(intent, 0xf2);
+                        if (box.isChecked())
+                            selectedTags.add(Resource.TAGS.get(position));
+                        else
+                            selectedTags.remove(Resource.TAGS.get(position));
+                    }
+                });
+
+                TagSelectorAdapter adapter = new TagSelectorAdapter(CreateAccount.this, Resource.TAGS);
+                listView.setAdapter(adapter);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+
+                builder.setPositiveButton(R.string.done, new AlertDialog.OnClickListener(){
+                    public void onClick(DialogInterface di, int k){
+                        String str = "";
+
+                        for (int i = 0; i < selectedTags.size() - 1; i++) {
+                            str += selectedTags.get(i) + ", ";
+                        }
+
+                        str += selectedTags.get(selectedTags.size() - 1);
+                        tags.setText(str);
+                    }
+                });
+
+                builder.setTitle(R.string.ad_filter_title);
+                builder.setView(view);
+                builder.show();
             }
         });
 
@@ -121,26 +159,37 @@ public class CreateAccount extends Activity {
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private class TagSelectorAdapter extends ArrayAdapter<String> {
+        private ArrayList<String> items;
 
-        switch (requestCode) {
-            case 0xf2:
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle b = data.getExtras();
-                    addedTags = b.getStringArray("array");
+        public TagSelectorAdapter(Context context, ArrayList<String> items) {
+            super(context, R.layout.tag_list_item, items);
+            this.items = items;
+        }
 
-                    if (addedTags.length != 0) {
-                        String str = "";
-                        for (int i = 0; i < addedTags.length - 1; i++) {
-                            str += addedTags[i] + ", ";
-                        }
-                        str += addedTags[addedTags.length - 1];
-                        tags.setText(str);
+        public View getView(final int position, View currentView, ViewGroup parent) {
+            LayoutInflater inflater = getLayoutInflater();
+            View row = inflater.inflate(R.layout.tag_list_item, parent, false);
+
+            TextView tag = (TextView) row.findViewById(R.id.tag_name);
+            tag.setText(items.get(position));
+
+            final CheckBox box = (CheckBox) row.findViewById(R.id.tag_checkbox);
+            if (selectedTags.contains(items.get(position))) {
+                box.setChecked(true);
+            }
+
+            box.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    if (box.isChecked()) {
+                        selectedTags.add(items.get(position));
+                    } else {
+                        selectedTags.remove(items.get(position));
                     }
                 }
+            });
 
-                break;
+            return row;
         }
     }
 
@@ -150,17 +199,20 @@ public class CreateAccount extends Activity {
         final String em = email.getText().toString();
         final String pw = password.getText().toString();
         final String db = dob.getText().toString();
-        final String c = city.getText().toString();
+        final String sk = tags.getText().toString().replaceAll(" ", "");
 
-        String userTags = tags.getText().toString();
-        final String sk = userTags.replaceAll(" ", "");
+        String c = city.getText().toString();
+        if (c.substring(c.length() - 1, c.length()).equals("\n") || c.substring(c.length() - 1, c.length()).equals("\r")) {
+            c = c.substring(0, c.length() - 2);
+        }
+        final String finalCity = c;
 
         new AsyncTask<String, Void, String>() {
             private int response;
 
             protected String doInBackground(String... urls) {
                 try {
-                    response = Profile.createProfile(fn, ln, em, db, "Programming", c, pw).getInt("error");
+                    response = Profile.createProfile(fn, ln, em, db, sk, finalCity, pw).getInt("error");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -177,8 +229,6 @@ public class CreateAccount extends Activity {
                 }
             }
         }.execute();
-
-
     }
 
     private void alertPasswordMismatch() {
