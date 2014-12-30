@@ -1,5 +1,6 @@
 package com.jobs.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,7 +12,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 
+
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.jobs.R;
@@ -28,12 +31,15 @@ public class Main extends FragmentActivity  {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         data = getIntent().getExtras().getString("data");
         adapter = new MainPagerAdapter(getSupportFragmentManager());
         pager = (ViewPager) findViewById(R.id.pager);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {

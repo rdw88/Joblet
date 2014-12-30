@@ -4,13 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5C86C4"
+    android:background="@color/background_launch"
     android:weightSum="1">
 
     <ImageView android:layout_width="225dp"
         android:layout_height="225dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
         android:id="@+id/logo_welcome"
         android:src="@drawable/logo"
         android:background="@android:drawable/dialog_holo_dark_frame"
@@ -21,7 +22,6 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:hint="  Email Address"
-        android:layout_marginTop="20dp"
         android:inputType="textEmailAddress"
         android:id="@+id/email"
         android:background="#ecf0f1"
@@ -32,7 +32,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:hint=" Password"
         android:inputType="textPassword"
         android:id="@+id/password"
@@ -51,11 +51,11 @@
     <Button
         android:background="@drawable/whatever"
         android:id="@+id/login"
-        android:layout_width="150dp"
-        android:layout_height="65dp"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
         android:textColor="#F9F9F9"
         android:text="Log In"
-        style="@style/button_text"
+        android:textSize="28sp"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

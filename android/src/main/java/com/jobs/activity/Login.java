@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -39,9 +40,11 @@ public class Login extends Activity {
     protected void onStart() {
         super.onStart();
 
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         final CheckBox rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
+        rememberMe.setTypeface(customFont);
 
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         if (prefs.contains("email") && prefs.contains("password")) {
@@ -51,6 +54,7 @@ public class Login extends Activity {
         }
 
         Button login = (Button) findViewById(R.id.login);
+        login.setTypeface(customFont);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 dialog = ProgressDialog.show(Login.this, getResources().getString(R.string.pb_login_title), getResources().getString(R.string.pb_login_message));

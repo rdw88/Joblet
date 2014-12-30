@@ -10,23 +10,25 @@
 
     <ListView android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:layout_marginTop="0dp"
+              android:divider="@color/background_main"
+              android:footerDividersEnabled="false"
+              android:headerDividersEnabled="false"
               android:id="@+id/listing_list"
-              android:background="#F9F9F9"/>
+              android:background="@color/background_main"/>
 
     <Button
-        android:background="@drawable/whatever"
+        android:background="@drawable/dynamic_button_filter"
         android:id="@+id/checkListings_filter"
-        android:layout_width="85dp"
-        android:layout_height="45dp"
-        android:text="Filter"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:textColor="#F9F9F9"
-        android:layout_marginBottom="5dp"
+        android:paddingBottom="8dp"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:visibility="visible"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp" />
 
   <!--  <TextView
         android:layout_width="wrap_content"

@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/button_selector"
-    android:orientation="vertical">
 
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="125dp"
-                android:background="#F9F9F9"
+                android:layout_height="145dp"
+                android:background="@android:drawable/arrow_up_float"
                 >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_toLeftOf="@+id/relativeLayout2">
-
-
-
-        </RelativeLayout>
-
-    <ImageView android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/browse_listing_picture"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/default_picture"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp" />
 
     <RelativeLayout
-        android:layout_width="135dp"
-        android:layout_height="70dp"
+        android:layout_width="160dp"
+        android:layout_height="65dp"
         android:background="#18A010"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@id/browse_listing_picture"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/relativeLayout">
 
         <TextView
@@ -54,7 +32,7 @@
             android:id="@+id/list_currentBid"
             android:text="@string/list_currentBid"
             android:textColor="#FFFFFF"
-            android:textSize="22sp"
+            android:textSize="30sp"
             android:layout_marginBottom="2dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
@@ -65,22 +43,28 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/browse_listing_picture"
+        android:layout_height="fill_parent"
         android:layout_marginLeft="15dp"
-        android:background="#91E78C"
+        android:layout_marginBottom="10dp"
+        android:background="#FFFFFF"
         android:layout_below="@+id/relativeLayout"
-        android:id="@+id/relativeLayout2">
+        android:id="@+id/relativeLayout2"
+        android:layout_alignRight="@+id/relativeLayout3"
+        android:layout_alignEnd="@+id/relativeLayout3">
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Job Title:"
             android:textColor="#000000"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:id="@+id/textView3"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="9dp"
+            android:layout_above="@+id/listItem_text_tags"
+            android:layout_alignParentTop="true" />
 
 
         <TextView
@@ -91,7 +75,7 @@
             android:textSize="16sp"
             android:id="@+id/listItem_text_tags"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="9dp"
             android:layout_marginLeft="5dp" />
 
 
@@ -101,10 +85,10 @@
             android:id="@+id/job_name"
             android:text="@string/list_title"
             android:textColor="#000000"
-            android:textSize="16sp"
-            android:layout_toRightOf="@+id/textView3"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp" />
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_toRightOf="@+id/textView3" />
 
         </RelativeLayout>
 
@@ -113,9 +97,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@+id/relativeLayout"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
         android:layout_above="@+id/relativeLayout2"
-        android:background="#96DDDA">
+        android:background="#5F7EC6"
+        android:id="@+id/relativeLayout3">
 
 
         <TextView
@@ -128,7 +114,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
-            android:layout_above="@+id/distance_text" />
+            android:layout_above="@+id/distance_text"
+            android:layout_alignLeft="@+id/distance_text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -171,10 +158,9 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:id="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/distance_text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -193,5 +179,3 @@
 
 
 </RelativeLayout>
-
-</LinearLayout>

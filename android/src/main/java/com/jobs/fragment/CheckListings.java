@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ public class CheckListings extends Fragment {
     private final ArrayList<Item> elements = new ArrayList<>();
     private final ArrayList<String> filtered = new ArrayList<>();
 
+
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -67,6 +69,8 @@ public class CheckListings extends Fragment {
                 e.printStackTrace();
             }
         }
+
+
 
         Button filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
@@ -215,6 +219,9 @@ public class CheckListings extends Fragment {
     private class ListingAdapter extends ArrayAdapter<Item> {
         private ArrayList<Item> items;
 
+        public Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
+        public Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Blackout.ttf");
+
         public ListingAdapter(Context context, ArrayList<Item> items) {
             super(context, R.layout.check_listing_list_item, items);
             this.items = items;
@@ -224,12 +231,14 @@ public class CheckListings extends Fragment {
         public View getView(final int position, View currentView, ViewGroup parent) {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.check_listing_list_item, parent, false);
-
             NumberFormat format = new DecimalFormat("#0.00");
 
             TextView title = (TextView) row.findViewById(R.id.job_name);
+            title.setTypeface(customFont);
             TextView currentBid = (TextView) row.findViewById(R.id.list_currentBid);
+            currentBid.setTypeface(customFont);
             TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
+            tags.setTypeface(customFont);
             currentBid.setText("$" + format.format(items.get(position).currentBid));
             TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
             title.setText(items.get(position).title);
@@ -239,7 +248,7 @@ public class CheckListings extends Fragment {
             if (items.get(position).thumbnail == null)
                 return row;
 
-            final ImageView image = (ImageView) row.findViewById(R.id.browse_listing_picture);
+            //final ImageView image = (ImageView) row.findViewById(R.id.browse_listing_picture);
 
             new AsyncTask<String, Void, String>() {
                 private Bitmap bitmap;
@@ -254,7 +263,7 @@ public class CheckListings extends Fragment {
                 }
 
                 protected void onPostExecute(String result) {
-                    image.setImageBitmap(bitmap);
+                    //image.setImageBitmap(bitmap);
                 }
             }.execute();
 

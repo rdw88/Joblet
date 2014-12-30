@@ -3,46 +3,39 @@
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->8A5B00
-    AA6F00
-    915F00
+    -->
+
+    <!-- Colors -->
     <color name="cementInfo">#000000</color>
-    ecf0f1
     <color name="button">#FFE158</color>
-    <color name="title_color">#FFD619</color>
-    2A52BE
-    <color name="white_background">#F9F9F9</color>+
-    658BF3
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/background</item>
-        <item name="android:colorBackground">@drawable/background</item>
+    <color name="title_color">#fb3</color>
+    <color name="background_white">#F9F9F9</color>+
+    <color name="background_main">#66BABABA</color>
+    <color name="background_launch">#629DF3</color>
+    <!-- 629DF3 -->
+    <color name="gradient_start">#50000000</color>
+    <color name="gradient_light_start">#30000000</color>
+
+
+    <!-- Application themes. -->
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
+        <item name="android:actionBarSize">@dimen/action_bar_height</item>
+        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_compat</item>
     </style>
 
-    <style name="button_text" >
-        <item name="android:layout_width" >fill_parent</item>
-        <item name="android:layout_height" >wrap_content</item>
-        <item name="android:textColor" >#000000</item>
-        <item name="android:gravity" >center</item>
-        <item name="android:layout_margin" >3dp</item>
-        <item name="android:textSize" >30dp</item>
-        <item name="android:textStyle" >bold</item>
-        <item name="android:shadowColor" >#000000</item>
-        <item name="android:shadowDx" >1</item>
-        <item name="android:shadowDy" >1</item>
-        <item name="android:shadowRadius" >2</item>
-    </style>
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
+        <item name="android:icon">@drawable/actionbar_icon_placeholder_compat</item>
+        <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+        <item name="android:background">@color/title_color</item>
     </style>
 
-    <style name="button_text_small" parent="button_text">
-        <item name="android:textSize">18dp</item>
+    <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="button_text_medium" parent="button_text">
-        <item name="android:textSize">24dp</item>
-    </style>
+
 </resources>

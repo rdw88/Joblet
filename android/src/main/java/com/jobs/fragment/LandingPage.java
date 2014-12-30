@@ -1,12 +1,15 @@
 package com.jobs.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +27,12 @@ public class LandingPage extends Fragment {
     private JSONObject data;
     private TextView t;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.landing_page, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme);
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+
+        View view = localInflater.inflate(R.layout.landing_page, container, false);
+
+
 
         name = (TextView) view.findViewById(R.id.user_name);
         location = (TextView) view.findViewById(R.id.location);

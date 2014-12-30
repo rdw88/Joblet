@@ -44,10 +44,10 @@ public class CreateAccount extends Activity {
     private Calendar date;
     private ArrayList<String> locations = Resource.LOCATIONS;
     TextView t;
-
+    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
@@ -60,7 +60,6 @@ public class CreateAccount extends Activity {
 
     protected void onStart() {
         super.onStart();
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         date = Calendar.getInstance();
         dob = (EditText) findViewById(R.id.dob);
         firstName = (EditText) findViewById(R.id.first_name);
@@ -69,8 +68,10 @@ public class CreateAccount extends Activity {
         password = (EditText) findViewById(R.id.password);
         passwordRetry = (EditText) findViewById(R.id.password2);
         tags = (TextView) findViewById(R.id.tags);
+        tags.setTypeface(customFont);
         city = (AutoCompleteTextView) findViewById(R.id.city);
         addTags = (Button) findViewById(R.id.add_tags);
+        addTags.setTypeface(customFont);
         create = (Button) findViewById(R.id.button_create);
         create.setTypeface(customFont);
 
@@ -83,6 +84,7 @@ public class CreateAccount extends Activity {
                 date.set(Calendar.MONTH, monthOfYear);
                 date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 dob.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
+                dob.setTypeface(customFont);
             }
         };
 

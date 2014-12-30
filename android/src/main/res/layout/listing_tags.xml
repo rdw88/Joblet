@@ -20,7 +20,6 @@
             android:layout_width="175dp"
             android:layout_height="65dp"
             android:text="Confirm"
-            style="@style/button_text"
             android:layout_gravity="center_horizontal" />
         <RelativeLayout
             android:layout_width="wrap_content"

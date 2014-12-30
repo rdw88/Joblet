@@ -3,6 +3,7 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -32,6 +33,8 @@ public class MyListings extends Activity {
     private JSONObject data;
     private final ArrayList<Item> elements = new ArrayList<>();
 
+
+    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_listings);
@@ -112,9 +115,13 @@ public class MyListings extends Activity {
             NumberFormat format = new DecimalFormat("#0.00");
 
             TextView title = (TextView) row.findViewById(R.id.my_listing_job_title);
+            title.setTypeface(customFont);
             TextView currentBid = (TextView) row.findViewById(R.id.my_listing_current_bid);
+            currentBid.setTypeface(customFont);
             TextView tag = (TextView) row.findViewById(R.id.my_listing_tag);
+            tag.setTypeface(customFont);
             TextView isActive = (TextView) row.findViewById(R.id.my_listing_is_active);
+            isActive.setTypeface(customFont);
 
             title.setText(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));

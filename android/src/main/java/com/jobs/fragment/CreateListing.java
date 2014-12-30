@@ -62,20 +62,15 @@ public class CreateListing extends Fragment {
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
+        tag.setTypeface(customFont);
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         create.setTypeface(customFont);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_uploadPicture);
         preview = (ImageView) getActivity().findViewById(R.id.uploaded_picture);
 
-        t = (TextView) getActivity().findViewById(R.id.text_jobName_createListing);
-        t.setTypeface(customFont);
 
-        t = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
-        t.setTypeface(customFont);
 
-        t = (TextView) getActivity().findViewById(R.id.text_picturesSelected_createListing);
-        t.setTypeface(customFont);
 
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
