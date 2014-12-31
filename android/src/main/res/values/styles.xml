@@ -10,8 +10,8 @@
     <color name="button">#FFE158</color>
     <color name="title_color">#F47F1F</color>
     <color name="background_white">#F9F9F9</color>+
-    <color name="background_main">#D9ECD7</color>
-    <color name="background_launch">#D9ECD7</color>
+    <color name="background_main">#E6E6E6</color>
+    <color name="background_launch">#E6E6E6</color>
     <!-- 629DF3 -->
     <color name="gradient_start">#50000000</color>
     <color name="gradient_light_start">#30000000</color>

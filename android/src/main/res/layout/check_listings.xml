@@ -13,6 +13,7 @@
               android:divider="@color/background_main"
               android:dividerHeight="4dp"
               android:id="@+id/listing_list"
+              android:layout_marginTop="10dp"
               android:background="@color/background_main" />
 
     <Button

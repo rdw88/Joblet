@@ -4,38 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/landing"
-    android:background="@color/background_main"
+    android:background="#E6E6E6"
     android:weightSum="1"
     android:label="Joblet"
 
     >
 
-
-    <TextView
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/user_name"
-        android:textSize="32sp"
-        android:textColor="#202020"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pictureFrame"
-        android:background="#FFFFFF"
-        android:layout_below="@+id/user_name"
+        android:background="#F8F9F9"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp">
 
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name"
+            android:textSize="32sp"
+            android:textColor="#202020"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp" />
 
         <ImageView android:layout_width="150dp"
             android:layout_height="150dp"
@@ -46,22 +42,25 @@
             android:visibility="visible"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/user_name" />
         <RelativeLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/rep_rl"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/profile_picture">
+            android:layout_toRightOf="@+id/profile_picture"
+            android:layout_below="@+id/user_name">
 
             <TextView android:layout_width="wrap_content"
                 android:id="@+id/text_reputation_landingPage"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="Reputation:"
+                android:textStyle="bold"
                 android:textColor="#202020"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true" />
 
             <Space android:layout_width="0dp"
                 android:layout_height="5dp"
@@ -73,7 +72,8 @@
                 android:src="@drawable/reputation_up"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/lists_label"
-                android:layout_marginLeft="15dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/lists_label" />
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00"
@@ -134,7 +134,8 @@
                 android:id="@+id/jobs_label"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/text_reputation_landingPage"
-                android:layout_marginLeft="15dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/text_reputation_landingPage" />
 
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,20 +153,55 @@
 
         </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#B4B4B4"
+        android:layout_below="@+id/pictureFrame"
+        android:id="@+id/shadefold_one"></RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#C6C5C5"
+        android:layout_below="@+id/shadefold_one"
+        android:id="@+id/shadefold_two"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#DBDAD9"
+        android:layout_below="@+id/shadefold_two"
+        android:id="@+id/shadefold_three"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#DBDAD9"
+        android:layout_below="@+id/shadefold_three"
+        android:id="@+id/shadefold_four"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#E5E5E5"
+        android:layout_below="@+id/shadefold_four"
+        android:id="@+id/shadefold_five"></RelativeLayout>
 
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="24dp"
         android:textColor="#202020"
         android:id="@+id/location"
         android:text="@string/user_currentLocation"
         android:layout_centerHorizontal="true"
         android:paddingTop="5dp"
-        android:layout_below="@+id/pictureFrame"
-        android:layout_alignLeft="@+id/pictureFrame" />
+        android:layout_alignLeft="@+id/pictureFrame"
+        android:layout_below="@+id/shadefold_four" />
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -191,19 +227,10 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/userTags" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/userTags"
+        android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#757575"
-        android:id="@+id/line"
-        android:layout_below="@+id/editProfile"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp" />
 
     <Button
         android:background="@color/background_main"
@@ -212,24 +239,23 @@
         android:layout_height="50dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:text="My Listings"
         android:textColor="#30C3E6"
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/line" />
+        android:layout_toLeftOf="@+id/anchor_middle"
+        android:layout_below="@+id/editProfile"
+        android:layout_marginRight="15dp" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#757575"
-        android:id="@+id/line2"
-        android:layout_below="@+id/my_listings"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:id="@+id/anchor_middle"
+        android:layout_centerHorizontal="true" />
+
 
     <Button
         android:background="@color/background_main"
@@ -238,23 +264,14 @@
         android:layout_height="50dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         android:text="Watchlist"
         android:textColor="#30C3E6"
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/line2" />
+        android:layout_toRightOf="@+id/anchor_middle"
+        android:layout_alignTop="@+id/my_listings"
+        android:layout_marginLeft="15dp" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#757575"
-        android:id="@+id/line3"
-        android:layout_below="@+id/watchlist"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp" />
 
 </RelativeLayout>
