@@ -67,7 +67,6 @@ public class CreateListing extends Fragment {
         create.setTypeface(customFont);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_uploadPicture);
-        preview = (ImageView) getActivity().findViewById(R.id.uploaded_picture);
 
 
 

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs;
     private ImageView profilePicture;
-    private Button myListings;
+    private Button myListings, editProfile, watchlist;
     private JSONObject data;
     private TextView t;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,21 +31,36 @@ public class LandingPage extends Fragment {
         LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
 
         View view = localInflater.inflate(R.layout.landing_page, container, false);
-
-
-
-        name = (TextView) view.findViewById(R.id.user_name);
-        location = (TextView) view.findViewById(R.id.location);
-        positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);
-        negativeReputation = (TextView) view.findViewById(R.id.negative_reputation);
-        listings = (TextView) view.findViewById(R.id.lists_completed);
-        jobs = (TextView) view.findViewById(R.id.jobs_completed);
-        profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
-        t = (TextView) view.findViewById(R.id.text_reputation_landingPage);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
-        t.setTypeface(customFont);
-        myListings = (Button) view.findViewById(R.id.my_listings);
 
+        //TextViews
+        name = (TextView) view.findViewById(R.id.user_name);
+        name.setTypeface(customFont);
+        location = (TextView) view.findViewById(R.id.location);
+        location.setTypeface(customFont);
+        positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);
+        positiveReputation.setTypeface(customFont);
+        negativeReputation = (TextView) view.findViewById(R.id.negative_reputation);
+        negativeReputation.setTypeface(customFont);
+        listings = (TextView) view.findViewById(R.id.lists_completed);
+        listings.setTypeface(customFont);
+        jobs = (TextView) view.findViewById(R.id.jobs_completed);
+        jobs.setTypeface(customFont);
+
+        //ImageView
+        profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
+
+        //Buttons
+        myListings = (Button) view.findViewById(R.id.my_listings);
+        myListings.setTypeface(customFont);
+
+        editProfile = (Button) view.findViewById(R.id.editProfile);
+        editProfile.setTypeface(customFont);
+
+        watchlist = (Button) view.findViewById(R.id.watchlist);
+        watchlist.setTypeface(customFont);
+
+        //-onClick-
         myListings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyListings.class);

@@ -11,10 +11,9 @@
     <ListView android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:divider="@color/background_main"
-              android:footerDividersEnabled="false"
-              android:headerDividersEnabled="false"
+              android:dividerHeight="4dp"
               android:id="@+id/listing_list"
-              android:background="@color/background_main"/>
+              android:background="@color/background_main" />
 
     <Button
         android:background="@drawable/dynamic_button_filter"
@@ -30,7 +29,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dp" />
 
-  <!--  <TextView
+    <!--  <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"

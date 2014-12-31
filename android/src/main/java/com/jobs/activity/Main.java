@@ -40,10 +40,10 @@ public class Main extends FragmentActivity  {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
-
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
                 getActionBar().setTitle(Resource.PAGE_ORDER[page]);
+
             }
 
             public void onPageScrollStateChanged(int page) {

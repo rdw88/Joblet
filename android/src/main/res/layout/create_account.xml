@@ -119,7 +119,7 @@
 
 
         <Button
-            android:background="@drawable/whatever"
+            android:background="@drawable/button_blue"
             android:id="@+id/button_create"
             android:layout_width="255dp"
             android:layout_height="55dp"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#5F7EC6"
+    android:background="@color/background_launch"
     android:clickable="true">
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:id="@+id/linearLayout_info"
-        android:background="#ecf0f1"
+        android:background="#333333"
         android:paddingBottom="10dp">
 
 
@@ -47,7 +47,7 @@
             android:id="@+id/view_listing_current_bid"
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true" />
 
@@ -57,7 +57,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:id="@+id/view_listing_owner_reputation"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/view_listing_current_bid" />
@@ -68,7 +68,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:id="@+id/view_listing_job_location"
             android:layout_below="@+id/view_listing_owner_reputation"
             android:layout_centerHorizontal="true" />
@@ -79,7 +79,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:id="@+id/view_listing_owner_name"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/view_listing_job_location" />
@@ -90,7 +90,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:id="@+id/view_listing_time_created"
             android:layout_below="@+id/view_listing_owner_name"
             android:layout_centerHorizontal="true" />
@@ -101,7 +101,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:id="@+id/view_listing_tag"
             android:layout_below="@+id/view_listing_time_created"
             android:layout_centerHorizontal="true" />
@@ -116,7 +116,7 @@
         android:textSize="24sp"
         android:text="Make A Bid"
         android:textColor="#FFFFFF"
-        android:background="@drawable/whatever"
+        android:background="@drawable/button_blue"
         android:textAllCaps="false"
         android:id="@+id/view_listing_make_bid"
         android:layout_gravity="center_horizontal"

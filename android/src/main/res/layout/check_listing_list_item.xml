@@ -3,23 +3,50 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="145dp"
-                android:background="@android:drawable/arrow_up_float"
-                >
+                android:layout_height="134dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="4dp"
+>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:background="#33333333"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="11dp" />
+
+    <ImageView
+        android:layout_width="2dp"
+        android:layout_height="fill_parent"
+        android:background="#33333333"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="9dp" />
+
+<RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="130dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="5dp"
+                android:background="#FFFFFF"
+                android:layout_alignParentLeft="true">
+
+
+
 
 
     <RelativeLayout
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:background="#18A010"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="225dp"
+        android:layout_height="60dp"
+        android:background="#378E43"
+
+        android:layout_marginTop="5dp"
         android:id="@+id/relativeLayout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pay:"
+            android:text="Current Pay:"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:id="@+id/textView2"
@@ -31,12 +58,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/list_currentBid"
             android:text="@string/list_currentBid"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:layout_marginBottom="2dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp" />
 
         </RelativeLayout>
 
@@ -45,38 +75,25 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
-        android:background="#FFFFFF"
         android:layout_below="@+id/relativeLayout"
-        android:id="@+id/relativeLayout2"
-        android:layout_alignRight="@+id/relativeLayout3"
-        android:layout_alignEnd="@+id/relativeLayout3">
+        android:id="@+id/relativeLayout2">
 
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Job Title:"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:id="@+id/textView3"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="9dp"
-            android:layout_above="@+id/listItem_text_tags"
-            android:layout_alignParentTop="true" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tag: "
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:text=""
+            android:textColor="#5B5B5B"
+            android:textSize="12sp"
             android:id="@+id/listItem_text_tags"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="9dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentEnd="true" />
 
 
         <TextView
@@ -85,10 +102,10 @@
             android:id="@+id/job_name"
             android:text="@string/list_title"
             android:textColor="#000000"
-            android:textSize="18sp"
-            android:layout_marginLeft="5dp"
-            android:layout_alignTop="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3" />
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="1dp" />
 
         </RelativeLayout>
 
@@ -97,10 +114,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@+id/relativeLayout"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+
         android:layout_above="@+id/relativeLayout2"
-        android:background="#5F7EC6"
+        android:background="#3E4DA0"
         android:id="@+id/relativeLayout3">
 
 
@@ -108,12 +125,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reputation:"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             android:id="@+id/reputation_text"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
+            android:textStyle="bold"
             android:layout_above="@+id/distance_text"
             android:layout_alignLeft="@+id/distance_text" />
 
@@ -121,9 +139,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Distance:"
-            android:textSize="16sp"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:id="@+id/distance_text"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true" />
 
@@ -133,8 +152,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/owner_distance"
             android:text="@string/owner_listNumber"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="12dp"
             android:layout_toRightOf="@+id/distance_text"
             android:layout_alignBottom="@+id/distance_text"
             android:layout_marginLeft="5dp" />
@@ -144,8 +163,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/owner_reputation"
             android:text="@string/owner_reputation"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             android:layout_toRightOf="@+id/reputation_text"
             android:layout_marginTop="2dp"
             android:layout_marginLeft="5dp"
@@ -155,8 +174,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lists:"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:id="@+id/textView"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"
@@ -167,8 +187,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/owner_listNumber"
             android:text="@string/owner_listNumber"
-            android:textColor="#000000"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             android:layout_toRightOf="@+id/textView"
             android:layout_alignBottom="@+id/textView"
             android:layout_marginLeft="5dp" />
@@ -178,4 +198,5 @@
 
 
 
+</RelativeLayout>
 </RelativeLayout>

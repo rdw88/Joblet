@@ -14,9 +14,9 @@
                     <gradient
                         android:angle="270"
                         android:centerX="50%"
-                        android:centerColor="#ff2abedc"
-                        android:startColor="#30C3E6"
-                        android:endColor="#30C3E6"
+                        android:centerColor="#E7E7E7"
+                        android:startColor="#FFFFFF"
+                        android:endColor="#FFFFFF"
                         android:type="linear"
                         />
 
@@ -36,19 +36,19 @@
             <!-- CONTENT LAYER -->
             <item android:bottom="2dp" android:right="1dp">
                 <shape>
-                <corners
-                    android:radius="4dp"
-                    />
-                <gradient
-                    android:angle="270"
-                    android:centerX="50%"
-                    android:centerColor="#32CBF0"
-                    android:startColor="#30C3E6"
-                    android:endColor="#30C3E6"
-                    android:type="linear"
-                    />
+                    <corners
+                        android:radius="4dp"
+                        />
+                    <gradient
+                        android:angle="270"
+                        android:centerX="50%"
+                        android:centerColor="#fffafafa"
+                        android:startColor="#FFFFFF"
+                        android:endColor="#FFFFFF"
+                        android:type="linear"
+                        />
 
-            </shape>
+                </shape>
             </item>
         </layer-list>
     </item>
