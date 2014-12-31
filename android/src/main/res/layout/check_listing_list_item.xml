@@ -3,45 +3,59 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="134dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="4dp"
->
-    <ImageView
+                android:layout_height="110dp"
+                android:background="#F8F9F9"
+
+                android:id="@+id/background">
+
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="3dp"
-        android:background="#33333333"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="11dp" />
-
-    <ImageView
-        android:layout_width="2dp"
-        android:layout_height="fill_parent"
-        android:background="#33333333"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="9dp" />
-
-<RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="130dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginLeft="5dp"
-                android:background="#FFFFFF"
-                android:layout_alignParentLeft="true">
+        android:layout_height="1px"
+        android:background="#B4B4B4"
+        android:layout_below="@+id/shadefold_two"
+        android:id="@+id/shadefold_one"></RelativeLayout>
 
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#C6C5C5"
+        android:layout_below="@+id/shadefold_three"
+        android:id="@+id/shadefold_two"
+        android:layout_alignRight="@+id/shadefold_one"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#DBDAD9"
+        android:layout_below="@+id/shadefold_four"
+        android:id="@+id/shadefold_three"
+        android:layout_alignRight="@+id/shadefold_one"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#DBDAD9"
+        android:layout_below="@+id/shadefold_five"
+        android:id="@+id/shadefold_four"
+        android:layout_alignRight="@+id/shadefold_one"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#E5E5E5"
+        android:id="@+id/shadefold_five"
+        android:layout_alignRight="@+id/shadefold_one"></RelativeLayout>
 
 
 
     <RelativeLayout
-        android:layout_width="225dp"
+        android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:background="#378E43"
-
         android:layout_marginTop="5dp"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/shadefold_one">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,54 +85,47 @@
         </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="15dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#5B5B5B"
+        android:textSize="12sp"
+        android:id="@+id/listItem_text_tags"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="3dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/job_name"
+        android:text="@string/list_title"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/relativeLayout"
-        android:id="@+id/relativeLayout2">
+        android:paddingLeft="3dp" />
 
 
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="#5B5B5B"
-            android:textSize="12sp"
-            android:id="@+id/listItem_text_tags"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:layout_alignParentEnd="true" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/job_name"
-            android:text="@string/list_title"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="1dp" />
-
-        </RelativeLayout>
 
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="100dp"
         android:layout_height="fill_parent"
-        android:layout_toRightOf="@+id/relativeLayout"
         android:layout_marginTop="5dp"
-
-        android:layout_above="@+id/relativeLayout2"
         android:background="#3E4DA0"
-        android:id="@+id/relativeLayout3">
+        android:id="@+id/relativeLayout3"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/relativeLayout"
+        android:layout_below="@+id/shadefold_one">
 
 
         <TextView
@@ -198,5 +205,4 @@
 
 
 
-</RelativeLayout>
 </RelativeLayout>

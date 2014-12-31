@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#F8F9F9"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="false"
+        android:divider="#F8F9F9"
         android:id="@+id/my_listings_list_view"></ListView>
 
-</LinearLayout>
+
+    <Button
+        android:background="@drawable/dynamic_button_filter"
+        android:id="@+id/checkListings_filter"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:textColor="#F9F9F9"
+        android:paddingBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+        android:visibility="visible"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp" />
+
+</RelativeLayout>

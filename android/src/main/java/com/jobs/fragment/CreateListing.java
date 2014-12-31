@@ -64,7 +64,7 @@ public class CreateListing extends Fragment {
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         create.setTypeface(customFont);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
-        uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_uploadPicture);
+        uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_gallery);
 
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

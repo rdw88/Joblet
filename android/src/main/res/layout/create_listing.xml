@@ -82,43 +82,49 @@
             android:layout_height="wrap_content"
             android:text=" Pick Tag(s)"
             android:id="@+id/text_tag_createListing"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textColor="@color/cementInfo"
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="3dp" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="75dp">
 
-            <Button
-                android:background="@drawable/dynamic_button_gallery"
-                android:id="@+id/button_createListing_uploadPicture"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/set_tag"
-                android:layout_toStartOf="@+id/set_tag" />
-
-            <Button
+               <Button
                 android:background="@drawable/dynamic_button_tag"
                 android:id="@+id/set_tag"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_centerHorizontal="true" />
+                android:layout_marginRight="65dp"
+                android:layout_toLeftOf="@+id/anchor"
+                android:layout_centerInParent="true" />
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/dynamic_button_gallery"
+                android:id="@+id/button_createListing_gallery"
+                android:layout_centerInParent="true" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/anchor" />
 
             <Button
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:background="@drawable/dynamic_button_camera"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/set_tag"
-                android:layout_toEndOf="@+id/set_tag" />
+                android:layout_toRightOf="@+id/anchor"
+                android:layout_toEndOf="@+id/set_tag"
+                android:layout_marginLeft="65dp"
+                android:id="@+id/button_createListing_camera"
+                android:layout_centerInParent="true" />
 
 
             </RelativeLayout>
@@ -127,12 +133,13 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Pictures Selected"
+            android:text=" Choose Picture(s)"
             android:id="@+id/text_picturesSelected_createListing"
             android:textSize="20sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="3dp" />
 
 
 
@@ -162,7 +169,8 @@
                 android:textSize="24sp"
                 android:layout_gravity="center_horizontal"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            android:layout_marginTop="5dp" />
 
 
 
