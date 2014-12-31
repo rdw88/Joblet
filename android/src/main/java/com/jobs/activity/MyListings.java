@@ -32,13 +32,13 @@ import java.util.ArrayList;
 public class MyListings extends Activity {
     private JSONObject data;
     private final ArrayList<Item> elements = new ArrayList<>();
+    private Typeface customFont;
 
-
-    Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_listings);
 
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {

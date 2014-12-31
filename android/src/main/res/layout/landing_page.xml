@@ -235,12 +235,18 @@
     <Button
         android:background="@color/background_main"
         android:id="@+id/my_listings"
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
+=======
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
         android:text="My Listings"
         android:textColor="#30C3E6"
         android:textSize="20sp"

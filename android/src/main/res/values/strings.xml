@@ -38,6 +38,7 @@
     <string name="ad_confirmed_password_incorrect_title">Password Incorrect</string>
     <string name="ad_confirmed_password_incorrect">The password entered was incorrect. Please try again!</string>
     <string name="ad_filter_title">Filter Listings</string>
+    <string name="ad_select_tag">Select Tag</string>
     <string name="list_currentBid">$00.00</string>
     <string name="title_backgroungTint">#755C15</string>
     <string name="list_title">ListTitle</string>

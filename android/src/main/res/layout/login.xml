@@ -7,9 +7,14 @@
     android:background="#FED8A4"
     android:weightSum="1">
 
-    <ImageView android:layout_width="225dp"
-        android:layout_height="225dp"
+    <ImageView android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
+=======
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
         android:id="@+id/logo_welcome"
         android:src="@drawable/logo"
         android:background="@android:drawable/dialog_holo_dark_frame"
@@ -32,8 +37,13 @@
     <EditText android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+=======
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
         android:hint=" Password"
         android:inputType="textPassword"
         android:id="@+id/password"
@@ -46,7 +56,11 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
         android:layout_marginBottom="5dp"
+=======
+        android:layout_marginBottom="10dp"
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
         android:id="@+id/checkbox_remember_me"
         android:text="Remember Me"
         android:textColor="#202020"
@@ -56,10 +70,15 @@
     <Button
         android:background="@drawable/button_blue"
         android:id="@+id/login"
+<<<<<<< HEAD
         android:layout_width="225dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:layout_height="50dp"
+=======
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
         android:textColor="#F9F9F9"
         android:text="Log In"
         android:textSize="26sp"
@@ -98,4 +117,18 @@
         android:layout_centerHorizontal="true" />
 
 
+<<<<<<< HEAD
 </RelativeLayout>
+=======
+    <Button
+        android:background="@drawable/whatever"
+        android:id="@+id/btn_create_account"
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:textColor="#F9F9F9"
+        android:text="Create Account"
+        android:textSize="28sp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
+>>>>>>> 60a8cf09b2be41bde2380d2a09b83c907067a295
