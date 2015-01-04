@@ -9,14 +9,14 @@
             <item android:bottom="2dp" android:right="1dp">
                 <shape >
                     <corners
-                        android:radius="4dp"
+                        android:radius="2dp"
                         />
                     <gradient
                         android:angle="270"
                         android:centerX="50%"
-                        android:centerColor="#ff2abedc"
-                        android:startColor="#30C3E6"
-                        android:endColor="#30C3E6"
+                        android:centerColor="#ff4ba0e3"
+                        android:startColor="#468DCB"
+                        android:endColor="#468DCB"
                         android:type="linear"
                         />
 
@@ -30,21 +30,21 @@
             <item android:left="1dp" android:top="2dp">
                 <shape>
                     <solid android:color="#33333333" />
-                    <corners android:radius="4dip"/>
+                    <corners android:radius="2dip"/>
                 </shape>
             </item>
             <!-- CONTENT LAYER -->
             <item android:bottom="2dp" android:right="1dp">
                 <shape>
                 <corners
-                    android:radius="4dp"
+                    android:radius="2dp"
                     />
                 <gradient
                     android:angle="270"
                     android:centerX="50%"
-                    android:centerColor="#32CBF0"
-                    android:startColor="#30C3E6"
-                    android:endColor="#30C3E6"
+                    android:centerColor="#468DCB"
+                    android:startColor="#468DCB"
+                    android:endColor="#468DCB"
                     android:type="linear"
                     />
 

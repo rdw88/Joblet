@@ -59,7 +59,7 @@ public class CreateListing extends Fragment {
         jobLocation = (EditText) getActivity().findViewById(R.id.listing_location);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
-        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         tag.setTypeface(customFont);
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         create.setTypeface(customFont);

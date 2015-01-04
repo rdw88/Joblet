@@ -1,6 +1,7 @@
 package com.jobs.activity;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.support.v4.view.ViewPager;
 
 import android.view.MenuItem;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.jobs.R;
@@ -43,6 +46,9 @@ public class Main extends FragmentActivity  {
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
                 getActionBar().setTitle(Resource.PAGE_ORDER[page]);
+                final InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(pager.getWindowToken(), 0);
 
             }
 
@@ -50,6 +56,7 @@ public class Main extends FragmentActivity  {
             }
             public void onPageScrolled(int page, float f, int i) {
             }
+
         });
 
         pager.setAdapter(adapter);

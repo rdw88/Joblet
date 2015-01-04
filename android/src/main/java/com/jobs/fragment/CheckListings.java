@@ -219,8 +219,8 @@ public class CheckListings extends Fragment {
     private class ListingAdapter extends ArrayAdapter<Item> {
         private ArrayList<Item> items;
 
-        public Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/verdana.ttf");
-        public Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Blackout.ttf");
+        public Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        public Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
 
         public ListingAdapter(Context context, ArrayList<Item> items) {
             super(context, R.layout.check_listing_list_item, items);
@@ -234,9 +234,9 @@ public class CheckListings extends Fragment {
             NumberFormat format = new DecimalFormat("#0.00");
 
             TextView title = (TextView) row.findViewById(R.id.job_name);
-            title.setTypeface(customFont);
+            title.setTypeface(moneyFont);
             TextView currentBid = (TextView) row.findViewById(R.id.list_currentBid);
-            currentBid.setTypeface(customFont);
+            currentBid.setTypeface(moneyFont);
             TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
             tags.setTypeface(customFont);
             currentBid.setText("$" + format.format(items.get(position).currentBid));

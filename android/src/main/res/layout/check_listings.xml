@@ -11,9 +11,10 @@
     <ListView android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#F8F9F9"
-              android:headerDividersEnabled="false"
+              android:divider="#1E000000"
+              android:dividerHeight="1dp"
               android:footerDividersEnabled="false"
-              android:divider="#F8F9F9"
+              android:headerDividersEnabled="false"
               android:id="@+id/listing_list"
               android:layout_marginTop="0dp"
               />
@@ -28,9 +29,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentRight="true"
         android:visibility="visible"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="16dp" />
 
     <!--  <TextView
         android:layout_width="wrap_content"

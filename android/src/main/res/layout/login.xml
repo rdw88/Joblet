@@ -7,14 +7,13 @@
     android:background="#FED8A4"
     android:weightSum="1">
 
-    <ImageView android:layout_width="200dp"
-        android:layout_height="200dp"
+    <ImageView android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/logo_welcome"
-        android:src="@drawable/logo"
-        android:background="@android:drawable/dialog_holo_dark_frame"
+        android:src="@drawable/logo_login"
         android:layout_centerHorizontal="true"
          />
 
@@ -28,7 +27,7 @@
         android:background="#ecf0f1"
         android:padding="10dp"
         android:layout_below="@+id/logo_welcome"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:layout_centerHorizontal="true" />
 
     <EditText android:layout_width="250dp"
@@ -58,7 +57,7 @@
         android:background="@drawable/button_blue"
         android:id="@+id/login"
         android:layout_width="225dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:layout_height="50dp"
