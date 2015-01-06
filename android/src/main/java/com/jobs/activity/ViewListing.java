@@ -28,7 +28,7 @@ public class ViewListing extends Activity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag;
     private Button makeBid;
     private ImageView picture;
-    private Typeface customFont;
+    private Typeface customFont, robotoBlack;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +40,11 @@ public class ViewListing extends Activity {
     public void onStart() {
         super.onStart();
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoBlack = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
+
         title = (TextView) findViewById(R.id.view_listing_title);
-        title.setTypeface(customFont);
+        title.setTypeface(robotoBlack);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
         currentBid.setTypeface(customFont);
         ownerReputation = (TextView) findViewById(R.id.view_listing_owner_reputation);
@@ -56,7 +58,7 @@ public class ViewListing extends Activity {
         tag = (TextView) findViewById(R.id.view_listing_tag);
         tag.setTypeface(customFont);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
-        makeBid.setTypeface(customFont);
+        makeBid.setTypeface(robotoBlack);
         picture = (ImageView) findViewById(R.id.listing_picture);
 
         Bundle b = getIntent().getExtras();
@@ -86,12 +88,12 @@ public class ViewListing extends Activity {
 
         try {
             title.setText(data.getString("job_title"));
-            currentBid.setText("Current Bid: $" + money.format(data.getDouble("current_bid")));
-            ownerReputation.setText("Owner Reputation: " + data.getString("owner_reputation"));
-            jobLocation.setText("Job Location: " + data.getString("job_location"));
-            ownerName.setText("Owner: " + data.getString("owner_name"));
-            timeCreated.setText("Date Created: " + data.getString("time_created"));
-            tag.setText("Tag: " + data.getString("tag"));
+            currentBid.setText("$" + money.format(data.getDouble("current_bid")));
+            ownerReputation.setText(data.getString("owner_reputation"));
+            jobLocation.setText(data.getString("job_location"));
+            ownerName.setText(data.getString("owner_name"));
+            timeCreated.setText(data.getString("time_created"));
+            tag.setText(data.getString("tag"));
             picture.setImageBitmap(bitmap);
         } catch (JSONException e) {
             e.printStackTrace();
