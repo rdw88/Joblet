@@ -39,11 +39,16 @@
 
         <activity android:name="com.jobs.activity.Main"
                   android:label="@string/app_name"
+                  android:theme="@style/AppTheme2"
             />
 
         <activity android:name="com.jobs.activity.CreateAccount"
                   android:label="@string/create_account"/>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61621b6efc2023d70055230a32b2234d7aa9417d
         <activity android:name="com.jobs.activity.ViewListing"
             android:label="@string/app_name"/>
 

@@ -8,16 +8,35 @@
     <!-- Colors -->
     <color name="cementInfo">#000000</color>
     <color name="button">#FFE158</color>
-    <color name="title_color">#F47F1F</color>
+    <color name="title_color">#FF9800</color>
     <color name="background_white">#F9F9F9</color>+
     <color name="background_main">#E6E6E6</color>
     <color name="background_launch">#E6E6E6</color>
+    <color name="primary_information">#DD000000</color>
     <!-- 629DF3 -->
     <color name="gradient_start">#50000000</color>
     <color name="gradient_light_start">#30000000</color>
 
 
     <!-- Application themes. -->
+
+    <style name="AppTheme2" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
+        <item name="android:actionBarSize">@dimen/action_bar_height</item>
+        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:actionBarWidgetTheme">@style/PopupMenuTextView</item>
+    </style>
+
+    <style name="PopupMenu">
+        <item name="android:popupBackground">#FFCC80</item>
+    </style>
+
+    <style name="PopupMenuTextView" parent="@style/android:Theme.Holo.Light">
+        <item name="android:textColor">#DD000000</item>
+    </style>
+
+
 
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
@@ -36,6 +55,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
+
 
 
     <!-- Button theme -->

@@ -121,7 +121,10 @@ public class CheckListings extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         profileData = getArguments().getString("data");
-        return inflater.inflate(R.layout.check_listings, container, false);
+
+        View rootView = inflater.inflate(R.layout.check_listings, container, false);
+
+        return rootView;
     }
 
     private void fill() {

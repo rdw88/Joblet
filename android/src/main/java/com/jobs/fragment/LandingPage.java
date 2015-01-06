@@ -2,7 +2,6 @@ package com.jobs.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,13 +9,11 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.jobs.R;
-import com.jobs.activity.Main;
+import com.jobs.activity.EditProfile;
 import com.jobs.activity.MyListings;
 
 import org.json.JSONException;
@@ -27,12 +24,16 @@ public class LandingPage extends Fragment {
     private ImageView profilePicture;
     private Button myListings, editProfile, watchlist;
     private JSONObject data;
+
+
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme);
-        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        //LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = inflater.inflate(R.layout.landing_page, container, false);
 
-
-        View view = localInflater.inflate(R.layout.landing_page, container, false);
+        //View view = localInflater.inflate(R.layout.landing_page, container, false);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
 
@@ -60,8 +61,7 @@ public class LandingPage extends Fragment {
         myListings = (Button) view.findViewById(R.id.my_listings);
         myListings.setTypeface(robotoBold);
 
-        editProfile = (Button) view.findViewById(R.id.editProfile);
-        editProfile.setTypeface(customFont);
+        editProfile = (Button) view.findViewById(R.id.edit_profile);
 
         watchlist = (Button) view.findViewById(R.id.watchlist);
         watchlist.setTypeface(robotoBold);
@@ -70,6 +70,14 @@ public class LandingPage extends Fragment {
         myListings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyListings.class);
+                intent.putExtra("data", data.toString());
+                startActivity(intent);
+            }
+        });
+
+        editProfile.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), EditProfile.class);
                 intent.putExtra("data", data.toString());
                 startActivity(intent);
             }

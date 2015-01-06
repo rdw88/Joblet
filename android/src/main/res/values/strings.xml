@@ -48,8 +48,12 @@
     <string name="owner_listNumber">00</string>
     <string name="title_create_listing">Create Listing</string>
     <string name="title_browse_listings">Browse Listings</string>
+<<<<<<< HEAD
     <string name="btn_make_bid">Make Bid</string>
 
+=======
+    <string name="logout">Log Out</string>
+>>>>>>> 61621b6efc2023d70055230a32b2234d7aa9417d
 
 
 </resources>
