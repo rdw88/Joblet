@@ -39,6 +39,8 @@
     <string name="ad_confirmed_password_incorrect">The password entered was incorrect. Please try again!</string>
     <string name="ad_filter_title">Filter Listings</string>
     <string name="ad_select_tag">Select Tag</string>
+    <string name="ad_bid_request_sent_title">Bid Sent</string>
+    <string name="ad_bid_request_sent">Your bid was sent to the owner for confirmation.</string>
     <string name="list_currentBid">$00.00</string>
     <string name="title_backgroungTint">#755C15</string>
     <string name="list_title">ListTitle</string>
@@ -46,6 +48,7 @@
     <string name="owner_listNumber">00</string>
     <string name="title_create_listing">Create Listing</string>
     <string name="title_browse_listings">Browse Listings</string>
+    <string name="btn_make_bid">Make Bid</string>
 
 
 

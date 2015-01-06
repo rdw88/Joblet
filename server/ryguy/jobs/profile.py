@@ -171,9 +171,18 @@ def _fetch(profile_id):
 	return profile
 
 
-def check_password(profile_id, password):
-	return password == str(_fetch(profile_id).password)
-
-
 def getID(email):
 	return { 'profile_id' : Profile.objects.get(email=email).profile_id }, None
+
+
+def device_id(args):
+	profile = Profile.objects.filter(email=args['email'])
+
+	if len(profile) == 0:
+		return False, ERROR_NO_SUCH_PROFILE
+
+	profile = profile[0]
+	profile.__dict__['device_id'] = args['id']
+	profile.save()
+
+	return True, None

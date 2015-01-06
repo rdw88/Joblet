@@ -144,5 +144,24 @@ public class Profile {
         }
     }
 
+    public static JSONObject registerPhoneID(String email, String id) {
+        Map<String, String> data = new HashMap<>();
+        data.put("request", "device_id");
+        data.put("email", email);
+        data.put("id", id);
 
+        try{
+            return Address.post(data, Address.PROFILE);
+        } catch (JSONException | IOException e) {
+            JSONObject error = new JSONObject();
+
+            try {
+                error.put("error", Integer.toString(Error.ERROR_SERVER_COMMUNICATION));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
+
+            return error;
+        }
+    }
 }

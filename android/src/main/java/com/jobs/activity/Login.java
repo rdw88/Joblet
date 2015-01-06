@@ -7,10 +7,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.jobs.R;
 
 import android.view.Window;
@@ -23,12 +30,19 @@ import com.jobs.backend.Error;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 
 public class Login extends Activity {
     private EditText email;
     private EditText password;
 
     private ProgressDialog dialog;
+
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private GoogleCloudMessaging gcm;
+    private String regid;
+    private String senderID = "906497299543"; // Project number
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +98,15 @@ public class Login extends Activity {
                             dialog.dismiss();
                             alertIncorrectPassword();
                         } else if (response == -1) {
+                            if (checkPlayServices()) {
+                                gcm = GoogleCloudMessaging.getInstance(Login.this);
+                                regid = getRegistrationId(getApplicationContext());
+
+                                if (regid.isEmpty()) {
+                                    registerInBackground(email.getText().toString());
+                                }
+                            }
+
                             getProfileInfo();
                         }
                     }
@@ -119,6 +142,11 @@ public class Login extends Activity {
         }.execute();
     }
 
+    protected void onResume() {
+        super.onResume();
+        checkPlayServices();
+    }
+
     private void alertIncorrectPassword() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
         builder.setMessage(R.string.ad_wrong_password);
@@ -135,5 +163,87 @@ public class Login extends Activity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                finish();
+            }
+
+            return false;
+        }
+        return true;
+    }
+
+    private String getRegistrationId(Context context) {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        String registrationId = prefs.getString("registration_id", "");
+        if (registrationId.isEmpty()) {
+            return "";
+        }
+
+        int registeredVersion = prefs.getInt("app_version", Integer.MIN_VALUE);
+        int currentVersion = getAppVersion(context);
+        if (registeredVersion != currentVersion) {
+            return "";
+        }
+
+        return registrationId;
+    }
+
+    private SharedPreferences getGCMPreferences(Context context) {
+        return getSharedPreferences(Login.class.getSimpleName(), Context.MODE_PRIVATE);
+    }
+
+    private static int getAppVersion(Context context) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException("Could not get package name: " + e);
+        }
+    }
+
+    private void registerInBackground(final String email) {
+        new AsyncTask<String, Void, String>() {
+            protected String doInBackground(String... params) {
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+
+                    regid = gcm.register(senderID);
+
+                    try {
+                        JSONObject obj = Profile.registerPhoneID(email, regid);
+                        if (obj.has("error") && obj.getInt("error") == -1) {
+                            storeRegistrationId();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                return null;
+            }
+
+            protected void onPostExecute(String msg) {
+            }
+        }.execute();
+    }
+
+    private void storeRegistrationId() {
+        final SharedPreferences prefs = getGCMPreferences(getApplicationContext());
+        int appVersion = getAppVersion(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("registration_id", regid);
+        editor.putInt("app_version", appVersion);
+        editor.apply();
     }
 }

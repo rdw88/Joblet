@@ -2,7 +2,9 @@ package com.jobs.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,7 +79,46 @@ public class ViewListing extends Activity {
 
         makeBid.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                // TODO: Still need to implement this on the server as well!!!
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewListing.this);
+                View view = getLayoutInflater().inflate(R.layout.make_bid, null);
+                final EditText bid = (EditText) view.findViewById(R.id.entered_bid);
+
+                builder.setView(view);
+                builder.setTitle("Make A Bid");
+                builder.setPositiveButton(R.string.btn_make_bid, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface d, int which) {
+                        new AsyncTask<String, Void, String>() {
+                            private int response;
+
+                            protected String doInBackground(String... params) {
+                                String enteredBid = bid.getText().toString();
+                                String listingID = getIntent().getExtras().getString("listing_id");
+                                String email = "";
+
+                                try {
+                                    SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
+                                    JSONObject obj = new JSONObject(prefs.getString("user_data", null));
+                                    email = obj.getString("email");
+                                    response = Listing.makeBid(listingID, email, enteredBid).getInt("error");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                return null;
+                            }
+
+                            protected void onPostExecute(String res) {
+                                if (response == -1) {
+                                    alertBidRequestSent();
+                                }
+                            }
+                        }.execute();
+                    }
+                });
+                builder.setNegativeButton(R.string.button_cancel, null);
+
+                builder.show();
+
             }
         });
     }
@@ -162,6 +204,23 @@ public class ViewListing extends Activity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.ad_error_no_such_listing);
         builder.setTitle(R.string.ad_error_no_such_listing_title);
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface di, int i) {
+            }
+        };
+
+        builder.setPositiveButton(R.string.button_ok, listener);
+        //builder.setNegativeButton(R.string.button_cancel, listener);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void alertBidRequestSent() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.ad_bid_request_sent);
+        builder.setTitle(R.string.ad_bid_request_sent_title);
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {

@@ -3,6 +3,7 @@ package com.jobs.activity;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -25,6 +26,9 @@ import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
+
+// PROJECT NUMBER : 906497299543
+// API KEY: AIzaSyCIgsBHKEmJa46AYIHFnxKY7F39w_mE_g0
 
 public class Main extends FragmentActivity  {
     private static final int MAIN_PAGE = 1;
@@ -58,6 +62,11 @@ public class Main extends FragmentActivity  {
             }
 
         });
+
+        SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("user_data", data);
+        editor.apply();
 
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);

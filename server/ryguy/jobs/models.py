@@ -11,6 +11,7 @@ class Profile(models.Model):
 	password = models.CharField(max_length=32)
 	email = models.CharField(max_length=128)
 	owned_listings = models.TextField() # JSON array of listing ids
+	device_id = models.CharField(max_length=256)
 
 	positive_reputation = models.IntegerField()
 	negative_reputation = models.IntegerField()

@@ -4,6 +4,7 @@ import re
 import profile
 import json
 import os
+import requests
 from PIL import Image
 from models import Listing, Profile
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
@@ -122,6 +123,39 @@ def update(args):
 		listing.__dict__['current_bid'] = args['current_bid']		
 		listing.save()
 		return True, None
+
+'''
+
+When a user makes a bid to a listing, it gets sent here. This will notify
+the owner of the listing and the owner can choose whether to accept or decline
+the bid.
+
+TODO: May possibly need to have a way to store bid requests. Perhaps another table in the database.
+
+'''
+def make_bid(args):
+	listing_id = args['listing_id']
+	bidder_email = args['bidder_email']
+	bid_amount = args['bid_amount']
+
+	listing = Listing.objects.filter(listing_id=listing_id)
+
+	if len(listing) == 0:
+		return False, ERROR_NO_SUCH_LISTING
+
+	listing = listing[0]
+
+	owner = Profile.objects.get(profile_id=listing.profile_id)
+	owner_device = str(owner.device_id)
+
+	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCIgsBHKEmJa46AYIHFnxKY7F39w_mE_g0' }
+	data = {'registration_ids' : [owner_device], 'data' : {'data' : '%s&%s' % (bidder_email, bid_amount)}}
+	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
+	print response.text
+
+	return True, None
+
+
 
 '''
 
