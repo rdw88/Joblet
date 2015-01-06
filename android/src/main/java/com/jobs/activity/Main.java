@@ -3,12 +3,7 @@ package com.jobs.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
-<<<<<<< HEAD
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
-=======
->>>>>>> 61621b6efc2023d70055230a32b2234d7aa9417d
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -32,17 +27,10 @@ import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
-
-<<<<<<< HEAD
-// PROJECT NUMBER : 906497299543
-// API KEY: AIzaSyCIgsBHKEmJa46AYIHFnxKY7F39w_mE_g0
-
-public class Main extends FragmentActivity  {
-=======
 import java.lang.reflect.Field;
 
+
 public class Main extends FragmentActivity implements ActionBar.TabListener {
->>>>>>> 61621b6efc2023d70055230a32b2234d7aa9417d
     private static final int MAIN_PAGE = 1;
     private MainPagerAdapter adapter;
     private ViewPager pager;
@@ -70,10 +58,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         adapter = new MainPagerAdapter(getSupportFragmentManager());
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-
-
-
-
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
@@ -85,20 +69,13 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             // Ignore
         }
 
-
-
-
-
-
-
-
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
                 getActionBar().setTitle(Resource.PAGE_ORDER[page]);
                 final InputMethodManager imm = (InputMethodManager)getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(pager.getWindowToken(), 0);
-
+                getActionBar().setSelectedNavigationItem(page);
             }
 
             public void onPageScrollStateChanged(int page) {
@@ -108,16 +85,12 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         });
 
-<<<<<<< HEAD
         SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("user_data", data);
         editor.apply();
 
         pager.setAdapter(adapter);
-=======
-        //pager.setAdapter(adapter);
->>>>>>> 61621b6efc2023d70055230a32b2234d7aa9417d
         pager.setCurrentItem(MAIN_PAGE);
     }
 
@@ -136,12 +109,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }
 
-
-
-
-
-
-
     /**
      * Make log out ovoerflow menu item work here
     @Override
@@ -149,7 +116,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
     }
     **/
-
 
     public class MainPagerAdapter extends FragmentPagerAdapter {
         public MainPagerAdapter(FragmentManager fm) {
@@ -190,10 +156,4 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
 }

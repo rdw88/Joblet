@@ -155,7 +155,7 @@ public class CreateListing extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         userData = getArguments().getString("data");
-        View rootView = inflater.inflate(R.layout.create_account, container, false);
+        View rootView = inflater.inflate(R.layout.create_listing, container, false);
 
         return rootView;
 }
