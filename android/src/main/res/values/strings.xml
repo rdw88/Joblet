@@ -46,7 +46,7 @@
     <string name="owner_listNumber">00</string>
     <string name="title_create_listing">Create Listing</string>
     <string name="title_browse_listings">Browse Listings</string>
-
+    <string name="logout">Log Out</string>
 
 
 </resources>

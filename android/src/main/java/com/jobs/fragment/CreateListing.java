@@ -155,8 +155,10 @@ public class CreateListing extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         userData = getArguments().getString("data");
-        return inflater.inflate(R.layout.create_listing, container, false);
-    }
+        View rootView = inflater.inflate(R.layout.create_account, container, false);
+
+        return rootView;
+}
 
     private void createListing(final String password) {
         creatingProgress = ProgressDialog.show(getActivity(), "Creating Listing", "Please wait while we create your listing...", true, false);

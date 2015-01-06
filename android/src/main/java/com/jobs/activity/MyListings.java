@@ -38,7 +38,7 @@ public class MyListings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_listings);
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {

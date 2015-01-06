@@ -14,17 +14,12 @@
             android:icon="@drawable/logo"
             >
 
-
-
-
-
-
         <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:background="#F8F9F9"
                 android:textSize="18sp"
-                android:textColor="#F8F9F9"
+                android:textColor="#DD000000"
                 android:id="@+id/listing_name"
                 android:hint="Job Name"
                 android:layout_gravity="center_horizontal"
@@ -32,14 +27,12 @@
                 android:padding="10dp"
                 />
 
-
-
         <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:background="#F8F9F9"
                 android:textSize="18sp"
-                android:textColor="#000000"
+                android:textColor="#DD000000"
                 android:id="@+id/listing_location"
                 android:hint="Listing Address"
                 android:layout_gravity="center_horizontal"
@@ -52,7 +45,7 @@
                 android:layout_height="50dp"
                 android:background="#F8F9F9"
                 android:textSize="18sp"
-                android:textColor="#000000"
+                android:textColor="#DD000000"
                 android:id="@+id/starting_amount"
                 android:hint="Starting Price"
                 android:inputType="number"
@@ -66,7 +59,7 @@
                 android:layout_height="50dp"
                 android:background="#F8F9F9"
                 android:textSize="18sp"
-                android:textColor="#000000"
+                android:textColor="#DD000000"
                 android:inputType="number"
                 android:id="@+id/min_reputation"
                 android:hint="Minimum Applicant Reputation"
@@ -75,8 +68,6 @@
                 android:layout_marginBottom="10dp"
                 android:padding="10dp"
                 />
-
-
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,7 +78,6 @@
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="3dp" />
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -126,10 +116,7 @@
                 android:id="@+id/button_createListing_camera"
                 android:layout_centerInParent="true" />
 
-
             </RelativeLayout>
-
-
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,13 +127,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="3dp" />
-
-
-
-
-
-
-
         <Button
                 android:background="@drawable/dynamic_button_expirationdate"
                 android:id="@+id/button_createListing_pickDate"
@@ -156,9 +136,6 @@
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="10dp"
                 />
-
-
-
         <Button
                 android:background="@drawable/button_blue"
                 android:id="@+id/button_createListing_postListing"
@@ -170,9 +147,7 @@
                 android:layout_gravity="center_horizontal"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:layout_marginTop="5dp" />
-
-
-
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 </ScrollView>
