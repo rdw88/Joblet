@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -14,13 +15,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.Resource;
@@ -37,16 +43,20 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private TabsPagerAdapter mAdapter;
     private String data;
     private Button logout;
+
     // Tab titles
     private String[] tabs = {"Create", "Profile", "Browse"};
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.pager);
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 
         pager.setAdapter(mAdapter);
 
