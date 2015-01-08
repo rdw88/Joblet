@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -78,6 +79,8 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         } catch (Exception ex) {
             // Ignore
         }
+
+        actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.tab_background)));
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
