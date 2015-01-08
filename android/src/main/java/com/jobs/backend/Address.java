@@ -18,6 +18,7 @@ public class Address {
 	public static final String PROFILE = "http://ryguy.me/profile/";
 	public static final String LISTING = "http://ryguy.me/listing/";
     public static final String UPLOAD = "http://ryguy.me/upload/";
+    public static final String BID = "http://ryguy.me/bid/";
     public static final String FILES = "http://helpr.s3-website-us-west-1.amazonaws.com/";
 
 	public static String urlEncode(Map<String, String> map) {

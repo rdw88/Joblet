@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GcmIntentService extends IntentService {
-    public static final int NOTIFICATION_ID = 1;
+    public static int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
 
     public GcmIntentService() {
@@ -44,13 +44,16 @@ public class GcmIntentService extends IntentService {
 
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NOTIFICATION_ID ++;
 
         String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
         String email = text.split("&")[0];
         String amount = text.split("&")[1];
+        String bidID = text.split("&")[2];
         String message = email + " made a bid of $" + amount + "!";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setAutoCancel(true);
         mBuilder.setSmallIcon(R.drawable.logo);
         mBuilder.setContentTitle("Joblet");
         mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
@@ -58,8 +61,7 @@ public class GcmIntentService extends IntentService {
         mBuilder.setTicker("Someone made a bid!");
 
         Intent intent = new Intent(this, ViewBid.class);
-        intent.putExtra("email", email);
-        intent.putExtra("amount", amount);
+        intent.putExtra("bid_id", bidID);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         mBuilder.setContentIntent(pi);
 

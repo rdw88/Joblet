@@ -44,3 +44,15 @@ class Listing(models.Model):
 	class Meta:
 		verbose_name = 'listing'
 		verbose_name_plural = 'listings'
+
+
+class Bid(models.Model):
+	bid_id = models.CharField(max_length=256)
+	listing_id = models.CharField(max_length=256)
+	amount = models.FloatField()
+	bidder_email = models.CharField(max_length=128)
+	status = models.IntegerField()   # 0 for in progress, 1 for accepted, -1 for declined
+
+	class Meta:
+		verbose_name = 'bid'
+		verbose_name_plural = 'bids'
