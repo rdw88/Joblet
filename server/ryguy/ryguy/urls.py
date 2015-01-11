@@ -14,4 +14,5 @@ urlpatterns = patterns('',
 	url(r'^profile/', 'jobs.views.profile'),
 	url(r'^listing/', 'jobs.views.listings'),
 	url(r'^upload/', 'jobs.views.upload'),
+	url(r'^bid/', 'jobs.views.bid'),
 )

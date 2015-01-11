@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import profile as mod_profile
 import listing
+import bid as bid_module
 import json
 
 '''
@@ -119,5 +120,30 @@ def upload(request):
 
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
+		else:
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+
+
+def bid(request):
+	if request.method == 'POST':
+		data = request.POST.copy()
+		operation = data['request']
+		
+		result, err_code = getattr(bid_module, operation)(data)
+
+		if not err_code:
+			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
+		else:
+			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+
+	elif request.method == 'GET':
+		data = request.GET.copy()
+		operation = data['request']
+		del data['request']
+
+		result, err_code = getattr(bid_module, operation)(data)
+
+		if not err_code:
+			return HttpResponse(json.dumps(result), content_type='application/json')
 		else:
 			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
