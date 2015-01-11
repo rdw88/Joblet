@@ -36,7 +36,7 @@ class Listing(models.Model):
 	profile_id = models.CharField(max_length=256)
 	listing_id = models.CharField(max_length=256)
 	time_created = models.CharField(max_length=64)
-	is_active = models.BooleanField(default=False) # Active means this listing is publicly available
+	status = models.IntegerField() # 0 is active, 1 is inactive, 2 is pending, 3 is completed
 	tag = models.CharField(max_length=64)
 	owner_reputation = models.FloatField() # store as percent positive reputation?
 	owner_name = models.CharField(max_length=256)

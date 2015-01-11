@@ -253,10 +253,13 @@ public class CheckListings extends Fragment {
 
             //final ImageView image = (ImageView) row.findViewById(R.id.browse_listing_picture);
 
-            new AsyncTask<String, Void, String>() {
+           /* new AsyncTask<String, Void, String>() {
                 private Bitmap bitmap;
 
                 protected String doInBackground(String... urls) {
+                    if (items.size() <= position)
+                        return null;
+
                     try {
                         bitmap = Address.fetchPicture(items.get(position).thumbnail);
                     } catch (IOException e) {
@@ -269,7 +272,7 @@ public class CheckListings extends Fragment {
                     //image.setImageBitmap(bitmap);
                 }
             }.execute();
-
+*/
             return row;
         }
 

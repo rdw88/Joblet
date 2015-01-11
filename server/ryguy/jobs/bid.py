@@ -42,6 +42,10 @@ def accept(args):
 	bid.__dict__['status'] = 1
 	bid.save()
 
+	listing = Listing.objects.get(listing_id=bid.listing_id)
+	listing.__dict__['current_bid'] = bid.amount
+	listing.save()
+
 	return True, None
 
 
