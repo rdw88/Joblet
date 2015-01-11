@@ -7,8 +7,8 @@
     android:background="#FFCC80"
     android:weightSum="1">
 
-    <ImageView android:layout_width="250dp"
-        android:layout_height="250dp"
+    <ImageView android:layout_width="210dp"
+        android:layout_height="210dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="5dp"
@@ -27,7 +27,7 @@
         android:background="#ecf0f1"
         android:padding="10dp"
         android:layout_below="@+id/logo_welcome"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="3dp"
         android:layout_centerHorizontal="true" />
 
     <EditText android:layout_width="250dp"
@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:id="@+id/checkbox_remember_me"
+        android:layout_marginTop="3dp"
         android:text="Remember Me"
         android:textColor="#202020"
         android:layout_below="@+id/password"
@@ -57,7 +58,7 @@
         android:background="@drawable/button_blue"
         android:id="@+id/login"
         android:layout_width="225dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:layout_height="50dp"

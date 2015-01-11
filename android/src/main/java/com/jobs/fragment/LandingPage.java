@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags;
     private ImageView profilePicture;
-    private Button myListings, editProfile, watchlist;
+    private Button myListings, editProfile, watchlist, myBids;
     private JSONObject data;
 
 
@@ -60,6 +60,9 @@ public class LandingPage extends Fragment {
         //Buttons
         myListings = (Button) view.findViewById(R.id.my_listings);
         myListings.setTypeface(robotoBold);
+
+        myBids = (Button) view.findViewById(R.id.my_bids);
+        myBids.setTypeface(robotoBold);
 
         editProfile = (Button) view.findViewById(R.id.edit_profile);
 

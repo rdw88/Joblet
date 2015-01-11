@@ -15,15 +15,15 @@
     <Button
         android:background="@drawable/dynamic_button_filter"
         android:id="@+id/checkListings_filter"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="68dp"
+        android:layout_height="72dp"
         android:textColor="#F9F9F9"
         android:paddingBottom="8dp"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentRight="true"
         android:visibility="visible"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="16dp" />
 
 </RelativeLayout>

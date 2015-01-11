@@ -44,7 +44,11 @@ public class GcmIntentService extends IntentService {
 
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+<<<<<<< HEAD
+        NOTIFICATION_ID++;
+=======
         NOTIFICATION_ID ++;
+>>>>>>> 44ab85270ba370816f7cc2b6ed8d7b91855f8145
 
         String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
         String email = text.split("&")[0];

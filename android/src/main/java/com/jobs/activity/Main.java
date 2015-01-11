@@ -5,6 +5,8 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
@@ -16,6 +18,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+import android.text.style.TypefaceSpan;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,18 +53,24 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private String data;
     private Button logout;
 
+    
     // Tab titles
     private String[] tabs = {"Create", "Profile", "Browse"};
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        SpannableString s = new SpannableString("My Title");
+        s.setSpan(new TypefaceSpan(this, "Roboto-Black.ttf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.pager);
         final ActionBar actionBar = getActionBar();
+        actionBar.setTitle(s);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        //changes tab background
+        actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.drawable.tab_background));
 
 
         pager.setAdapter(mAdapter);
@@ -79,8 +93,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         } catch (Exception ex) {
             // Ignore
         }
-
-        actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.tab_background)));
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
@@ -105,6 +117,45 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
+    }
+
+    public static class TypefaceSpan extends MetricAffectingSpan {
+        /** An <code>LruCache</code> for previously loaded typefaces. */
+        private static LruCache<String, Typeface> sTypefaceCache =
+                new LruCache<String, Typeface>(12);
+
+        private Typeface mTypeface;
+
+        /**
+         * Load the {@link Typeface} and apply to a {@link Spannable}.
+         */
+        public TypefaceSpan(Context context, String typefaceName) {
+            mTypeface = sTypefaceCache.get(typefaceName);
+
+            if (mTypeface == null) {
+                mTypeface = Typeface.createFromAsset(context.getApplicationContext()
+                        .getAssets(), String.format("fonts/%s", typefaceName));
+
+                // Cache the loaded Typeface
+                sTypefaceCache.put(typefaceName, mTypeface);
+            }
+        }
+
+        @Override
+        public void updateMeasureState(TextPaint p) {
+            p.setTypeface(mTypeface);
+
+            // Note: This flag is required for proper typeface rendering
+            p.setFlags(p.getFlags() | Paint.SUBPIXEL_TEXT_FLAG);
+        }
+
+        @Override
+        public void updateDrawState(TextPaint tp) {
+            tp.setTypeface(mTypeface);
+
+            // Note: This flag is required for proper typeface rendering
+            tp.setFlags(tp.getFlags() | Paint.SUBPIXEL_TEXT_FLAG);
+        }
     }
 
     @Override

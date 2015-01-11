@@ -40,6 +40,7 @@
         <activity android:name="com.jobs.activity.Main"
                   android:label="@string/app_name"
                   android:theme="@style/AppTheme2"
+                  android:windowSoftInputMode="adjustPan"
             />
 
         <activity android:name="com.jobs.activity.CreateAccount"
