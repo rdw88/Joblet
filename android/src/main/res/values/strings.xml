@@ -50,6 +50,7 @@
     <string name="title_browse_listings">Browse Listings</string>
     <string name="btn_make_bid">Make Bid</string>
     <string name="logout">Log Out</string>
+    <string name="user_bidspending">0</string>
 
 
 </resources>

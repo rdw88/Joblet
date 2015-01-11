@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GcmIntentService extends IntentService {
-    public static final int NOTIFICATION_ID = 1;
+    public static int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
 
     public GcmIntentService() {
@@ -44,6 +44,7 @@ public class GcmIntentService extends IntentService {
 
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NOTIFICATION_ID++;
 
         String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
         String email = text.split("&")[0];

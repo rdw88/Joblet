@@ -10,6 +10,7 @@
     <color name="button">#FFE158</color>
     <color name="title_color">#FF9800</color>
     <color name="background_white">#F9F9F9</color>+
+    <color name="white">#FFFFFF</color>
     <color name="background_main">#E6E6E6</color>
     <color name="background_launch">#E6E6E6</color>
     <color name="primary_information">#DD000000</color>
@@ -30,7 +31,14 @@
         <item name="android:actionBarSize">@dimen/action_bar_height</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="android:actionBarWidgetTheme">@style/PopupMenuTextView</item>
+    </style>
+
+    <!-- ActionBar tabs text styles -->
+    <style name="MyActionBarTabText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="PopupMenu">
@@ -51,9 +59,10 @@
     </style>
 
     <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
-        <item name="android:icon">@drawable/actionbar_icon_placeholder_compat</item>
         <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
+        <item name="android:textSize">20dp</item>
         <item name="android:background">@color/title_color</item>
+        <item name="android:icon">@drawable/actionbar_icon</item>
     </style>
 
     <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
