@@ -7,7 +7,7 @@
 <RelativeLayout
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#F8F9F9"
+    android:background="#C1DFBD"
     android:clickable="true">
 
     <TextView
@@ -33,7 +33,7 @@
 
 
     <Button
-        android:background="#F8F9F9"
+        android:background="#C1DFBD"
         android:id="@+id/more_pictures"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -41,11 +41,12 @@
         android:paddingLeft="8dp"
         android:text="More Pictures"
         android:textColor="#468DCB"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:layout_toRightOf="@+id/listing_picture"
         android:layout_alignTop="@+id/listing_picture"
         android:layout_marginTop="55dp"
-        android:layout_marginLeft="52dp" />
+        android:layout_marginLeft="40dp"
+        android:textStyle="bold" />
 
 
     <LinearLayout
@@ -53,9 +54,9 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout_info"
-        android:background="#E6E6E6"
-        android:layout_below="@+id/view_listing_title"
-        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:layout_below="@+id/view_listing_make_bid"
+        android:layout_marginTop="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -82,6 +83,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line3" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,6 +112,13 @@
             android:id="@+id/view_listing_owner_name"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line2" />
 
 
 
@@ -129,6 +144,12 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/view_listing_current_bid"
             android:layout_marginLeft="52dp" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line4" />
 
 
         <TextView
@@ -153,6 +174,13 @@
             android:layout_below="@+id/view_listing_owner_reputation"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line5" />
 
 
 
@@ -180,6 +208,13 @@
             android:id="@+id/view_listing_time_created"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line1" />
 
 
         <TextView
@@ -212,16 +247,19 @@
 
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="Make A Bid"
         android:textColor="#FFFFFF"
-        android:background="@drawable/button_blueflat"
+        android:background="@drawable/button_blue"
         android:textAllCaps="false"
         android:id="@+id/view_listing_make_bid"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/linearLayout_info" />
+        android:layout_below="@+id/view_listing_title"
+        android:padding="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
 
 

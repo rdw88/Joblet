@@ -3,7 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/background_main"
+            android:background="#C1DFBD"
 
             >
     <LinearLayout
@@ -125,7 +125,7 @@
             android:textSize="20sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="3dp" />
         <Button
                 android:background="@drawable/dynamic_button_expirationdate"
@@ -133,8 +133,8 @@
                 android:layout_width="165dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 />
         <Button
                 android:background="@drawable/button_blue"
