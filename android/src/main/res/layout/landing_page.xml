@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:id="@+id/pictureFrame"
-        android:background="#E6E6E6"
+        android:background="#C1DFBD"
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="true">
 

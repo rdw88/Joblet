@@ -21,26 +21,4 @@
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center_horizontal">
-
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/accept"
-            android:text="@string/accept"/>
-
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/decline"
-            android:layout_toEndOf="@id/accept"
-            android:layout_toRightOf="@id/accept"
-            android:text="@string/decline"/>
-
-    </RelativeLayout>
-
 </LinearLayout>
