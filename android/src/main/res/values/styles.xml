@@ -15,7 +15,7 @@
     <color name="background_launch">#E6E6E6</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
-    <color name="tab_background">#FF9800</color>
+    <color name="tab_background">#fff39400</color>
     <color name="tab_background_selected">#FFCC80</color>
     <!-- 629DF3 -->
     <color name="gradient_start">#50000000</color>

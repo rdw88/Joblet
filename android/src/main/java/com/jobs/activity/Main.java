@@ -52,11 +52,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private TabsPagerAdapter mAdapter;
     private String data;
     private Button logout;
-
-    
-    // Tab titles
     private String[] tabs = {"Create", "Profile", "Browse"};
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

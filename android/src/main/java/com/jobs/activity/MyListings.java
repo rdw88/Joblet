@@ -81,7 +81,7 @@ public class MyListings extends Activity {
         ListingAdapter adapter = new ListingAdapter(this, elements);
 
         for (int i = 0; i < listings.length; i++) {
-            elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"), listings[i].getDouble("current_bid"), listings[i].getBoolean("is_active"), listings[i].getBoolean("is_completed")));
+            elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"), listings[i].getDouble("current_bid"), listings[i].getBoolean("is_active")));
         }
 
         view.setAdapter(adapter);
@@ -126,13 +126,9 @@ public class MyListings extends Activity {
             title.setText(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));
             tag.setText(elements.get(position).tag);
-            if (elements.get(position).isCompleted) {
-                isActive.setText("Completed");
-                isActive.setTextColor(0xff00ff00);
-            } else {
-                isActive.setText(elements.get(position).isActive ? "Active" : "Inactive");
-                isActive.setTextColor(elements.get(position).isActive ? 0xff00ff00 : 0xffff0000);
-            }
+            isActive.setText(elements.get(position).isActive ? "Active" : "Inactive");
+
+            isActive.setTextColor(elements.get(position).isActive ? 0xff00ff00 : 0xffff0000);
 
             return row;
         }
@@ -144,16 +140,15 @@ public class MyListings extends Activity {
 
     private class Item {
         public String title;
-        public boolean isActive, isCompleted;
+        public boolean isActive;
         public String tag;
         public double currentBid;
 
-        public Item(String title, String tag, double currentBid, boolean isActive, boolean isCompleted) {
+        public Item(String title, String tag, double currentBid, boolean isActive) {
             this.title = title;
             this.tag = tag;
             this.currentBid = currentBid;
             this.isActive = isActive;
-            this.isCompleted = isCompleted;
         }
      }
 }

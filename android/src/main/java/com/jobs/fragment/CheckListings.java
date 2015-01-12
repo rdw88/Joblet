@@ -37,10 +37,8 @@ public class CheckListings extends Fragment {
     private ListView listings;
     private String profileData;
     private ListingAdapter adapter;
-    private ImageView picture;
     private final ArrayList<Item> elements = new ArrayList<>();
     private final ArrayList<String> filtered = new ArrayList<>();
-
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -235,7 +233,8 @@ public class CheckListings extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.check_listing_list_item, parent, false);
             NumberFormat format = new DecimalFormat("#0.00");
-            picture = (ImageView) row.findViewById(R.id.job_frontpicture);
+
+            final ImageView picture = (ImageView) row.findViewById(R.id.job_frontpicture);
             TextView title = (TextView) row.findViewById(R.id.job_name);
             title.setTypeface(moneyFont);
             TextView currentBid = (TextView) row.findViewById(R.id.list_currentBid);
@@ -251,15 +250,10 @@ public class CheckListings extends Fragment {
             if (items.get(position).thumbnail == null)
                 return row;
 
-            //final ImageView image = (ImageView) row.findViewById(R.id.browse_listing_picture);
-
-           /* new AsyncTask<String, Void, String>() {
+            new AsyncTask<String, Void, String>() {
                 private Bitmap bitmap;
 
                 protected String doInBackground(String... urls) {
-                    if (items.size() <= position)
-                        return null;
-
                     try {
                         bitmap = Address.fetchPicture(items.get(position).thumbnail);
                     } catch (IOException e) {
@@ -269,11 +263,10 @@ public class CheckListings extends Fragment {
                 }
 
                 protected void onPostExecute(String result) {
-
                     picture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 3));
                 }
             }.execute();
-*/
+
             return row;
         }
 

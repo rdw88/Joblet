@@ -9,8 +9,7 @@ import android.graphics.Shader;
 
 
 public class ImageHelper {
-        public static Bitmap getCircularBitmapWithWhiteBorder(Bitmap bitmap,
-                                                          int borderWidth) {
+    public static Bitmap getCircularBitmapWithWhiteBorder(Bitmap bitmap, int borderWidth) {
         if (bitmap == null || bitmap.isRecycled()) {
             return null;
         }
