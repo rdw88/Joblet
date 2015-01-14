@@ -20,8 +20,6 @@ import com.jobs.activity.ViewBid;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-
 public class GcmIntentService extends IntentService {
     public static int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
@@ -50,9 +48,8 @@ public class GcmIntentService extends IntentService {
 
         String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
         String email = text.split("&")[0];
-        double amount = Double.parseDouble(text.split("&")[1]);
-        String bidID = text.split("&")[2];
-        String message = email + " made a bid of $" + new DecimalFormat("#.##").format(amount) + "!";
+        String amount = text.split("&")[1];
+        String message = email + " made a bid of $" + amount + "!";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(R.drawable.logo);
@@ -60,12 +57,10 @@ public class GcmIntentService extends IntentService {
         mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
         mBuilder.setContentText(message);
         mBuilder.setTicker("Someone made a bid!");
-        mBuilder.setAutoCancel(true);
 
         Intent intent = new Intent(this, ViewBid.class);
         intent.putExtra("email", email);
         intent.putExtra("amount", amount);
-        intent.putExtra("bid_id", bidID);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         mBuilder.setContentIntent(pi);
 

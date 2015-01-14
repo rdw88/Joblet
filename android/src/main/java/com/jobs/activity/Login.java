@@ -56,6 +56,7 @@ public class Login extends Activity {
         super.onStart();
 
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         final CheckBox rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
@@ -69,7 +70,7 @@ public class Login extends Activity {
         }
 
         Button login = (Button) findViewById(R.id.login);
-        login.setTypeface(customFont);
+        login.setTypeface(robotoMedium);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 dialog = ProgressDialog.show(Login.this, getResources().getString(R.string.pb_login_title), getResources().getString(R.string.pb_login_message));
@@ -115,7 +116,7 @@ public class Login extends Activity {
         });
 
         Button createAccount = (Button) findViewById(R.id.btn_create_account);
-        createAccount.setTypeface(customFont);
+        createAccount.setTypeface(robotoMedium);
         createAccount.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 startActivity(new Intent(Login.this, CreateAccount.class));

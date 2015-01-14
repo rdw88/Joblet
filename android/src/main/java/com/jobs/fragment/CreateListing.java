@@ -60,9 +60,10 @@ public class CreateListing extends Fragment {
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
         tag.setTypeface(customFont);
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
-        create.setTypeface(customFont);
+        create.setTypeface(robotoMedium);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_gallery);
 

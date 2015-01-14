@@ -120,6 +120,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
         android:background="@drawable/card">
 
 
@@ -235,12 +237,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_bidspending"
+                android:text="@string/user_currentJobs"
                 android:textSize="12sp"
                 android:layout_marginLeft="6dp"
                 android:layout_toRightOf="@+id/text_currentjobs"
                 android:layout_alignBottom="@+id/text_currentjobs"
-                android:textColor="@color/secondary_information" />
+                android:textColor="@color/secondary_information"
+                android:id="@+id/user_currentJobsNumber" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -271,6 +274,28 @@
                 android:background="@drawable/icon_briefcase"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp" />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/myjobs_recent1"
+                android:layout_toRightOf="@+id/user_currentJobsNumber"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/myjobs_recent2"
+                android:layout_toRightOf="@+id/myjobs_recent1"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/myjobs_recent3"
+                android:layout_toRightOf="@+id/myjobs_recent2"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
 
         </RelativeLayout>
 
@@ -336,6 +361,28 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/mybids_recent1"
+                android:layout_toRightOf="@+id/text_bidspending"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/mybids_recent2"
+                android:layout_toRightOf="@+id/mybids_recent1"
+                android:layout_marginLeft="8dp" />
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:id="@+id/mybids_recent3"
+                android:layout_toRightOf="@+id/mybids_recent2"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
 
         </RelativeLayout>
 
