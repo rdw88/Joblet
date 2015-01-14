@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+
+
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/landing"
@@ -220,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:text="My Jobs"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginLeft="56dp"
                 android:textSize="20sp"
                 android:id="@+id/text_myjobs"
                 android:textColor="@color/primary_information"
@@ -241,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/text_currentjobs"
                 android:text="Current Jobs:"
-                android:layout_marginLeft="72dp"
+                android:layout_marginLeft="56dp"
                 android:textSize="12sp"
                 android:layout_below="@+id/text_myjobs"
                 android:textColor="@color/secondary_information"
@@ -259,6 +265,13 @@
                 android:layout_alignParentBottom="true"
                 android:id="@+id/line2" />
 
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_briefcase"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -267,9 +280,7 @@
             android:id="@+id/relative_bids"
             android:layout_below="@+id/relative_jobs">
 
-
-
-            <Button
+             <Button
                 android:background="#F8F9F9"
                 android:id="@+id/my_bids"
                 android:layout_width="fill_parent"
@@ -285,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:text="My Bids:"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="72dp"
+                android:layout_marginLeft="56dp"
                 android:textSize="20sp"
                 android:id="@+id/text_mybids"
                 android:textColor="@color/primary_information" />
@@ -306,7 +317,7 @@
                 android:id="@+id/text_bidspending"
                 android:text="Bids Pending:"
                 android:layout_below="@+id/text_mybids"
-                android:layout_marginLeft="72dp"
+                android:layout_marginLeft="56dp"
                 android:textSize="12sp"
                 android:textColor="@color/secondary_information"
                 android:layout_marginBottom="8dp" />
@@ -317,6 +328,14 @@
                 android:background="#E0E0E0"
                 android:id="@+id/line3"
                 android:layout_alignParentBottom="true" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/icon_gavel"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                />
 
         </RelativeLayout>
 
@@ -402,3 +421,5 @@
 
 
 </RelativeLayout>
+
+</ScrollView>
