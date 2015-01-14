@@ -247,4 +247,19 @@ public class Listing {
             return obj;
         }
     }
+
+    public static JSONArray getBids(String listingID) {
+        Map<String, String> map = new HashMap<>();
+        map.put("request", "get_bids");
+        map.put("listing_id", listingID);
+
+        try{
+            return new JSONArray(Address.get(map, Address.LISTING));
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            JSONArray obj = new JSONArray();
+            obj.put(Error.ERROR_SERVER_COMMUNICATION);
+            return obj;
+        }
+    }
 }

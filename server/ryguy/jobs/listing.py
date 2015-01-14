@@ -41,7 +41,7 @@ def create(args):
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
 		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
 		active_until=args['active_until'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
-		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0)
+		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0, bids='[]')
 
 	listing.save()
 
@@ -67,7 +67,7 @@ def get(args):
 		return None, ERROR_NO_SUCH_LISTING
 
 	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 
-		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
+		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail', 'listing_id')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
@@ -87,12 +87,12 @@ def search(tokens):
 	results_list = list()
 
 	for tag in tags:
-		results = Listing.objects.filter(tag=tag)
+		results = Listing.objects.filter(tag=tag).filter(status=0)
 		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'active_until', 'thumbnail')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):
-			results_list[0].append(results_list[i][k])
+				results_list[0].append(results_list[i][k]) 
 
 	return results_list[0], None
 
@@ -114,13 +114,8 @@ def update(args):
 	id = args['listing_id']
 	listing = Listing.objects.get(listing_id=id)
 
-	if operation == 'close' or operation == 'open':
-		listing.__dict__['status'] = (operation == 'open')
-		listing.save()
-		return True, None
-
-	elif operation == 'update_current_bid':
-		listing.__dict__['current_bid'] = args['current_bid']		
+	if operation == 'status':
+		listing.__dict__['status'] = args['status']
 		listing.save()
 		return True, None
 
@@ -246,3 +241,8 @@ def upload(args, uploaded_file):
 	listing.save()
 
 	return True, None
+
+
+def get_bids(args):	
+	listing = Listing.objects.get(listing_id=args['listing_id'])
+	return json.loads(listing.bids), None

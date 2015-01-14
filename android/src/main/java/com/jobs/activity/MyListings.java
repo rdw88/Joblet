@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MyListings extends Activity {
@@ -56,6 +57,12 @@ public class MyListings extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    public void onStart() {
+        super.onStart();
 
         new AsyncTask<String, Void, String>() {
             private JSONObject[] response;
@@ -77,6 +84,8 @@ public class MyListings extends Activity {
             }
 
             protected void onPostExecute(String result) {
+                elements.removeAll(elements);
+
                 try {
                     fill(response);
                 } catch (JSONException e) {
@@ -91,7 +100,8 @@ public class MyListings extends Activity {
         final ListingAdapter adapter = new ListingAdapter();
 
         for (int i = 0; i < listings.length; i++) {
-            elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"), listings[i].getDouble("current_bid"), listings[i].getInt("status")));
+            elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"),
+                    listings[i].getDouble("current_bid"), listings[i].getInt("status"), listings[i].getString("listing_id")));
         }
 
 
@@ -182,13 +192,15 @@ public class MyListings extends Activity {
         view.setMenuCreator(creator);
 
         view.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+            public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
                 if (menu.getViewType() == 2 && index == 1)
                     index = 2;
 
                 switch (index) {
                     case 0:
-                        // start view bids activity
+                        Intent intent = new Intent(MyListings.this, MyListingBids.class);
+                        intent.putExtra("listing_id", elements.get(position).listingID);
+                        startActivity(intent);
                         break;
 
                     case 1:
@@ -197,11 +209,16 @@ public class MyListings extends Activity {
                         else if (menu.getViewType() == 1)
                             elements.get(position).status = 0;
 
+                        updateListing(position);
+
                         adapter.notifyDataSetChanged();
+
                         break;
 
                     case 2:
-                        // accept current bid
+                        elements.get(position).status = 2;
+                        updateListing(position);
+                        adapter.notifyDataSetChanged();
                         break;
                 }
 
@@ -210,6 +227,21 @@ public class MyListings extends Activity {
         });
 
         view.setAdapter(adapter);
+    }
+
+    private void updateListing(final int position) {
+        new AsyncTask<String, Void ,String>(){
+            protected String doInBackground(String... params) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("status", Integer.toString(elements.get(position).status));
+                Listing.update("status", elements.get(position).listingID, map);
+                return null;
+            }
+
+            protected void onPostExecute(String message) {
+
+            }
+        }.execute();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -289,12 +321,14 @@ public class MyListings extends Activity {
         public int status;
         public String tag;
         public double currentBid;
+        public String listingID;
 
-        public Item(String title, String tag, double currentBid, int status) {
+        public Item(String title, String tag, double currentBid, int status, String listingID) {
             this.title = title;
             this.tag = tag;
             this.currentBid = currentBid;
             this.status = status;
+            this.listingID = listingID;
         }
      }
 

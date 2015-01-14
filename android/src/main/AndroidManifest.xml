@@ -60,6 +60,9 @@
             android:excludeFromRecents="true"
             android:label="Bid"/>
 
+        <activity android:name="com.jobs.activity.MyListingBids"
+            android:label="Bids"/>
+
     </application>
 
 </manifest>

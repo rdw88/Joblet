@@ -3,6 +3,7 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +47,10 @@ public class ViewBid extends Activity {
                     }
 
                     protected void onPostExecute(String message) {
+                        Intent intent = new Intent();
+                        intent.putExtra("position", getIntent().getExtras().getInt("position"));
+                        intent.putExtra("action", 1);
+                        setResult(0xff, intent);
                         finish();
                     }
                 }.execute();
@@ -61,6 +66,10 @@ public class ViewBid extends Activity {
                     }
 
                     protected void onPostExecute(String message) {
+                        Intent intent = new Intent();
+                        intent.putExtra("position", getIntent().getExtras().getInt("position"));
+                        intent.putExtra("action", 2);
+                        setResult(0xff, intent);
                         finish();
                     }
                 }.execute();
@@ -69,6 +78,10 @@ public class ViewBid extends Activity {
 
         close.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("position", getIntent().getExtras().getInt("position"));
+                intent.putExtra("action", 0);
+                setResult(0xff, intent);
                 finish();
             }
         });

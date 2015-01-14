@@ -27,6 +27,10 @@ def make_bid(args):
 	bid.save()
 
 	listing = listing[0]
+	listing_bids = json.loads(listing.bids)
+	listing_bids.append(bid_id)
+	listing.__dict__['bids'] = json.dumps(listing_bids)
+	listing.save()
 
 	owner = Profile.objects.get(profile_id=listing.profile_id)
 	owner_device = str(owner.device_id)
@@ -52,7 +56,7 @@ def accept(args):
 
 def decline(args):
 	bid = Bid.objects.get(bid_id=args['bid_id'])
-	bid.__dict__['status'] = -1
+	bid.__dict__['status'] = 2
 	bid.save()
 
 	return True, None
@@ -61,4 +65,4 @@ def decline(args):
 def get(args):
 	bid_id = args['bid_id']
 	bid = Bid.objects.get(bid_id=bid_id)
-	return {'status' : bid.status, 'amount' : bid.amount, 'email' : bid.bidder_email}, None
+	return {'status' : bid.status, 'amount' : bid.amount, 'email' : bid.bidder_email, 'bid_id' : bid_id}, None
