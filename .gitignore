@@ -1,3 +1,6 @@
 *.pyc
 *.class
 project/
+lolplays/
+jobs.sqlite3
+static/

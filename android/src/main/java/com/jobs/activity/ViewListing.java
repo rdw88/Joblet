@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.*;
+import com.jobs.backend.Error;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,7 +102,7 @@ public class ViewListing extends Activity {
                                     SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
                                     JSONObject obj = new JSONObject(prefs.getString("user_data", null));
                                     email = obj.getString("email");
-                                    response = Listing.makeBid(listingID, email, enteredBid).getInt("error");
+                                    response = Bid.makeBid(listingID, email, enteredBid).getInt("error");
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -152,7 +153,7 @@ public class ViewListing extends Activity {
                     String pictureURL = arr.getString(0);
 
                     try {
-                        bitmap = Address.fetchPicture(Address.FILES + pictureURL);
+                        bitmap = Address.fetchPicture(pictureURL);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
