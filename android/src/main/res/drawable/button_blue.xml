@@ -9,7 +9,7 @@
             <item android:bottom="2dp" android:right="1dp">
                 <shape >
                     <corners
-                        android:radius="2dp"
+                        android:radius="5dp"
                         />
                     <gradient
                         android:angle="270"
@@ -30,14 +30,14 @@
             <item android:left="1dp" android:top="2dp">
                 <shape>
                     <solid android:color="#33333333" />
-                    <corners android:radius="2dip"/>
+                    <corners android:radius="5dp"/>
                 </shape>
             </item>
             <!-- CONTENT LAYER -->
             <item android:bottom="2dp" android:right="1dp">
                 <shape>
                 <corners
-                    android:radius="2dp"
+                    android:radius="5dp"
                     />
                 <gradient
                     android:angle="270"

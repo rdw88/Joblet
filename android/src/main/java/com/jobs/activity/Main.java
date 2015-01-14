@@ -56,14 +56,10 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SpannableString s = new SpannableString("My Title");
-        s.setSpan(new TypefaceSpan(this, "Roboto-Black.ttf"), 0, s.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.pager);
         final ActionBar actionBar = getActionBar();
-        actionBar.setTitle(s);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         //changes tab background
         actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.drawable.tab_background));

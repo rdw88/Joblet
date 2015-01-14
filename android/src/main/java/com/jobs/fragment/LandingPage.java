@@ -15,12 +15,13 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.activity.EditProfile;
 import com.jobs.activity.MyListings;
+import com.jobs.backend.ImageHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LandingPage extends Fragment {
-    private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags;
+    private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids, textMyJobs;
     private ImageView profilePicture;
     private Button myListings, editProfile, watchlist, myBids;
     private JSONObject data;
@@ -34,24 +35,31 @@ public class LandingPage extends Fragment {
         View view = inflater.inflate(R.layout.landing_page, container, false);
 
         //View view = localInflater.inflate(R.layout.landing_page, container, false);
-        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+
+
 
         //TextViews
         name = (TextView) view.findViewById(R.id.user_name);
-        name.setTypeface(customFont);
+        name.setTypeface(robotoRegular);
         userTags = (TextView) view.findViewById(R.id.userTags);
-        userTags.setTypeface(customFont);
+        userTags.setTypeface(robotoRegular);
         location = (TextView) view.findViewById(R.id.location);
-        location.setTypeface(robotoBold);
+        location.setTypeface(robotoMedium);
         positiveReputation = (TextView) view.findViewById(R.id.positive_reputation);
-        positiveReputation.setTypeface(customFont);
+        positiveReputation.setTypeface(robotoRegular);
         negativeReputation = (TextView) view.findViewById(R.id.negative_reputation);
-        negativeReputation.setTypeface(customFont);
+        negativeReputation.setTypeface(robotoRegular);
         listings = (TextView) view.findViewById(R.id.lists_completed);
-        listings.setTypeface(customFont);
+        listings.setTypeface(robotoRegular);
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
-        jobs.setTypeface(customFont);
+        jobs.setTypeface(robotoRegular);
+        textMyBids = (TextView) view.findViewById(R.id.text_mybids);
+        textMyBids.setTypeface(robotoMedium);
+        textMyJobs = (TextView) view.findViewById(R.id.text_myjobs);
+        textMyJobs.setTypeface(robotoMedium);
 
         //ImageView
 
@@ -59,15 +67,15 @@ public class LandingPage extends Fragment {
 
         //Buttons
         myListings = (Button) view.findViewById(R.id.my_listings);
-        myListings.setTypeface(robotoBold);
+        myListings.setTypeface(robotoMedium);
 
         myBids = (Button) view.findViewById(R.id.my_bids);
-        myBids.setTypeface(robotoBold);
+
 
         editProfile = (Button) view.findViewById(R.id.edit_profile);
 
         watchlist = (Button) view.findViewById(R.id.watchlist);
-        watchlist.setTypeface(robotoBold);
+        watchlist.setTypeface(robotoMedium);
 
         //-onClick-
         myListings.setOnClickListener(new View.OnClickListener(){
