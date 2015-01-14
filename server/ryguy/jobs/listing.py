@@ -41,7 +41,7 @@ def create(args):
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
 		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
 		active_until=args['active_until'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
-		time_created=time_created, tag=args['tag'], owner_reputation=rep)
+		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0)
 
 	listing.save()
 
@@ -67,7 +67,7 @@ def get(args):
 		return None, ERROR_NO_SUCH_LISTING
 
 	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 
-		'is_active', 'is_completed', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
+		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
@@ -88,7 +88,7 @@ def search(tokens):
 
 	for tag in tags:
 		results = Listing.objects.filter(tag=tag)
-		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'is_active', 'active_until', 'thumbnail')))
+		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'active_until', 'thumbnail')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):
@@ -115,7 +115,7 @@ def update(args):
 	listing = Listing.objects.get(listing_id=id)
 
 	if operation == 'close' or operation == 'open':
-		listing.__dict__['is_active'] = (operation == 'open')
+		listing.__dict__['status'] = (operation == 'open')
 		listing.save()
 		return True, None
 

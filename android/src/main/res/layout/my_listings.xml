@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
+    <com.jobs.ui.SwipeMenuListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#F8F9F9"
         android:divider="#1E000000"
         android:dividerHeight="1dp"
-        android:id="@+id/my_listings_list_view"></ListView>
+        android:id="@+id/my_listings_list_view"></com.jobs.ui.SwipeMenuListView>
 
 
     <Button
