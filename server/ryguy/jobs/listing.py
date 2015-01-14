@@ -66,7 +66,8 @@ def get(args):
 	if len(listings) == 0:
 		return None, ERROR_NO_SUCH_LISTING
 
-	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 'is_active', 'is_completed', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
+	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 
+		'is_active', 'is_completed', 'owner_reputation', 'owner_name', 'tag', 'thumbnail')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
