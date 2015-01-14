@@ -15,7 +15,7 @@
     <color name="background_launch">#E6E6E6</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
-    <color name="tab_background">#fff39400</color>
+    <color name="tab_background">#F38E1F</color>
     <color name="tab_background_selected">#FFCC80</color>
     <!-- 629DF3 -->
     <color name="gradient_start">#50000000</color>
@@ -37,8 +37,9 @@
 
     <!-- ActionBar tabs text styles -->
     <style name="MyActionBarTabText">
+        <item name="android:actionBarSize">@dimen/tab_bar_height</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="PopupMenu">
@@ -67,7 +68,6 @@
 
     <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">22sp</item>
     </style>
 

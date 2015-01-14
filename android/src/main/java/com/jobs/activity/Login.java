@@ -55,7 +55,7 @@ public class Login extends Activity {
     protected void onStart() {
         super.onStart();
 
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         final CheckBox rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
