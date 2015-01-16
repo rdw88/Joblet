@@ -40,6 +40,7 @@ class Listing(models.Model):
 	tag = models.CharField(max_length=64)
 	owner_reputation = models.FloatField() # store as percent positive reputation?
 	owner_name = models.CharField(max_length=256)
+	bids = models.TextField() # array of bid ids
 
 	class Meta:
 		verbose_name = 'listing'
@@ -51,7 +52,7 @@ class Bid(models.Model):
 	listing_id = models.CharField(max_length=256)
 	amount = models.FloatField()
 	bidder_email = models.CharField(max_length=128)
-	status = models.IntegerField()   # 0 for in progress, 1 for accepted, -1 for declined
+	status = models.IntegerField()   # 0 for in progress, 1 for accepted, 2 for declined
 
 	class Meta:
 		verbose_name = 'bid'
