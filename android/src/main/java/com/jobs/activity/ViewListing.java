@@ -22,16 +22,17 @@ import com.jobs.backend.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ViewListing extends Activity {
-    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag;
-    private Button makeBid;
+    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag, textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag;
+    private Button makeBid, addToWatchlist;
     private ImageView picture;
-    private Typeface customFont, robotoBlack;
+    private Typeface robotoRegular, robotoBlack, robotoMedium;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,26 +44,41 @@ public class ViewListing extends Activity {
     public void onStart() {
         super.onStart();
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         robotoBlack = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
 
         title = (TextView) findViewById(R.id.view_listing_title);
-        title.setTypeface(robotoBlack);
+        title.setTypeface(robotoRegular);
+        textCurrentBid = (TextView) findViewById(R.id.text_currentbid);
+        textCurrentBid.setTypeface(robotoMedium);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
-        currentBid.setTypeface(customFont);
+        currentBid.setTypeface(robotoRegular);
+        textOwnerReputation = (TextView) findViewById(R.id.text_ownerreputation);
+        textOwnerReputation.setTypeface(robotoMedium);
         ownerReputation = (TextView) findViewById(R.id.view_listing_owner_reputation);
-        ownerReputation.setTypeface(customFont);
+        ownerReputation.setTypeface(robotoRegular);
+        textJobLocation = (TextView) findViewById(R.id.text_location);
+        textJobLocation.setTypeface(robotoMedium);
         jobLocation = (TextView) findViewById(R.id.view_listing_job_location);
-        jobLocation.setTypeface(customFont);
+        jobLocation.setTypeface(robotoRegular);
+        textOwnerName = (TextView) findViewById(R.id.text_ownername);
+        textOwnerName.setTypeface(robotoMedium);
         ownerName = (TextView) findViewById(R.id.view_listing_owner_name);
-        ownerName.setTypeface(customFont);
+        ownerName.setTypeface(robotoRegular);
+        textTimeCreated = (TextView) findViewById(R.id.text_listingtimecreated);
+        textTimeCreated.setTypeface(robotoMedium);
         timeCreated = (TextView) findViewById(R.id.view_listing_time_created);
-        timeCreated.setTypeface(customFont);
+        timeCreated.setTypeface(robotoRegular);
+        textTag = (TextView) findViewById(R.id.text_tag);
+        textTag.setTypeface(robotoMedium);
         tag = (TextView) findViewById(R.id.view_listing_tag);
-        tag.setTypeface(customFont);
+        tag.setTypeface(robotoRegular);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
-        makeBid.setTypeface(robotoBlack);
+        makeBid.setTypeface(robotoMedium);
         picture = (ImageView) findViewById(R.id.listing_picture);
+        addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
+        addToWatchlist.setTypeface(robotoMedium);
 
         Bundle b = getIntent().getExtras();
 

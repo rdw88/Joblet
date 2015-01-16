@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/view_listing_title"
         android:layout_gravity="center_horizontal"
-        android:textSize="24sp"
+        android:textSize="34sp"
         android:text="sample"
-        android:textColor="#000000"
+        android:textColor="@color/primary_information"
         android:layout_below="@+id/listing_picture"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="3dp" />
@@ -54,9 +54,12 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout_info"
-        android:background="@color/white"
+        android:background="@drawable/card"
         android:layout_below="@+id/view_listing_make_bid"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -65,10 +68,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_currentbid"
             android:text="Current Bid:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
@@ -77,9 +79,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/view_listing_current_bid"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="3dp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
 
@@ -95,10 +97,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_ownername"
             android:text="Owner Name:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
@@ -106,8 +107,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:id="@+id/view_listing_owner_name"
             android:layout_centerHorizontal="true"
@@ -127,23 +128,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_ownerreputation"
             android:text="Owner Reputation:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:id="@+id/view_listing_owner_reputation"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/view_listing_current_bid"
+
             android:layout_marginLeft="52dp" />
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -157,21 +158,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_location"
             android:text="Location:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:id="@+id/view_listing_job_location"
-            android:layout_below="@+id/view_listing_owner_reputation"
+
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="52dp" />
 
@@ -189,10 +189,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_listingtimecreated"
             android:text="List Created:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
@@ -202,8 +201,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:id="@+id/view_listing_time_created"
             android:layout_centerHorizontal="true"
@@ -222,24 +221,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_tag"
             android:text="List Tag(s):"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/secondary_information"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="52dp"
             android:layout_marginTop="8dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="20sp"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:textStyle="bold"
             android:id="@+id/view_listing_tag"
-            android:layout_below="@+id/view_listing_time_created"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="52dp" />
 
 
@@ -247,21 +244,42 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:text="PLACE BID"
+    android:textColor="#FFFFFF"
+    android:background="@drawable/button_blue"
+    android:textAllCaps="false"
+    android:id="@+id/view_listing_make_bid"
+    android:layout_gravity="center_horizontal"
+    android:layout_below="@+id/view_listing_title"
+    android:padding="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_toLeftOf="@+id/midanchor"
+        android:layout_marginRight="8dp" />
+
+    <Button
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="Make A Bid"
+        android:textSize="14sp"
+        android:text="ADD TO WATCHLIST"
         android:textColor="#FFFFFF"
         android:background="@drawable/button_blue"
         android:textAllCaps="false"
-        android:id="@+id/view_listing_make_bid"
+        android:id="@+id/view_listing_add_watchlist"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/view_listing_title"
         android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/midanchor"
+        android:layout_marginLeft="8dp" />
+
+    <Space
+        android:layout_width="2px"
+        android:layout_height="10px"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
-
+        android:id="@+id/midanchor" />
 
 
 </RelativeLayout>

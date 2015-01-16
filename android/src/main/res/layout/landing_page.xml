@@ -405,7 +405,7 @@
                 android:paddingLeft="8dp"
                 android:text="MY LISTINGS"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_toLeftOf="@+id/anchor_middle"
                 android:layout_marginRight="20dp" />
@@ -427,7 +427,7 @@
                 android:paddingLeft="8dp"
                 android:text="WATCHLIST"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/anchor_middle"
