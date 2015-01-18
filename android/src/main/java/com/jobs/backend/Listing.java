@@ -248,24 +248,17 @@ public class Listing {
         }
     }
 
-    public static JSONObject makeBid(String listingID, String email, String amount) {
+    public static JSONArray getBids(String listingID) {
         Map<String, String> map = new HashMap<>();
-        map.put("request", "make_bid");
-        map.put("bidder_email", email);
+        map.put("request", "get_bids");
         map.put("listing_id", listingID);
-        map.put("bid_amount", amount);
 
         try{
-            return Address.post(map, Address.LISTING);
-        } catch (JSONException | IOException e) {
-            JSONObject obj = new JSONObject();
-
-            try {
-                obj.put("error", Error.ERROR_SERVER_COMMUNICATION);
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
-
+            return new JSONArray(Address.get(map, Address.LISTING));
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            JSONArray obj = new JSONArray();
+            obj.put(Error.ERROR_SERVER_COMMUNICATION);
             return obj;
         }
     }

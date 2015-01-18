@@ -43,8 +43,6 @@ public class CreateListing extends Fragment {
     private EditText jobTitle, startingAmount, minRep, jobLocation, activeTime;
     private TextView tag;
     private Button uploadPicture, create;
-    private ImageView preview;
-    private Bitmap previewBitmap;
 
     private String tagSelected, imagePath;
     private ProgressDialog creatingProgress;
@@ -137,17 +135,7 @@ public class CreateListing extends Fragment {
         switch (requestCode) {
             case 0xab:
                 if (resultCode == Activity.RESULT_OK) {
-                    Uri selectedImage = data.getData();
-                    imagePath = getRealPathFromURI(selectedImage);
-
-                    try {
-                        InputStream is = getActivity().getContentResolver().openInputStream(selectedImage);
-                        previewBitmap = BitmapFactory.decodeStream(is);
-                        preview.setImageBitmap(previewBitmap);
-                        preview.setVisibility(ImageView.VISIBLE);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    imagePath = getRealPathFromURI(data.getData());
                 }
 
                 break;
