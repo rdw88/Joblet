@@ -35,9 +35,9 @@ def make_bid(args):
 	owner = Profile.objects.get(profile_id=listing.profile_id)
 	owner_device = str(owner.device_id)
 
-	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCIgsBHKEmJa46AYIHFnxKY7F39w_mE_g0' }
+	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCJRsEHM69VixomMuyjLcZ32h7gSp5eAPA' }
 	data = {'registration_ids' : [owner_device], 'data' : {'data' : '%s&%s&%s' % (bidder_email, bid_amount, bid_id)}}
-	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
+	response = requests.post('https://android.googleapis.com/gcm/send/', headers=headers, data=json.dumps(data))
 
 	return True, None
 

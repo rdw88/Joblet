@@ -117,7 +117,7 @@ public class ViewListing extends Activity {
                                     SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
                                     JSONObject obj = new JSONObject(prefs.getString("user_data", null));
                                     email = obj.getString("email");
-                                    response = Listing.makeBid(listingID, email, enteredBid).getInt("error");
+                                    response = Bid.makeBid(listingID, email, enteredBid).getInt("error");
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
