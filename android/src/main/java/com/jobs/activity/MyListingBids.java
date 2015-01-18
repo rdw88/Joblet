@@ -68,6 +68,7 @@ public class MyListingBids extends Activity {
             }
 
             protected void onPostExecute(String message) {
+                elements.removeAll(elements);
                 try {
                     for (int i = 0; i < bidData.length; i++) {
                         elements.add(new Item(bidData[i].getString("email"), bidData[i].getDouble("amount"), bidData[i].getInt("status"), bidData[i].getString("bid_id")));

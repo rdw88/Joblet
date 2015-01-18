@@ -330,7 +330,7 @@ public class MyListings extends Activity {
             this.status = status;
             this.listingID = listingID;
         }
-    }
+     }
 
     public int dpToPx(int dp) {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();

@@ -37,7 +37,7 @@ def make_bid(args):
 
 	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCJRsEHM69VixomMuyjLcZ32h7gSp5eAPA' }
 	data = {'registration_ids' : [owner_device], 'data' : {'data' : '%s&%s&%s' % (bidder_email, bid_amount, bid_id)}}
-	response = requests.post('https://android.googleapis.com/gcm/send/', headers=headers, data=json.dumps(data))
+	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
 
 	return True, None
 

@@ -54,7 +54,7 @@ public class CreateListing extends Fragment {
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
-        jobLocation = (EditText) getActivity().findViewById(R.id.listing_location);
+        jobLocation = (EditText) getActivity().findViewById(R.id.listing_location_address);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
@@ -147,7 +147,7 @@ public class CreateListing extends Fragment {
         View rootView = inflater.inflate(R.layout.create_listing, container, false);
 
         return rootView;
-}
+    }
 
     private void createListing(final String password) {
         creatingProgress = ProgressDialog.show(getActivity(), "Creating Listing", "Please wait while we create your listing...", true, false);

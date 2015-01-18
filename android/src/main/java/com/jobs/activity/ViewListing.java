@@ -168,7 +168,7 @@ public class ViewListing extends Activity {
                     String pictureURL = arr.getString(0);
 
                     try {
-                        bitmap = Address.fetchPicture(Address.FILES + pictureURL);
+                        bitmap = Address.fetchPicture(pictureURL);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
