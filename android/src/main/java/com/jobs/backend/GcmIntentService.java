@@ -46,6 +46,8 @@ public class GcmIntentService extends IntentService {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         NOTIFICATION_ID++;
 
+        System.out.println("GOT MESSAGE: " + msg);
+
         String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
         String email = text.split("&")[0];
         String amount = text.split("&")[1];
