@@ -2,7 +2,6 @@ package com.jobs.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -65,7 +64,6 @@ public class LandingPage extends Fragment {
         //ImageView
 
         profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
-        profilePicture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(BitmapFactory.decodeResource(getResources(), R.drawable.default_picture), 3));
 
         //Buttons
         myListings = (Button) view.findViewById(R.id.my_listings);

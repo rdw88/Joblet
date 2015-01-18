@@ -4,11 +4,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="#F8F9F9"
+                android:background="@drawable/card"
                 android:paddingRight="16dp"
                 android:paddingLeft="8dp"
-                android:paddingTop="4dp"
-    android:layout_marginTop="5px"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
                 android:id="@+id/background">
 
     <ImageView
@@ -28,13 +29,12 @@
         android:id="@+id/listItem_text_tags"
         android:layout_alignParentBottom="false"
         android:layout_marginLeft="0dp"
+        android:text="tag"
         android:layout_alignParentLeft="false"
         android:layout_alignParentRight="false"
         android:layout_marginRight="5dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="3dp"
-        android:layout_alignBottom="@+id/job_name"
-        android:paddingBottom="16dp" />
+        android:layout_alignBottom="@+id/job_name" />
 
 
     <TextView
@@ -47,8 +47,10 @@
         android:textSize="16sp"
         android:layout_alignParentLeft="true"
         android:paddingLeft="11dp"
-        android:paddingBottom="16dp"
-        android:layout_below="@+id/relativeLayout" />
+        android:paddingBottom="3dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="3dp" />
 
 
     <RelativeLayout

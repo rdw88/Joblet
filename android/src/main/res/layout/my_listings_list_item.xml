@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#F8F9F9">
+    android:background="@drawable/card">
 
 
     <TextView
@@ -10,48 +10,48 @@
         android:layout_height="wrap_content"
         android:id="@+id/my_listing_job_title"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#202020"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
+        android:textColor="@color/primary_information"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
         android:text="Job Title"
-        android:paddingLeft="16dp" />
+
+    />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/my_listing_current_bid"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textColor="#378E43"
         android:text="Current bid"
         android:layout_below="@+id/my_listing_job_title"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="3dp"
-        android:paddingLeft="16dp" />
+
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/my_listing_tag"
         android:textSize="12sp"
-        android:textColor="#757575"
-        android:layout_marginLeft="5dp"
+        android:textColor="@color/secondary_information"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="3dp"
         android:text="tag"
         android:layout_below="@+id/my_listing_current_bid"
-        android:paddingLeft="16dp" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/my_listing_is_active"
-        android:textSize="18sp"
-        android:layout_marginLeft="5dp"
+        android:textSize="14sp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="3dp"
         android:text="listing active?"
         android:layout_below="@+id/my_listing_tag"
-        android:layout_marginBottom="5dp"
-        android:paddingLeft="16dp" />
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
         android:textSize="12sp"
         android:layout_toLeftOf="@+id/listing_views"
         android:layout_marginRight="3dp"
-        android:textColor="#202020"
+        android:textColor="@color/secondary_information"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/listing_views" />
 
@@ -71,13 +71,10 @@
         android:id="@+id/listing_views"
         android:text="00"
         android:textSize="12sp"
-        android:layout_marginRight="38dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginRight="32dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#202020"
+        android:textColor="@color/secondary_information"
         android:layout_alignBottom="@+id/my_listing_is_active"
         android:textIsSelectable="false" />
-
 
 </RelativeLayout>

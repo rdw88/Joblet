@@ -248,7 +248,6 @@ public class Listing {
         }
     }
 
-<<<<<<< HEAD
     public static JSONObject makeBid(String listingID, String email, String amount) {
         Map<String, String> map = new HashMap<>();
         map.put("request", "make_bid");
@@ -267,19 +266,6 @@ public class Listing {
                 e1.printStackTrace();
             }
 
-=======
-    public static JSONArray getBids(String listingID) {
-        Map<String, String> map = new HashMap<>();
-        map.put("request", "get_bids");
-        map.put("listing_id", listingID);
-
-        try{
-            return new JSONArray(Address.get(map, Address.LISTING));
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            JSONArray obj = new JSONArray();
-            obj.put(Error.ERROR_SERVER_COMMUNICATION);
->>>>>>> d73d70b16a338df19375feee7cad38c5800316f8
             return obj;
         }
     }
