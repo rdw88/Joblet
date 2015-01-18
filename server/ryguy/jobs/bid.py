@@ -36,7 +36,7 @@ def make_bid(args):
 	owner_device = str(owner.device_id)
 
 	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCJRsEHM69VixomMuyjLcZ32h7gSp5eAPA' }
-	data = {'registration_ids' : [owner_device], 'data' : {'data' : '%s&%s&%s' % (bidder_email, bid_amount, bid_id)}}
+	data = {'registration_ids' : [owner_device], 'data' : {'data' : '%s&%s&%s&%s' % (0, bidder_email, bid_amount, bid_id)}}
 	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
 
 	return True, None
@@ -51,6 +51,13 @@ def accept(args):
 	listing.__dict__['current_bid'] = bid.amount
 	listing.save()
 
+	profile = Profile.objects.get(email=bid.bidder_email)
+	bidder_device = profile.device_id
+
+	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCJRsEHM69VixomMuyjLcZ32h7gSp5eAPA' }
+	data = {'registration_ids' : [bidder_device], 'data' : {'data' : '%s&%s&%s&%s' % (1, bid.listing_id, 1, bid.amount)}}
+	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
+
 	return True, None
 
 
@@ -58,6 +65,13 @@ def decline(args):
 	bid = Bid.objects.get(bid_id=args['bid_id'])
 	bid.__dict__['status'] = 2
 	bid.save()
+
+	profile = Profile.objects.get(email=bid.bidder_email)
+	bidder_device = profile.device_id
+
+	headers = {'Content-Type' : 'application/json', 'Authorization' : 'key=AIzaSyCJRsEHM69VixomMuyjLcZ32h7gSp5eAPA' }
+	data = {'registration_ids' : [bidder_device], 'data' : {'data' : '%s&%s&%s&%s' % (1, bid.listing_id, 0, bid.amount)}}
+	response = requests.post('https://android.googleapis.com/gcm/send', headers=headers, data=json.dumps(data))
 
 	return True, None
 

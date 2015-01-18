@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
@@ -16,9 +17,12 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.jobs.R;
 import com.jobs.activity.Login;
 import com.jobs.activity.ViewBid;
+import com.jobs.activity.ViewListing;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 
 public class GcmIntentService extends IntentService {
     public static int NOTIFICATION_ID = 1;
@@ -35,22 +39,30 @@ public class GcmIntentService extends IntentService {
 
         if (!extras.isEmpty()) {
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-                sendNotification(extras.toString());
+                String[] params = getParams(extras.toString());
+                int code = Integer.parseInt(params[0]);
+                System.out.println(code);
+
+                if (code == 0)
+                    newBidNotification(params[1], Double.parseDouble(params[2]), params[3]);
+                else if (code == 1) {
+                    newBidResponseNotification(params[1], Integer.parseInt(params[2]), Double.parseDouble(params[3]));
+                }
             }
         }
 
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String msg) {
+    private String[] getParams(String s) {
+        String text = s.substring(s.indexOf("data=") + 5, s.indexOf(","));
+        return text.split("&");
+    }
+
+    private void newBidNotification(String email, double amount, String bidID) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         NOTIFICATION_ID++;
 
-        System.out.println("GOT MESSAGE: " + msg);
-
-        String text = msg.substring(msg.indexOf("data=") + 5, msg.indexOf(","));
-        String email = text.split("&")[0];
-        String amount = text.split("&")[1];
         String message = email + " made a bid of $" + amount + "!";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
@@ -63,9 +75,57 @@ public class GcmIntentService extends IntentService {
         Intent intent = new Intent(this, ViewBid.class);
         intent.putExtra("email", email);
         intent.putExtra("amount", amount);
+        intent.putExtra("bid_id", bidID);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         mBuilder.setContentIntent(pi);
 
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
+    private void newBidResponseNotification(final String listingID, final int acceptDecline, final double amount) {
+        mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NOTIFICATION_ID++;
+        System.out.println("Got here");
+
+        new AsyncTask<String, Void, String>() {
+            private JSONObject response;
+
+            protected String doInBackground(String... urls) {
+                response = Listing.get(listingID);
+                return null;
+            }
+
+            protected void onPostExecute(String result) {
+                System.out.println("HI");
+                String title = "";
+                try {
+                    title = response.getString("job_title");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                DecimalFormat format = new DecimalFormat("#.##");
+                String message = "";
+                if (acceptDecline == 0) { // Declined
+                    message = "Your bid of $" + format.format(amount) + " for " + title + " was declined!";
+                } else if (acceptDecline == 1) { // Accepted
+                    message = "Your bid of $" + format.format(amount) + " for " + title + " was accepted!";
+                }
+
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(GcmIntentService.this);
+                mBuilder.setSmallIcon(R.drawable.logo);
+                mBuilder.setContentTitle("Joblet");
+                mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+                mBuilder.setContentText(message);
+                mBuilder.setTicker("Bid Response");
+
+                Intent intent = new Intent(GcmIntentService.this, ViewListing.class);
+                intent.putExtra("listing", response.toString());
+                PendingIntent pi = PendingIntent.getActivity(GcmIntentService.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                mBuilder.setContentIntent(pi);
+
+                mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+            }
+        }.execute();
     }
 }

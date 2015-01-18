@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -44,6 +45,12 @@ public class MyListings extends Activity {
     private JSONObject data;
     private final ArrayList<Item> elements = new ArrayList<>();
     private Typeface customFont;
+    private ListingAdapter adapter;
+
+    private JSONArray allListings;
+    private static final int NUM_LISTINGS_SHOWN = 10;
+    private int page;
+    private boolean loading;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +64,11 @@ public class MyListings extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
-
+    public void onResume() {
+        super.onResume();
+        page = 0;
     }
 
     public void onStart() {
@@ -70,11 +80,13 @@ public class MyListings extends Activity {
             protected String doInBackground(String... urls) {
                 try {
                     JSONObject obj = Profile.getProfile(data.getString("profile_id"));
-                    JSONArray array = new JSONArray(obj.getString("owned_listings"));
-                    response = new JSONObject[array.length()];
+                    allListings = new JSONArray(obj.getString("owned_listings"));
+                    int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
 
-                    for (int i = 0; i < array.length(); i++) {
-                        response[i] = Listing.get(array.getString(i));
+                    response = new JSONObject[len];
+
+                    for (int i = 0; i < len; i++) {
+                        response[i] = Listing.get(allListings.getString(i));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -86,7 +98,14 @@ public class MyListings extends Activity {
             protected void onPostExecute(String result) {
                 elements.removeAll(elements);
 
+
+
                 try {
+                    for (int i = 1; i < response.length; i++) {
+                        if (response[i].getString("job_title").equals(response[0].getString("job_title"))){
+                            System.out.println(i);
+                        }
+                    }
                     fill(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -97,11 +116,13 @@ public class MyListings extends Activity {
 
     private void fill(final JSONObject[] listings) throws JSONException {
         SwipeMenuListView view = (SwipeMenuListView) findViewById(R.id.my_listings_list_view);
-        final ListingAdapter adapter = new ListingAdapter();
+        adapter = new ListingAdapter();
 
         for (int i = 0; i < listings.length; i++) {
             elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"),
                     listings[i].getDouble("current_bid"), listings[i].getInt("status"), listings[i].getString("listing_id")));
+
+            System.out.println(i + " " + listings[i].getString("job_title"));
         }
 
 
@@ -110,6 +131,23 @@ public class MyListings extends Activity {
                 Intent intent = new Intent(MyListings.this, ViewListing.class);
                 intent.putExtra("listing", listings[position].toString());
                 startActivity(intent);
+            }
+        });
+
+        view.setOnScrollListener(new AbsListView.OnScrollListener() {
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int last = firstVisibleItem + visibleItemCount;
+
+                if (last == totalItemCount && !loading && totalItemCount >= NUM_LISTINGS_SHOWN && totalItemCount != allListings.length()) {
+                    try {
+                        loadMore();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
 
@@ -229,6 +267,52 @@ public class MyListings extends Activity {
         view.setAdapter(adapter);
     }
 
+    private void loadMore() throws JSONException {
+        System.out.println("load more");
+        loading = true;
+        page++;
+
+        new AsyncTask<String, Void, String>() {
+            private JSONObject[] response;
+
+            protected String doInBackground(String... urls) {
+                try {
+                    int len = NUM_LISTINGS_SHOWN;
+                    if (len > allListings.length() - NUM_LISTINGS_SHOWN * page) {
+                        len = allListings.length() - NUM_LISTINGS_SHOWN * page;
+                    }
+
+                    response = new JSONObject[len];
+
+                    int indices = (page + 1) * NUM_LISTINGS_SHOWN;
+                    int j = 0;
+                    for (int i = page * NUM_LISTINGS_SHOWN; i < indices && j < len; i++) {
+                        response[j] = Listing.get(allListings.getString(i));
+                        j++;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            protected void onPostExecute(String result) {
+                try {
+                    for (int i = 0; i < response.length; i++) {
+                        Item item = new Item(response[i].getString("job_title"), response[i].getString("tag"), response[i].getDouble("current_bid"), response[i].getInt("status"), response[i].getString("listing_id"));
+                        elements.add(item);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapter.notifyDataSetChanged();
+                loading = false;
+            }
+        }.execute();
+    }
+
     private void updateListing(final int position) {
         new AsyncTask<String, Void ,String>(){
             protected String doInBackground(String... params) {
@@ -270,6 +354,7 @@ public class MyListings extends Activity {
             isActive.setTypeface(customFont);
 
             title.setText(elements.get(position).title);
+            System.out.println(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));
             tag.setText(elements.get(position).tag);
 

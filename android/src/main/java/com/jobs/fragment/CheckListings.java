@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +40,11 @@ public class CheckListings extends Fragment {
     private ListingAdapter adapter;
     private final ArrayList<Item> elements = new ArrayList<>();
     private final ArrayList<String> filtered = new ArrayList<>();
+
+    private JSONArray allListings;
+    private static final int NUM_LISTINGS_SHOWN = 10;
+    private int page;
+    private boolean loading;
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -68,8 +74,6 @@ public class CheckListings extends Fragment {
             }
         }
 
-
-
         Button filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -96,6 +100,7 @@ public class CheckListings extends Fragment {
                 builder.setPositiveButton(R.string.done, new AlertDialog.OnClickListener(){
                     public void onClick(DialogInterface di, int i){
                         fill();
+                        page = 0;
                     }
                 });
                 builder.setView(view);
@@ -133,8 +138,6 @@ public class CheckListings extends Fragment {
         }
 
         new AsyncTask<String, Void, String>() {
-            private JSONArray response;
-
             protected String doInBackground(String... urls) {
                 HashMap<String, String> map = new HashMap<String, String>();
                 String tags = "";
@@ -145,20 +148,21 @@ public class CheckListings extends Fragment {
                 tags += filtered.get(filtered.size() - 1);
                 map.put("tags", tags);
 
-                response = Listing.search(map);
+                allListings = Listing.search(map);
                 return null;
             }
 
             protected void onPostExecute(String result) {
                 try {
-                    if (response.length() != 0) {
-                        if (response.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
+                    if (allListings.length() != 0) {
+                        if (allListings.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
                             alertErrorServer();
                         }
                         elements.removeAll(elements);
 
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject obj = (JSONObject) response.get(i);
+                        int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
+                        for (int i = 0; i < len; i++) {
+                            JSONObject obj = (JSONObject) allListings.get(i);
                             Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"), obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"));
                             elements.add(item);
                         }
@@ -177,10 +181,43 @@ public class CheckListings extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                listings.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    }
+
+                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        int last = firstVisibleItem + visibleItemCount;
+
+                        if (last == totalItemCount && !loading && totalItemCount >= NUM_LISTINGS_SHOWN && totalItemCount != allListings.length()) {
+                            try {
+                                loadMore();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
                 adapter = new ListingAdapter(getActivity(), elements);
                 listings.setAdapter(adapter);
             }
         }.execute();
+    }
+
+    private void loadMore() throws JSONException {
+        loading = true;
+        page++;
+
+        int indices = (page + 1) * NUM_LISTINGS_SHOWN;
+
+        for (int i = page * NUM_LISTINGS_SHOWN; i < indices && i < allListings.length(); i++) {
+            JSONObject obj = (JSONObject) allListings.get(i);
+            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"), obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"));
+            elements.add(item);
+        }
+
+        adapter.notifyDataSetChanged();
+        loading = false;
     }
 
     private class FilterAdapter extends ArrayAdapter<String> {
@@ -247,7 +284,7 @@ public class CheckListings extends Fragment {
             reputation.setText(Double.toString(items.get(position).reputation));
             tags.setText(tags.getText() + items.get(position).tag);
 
-            if (items.get(position).thumbnail == null)
+            if (items.get(position).thumbnail.equals(""))
                 return row;
 
             new AsyncTask<String, Void, String>() {
