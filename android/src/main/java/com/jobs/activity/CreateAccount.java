@@ -59,8 +59,6 @@ public class CreateAccount extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/verdana.ttf");
-
         t = (TextView) findViewById(R.id.text_accountDetails_createAccount);
         t.setTypeface(customFont);
         t = (TextView) findViewById(R.id.tags);

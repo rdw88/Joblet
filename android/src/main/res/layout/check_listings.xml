@@ -3,20 +3,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#F8F9F9"
+              android:background="#C1DFBD"
               android:icon="@drawable/logo"
               android:label="Browse Listings">
 
 
     <ListView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#F8F9F9"
-              android:divider="#1E000000"
-              android:dividerHeight="1dp"
+              android:layout_height="wrap_content"
+              android:background="#C1dFBd"
+              android:divider="#C1DFBD"
+              android:dividerHeight="8dp"
+              android:layout_marginRight="8dp"
+              android:layout_marginLeft="8dp"
+              android:layout_marginTop="8dp"
               android:footerDividersEnabled="false"
               android:headerDividersEnabled="false"
               android:id="@+id/listing_list"
-              android:layout_marginTop="0dp"
+
               />
 
     <Button
