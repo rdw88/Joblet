@@ -101,11 +101,7 @@ public class Login extends Activity {
                         } else if (response == -1) {
                             if (checkPlayServices()) {
                                 gcm = GoogleCloudMessaging.getInstance(Login.this);
-                                regid = getRegistrationId(getApplicationContext());
-
-                                if (regid.isEmpty()) {
-                                    registerInBackground(email.getText().toString());
-                                }
+                                registerInBackground(email.getText().toString());
                             }
 
                             getProfileInfo();
@@ -180,35 +176,6 @@ public class Login extends Activity {
         return true;
     }
 
-    private String getRegistrationId(Context context) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-        String registrationId = prefs.getString("registration_id", "");
-        if (registrationId.isEmpty()) {
-            return "";
-        }
-
-        int registeredVersion = prefs.getInt("app_version", Integer.MIN_VALUE);
-        int currentVersion = getAppVersion(context);
-        if (registeredVersion != currentVersion) {
-            return "";
-        }
-
-        return registrationId;
-    }
-
-    private SharedPreferences getGCMPreferences(Context context) {
-        return getSharedPreferences(Login.class.getSimpleName(), Context.MODE_PRIVATE);
-    }
-
-    private static int getAppVersion(Context context) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException("Could not get package name: " + e);
-        }
-    }
-
     private void registerInBackground(final String email) {
         new AsyncTask<String, Void, String>() {
             protected String doInBackground(String... params) {
@@ -218,15 +185,7 @@ public class Login extends Activity {
                     }
 
                     regid = gcm.register(senderID);
-
-                    try {
-                        JSONObject obj = Profile.registerPhoneID(email, regid);
-                        if (obj.has("error") && obj.getInt("error") == -1) {
-                            storeRegistrationId();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    Profile.registerPhoneID(email, regid);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -237,14 +196,5 @@ public class Login extends Activity {
             protected void onPostExecute(String msg) {
             }
         }.execute();
-    }
-
-    private void storeRegistrationId() {
-        final SharedPreferences prefs = getGCMPreferences(getApplicationContext());
-        int appVersion = getAppVersion(getApplicationContext());
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("registration_id", regid);
-        editor.putInt("app_version", appVersion);
-        editor.apply();
     }
 }

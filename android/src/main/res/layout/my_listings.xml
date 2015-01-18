@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="#C1DFBD">
 
-    <ListView
+    <com.jobs.ui.SwipeMenuListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:src="@drawable/card"
@@ -13,7 +13,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:id="@+id/my_listings_list_view"></ListView>
+        android:id="@+id/my_listings_list_view"></com.jobs.ui.SwipeMenuListView>
     <Button
         android:background="@drawable/dynamic_button_filter"
         android:id="@+id/checkListings_filter"
