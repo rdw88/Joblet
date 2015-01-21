@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.jobs.R;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
@@ -34,7 +39,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CheckListings extends Fragment {
+public class CheckListings extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private ListView listings;
     private String profileData;
     private ListingAdapter adapter;
@@ -45,6 +50,23 @@ public class CheckListings extends Fragment {
     private static final int NUM_LISTINGS_SHOWN = 10;
     private int page;
     private boolean loading;
+
+    private GoogleApiClient googleClient;
+    private double currentLatitude = 44.0468;
+    private double currentLongitude = -123.093;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("HI");
+
+        googleClient = new GoogleApiClient.Builder(getActivity())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        googleClient.connect();
+    }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -163,7 +185,10 @@ public class CheckListings extends Fragment {
                         int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
                         for (int i = 0; i < len; i++) {
                             JSONObject obj = (JSONObject) allListings.get(i);
-                            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"), obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"));
+                            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
+                                    obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),
+                                    obj.getDouble("lat"), obj.getDouble("long"));
+
                             elements.add(item);
                         }
                     } else
@@ -212,12 +237,31 @@ public class CheckListings extends Fragment {
 
         for (int i = page * NUM_LISTINGS_SHOWN; i < indices && i < allListings.length(); i++) {
             JSONObject obj = (JSONObject) allListings.get(i);
-            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"), obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"));
+            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
+                    obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),
+                    obj.getDouble("lat"), obj.getDouble("long"));
+
             elements.add(item);
         }
 
         adapter.notifyDataSetChanged();
         loading = false;
+    }
+
+    public void onConnected(Bundle connectionHint) {
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleClient);
+
+        if (lastLocation != null) {
+            currentLatitude = lastLocation.getLatitude();
+            currentLongitude = lastLocation.getLongitude();
+        }
+    }
+
+    public void onConnectionFailed(ConnectionResult b) {
+        // TODO: Implement
+    }
+
+    public void onConnectionSuspended(int i) {
     }
 
     private class FilterAdapter extends ArrayAdapter<String> {
@@ -283,6 +327,14 @@ public class CheckListings extends Fragment {
             title.setText(items.get(position).title);
             reputation.setText(Double.toString(items.get(position).reputation));
             tags.setText(tags.getText() + items.get(position).tag);
+            TextView distance = (TextView) row.findViewById(R.id.listing_distance);
+
+            if (currentLatitude == 0 || currentLongitude == 0)
+                return row;
+
+            double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, items.get(position).latitude, items.get(position).longitude);
+            NumberFormat distanceFormat = new DecimalFormat("#0.0");
+            distance.setText(distanceFormat.format(distanceAway) + " mi");
 
             if (items.get(position).thumbnail.equals(""))
                 return row;
@@ -334,16 +386,21 @@ public class CheckListings extends Fragment {
         public String tag;
         public double currentBid;
         public double reputation;
+        public double latitude;
+        public double longitude;
         public String listingID;
         public String thumbnail;
 
-        public Item(String title, String tag, double currentBid, double reputation, String listingID, String thumbnail) {
+        public Item(String title, String tag, double currentBid, double reputation, String listingID,
+                    String thumbnail, double latitude, double longitude) {
             this.title = title;
             this.tag = tag;
             this.currentBid = currentBid;
             this.reputation = reputation;
             this.listingID = listingID;
             this.thumbnail = thumbnail;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
     }
 }

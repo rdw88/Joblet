@@ -147,16 +147,6 @@ def get(profile_id):
 
 '''
 
-Searches the database given a dictionary of queries to collectively filter through.
-
-'''
-
-def search(args):
-	return Profile.objects.filter(args)
-
-
-'''
-
 Fetches a profile from the database based on its profile_id. Returns None
 if the profile id does not match a profile.
 

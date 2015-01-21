@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.location.*;
+import android.location.Address;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,7 +28,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.location.GeofenceStatusCodes;
 import com.jobs.R;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
@@ -35,12 +41,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CreateListing extends Fragment {
     private String userData;
-    private EditText jobTitle, startingAmount, minRep, jobLocation, activeTime;
+    private EditText jobTitle, startingAmount, minRep, city, address, state, activeTime;
     private TextView tag;
     private Button uploadPicture, create;
 
@@ -54,7 +63,9 @@ public class CreateListing extends Fragment {
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
-        jobLocation = (EditText) getActivity().findViewById(R.id.listing_location_address);
+        address = (EditText) getActivity().findViewById(R.id.listing_location_address);
+        city = (EditText) getActivity().findViewById(R.id.listing_location_city);
+        state = (EditText) getActivity().findViewById(R.id.listing_location_state);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
         Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
@@ -157,10 +168,30 @@ public class CreateListing extends Fragment {
             private String listingID;
 
             protected String doInBackground(String... urls) {
+                Geocoder geo = new Geocoder(getActivity());
+                String loc = Resource.formatLocation(address.getText().toString(), city.getText().toString(), state.getText().toString());
+                double latitude = 0;
+                double longitude = 0;
+
+                try {
+                    List<Address> addr = geo.getFromLocationName(loc, 1);
+                    if (addr == null || addr.isEmpty()) {
+                        response = -2;
+                        return null;
+                    }
+
+                    latitude = addr.get(0).getLatitude();
+                    longitude = addr.get(0).getLongitude();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 String title = jobTitle.getText().toString();
                 String sa = startingAmount.getText().toString();
                 String mr = minRep.getText().toString();
-                String jl = jobLocation.getText().toString();
+                String cityStr = city.getText().toString();
+                String addrStr = address.getText().toString();
+                String stateStr = state.getText().toString();
                 //String at = activeTime.getText().toString();
                 String at = "48"; // TODO: NEED TO IMPLEMENT
                 String t = tagSelected;
@@ -173,7 +204,7 @@ public class CreateListing extends Fragment {
                     e.printStackTrace();
                 }
 
-                JSONObject obj = Listing.create(title, sa, mr, jl, at, profileID, t, password);
+                JSONObject obj = Listing.create(title, sa, mr, at, addrStr, cityStr, stateStr, latitude, longitude, profileID, t, password);
 
                 try {
                     response = obj.getInt("error");
@@ -197,6 +228,9 @@ public class CreateListing extends Fragment {
                     alertErrorServer();
                 } else if (response == Error.ERROR_INCORRECT_PASSWORD) {
                     alertIncorrectPassword();
+                } else if (response == -2) {
+                    creatingProgress.dismiss();
+                    alertLocationNotFound();
                 }
             }
         }.execute();
@@ -318,6 +352,40 @@ public class CreateListing extends Fragment {
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {
                 create.performClick();
+            }
+        };
+
+        builder.setPositiveButton(R.string.button_ok, listener);
+        //builder.setNegativeButton(R.string.button_cancel, listener);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void alertMissingInformation() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.ad_missing_information);
+        builder.setTitle(R.string.ad_missing_information_title);
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface di, int i) {
+            }
+        };
+
+        builder.setPositiveButton(R.string.button_ok, listener);
+        //builder.setNegativeButton(R.string.button_cancel, listener);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void alertLocationNotFound() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.ad_location_not_found);
+        builder.setTitle(R.string.ad_location_not_found_title);
+
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface di, int i) {
             }
         };
 

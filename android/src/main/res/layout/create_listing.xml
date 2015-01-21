@@ -59,13 +59,11 @@
             android:background="#F8F9F9"
             android:textSize="18sp"
             android:textColor="@color/primary_information"
-            android:id="@+id/listing_location_zipcode"
-            android:hint="Zip Code"
-            android:inputType="number"
+            android:hint="State"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:padding="10dp"
-            />
+            android:id="@+id/listing_location_state"/>
 
         <EditText
                 android:layout_width="300dp"

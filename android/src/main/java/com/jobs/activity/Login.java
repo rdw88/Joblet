@@ -131,6 +131,10 @@ public class Login extends Activity {
             }
 
             protected void onPostExecute(String result) {
+                SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("user_data", response);
+                editor.apply();
                 Intent intent = new Intent(Login.this, Main.class);
                 intent.putExtra("data", response);
                 startActivity(intent);

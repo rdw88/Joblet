@@ -30,12 +30,18 @@ class Listing(models.Model):
 	starting_amount = models.FloatField()
 	current_bid = models.FloatField()
 	min_reputation = models.IntegerField()
-	job_location = models.CharField(max_length=256)
 	job_description = models.TextField()
 	active_until = models.CharField(max_length=128) # Date and time it closes
 	profile_id = models.CharField(max_length=256)
 	listing_id = models.CharField(max_length=256)
 	time_created = models.CharField(max_length=64)
+
+	address = models.CharField(max_length=256)
+	city = models.CharField(max_length=128)
+	state = models.CharField(max_length=2)
+	lat = models.FloatField()
+	long = models.FloatField()
+	
 	status = models.IntegerField() # 0 is active, 1 is inactive, 2 is pending, 3 is completed
 	tag = models.CharField(max_length=64)
 	owner_reputation = models.FloatField() # store as percent positive reputation?

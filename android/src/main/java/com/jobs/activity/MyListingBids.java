@@ -30,10 +30,12 @@ import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class MyListingBids extends Activity {
-    private ArrayList<Item> elements = new ArrayList<>();
+    private List<Item> elements = new ArrayList<>();
     private static final String[] STATUSES = {"Undetermined", "Accepted", "Declined"};
     private static final int[] STATUS_COLORS = {0xfff99800, 0xff3dd33d, 0xffff0000};
     private BidAdapter adapter;
@@ -77,6 +79,8 @@ public class MyListingBids extends Activity {
                     e.printStackTrace();
                 }
 
+                Collections.reverse(elements); // sort from most recent to oldest.
+
                 adapter.notifyDataSetChanged();
             }
         }.execute();
@@ -114,7 +118,7 @@ public class MyListingBids extends Activity {
     }
 
     private class BidAdapter extends ArrayAdapter<Item> {
-        public BidAdapter(Context context, ArrayList<Item> items) {
+        public BidAdapter(Context context, List<Item> items) {
             super(context, R.layout.my_listing_bids_list_item, items);
         }
 

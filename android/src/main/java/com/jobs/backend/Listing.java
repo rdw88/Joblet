@@ -37,17 +37,24 @@ import org.apache.http.util.EntityUtils;
 
 public class Listing {
 
-    public static JSONObject create(String title, String startingAmount, String minReputation, String jobLocation, String activeTime, String profileID, String tag, String password) {
+    public static JSONObject create(String title, String startingAmount, String minReputation, String activeTime,
+                                    String address, String city, String state, double latitude, double longitude,
+                                    String profileID, String tag, String password) {
+
         Map<String, String> map = new HashMap<>();
         map.put("request", "create");
         map.put("job_title", title);
         map.put("starting_amount", startingAmount);
         map.put("min_reputation", minReputation);
-        map.put("job_location", jobLocation);
         map.put("active_until", activeTime);
         map.put("profile_id", profileID);
         map.put("tag", tag);
         map.put("password", password);
+        map.put("address", address);
+        map.put("city", city);
+        map.put("state", state);
+        map.put("latitude", Double.toString(latitude));
+        map.put("longitude", Double.toString(longitude));
 
         try {
             return Address.post(map, Address.LISTING);

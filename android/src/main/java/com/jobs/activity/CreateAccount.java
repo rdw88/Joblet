@@ -125,6 +125,9 @@ public class CreateAccount extends Activity {
 
                 builder.setPositiveButton(R.string.done, new AlertDialog.OnClickListener(){
                     public void onClick(DialogInterface di, int k){
+                        if (selectedTags.size() == 0)
+                            return;
+
                         String str = "";
 
                         for (int i = 0; i < selectedTags.size() - 1; i++) {

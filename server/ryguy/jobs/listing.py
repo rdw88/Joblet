@@ -31,7 +31,7 @@ def create(args):
 
 	dt = datetime.datetime.now()
 	time_created = dt.strftime('%m-%d-%Y %I:%M%p')
-	encode = '%s%s%s' % (args['job_title'], args['job_location'], dt)
+	encode = '%s%s%s' % (args['job_title'], args['address'], dt)
 	listing_id = base64.b64encode(encode, '-_')
 	neg = prof.negative_reputation
 	pos = prof.positive_reputation
@@ -39,9 +39,10 @@ def create(args):
 	owner_name = '%s %s' % (prof.first_name, prof.last_name)
 
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
-		current_bid=args['starting_amount'], min_reputation=args['min_reputation'], job_location=args['job_location'],
+		current_bid=args['starting_amount'], min_reputation=args['min_reputation'],
 		active_until=args['active_until'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
-		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0, bids='[]')
+		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0, bids='[]', address=args['address'],
+		city=args['city'], state=args['state'], lat=args['latitude'], long=args['longitude'])
 
 	listing.save()
 
@@ -66,8 +67,8 @@ def get(args):
 	if len(listings) == 0:
 		return None, ERROR_NO_SUCH_LISTING
 
-	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'job_location', 'profile_id', 'time_created', 
-		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail', 'listing_id')[0]
+	vals = listings.values('job_title', 'job_picture', 'starting_amount', 'current_bid', 'min_reputation', 'profile_id', 'time_created', 
+		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail', 'listing_id', 'address', 'city', 'state', 'lat', 'long')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
@@ -88,7 +89,7 @@ def search(tokens):
 
 	for tag in tags:
 		results = Listing.objects.filter(tag=tag).filter(status=0)
-		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'active_until', 'thumbnail')))
+		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'active_until', 'thumbnail', 'lat', 'long')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):

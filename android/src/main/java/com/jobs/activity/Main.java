@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 
@@ -20,11 +21,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.jobs.R;
+import com.jobs.backend.Address;
 import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
+
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.List;
 
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
@@ -83,11 +88,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
             }
 
         });
-
-        SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("user_data", data);
-        editor.apply();
 
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);

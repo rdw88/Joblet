@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 import profile as mod_profile
 import listing
 import bid as bid_module
@@ -41,7 +41,7 @@ def profile(request):
 		if not err_code: # result will be a dictionary to send back to client.
 			return HttpResponse(json.dumps(result), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error': err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error': err_code }), content_type='application/json')
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
@@ -54,7 +54,7 @@ def profile(request):
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error': -1 }), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')
 
 
 '''
@@ -84,7 +84,7 @@ def listings(request):
 		if not err_code:
 			return HttpResponse(json.dumps(result), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
@@ -103,7 +103,7 @@ def listings(request):
 
 			return HttpResponse(json.dumps(response), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')
 
 
 def upload(request):
@@ -121,7 +121,7 @@ def upload(request):
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')
 
 
 def bid(request):
@@ -134,7 +134,7 @@ def bid(request):
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')
 
 	elif request.method == 'GET':
 		data = request.GET.copy()
@@ -146,4 +146,4 @@ def bid(request):
 		if not err_code:
 			return HttpResponse(json.dumps(result), content_type='application/json')
 		else:
-			return HttpResponse(json.dumps({ 'error' : err_code }), content_type='application/json')
+			return HttpResponseBadRequest(json.dumps({ 'error' : err_code }), content_type='application/json')

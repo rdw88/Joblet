@@ -38,6 +38,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -80,7 +81,13 @@ public class MyListings extends Activity {
             protected String doInBackground(String... urls) {
                 try {
                     JSONObject obj = Profile.getProfile(data.getString("profile_id"));
-                    allListings = new JSONArray(obj.getString("owned_listings"));
+                    JSONArray arr = new JSONArray(obj.getString("owned_listings"));
+                    allListings = new JSONArray();
+
+                    for (int i = arr.length() - 1; i >= 0; i--) { // sort from most recent to oldest
+                        allListings.put(arr.get(i));
+                    }
+
                     int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
 
                     response = new JSONObject[len];
@@ -98,14 +105,7 @@ public class MyListings extends Activity {
             protected void onPostExecute(String result) {
                 elements.removeAll(elements);
 
-
-
                 try {
-                    for (int i = 1; i < response.length; i++) {
-                        if (response[i].getString("job_title").equals(response[0].getString("job_title"))){
-                            System.out.println(i);
-                        }
-                    }
                     fill(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -121,15 +121,18 @@ public class MyListings extends Activity {
         for (int i = 0; i < listings.length; i++) {
             elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"),
                     listings[i].getDouble("current_bid"), listings[i].getInt("status"), listings[i].getString("listing_id")));
-
-            System.out.println(i + " " + listings[i].getString("job_title"));
         }
-
 
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyListings.this, ViewListing.class);
-                intent.putExtra("listing", listings[position].toString());
+
+                try {
+                    intent.putExtra("listing_id", listings[position].getString("listing_id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 startActivity(intent);
             }
         });
@@ -268,7 +271,6 @@ public class MyListings extends Activity {
     }
 
     private void loadMore() throws JSONException {
-        System.out.println("load more");
         loading = true;
         page++;
 
@@ -339,8 +341,14 @@ public class MyListings extends Activity {
 
     private class ListingAdapter extends BaseAdapter {
         public View getView(int position, View currentView, ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.my_listings_list_item, parent, false);
+            View row = null;
+
+            if (currentView == null) {
+                LayoutInflater inflater = getLayoutInflater();
+                row = inflater.inflate(R.layout.my_listings_list_item, parent, false);
+            } else {
+                row = currentView;
+            }
 
             NumberFormat format = new DecimalFormat("#0.00");
 
@@ -354,7 +362,6 @@ public class MyListings extends Activity {
             isActive.setTypeface(customFont);
 
             title.setText(elements.get(position).title);
-            System.out.println(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));
             tag.setText(elements.get(position).tag);
 

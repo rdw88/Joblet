@@ -129,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/owner_distance"
+            android:id="@+id/listing_distance"
             android:text="@string/owner_listNumber"
             android:textColor="#FFFFFF"
             android:textSize="10dp"

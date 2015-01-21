@@ -80,21 +80,6 @@ public class ViewListing extends Activity {
         addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
         addToWatchlist.setTypeface(robotoMedium);
 
-        Bundle b = getIntent().getExtras();
-
-        if (b.containsKey("listing")) {
-            JSONObject obj = null;
-            try {
-                obj = new JSONObject(b.getString("listing"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            fillFromData(obj);
-        } else {
-            fillFromServer();
-        }
-
         makeBid.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ViewListing.this);
@@ -139,16 +124,20 @@ public class ViewListing extends Activity {
 
             }
         });
+
+        fillFromServer();
     }
 
     private void fill(JSONObject data, Bitmap bitmap) {
         NumberFormat money = new DecimalFormat("#0.00");
 
+
         try {
+            String loc = Resource.formatLocation(data.getString("address"), data.getString("city"), data.getString("state"));
             title.setText(data.getString("job_title"));
             currentBid.setText("$" + money.format(data.getDouble("current_bid")));
             ownerReputation.setText(data.getString("owner_reputation"));
-            jobLocation.setText(data.getString("job_location"));
+            jobLocation.setText(loc);
             ownerName.setText(data.getString("owner_name"));
             timeCreated.setText(data.getString("time_created"));
             tag.setText(data.getString("tag"));
@@ -156,33 +145,6 @@ public class ViewListing extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    private void fillFromData(final JSONObject data) {
-        new AsyncTask<String, Void, String>() {
-            private Bitmap bitmap;
-
-            protected String doInBackground(String... urls) {
-                try {
-                    JSONArray arr = new JSONArray(data.getString("job_picture"));
-                    String pictureURL = arr.getString(0);
-
-                    try {
-                        bitmap = Address.fetchPicture(pictureURL);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(String result) {
-                fill(data, bitmap);
-            }
-        }.execute();
     }
 
     private void fillFromServer() {
