@@ -52,8 +52,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     private boolean loading;
 
     private GoogleApiClient googleClient;
-    private double currentLatitude = 44.0468;
-    private double currentLongitude = -123.093;
+    private double currentLatitude;
+    private double currentLongitude;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
