@@ -41,7 +41,6 @@ public class GcmIntentService extends IntentService {
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                 String[] params = getParams(extras.toString());
                 int code = Integer.parseInt(params[0]);
-                System.out.println(code);
 
                 if (code == 0)
                     newBidNotification(params[1], Double.parseDouble(params[2]), params[3]);
@@ -85,7 +84,6 @@ public class GcmIntentService extends IntentService {
     private void newBidResponseNotification(final String listingID, final int acceptDecline, final double amount) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         NOTIFICATION_ID++;
-        System.out.println("Got here");
 
         new AsyncTask<String, Void, String>() {
             private JSONObject response;
@@ -96,7 +94,6 @@ public class GcmIntentService extends IntentService {
             }
 
             protected void onPostExecute(String result) {
-                System.out.println("HI");
                 String title = "";
                 try {
                     title = response.getString("job_title");

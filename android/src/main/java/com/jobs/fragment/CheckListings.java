@@ -57,7 +57,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("HI");
 
         googleClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
@@ -329,12 +328,11 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             tags.setText(tags.getText() + items.get(position).tag);
             TextView distance = (TextView) row.findViewById(R.id.listing_distance);
 
-            if (currentLatitude == 0 || currentLongitude == 0)
-                return row;
-
-            double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, items.get(position).latitude, items.get(position).longitude);
-            NumberFormat distanceFormat = new DecimalFormat("#0.0");
-            distance.setText(distanceFormat.format(distanceAway) + " mi");
+            if (currentLatitude != 0 && currentLongitude != 0) {
+                double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, items.get(position).latitude, items.get(position).longitude);
+                NumberFormat distanceFormat = new DecimalFormat("#0.0");
+                distance.setText(distanceFormat.format(distanceAway) + " mi");
+            }
 
             if (items.get(position).thumbnail.equals(""))
                 return row;

@@ -3,6 +3,7 @@ package com.jobs.backend;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.apache.http.HttpStatus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -96,7 +97,14 @@ public class Address {
             os.close();
         }
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        InputStream is = null;
+        int code = conn.getResponseCode();
+        if (code == HttpStatus.SC_BAD_REQUEST)
+            is = conn.getErrorStream();
+        else
+            is = conn.getInputStream();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String line;
         String response = "";
         while ((line = reader.readLine()) != null) {
