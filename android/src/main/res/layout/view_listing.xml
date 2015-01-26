@@ -10,6 +10,23 @@
     android:background="#C1DFBD"
     android:clickable="true">
 
+
+
+
+    <RelativeLayout
+        android:layout_height="200dp"
+        android:layout_width="fill_parent"
+
+
+        android:id="@+id/picture_holder"
+        android:layout_alignParentTop="true">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/picture_swiper"/>
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,35 +35,10 @@
         android:textSize="34sp"
         android:text="sample"
         android:textColor="@color/primary_information"
-        android:layout_below="@+id/listing_picture"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="3dp" />
-    
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/listing_picture"
-        android:src="@drawable/default_picture"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp" />
-
-
-    <Button
-        android:background="#C1DFBD"
-        android:id="@+id/more_pictures"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:text="More Pictures"
-        android:textColor="#468DCB"
-        android:textSize="18dp"
-        android:layout_toRightOf="@+id/listing_picture"
-        android:layout_alignTop="@+id/listing_picture"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="40dp"
-        android:textStyle="bold" />
+        android:layout_marginLeft="59dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginTop="3dp"
+        android:layout_alignBottom="@+id/picture_holder" />
 
 
     <LinearLayout
@@ -55,13 +47,14 @@
         android:orientation="vertical"
         android:id="@+id/linearLayout_info"
         android:background="@drawable/card"
-        android:layout_below="@+id/view_listing_make_bid"
-        android:layout_marginTop="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginTop="200dp"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,6 +84,35 @@
             android:background="#E0E0E0"
             android:layout_marginTop="8dp"
             android:id="@+id/line3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_listing_description"
+            android:text="Description"
+            android:textColor="@color/secondary_information"
+            android:textSize="16sp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_description"
+            android:textSize="14sp"
+            android:textColor="@color/primary_information"
+            android:layout_marginTop="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="52dp"/>
+
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line6" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -243,6 +265,7 @@
         </LinearLayout>
 
 
+
     <Button
     android:layout_width="160dp"
     android:layout_height="wrap_content"
@@ -253,11 +276,11 @@
     android:textAllCaps="false"
     android:id="@+id/view_listing_make_bid"
     android:layout_gravity="center_horizontal"
-    android:layout_below="@+id/view_listing_title"
-    android:padding="8dp"
-    android:layout_marginTop="16dp"
-    android:layout_toLeftOf="@+id/midanchor"
-        android:layout_marginRight="8dp" />
+        android:padding="8dp"
+        android:layout_toLeftOf="@+id/midanchor"
+        android:layout_marginRight="8dp"
+        android:layout_below="@+id/linearLayout_info"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:layout_width="160dp"
@@ -269,17 +292,22 @@
         android:textAllCaps="false"
         android:id="@+id/view_listing_add_watchlist"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/view_listing_title"
         android:padding="8dp"
-        android:layout_marginTop="16dp"
         android:layout_toRightOf="@+id/midanchor"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_alignTop="@+id/view_listing_make_bid" />
 
     <Space
         android:layout_width="2px"
         android:layout_height="10px"
         android:layout_centerHorizontal="true"
         android:id="@+id/midanchor" />
+
+    <Space
+        android:layout_width="2px"
+        android:layout_height="80dp"
+        android:id="@+id/bottombuffer"
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

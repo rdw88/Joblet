@@ -76,7 +76,7 @@ public class ViewListing extends Activity {
         tag.setTypeface(robotoRegular);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
         makeBid.setTypeface(robotoMedium);
-        picture = (ImageView) findViewById(R.id.listing_picture);
+        picture = (ImageView) findViewById(R.id.picture_swiper);
         addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
         addToWatchlist.setTypeface(robotoMedium);
 
@@ -170,6 +170,7 @@ public class ViewListing extends Activity {
             }
 
             protected void onPostExecute(String result) {
+                picture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 1));
                 if (response.has("error")){
                     alertNoSuchListing();
                     return;

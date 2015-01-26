@@ -48,14 +48,16 @@ public class CreateAccount extends Activity {
     private EditText dob;
     private Calendar date;
     private TextView t;
-    private Typeface customFont;
+    private Typeface customFont, robotoMedium;
 
     private final ArrayList<String> locations = Resource.LOCATIONS;
     private final ArrayList<String> selectedTags = new ArrayList<>();
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
@@ -80,7 +82,7 @@ public class CreateAccount extends Activity {
         addTags = (Button) findViewById(R.id.add_tags);
         addTags.setTypeface(customFont);
         create = (Button) findViewById(R.id.button_create);
-        create.setTypeface(customFont);
+        create.setTypeface(robotoMedium);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, locations);
         city.setAdapter(adapter);
