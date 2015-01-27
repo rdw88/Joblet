@@ -3,7 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="#C1DFBD"
+            android:background="#EEEEEE"
 
             >
     <LinearLayout
@@ -21,11 +21,24 @@
                 android:textSize="18sp"
                 android:textColor="@color/primary_information"
                 android:id="@+id/listing_name"
-                android:hint="Job Name"
+                android:hint="Job Name (max 100 characters)"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 />
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="#F8F9F9"
+            android:textSize="18sp"
+            android:textColor="@color/primary_information"
+            android:id="@+id/listing_description"
+            android:hint="Job Description"
+            android:layout_weight="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            />
 
         <EditText
                 android:layout_width="300dp"

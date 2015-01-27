@@ -302,6 +302,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
         public Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         public Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        public Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
 
         public ListingAdapter(Context context, ArrayList<Item> items) {
             super(context, R.layout.check_listing_list_item, items);
@@ -326,7 +327,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             TextView title = (TextView) row.findViewById(R.id.job_name);
             title.setTypeface(moneyFont);
             TextView currentBid = (TextView) row.findViewById(R.id.list_currentBid);
-            currentBid.setTypeface(moneyFont);
+            currentBid.setTypeface(robotoMedium);
             TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
             tags.setTypeface(customFont);
             currentBid.setText("$" + format.format(item.currentBid));
