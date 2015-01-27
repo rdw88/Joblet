@@ -29,6 +29,7 @@ class Listing(models.Model):
 	thumbnail = models.TextField()
 	starting_amount = models.FloatField()
 	current_bid = models.FloatField()
+	last_accepted_bid = models.CharField(max_length=256, null=True, default=None) # bid_id of last accepted bid for this listing.
 	min_reputation = models.IntegerField()
 	job_description = models.TextField()
 	active_until = models.CharField(max_length=128) # Date and time it closes
@@ -58,6 +59,7 @@ class Bid(models.Model):
 	listing_id = models.CharField(max_length=256)
 	amount = models.FloatField()
 	bidder_email = models.CharField(max_length=128)
+	bidder_device = models.CharField(max_length=256)
 	status = models.IntegerField()   # 0 for in progress, 1 for accepted, 2 for declined
 
 	class Meta:
