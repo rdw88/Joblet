@@ -3,15 +3,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#C1DFBD"
+              android:background="#EEEEEE"
               android:icon="@drawable/logo"
               android:label="Browse Listings">
 
 
     <ListView android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#C1dFBd"
-              android:divider="#C1DFBD"
+              android:background="#EEEEEE"
+              android:divider="#EEEEEE"
               android:dividerHeight="8dp"
               android:layout_marginRight="8dp"
               android:layout_marginLeft="8dp"
@@ -20,7 +20,7 @@
               android:headerDividersEnabled="false"
               android:id="@+id/listing_list"
 
-              />
+        android:clickable="false" />
 
     <Button
         android:background="@drawable/dynamic_button_filter"

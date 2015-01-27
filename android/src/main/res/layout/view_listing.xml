@@ -7,8 +7,8 @@
 <RelativeLayout
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#C1DFBD"
-    android:clickable="true">
+    android:background="#EEEEEE"
+    >
 
 
 
@@ -34,9 +34,10 @@
         android:layout_gravity="center_horizontal"
         android:textSize="34sp"
         android:text="sample"
-        android:textColor="@color/primary_information"
+        android:textColor="#FCFCFC"
         android:layout_marginLeft="59dp"
         android:layout_marginRight="59dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="3dp"
         android:layout_alignBottom="@+id/picture_holder" />
 
@@ -280,7 +281,7 @@
         android:layout_toLeftOf="@+id/midanchor"
         android:layout_marginRight="8dp"
         android:layout_below="@+id/linearLayout_info"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:layout_width="160dp"

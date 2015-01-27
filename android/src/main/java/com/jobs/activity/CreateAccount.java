@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jobs.R;
@@ -43,12 +44,13 @@ import java.util.Calendar;
 public class CreateAccount extends Activity {
     private EditText firstName, lastName, email, password, passwordRetry;
     private AutoCompleteTextView city;
-    private Button addTags, create;
-    private TextView tags;
-    private EditText dob;
+    private Button addTags, create, gallery, camera;
+    private TextView tags, textFirstName, textLastName, textBio, textEmail, textPassword, textCity;
+    private EditText dob, bio;
     private Calendar date;
     private TextView t;
-    private Typeface customFont, robotoMedium;
+    private Typeface robotoRegular, robotoMedium;
+    private ImageView picture;
 
     private final ArrayList<String> locations = Resource.LOCATIONS;
     private final ArrayList<String> selectedTags = new ArrayList<>();
@@ -56,31 +58,60 @@ public class CreateAccount extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
         t = (TextView) findViewById(R.id.text_accountDetails_createAccount);
-        t.setTypeface(customFont);
+        t.setTypeface(robotoRegular);
         t = (TextView) findViewById(R.id.tags);
-        t.setTypeface(customFont);
+        t.setTypeface(robotoRegular);
     }
 
     protected void onStart() {
         super.onStart();
-        date = Calendar.getInstance();
-        dob = (EditText) findViewById(R.id.dob);
+        textFirstName = (TextView) findViewById(R.id.text_first_name);
+        textFirstName.setTypeface(robotoMedium);
         firstName = (EditText) findViewById(R.id.first_name);
+        firstName.setTypeface(robotoRegular);
+        textLastName = (TextView) findViewById(R.id.text_last_name);
+        textLastName.setTypeface(robotoMedium);
         lastName = (EditText) findViewById(R.id.last_name);
+        lastName.setTypeface(robotoRegular);
+        textBio = (TextView) findViewById(R.id.text_bio);
+        textBio.setTypeface(robotoMedium);
+        bio = (EditText) findViewById(R.id.bio);
+        bio.setTypeface(robotoRegular);
+        textEmail = (TextView) findViewById(R.id.text_email);
+        textEmail.setTypeface(robotoMedium);
         email = (EditText) findViewById(R.id.email);
+        email.setTypeface(robotoRegular);
+        textPassword = (TextView) findViewById(R.id.text_password);
+        textPassword.setTypeface(robotoMedium);
         password = (EditText) findViewById(R.id.password);
+        password.setTypeface(robotoRegular);
         passwordRetry = (EditText) findViewById(R.id.password2);
-        tags = (TextView) findViewById(R.id.tags);
-        tags.setTypeface(customFont);
+        passwordRetry.setTypeface(robotoRegular);
+        textCity = (TextView) findViewById(R.id.text_city);
+        textCity.setTypeface(robotoMedium);
         city = (AutoCompleteTextView) findViewById(R.id.city);
+        city.setTypeface(robotoRegular);
+
+        picture = (ImageView) findViewById(R.id.profile_picture);
+
+        gallery = (Button) findViewById(R.id.button_gallery);
+        camera = (Button) findViewById(R.id.button_camera);
+
+        dob = (EditText) findViewById(R.id.dob);
+        date = Calendar.getInstance();
+
+
+        tags = (TextView) findViewById(R.id.tags);
+        tags.setTypeface(robotoRegular);
+
         addTags = (Button) findViewById(R.id.add_tags);
-        addTags.setTypeface(customFont);
+        addTags.setTypeface(robotoRegular);
         create = (Button) findViewById(R.id.button_create);
         create.setTypeface(robotoMedium);
 
@@ -93,7 +124,7 @@ public class CreateAccount extends Activity {
                 date.set(Calendar.MONTH, monthOfYear);
                 date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 dob.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
-                dob.setTypeface(customFont);
+                dob.setTypeface(robotoRegular);
             }
         };
 
