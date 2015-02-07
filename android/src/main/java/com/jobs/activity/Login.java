@@ -28,7 +28,6 @@ import android.widget.EditText;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
 
-import net.qiujuer.genius.Genius;
 
 import org.json.JSONException;
 import org.json.JSONObject;

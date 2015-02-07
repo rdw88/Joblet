@@ -46,7 +46,7 @@ public class CreateAccount extends Activity {
     private EditText firstName, lastName, email, password, passwordRetry;
     private AutoCompleteTextView city;
     private Button addTags, create, gallery, camera;
-    private TextView tags, textFirstName, textLastName, textBio;
+    private TextView tags;
     private EditText dob, bio;
     private Calendar date;
     private TextView t;
@@ -74,28 +74,18 @@ public class CreateAccount extends Activity {
 
     protected void onStart() {
         super.onStart();
-        textFirstName = (TextView) findViewById(R.id.text_first_name);
-        textFirstName.setTypeface(robotoMedium);
         firstName = (EditText) findViewById(R.id.first_name);
         firstName.setTypeface(robotoRegular);
-        textLastName = (TextView) findViewById(R.id.text_last_name);
-        textLastName.setTypeface(robotoMedium);
         lastName = (EditText) findViewById(R.id.last_name);
         lastName.setTypeface(robotoRegular);
-        textBio = (TextView) findViewById(R.id.text_bio);
-        textBio.setTypeface(robotoMedium);
         bio = (EditText) findViewById(R.id.bio);
         bio.setTypeface(robotoRegular);
         email = (EditText) findViewById(R.id.email);
         email.setTypeface(robotoRegular);
-//        textPassword = (TextView) findViewById(R.id.text_password);
-//        textPassword.setTypeface(robotoMedium);
         password = (EditText) findViewById(R.id.password);
         password.setTypeface(robotoRegular);
         passwordRetry = (EditText) findViewById(R.id.password2);
         passwordRetry.setTypeface(robotoRegular);
-//        textCity = (TextView) findViewById(R.id.text_city);
-//        textCity.setTypeface(robotoMedium);
         city = (AutoCompleteTextView) findViewById(R.id.city);
         city.setTypeface(robotoRegular);
 
