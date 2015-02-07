@@ -311,6 +311,14 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
         @Override
         public View getView(final int position, View currentView, ViewGroup parent) {
+            Item item = null;
+            try {
+                item = items.get(position);
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println("index out of bounds, returning");
+                return getActivity().getLayoutInflater().inflate(R.layout.check_listing_list_item, parent, false);
+            }
+
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.check_listing_list_item, parent, false);
             NumberFormat format = new DecimalFormat("#0.00");
@@ -322,11 +330,11 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             currentBid.setTypeface(robotoMedium);
             TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
             tags.setTypeface(customFont);
-            currentBid.setText("$" + format.format(items.get(position).currentBid));
+            currentBid.setText("$" + format.format(item.currentBid));
             TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
-            title.setText(items.get(position).title);
-            reputation.setText(Double.toString(items.get(position).reputation));
-            tags.setText(tags.getText() + items.get(position).tag);
+            title.setText(item.title);
+            reputation.setText(Double.toString(item.reputation));
+            tags.setText(tags.getText() + item.tag);
             TextView distance = (TextView) row.findViewById(R.id.listing_distance);
 
             if (currentLatitude != 0 && currentLongitude != 0) {
@@ -335,15 +343,16 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                 distance.setText(distanceFormat.format(distanceAway) + " mi");
             }
 
-            if (items.get(position).thumbnail.equals(""))
+            if (item.thumbnail.equals(""))
                 return row;
 
+            final Item i = item;
             new AsyncTask<String, Void, String>() {
                 private Bitmap bitmap;
 
                 protected String doInBackground(String... urls) {
                     try {
-                        bitmap = Address.fetchPicture(items.get(position).thumbnail);
+                        bitmap = Address.fetchPicture(i.thumbnail);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

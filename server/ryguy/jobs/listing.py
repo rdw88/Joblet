@@ -6,10 +6,18 @@ import json
 import os
 from PIL import Image
 from models import Listing, Profile
-from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD
+from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD, ERROR_NO_BID_MADE, ERROR_BID_DOES_NOT_EXIST
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from ryguy.settings import BASE_DIR
+from helper import send_push_notification
+
+
+LISTING_STATUS_ACTIVE = 0
+LISTING_STATUS_INACTIVE = 1
+LISTING_STATUS_IN_PROGRESS = 2
+LISTING_STATUS_COMPLETED = 3
+
 
 '''
 
@@ -18,8 +26,7 @@ also includes generating a unique listing id. A listing's unique ID is stored
 in the creator's profile model so we can reference it in relation to their
 profile.
 
-TODO: - Implement job picture functionality.
-	  - Hash passwords.
+TODO: - Hash passwords.
 
 '''
 
@@ -93,7 +100,7 @@ def search(tokens):
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):
-				results_list[0].append(results_list[i][k]) 
+			results_list[0].append(results_list[i][k]) 
 
 	return results_list[0], None
 
@@ -116,8 +123,19 @@ def update(args):
 	listing = Listing.objects.get(listing_id=id)
 
 	if operation == 'status':
+		if int(args['status']) == 2: # Check to make sure at least one bid has been accepted
+			if not listing.last_accepted_bid:
+				return False, ERROR_NO_BID_MADE
+
+
+
+			#send_push_notification()
+
 		listing.__dict__['status'] = args['status']
 		listing.save()
+
+
+
 		return True, None
 
 
