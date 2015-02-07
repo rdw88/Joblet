@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
 
@@ -18,7 +19,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:id="@+id/pictureFrame"
         android:background="#EEEEEE"
         android:layout_centerHorizontal="true"
@@ -95,7 +96,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="270dp"
         android:id="@+id/card"
         android:layout_below="@+id/pictureFrame"
         android:layout_marginLeft="8dp"
@@ -261,7 +262,7 @@
                 android:layout_height="63dp"
                 android:id="@+id/myjobs_recent1"
                 android:layout_toRightOf="@+id/user_currentJobsNumber"
-                android:layout_marginLeft="16dp" />
+                android:layout_marginLeft="26dp" />
 
             <ImageView
                 android:layout_width="63dp"
@@ -341,7 +342,7 @@
                 android:layout_height="63dp"
                 android:id="@+id/mybids_recent1"
                 android:layout_toRightOf="@+id/text_bidspending"
-                android:layout_marginLeft="27dp" />
+                android:layout_marginLeft="37dp" />
 
             <ImageView
                 android:layout_width="63dp"
@@ -363,11 +364,10 @@
             android:paddingRight="8dp"
             android:paddingLeft="8dp">
 
-            <Button
-                android:background="@drawable/button_blue"
+            <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/my_listings"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="MY LISTINGS"
@@ -375,7 +375,11 @@
                 android:textSize="14sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_toLeftOf="@+id/anchor_middle"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                genius:g_textAppearance="light"
+                genius:g_theme="@array/ScubaBlue"
+                genius:g_touchEffect="ripple"
+                genius:g_blockButtonEffectHeight="2dp"/>
 
 
             <Space
@@ -385,11 +389,10 @@
                 android:layout_centerHorizontal="true" />
 
 
-            <Button
-                android:background="@drawable/button_blue"
+            <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/watchlist"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="WATCHLIST"
@@ -399,7 +402,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/anchor_middle"
                 android:layout_alignTop="@+id/my_listings"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                genius:g_textAppearance="light"
+                genius:g_theme="@array/ScubaBlue"
+                genius:g_touchEffect="ripple"
+                genius:g_blockButtonEffectHeight="2dp"
+                />
 
 
         </RelativeLayout>
@@ -425,7 +433,7 @@
             android:layout_alignTop="@+id/action_anchor"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="170dp" />
+            android:layout_marginTop="192dp" />
 
         <Space
             android:layout_width="10dp"

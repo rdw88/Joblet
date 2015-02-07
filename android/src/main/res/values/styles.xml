@@ -8,7 +8,7 @@
     <!-- Colors -->
     <color name="cementInfo">#000000</color>
     <color name="button">#FFE158</color>
-    <color name="title_color">#FF9800</color>
+    <color name="title_color">#ff68ccb7</color>
     <color name="background_white">#F9F9F9</color>+
     <color name="white">#FFFFFF</color>
     <color name="background_main">#E6E6E6</color>
@@ -17,12 +17,13 @@
     <color name="secondary_information">#89000000</color>
     <color name="tab_background">#F38E1F</color>
     <color name="tab_background_selected">#FFCC80</color>
-    <!-- 629DF3 -->
     <color name="gradient_start">#50000000</color>
     <color name="gradient_almost_transparent">#10000000</color>
     <color name="gradient_light_start">#30000000</color>
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
+
+
 
 
     <!-- Application themes. -->
@@ -64,7 +65,7 @@
         <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
         <item name="android:textSize">20dp</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-        <item name="android:background">@color/title_color</item>
+        <item name="android:background">@color/LuciteGreen_Primary</item>
         <item name="android:icon">@drawable/actionbar_icon</item>
     </style>
 

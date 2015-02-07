@@ -2,6 +2,7 @@ package com.jobs.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,6 +27,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
+
+import net.qiujuer.genius.Genius;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,6 +113,8 @@ public class Login extends Activity {
                 }.execute();
             }
         });
+        Button forgotPassword = (Button) findViewById(R.id.forgotPass);
+        forgotPassword.setTypeface(robotoMedium);
 
         Button createAccount = (Button) findViewById(R.id.btn_create_account);
         createAccount.setTypeface(robotoMedium);

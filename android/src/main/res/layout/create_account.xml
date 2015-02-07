@@ -19,16 +19,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:id="@+id/text_first_name"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:padding="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="26dp" />
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -44,17 +34,6 @@
             android:layout_marginLeft="16dp"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:id="@+id/text_last_name"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="8dp" />
-
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -69,20 +48,10 @@
             android:layout_marginLeft="16dp"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Biography"
-            android:id="@+id/text_bio"
-            android:textSize="20sp"
-            android:textColor="#202020"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="8dp" />
-
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint=" Enter information about yourself \n (max 400 characters)"
+            android:maxLength="400"
             android:layout_weight="2"
             android:layout_marginTop="10dp"
             android:inputType="text"
@@ -93,17 +62,6 @@
             android:padding="10dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:id="@+id/textEmail"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="8dp" />
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -118,18 +76,6 @@
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:id="@+id/textPassword"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="8dp" />
-
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -157,17 +103,6 @@
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="City"
-            android:id="@+id/textCity"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:layout_marginTop="8dp" />
 
         <AutoCompleteTextView
             android:layout_width="fill_parent"
