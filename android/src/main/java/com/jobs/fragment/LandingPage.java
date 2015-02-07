@@ -100,7 +100,7 @@ public class LandingPage extends Fragment {
             }
 
             protected void onPostExecute(String response) {
-                profilePicture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 3));
+            profilePicture.setImageBitmap(bitmap);
             }
         }.execute();
 

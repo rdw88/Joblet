@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/preview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload a profile picture"
+        android:textSize="22sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_uploadpicture"
+        android:layout_below="@+id/preview"/>
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+
+        android:layout_centerHorizontal="true"
+        android:id="@+id/midanchor" />
+
+    <ImageButton
+        android:background="@drawable/dynamic_button_gallery"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/text_uploadpicture"
+        android:id="@+id/gallery"
+        android:layout_toLeftOf="@+id/midanchor"
+        android:layout_marginRight="20dp" />
+
+    <ImageButton
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:background="@drawable/dynamic_button_camera"
+        android:layout_toRightOf="@+id/gallery"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@+id/gallery"
+        android:id="@+id/camera"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_gallery"
+        android:text="Gallery"
+        android:textColor="@color/secondary_information"
+        android:layout_below="@+id/gallery"
+        android:layout_alignLeft="@+id/gallery"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_camera"
+        android:text="Camera"
+        android:textColor="@color/secondary_information"
+        android:layout_below="@+id/camera"
+        android:layout_alignLeft="@+id/camera"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="1dp" />
+
+    <net.qiujuer.genius.widget.GeniusButton
+        android:id="@+id/submit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        genius:g_textAppearance="light"
+        genius:g_theme="@array/ScubaBlue"
+        genius:g_touchEffect="ripple"
+        genius:g_blockButtonEffectHeight="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp" />
+
+</RelativeLayout>

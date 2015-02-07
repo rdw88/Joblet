@@ -57,7 +57,7 @@
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
-        android:background="#378E43"
+        android:background="@color/Treetop_Primary"
         android:id="@+id/relativeLayout"
         android:layout_marginLeft="65dp">
 
@@ -94,7 +94,7 @@
     <RelativeLayout
         android:layout_width="100dp"
         android:layout_height="48dp"
-        android:background="#3E4DA0"
+        android:background="@color/LuciteGreen_Light"
         android:id="@+id/relativeLayout3"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/relativeLayout">
@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reputation:"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:textSize="10sp"
             android:id="@+id/reputation_text"
             android:layout_alignParentLeft="true"
@@ -120,7 +120,7 @@
             android:textSize="10sp"
             android:textStyle="bold"
             android:id="@+id/distance_text"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true" />
 
@@ -130,7 +130,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/listing_distance"
             android:text="@string/owner_listNumber"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:textSize="10dp"
             android:layout_toRightOf="@+id/distance_text"
             android:layout_alignBottom="@+id/distance_text"
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/owner_reputation"
             android:text="@string/owner_reputation"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:textSize="10sp"
             android:layout_toRightOf="@+id/reputation_text"
             android:layout_marginTop="2dp"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lists:"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:textSize="10sp"
             android:textStyle="bold"
             android:id="@+id/textView"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/owner_listNumber"
             android:text="@string/owner_listNumber"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/secondary_information"
             android:textSize="10sp"
             android:layout_toRightOf="@+id/textView"
             android:layout_alignBottom="@+id/textView"
