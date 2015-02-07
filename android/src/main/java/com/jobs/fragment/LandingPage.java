@@ -2,8 +2,10 @@ package com.jobs.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.ContextThemeWrapper;
@@ -16,18 +18,19 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.activity.EditProfile;
 import com.jobs.activity.MyListings;
+import com.jobs.backend.Address;
 import com.jobs.backend.ImageHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids, textMyJobs;
     private ImageView profilePicture;
     private Button myListings, editProfile, watchlist, myBids;
     private JSONObject data;
-
-
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +43,11 @@ public class LandingPage extends Fragment {
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
         Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
 
-
+        try {
+            data = new JSONObject(getArguments().getString("data"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         //TextViews
         name = (TextView) view.findViewById(R.id.user_name);
@@ -65,7 +72,7 @@ public class LandingPage extends Fragment {
         //ImageView
 
         profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
-        profilePicture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(BitmapFactory.decodeResource(getResources(), R.drawable.default_picture), 3));
+
 
         //Buttons
         myListings = (Button) view.findViewById(R.id.my_listings);
@@ -78,6 +85,24 @@ public class LandingPage extends Fragment {
 
         watchlist = (Button) view.findViewById(R.id.watchlist);
         watchlist.setTypeface(robotoMedium);
+
+        new AsyncTask<String, Void, String>() {
+            private Bitmap bitmap;
+
+            protected String doInBackground(String... params) {
+                try {
+                    bitmap = Address.fetchPicture(data.getString("profile_picture"));
+                } catch (IOException |JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            protected void onPostExecute(String response) {
+                profilePicture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 3));
+            }
+        }.execute();
 
         //-onClick-
         myListings.setOnClickListener(new View.OnClickListener(){
@@ -97,7 +122,6 @@ public class LandingPage extends Fragment {
         });
 
         try {
-            data = new JSONObject(getArguments().getString("data"));
             name.setText(data.getString("first_name") + " " + data.getString("last_name"));
             location.setText(data.getString("city_code"));
             positiveReputation.setText(data.getString("positive_reputation"));

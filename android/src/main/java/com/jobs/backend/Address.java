@@ -20,7 +20,7 @@ public class Address {
 	public static final String LISTING = "http://ryguy.me/listing/";
     public static final String UPLOAD = "http://ryguy.me/upload/";
     public static final String BID = "http://ryguy.me/bid/";
-    public static final String FILES = "http://helpr.s3-website-us-west-1.amazonaws.com/";
+    public static final String FILES = "http://joblet-static.s3-website-us-west-1.amazonaws.com/";
 
 	public static String urlEncode(Map<String, String> map) {
 		Set<String> keys = map.keySet();
@@ -99,10 +99,10 @@ public class Address {
 
         InputStream is = null;
         int code = conn.getResponseCode();
-        if (code == HttpStatus.SC_BAD_REQUEST)
-            is = conn.getErrorStream();
-        else
+        if (code == HttpStatus.SC_OK)
             is = conn.getInputStream();
+        else
+            is = conn.getErrorStream();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String line;

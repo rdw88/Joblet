@@ -3,6 +3,7 @@ package com.jobs.backend;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -10,6 +11,17 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -163,5 +175,42 @@ public class Profile {
 
             return error;
         }
+    }
+
+    public static int upload(String image, String email, String password) {
+        HttpClient httpclient = new DefaultHttpClient();
+        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+
+        HttpPost httppost = new HttpPost(Address.UPLOAD);
+        File file = new File(image);
+
+        try {
+            MultipartEntity mpEntity = new MultipartEntity();
+            ContentBody b = new FileBody(file);
+            mpEntity.addPart("file", b);
+            mpEntity.addPart("destination", new StringBody("profile"));
+            mpEntity.addPart("email", new StringBody(email));
+            mpEntity.addPart("password", new StringBody(password));
+            httppost.setEntity(mpEntity);
+
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity resEntity = response.getEntity();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resEntity.getContent()));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            if (resEntity != null) {
+                resEntity.consumeContent();
+            }
+
+            httpclient.getConnectionManager().shutdown();
+        } catch (IOException e) {
+            return Error.ERROR_IMAGE_UPLOAD_FAILED;
+        }
+
+        return -1;
     }
 }

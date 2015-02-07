@@ -233,12 +233,12 @@ def upload(args, uploaded_file):
 
 	picture_url = 'listing/images/%s.png' % name
 	thumbnail_url = 'listing/thumbnails/%s.thumbnail' % name
-	conn = S3Connection('AKIAJZTMLPRDUJK6K45A', 'JfKclDtSGZC29w803XnsGq82qRcRKWI+g6TDqmLJ')
-	bucket = conn.get_bucket('helpr')
+	conn = S3Connection('AKIAI6YGVM3N7FTGKQUA', 'C0wQZ8ov8eeyUVQFOPwcjpJHv7GKyXscJ0QrGF9V')
+	bucket = conn.get_bucket('joblet-static')
+	
 	k = Key(bucket)
 	k.key = picture_url
 	k.set_contents_from_filename(file_name)
-
 	thumbnail_file = os.path.join(BASE_DIR, 'static/jobs/%s.thumbnail' % name)
 
 	size = 128, 128

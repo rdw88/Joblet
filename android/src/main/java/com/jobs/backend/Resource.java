@@ -1,6 +1,9 @@
 package com.jobs.backend;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 
 import com.jobs.R;
 
@@ -22,6 +25,15 @@ public class Resource {
     public static final int[] PAGE_ORDER = {R.string.title_create_listing, R.string.app_name, R.string.title_browse_listings};
 
     private static final int EARTH_RADIUS_MILES = 3961;
+
+    public static String getRealPathFromURI(Context context, Uri contentUri) {
+        String [] proj={MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+
+        return cursor.getString(column_index);
+    }
 
     public static void initLocations(Context context) {
         InputStream is = context.getResources().openRawResource(R.raw.locations);

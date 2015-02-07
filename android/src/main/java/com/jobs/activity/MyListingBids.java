@@ -43,8 +43,6 @@ public class MyListingBids extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_listing_bids);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void onStart() {

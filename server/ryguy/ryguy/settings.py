@@ -60,10 +60,15 @@ WSGI_APPLICATION = 'ryguy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/usr/local/apache2/htdocs/django/ryguy/jobs.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'jobs',
+        'USER': 'rwise',
+        'PASSWORD': 'asdf79269473',
+        'HOST': 'localhost' 
     }
 }
+
+DATABASE_ROUTERS = ['ryguy.routes.JobletRoute']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -82,7 +87,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/files/'
 
 STATICFILES_DIRS = (
 	'/usr/local/apache2/htdocs/django/ryguy/static',

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,12 +46,14 @@ public class CreateAccount extends Activity {
     private EditText firstName, lastName, email, password, passwordRetry;
     private AutoCompleteTextView city;
     private Button addTags, create, gallery, camera;
-    private TextView tags, textFirstName, textLastName, textBio, textEmail, textPassword, textCity;
+    private TextView tags, textFirstName, textLastName, textBio;
     private EditText dob, bio;
     private Calendar date;
     private TextView t;
     private Typeface robotoRegular, robotoMedium;
     private ImageView picture;
+
+    private String imagePath;
 
     private final ArrayList<String> locations = Resource.LOCATIONS;
     private final ArrayList<String> selectedTags = new ArrayList<>();
@@ -83,18 +86,16 @@ public class CreateAccount extends Activity {
         textBio.setTypeface(robotoMedium);
         bio = (EditText) findViewById(R.id.bio);
         bio.setTypeface(robotoRegular);
-        textEmail = (TextView) findViewById(R.id.text_email);
-        textEmail.setTypeface(robotoMedium);
         email = (EditText) findViewById(R.id.email);
         email.setTypeface(robotoRegular);
-        textPassword = (TextView) findViewById(R.id.text_password);
-        textPassword.setTypeface(robotoMedium);
+//        textPassword = (TextView) findViewById(R.id.text_password);
+//        textPassword.setTypeface(robotoMedium);
         password = (EditText) findViewById(R.id.password);
         password.setTypeface(robotoRegular);
         passwordRetry = (EditText) findViewById(R.id.password2);
         passwordRetry.setTypeface(robotoRegular);
-        textCity = (TextView) findViewById(R.id.text_city);
-        textCity.setTypeface(robotoMedium);
+//        textCity = (TextView) findViewById(R.id.text_city);
+//        textCity.setTypeface(robotoMedium);
         city = (AutoCompleteTextView) findViewById(R.id.city);
         city.setTypeface(robotoRegular);
 
@@ -102,6 +103,14 @@ public class CreateAccount extends Activity {
 
         gallery = (Button) findViewById(R.id.button_gallery);
         camera = (Button) findViewById(R.id.button_camera);
+
+        gallery.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 0xab);
+            }
+        });
 
         dob = (EditText) findViewById(R.id.dob);
         date = Calendar.getInstance();
@@ -193,6 +202,20 @@ public class CreateAccount extends Activity {
         });
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 0xab:
+                if (resultCode == Activity.RESULT_OK) {
+                    imagePath = Resource.getRealPathFromURI(CreateAccount.this, data.getData());
+                    picture.setImageBitmap(BitmapFactory.decodeFile(imagePath));
+                }
+
+                break;
+        }
+    }
+
     private class TagSelectorAdapter extends ArrayAdapter<String> {
         private ArrayList<String> items;
 
@@ -255,7 +278,10 @@ public class CreateAccount extends Activity {
 
             protected void onPostExecute(String result) {
                 if (response == -1) {
-                    alertCreateAccountSuccess();
+                    if (imagePath == null)
+                        alertCreateAccountSuccess();
+                    else
+                        uploadProfilePicture();
                 } else if (response == Error.ERROR_EMAIL_IN_USE) {
                     alertEmailInUse();
                 } else if (response == Error.ERROR_SERVER_COMMUNICATION) {
@@ -263,6 +289,37 @@ public class CreateAccount extends Activity {
                 }
             }
         }.execute();
+    }
+
+    private void uploadProfilePicture() {
+        new AsyncTask<String, Void, String>() {
+            private int status;
+
+            protected String doInBackground(String... params) {
+                status = Profile.upload(imagePath, email.getText().toString(), password.getText().toString());
+                return null;
+            }
+
+            protected void onPostExecute(String response) {
+                if (status == -1) {
+                    alertCreateAccountSuccess();
+                } else if (status == Error.ERROR_IMAGE_UPLOAD_FAILED) {
+                    alertImageUploadFailed();
+                }
+            }
+        }.execute();
+    }
+
+    private void alertImageUploadFailed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+        builder.setMessage(R.string.ad_create_account_image_upload_failed);
+        builder.setTitle(R.string.ad_create_account_image_upload_failed_title);
+
+        builder.setPositiveButton(R.string.button_ok, null);
+        //builder.setNegativeButton(R.string.button_cancel, listener);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void alertPasswordMismatch() {

@@ -5,18 +5,20 @@ class Profile(models.Model):
 	last_name = models.CharField(max_length=32)
 	dob = models.DateField()
 	tags = models.TextField() # Stored as a JSON object
-	city_code = models.CharField(max_length=16)
+	city_code = models.CharField(max_length=256)
 	profile_id = models.CharField(max_length=256)
 	date_created = models.DateField()
 	password = models.CharField(max_length=32)
 	email = models.CharField(max_length=128)
-	owned_listings = models.TextField() # JSON array of listing ids
+	owned_listings = models.TextField(default='[]') # JSON array of listing ids
 	device_id = models.CharField(max_length=256)
+	profile_picture = models.TextField(default='profile/pictures/default_profile_picture.png')
+	profile_picture_thumbnail = models.TextField(default='profile/pictures/default_profile_picture.png')
 
-	positive_reputation = models.IntegerField()
-	negative_reputation = models.IntegerField()
-	jobs_completed = models.IntegerField()
-	listings_completed = models.IntegerField()
+	positive_reputation = models.IntegerField(default=0)
+	negative_reputation = models.IntegerField(default=0)
+	jobs_completed = models.IntegerField(default=0)
+	listings_completed = models.IntegerField(default=0)
 
 	class Meta:
 		verbose_name = 'profile'

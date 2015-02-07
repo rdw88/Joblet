@@ -114,7 +114,7 @@ def upload(request):
 		err_code = None
 		
 		if destination == 'profile':
-			pass
+			result, err_code = mod_profile.upload(data, request.FILES['file'])
 		elif destination == 'listing':
 			result, err_code = listing.upload(data, request.FILES['file'])
 

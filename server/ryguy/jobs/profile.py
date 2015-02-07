@@ -12,6 +12,9 @@ import base64
 import datetime
 import os
 import shutil
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from PIL import Image
 
 '''
 
@@ -44,8 +47,7 @@ def create(args):
 	profile_id = base64.b64encode(encode, '-_')
 
 	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=args['password'], 
-		dob=dob, tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created,
-		positive_reputation=0, negative_reputation=0, jobs_completed=0, listings_completed=0, owned_listings='[]')
+		dob=dob, tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created)
 
 	profile.save()
 	return True, None
@@ -60,13 +62,13 @@ checks to make sure that the password is correct.
 def login(args):
 	email = args['email']
 	password = args['password']
+	profile = None
 
-	profile = Profile.objects.filter(email=email)
-
-	if len(profile) == 0:
+	try:
+		profile = Profile.objects.get(email=email)
+	except Profile.DoesNotExist:
 		return False, ERROR_NO_SUCH_PROFILE
 
-	profile = profile[0]
 	if password != profile.password:
 		return False, ERROR_INCORRECT_PASSWORD
 
@@ -134,7 +136,7 @@ def get(profile_id):
 		return None, ERROR_NO_SUCH_PROFILE
 
 	vals = profile.values('first_name', 'last_name', 'dob', 'email', 'city_code', 'tags', 'date_created', 
-		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings')[0]
+		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings', 'profile_picture')[0]
 	vals['dob'] = vals['dob'].strftime('%m-%d-%Y')
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 
@@ -143,6 +145,63 @@ def get(profile_id):
 		returned[key] = vals[key]
 
 	return returned, None
+
+
+'''
+
+Uploads a user's profile picture.
+
+'''
+def upload(args, uploaded_file):
+	email = args['email']
+	password = args['password']
+	encode = '%s%s' % (email, datetime.datetime.now())
+	name = base64.b64encode(encode, '-_')
+	profile = None
+
+	try:
+		profile = Profile.objects.get(email=email)
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
+
+	if profile.password != password:
+		return False, ERROR_INCORRECT_PASSWORD
+
+	file_name = os.path.join(BASE_DIR, 'static/jobs/%s.png' % name) # Temporary File
+	with open(file_name, 'wb') as dest:
+		for chunk in uploaded_file.chunks():
+			dest.write(chunk)
+			dest.flush()
+
+		dest.close()
+
+	picture_url = 'profile/pictures/%s.png' % name
+	thumbnail_url = 'profile/pictures/thumbnails/%s.png' % name
+	conn = S3Connection('AKIAI6YGVM3N7FTGKQUA', 'C0wQZ8ov8eeyUVQFOPwcjpJHv7GKyXscJ0QrGF9V')
+	bucket = conn.get_bucket('joblet-static')
+	k = Key(bucket)
+	k.key = picture_url
+	k.set_contents_from_filename(file_name)
+
+	thumbnail_file = os.path.join(BASE_DIR, 'static/jobs/%s.thumbnail' % name)
+
+	size = 255, 255
+	im = Image.open(file_name)
+	im.thumbnail(size, Image.ANTIALIAS)
+	im.save(thumbnail_file, 'PNG')
+
+	k = Key(bucket)
+	k.key = thumbnail_url
+	k.set_contents_from_filename(thumbnail_file)
+
+	os.remove(file_name)
+	os.remove(thumbnail_file)
+
+	profile.__dict__['profile_picture'] = picture_url
+	profile.__dict__['profile_picture_thumbnail'] = thumbnail_url
+	profile.save()
+
+	return True, None
 
 
 '''
