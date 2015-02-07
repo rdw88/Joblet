@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:genius="http://schemas.android.com/apk/res-auto"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/landing"
-    android:background="#EEEEEE"
+    android:background="@color/white"
     android:weightSum="1"
     android:label="Joblet"
 
@@ -95,15 +95,12 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="270dp"
+        android:layout_height="fill_parent"
         android:id="@+id/card"
         android:layout_below="@+id/pictureFrame"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:background="@drawable/card">
+        android:background="@color/white">
 
 
         <Space android:layout_width="0dp"
@@ -120,8 +117,8 @@
             android:textColor="@color/primary_information"
             android:id="@+id/lists_label"
             android:paddingLeft="16dp"
-            android:layout_toRightOf="@+id/midanchor"
-            android:layout_alignBottom="@+id/jobs_label" />
+            android:layout_alignBottom="@+id/jobs_label"
+            android:layout_toRightOf="@+id/jobs_completed" />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,8 +137,8 @@
             android:textColor="#DD000000"
             android:id="@+id/jobs_label"
             android:paddingLeft="16dp"
-            android:layout_toLeftOf="@+id/jobs_completed"
-            android:layout_below="@+id/userTags" />
+            android:layout_alignTop="@+id/userTags"
+            android:layout_toRightOf="@+id/midanchor" />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,8 +147,8 @@
             android:textColor="@color/primary_information"
             android:id="@+id/jobs_completed"
             android:layout_marginLeft="3dp"
-            android:layout_toLeftOf="@+id/midanchor"
-            android:layout_alignTop="@+id/jobs_label" />
+            android:layout_alignTop="@+id/jobs_label"
+            android:layout_toRightOf="@+id/jobs_label" />
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -193,7 +190,7 @@
                 android:layout_centerVertical="true" />
 
             <Button
-                android:background="#F8F9F9"
+                android:background="@color/white"
                 android:id="@+id/my_jobs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -284,7 +281,7 @@
             android:layout_below="@+id/relative_jobs">
 
              <Button
-                android:background="#F8F9F9"
+                android:background="@color/white"
                 android:id="@+id/my_bids"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -363,18 +360,17 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="fill_parent"
             android:id="@+id/btm"
-            android:layout_marginTop="16dp"
             android:layout_below="@+id/relative_bids"
             android:paddingRight="8dp"
             android:paddingLeft="8dp">
 
+
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/my_listings"
                 android:layout_width="150dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="MY LISTINGS"
@@ -382,11 +378,12 @@
                 android:textSize="14sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_toLeftOf="@+id/anchor_middle"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="14dp"
                 genius:g_textAppearance="light"
                 genius:g_theme="@array/ScubaBlue"
                 genius:g_touchEffect="ripple"
-                genius:g_blockButtonEffectHeight="2dp"/>
+                genius:g_blockButtonEffectHeight="2dp"
+                android:layout_centerVertical="true" />
 
 
             <Space
@@ -399,7 +396,7 @@
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/watchlist"
                 android:layout_width="150dp"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="WATCHLIST"
@@ -409,7 +406,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/anchor_middle"
                 android:layout_alignTop="@+id/my_listings"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="14dp"
                 genius:g_textAppearance="light"
                 genius:g_theme="@array/ScubaBlue"
                 genius:g_touchEffect="ripple"
@@ -434,13 +431,13 @@
         <Button
             android:background="@drawable/dynamic_button_editprofile"
             android:id="@+id/edit_profile"
-            android:layout_width="56dp"
-            android:layout_height="62dp"
+            android:layout_width="66dp"
+            android:layout_height="72dp"
             android:layout_gravity="center_horizontal"
             android:layout_alignTop="@+id/action_anchor"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="192dp" />
+            android:layout_marginTop="186dp" />
 
         <Space
             android:layout_width="10dp"
@@ -464,12 +461,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="29dp"
-            android:textIsSelectable="false" />
+            android:layout_marginBottom="14dp"
+            android:textIsSelectable="false"
+            android:layout_alignParentBottom="true" />
 
         </RelativeLayout>
 
 
 </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

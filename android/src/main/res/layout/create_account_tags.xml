@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick tags that represent \nyour skills"
+        android:textSize="22sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginTop="175dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_Tag" />
+
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/dynamic_button_tag"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_Tag" />
+
+    <net.qiujuer.genius.widget.GeniusButton
+        android:id="@+id/submit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        genius:g_textAppearance="light"
+        genius:g_theme="@array/ScubaBlue"
+        genius:g_touchEffect="ripple"
+        genius:g_blockButtonEffectHeight="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp" />
+
+</RelativeLayout>
