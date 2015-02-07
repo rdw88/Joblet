@@ -1,7 +1,7 @@
 import requests
 import json
 from models import Listing, Profile, Bid
-from error import ERROR_NO_SUCH_LISTING
+from error import ERROR_NO_SUCH_LISTING, ERROR_NO_SUCH_PROFILE
 from helper import send_push_notification
 
 BID_STATUS_UNDETERMINED = 0
@@ -11,6 +11,9 @@ BID_STATUS_DECLINED = 2
 PUSH_NOTIFICATION_NEW_BID = 0
 PUSH_NOTIFICATION_BID_RESPONSE = 1
 PUSH_NOTIFICATION_BID_FINALIZED = 2
+
+NUM_RECENT_BIDS = 2
+NUM_RECENT_JOBS = 2
 
 '''
 
@@ -33,8 +36,17 @@ def make_bid(args):
 	bids = Bid.objects.filter(listing_id=listing_id)
 	bid_id = str(listing_id) + str(len(bids))
 
-	bid = Bid(listing_id=listing_id, bid_id=bid_id, bidder_email=bidder_email, amount=bid_amount, bidder_device=bidder_profile.device_id, status=0)
+	bid = Bid(listing_id=listing_id, bid_id=bid_id, bidder_email=bidder_email, amount=bid_amount, status=0)
 	bid.save()
+
+	recent_bids = json.loads(str(bidder_profile.recent_bids))
+
+	if len(recent_bids) == NUM_RECENT_BIDS:
+		del recent_bids[0]
+
+	recent_bids.append(listing_id)
+	bidder_profile.__dict__['recent_bids'] = json.dumps(recent_bids)
+	bidder_profile.save()
 
 	listing = listing[0]
 	listing_bids = json.loads(listing.bids)
@@ -55,6 +67,21 @@ def accept(args):
 	bid = Bid.objects.get(bid_id=args['bid_id'])
 	bid.__dict__['status'] = 1
 	bid.save()
+	bidder_profile = None
+
+	try:
+		bidder_profile = Profile.objects.get(email=bid.bidder_email)
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
+
+	recent_jobs = json.loads(bidder_profile.recent_jobs)
+
+	if len(recent_jobs) == NUM_RECENT_JOBS:
+		del recent_jobs[0]
+
+	recent_jobs.append(bid.listing_id)
+	bidder_profile.__dict__['recent_jobs'] = json.dumps(recent_jobs)
+	bidder_profile.save()
 
 	listing = Listing.objects.get(listing_id=bid.listing_id)
 	listing.__dict__['current_bid'] = bid.amount
@@ -62,7 +89,7 @@ def accept(args):
 	listing.save()
 
 	data = {'type' : PUSH_NOTIFICATION_BID_RESPONSE, 'listing_id' : bid.listing_id, 'status' : BID_STATUS_ACCEPTED, 'amount' : bid.amount}
-	send_push_notification(bid.bidder_device, data)
+	send_push_notification(bidder_profile.device_id, data)
 
 	return True, None
 
@@ -71,9 +98,15 @@ def decline(args):
 	bid = Bid.objects.get(bid_id=args['bid_id'])
 	bid.__dict__['status'] = 2
 	bid.save()
+	bidder_profile = None
+
+	try:
+		bidder_profile = Profile.objects.get(email=bid.bidder_email)
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
 
 	data = {'type' : PUSH_NOTIFICATION_BID_RESPONSE, 'listing_id' : bid.listing_id, 'status' : BID_STATUS_DECLINED, 'amount' : bid.amount}
-	send_push_notification(bid.bidder_device, data)
+	send_push_notification(bidder_profile.device_id, data)
 
 	return True, None
 

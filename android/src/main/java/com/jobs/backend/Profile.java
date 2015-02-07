@@ -30,16 +30,17 @@ public class Profile {
 	/*
 	 * Returns -1 if created successfully, and and error code otherwise.
 	 */
-	public static JSONObject createProfile(String firstName, String lastName, String email, String dob, String tags, String cityCode, String password) {
+	public static JSONObject createProfile(String firstName, String lastName, String email, String age, String tags, String cityCode, String password, String bio) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("request", "create");
 		map.put("first_name", firstName);
 		map.put("last_name", lastName);
 		map.put("password", password);
-		map.put("dob", dob);
+		map.put("age", age);
 		map.put("tags", tags);
 		map.put("city_code", cityCode);
         map.put("email", email);
+        map.put("bio", bio);
 
 		try {
 			return Address.post(map, Address.PROFILE);

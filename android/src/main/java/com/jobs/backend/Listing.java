@@ -39,7 +39,7 @@ public class Listing {
 
     public static JSONObject create(String title, String startingAmount, String minReputation, String activeTime,
                                     String address, String city, String state, double latitude, double longitude,
-                                    String profileID, String tag, String password) {
+                                    String profileID, String tag, String password, String description) {
 
         Map<String, String> map = new HashMap<>();
         map.put("request", "create");
@@ -55,6 +55,7 @@ public class Listing {
         map.put("state", state);
         map.put("latitude", Double.toString(latitude));
         map.put("longitude", Double.toString(longitude));
+        map.put("job_description", description);
 
         try {
             return Address.post(map, Address.LISTING);

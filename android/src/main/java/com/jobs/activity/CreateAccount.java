@@ -43,11 +43,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateAccount extends Activity {
-    private EditText firstName, lastName, email, password, passwordRetry;
+    private EditText firstName, lastName, email, password, passwordRetry, age;
     private AutoCompleteTextView city;
     private Button addTags, create, gallery, camera;
     private TextView tags;
-    private EditText dob, bio;
+    private EditText bio;
     private Calendar date;
     private TextView t;
     private Typeface robotoRegular, robotoMedium;
@@ -102,7 +102,7 @@ public class CreateAccount extends Activity {
             }
         });
 
-        dob = (EditText) findViewById(R.id.dob);
+        age = (EditText) findViewById(R.id.dob);
         date = Calendar.getInstance();
 
 
@@ -116,22 +116,6 @@ public class CreateAccount extends Activity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, locations);
         city.setAdapter(adapter);
-
-        final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                date.set(Calendar.YEAR, year);
-                date.set(Calendar.MONTH, monthOfYear);
-                date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                dob.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
-                dob.setTypeface(robotoRegular);
-            }
-        };
-
-        dob.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                new DatePickerDialog(CreateAccount.this, dateListener, date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
         addTags.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -245,8 +229,9 @@ public class CreateAccount extends Activity {
         final String ln = lastName.getText().toString();
         final String em = email.getText().toString();
         final String pw = password.getText().toString();
-        final String db = dob.getText().toString();
+        final String age = this.age.getText().toString();
         final String sk = tags.getText().toString().replaceAll(" ", "");
+        final String b = bio.getText().toString();
 
         String c = city.getText().toString();
         if (c.substring(c.length() - 1, c.length()).equals("\n") || c.substring(c.length() - 1, c.length()).equals("\r")) {
@@ -259,7 +244,7 @@ public class CreateAccount extends Activity {
 
             protected String doInBackground(String... urls) {
                 try {
-                    response = Profile.createProfile(fn, ln, em, db, sk, finalCity, pw).getInt("error");
+                    response = Profile.createProfile(fn, ln, em, age, sk, finalCity, pw, b).getInt("error");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

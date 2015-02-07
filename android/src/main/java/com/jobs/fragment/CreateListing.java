@@ -49,7 +49,7 @@ import java.util.List;
 
 public class CreateListing extends Fragment {
     private String userData;
-    private EditText jobTitle, startingAmount, minRep, city, address, state, activeTime;
+    private EditText jobTitle, startingAmount, minRep, city, address, state, activeTime, jobDescription;
     private TextView tag;
     private Button uploadPicture, create;
 
@@ -75,6 +75,7 @@ public class CreateListing extends Fragment {
         create.setTypeface(robotoMedium);
         Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_gallery);
+        jobDescription = (EditText) getActivity().findViewById(R.id.listing_description);
 
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -196,6 +197,7 @@ public class CreateListing extends Fragment {
                 String at = "48"; // TODO: NEED TO IMPLEMENT
                 String t = tagSelected;
                 String profileID = null;
+                String description = jobDescription.getText().toString();
 
                 try {
                     JSONObject obj = new JSONObject(userData);
@@ -204,7 +206,7 @@ public class CreateListing extends Fragment {
                     e.printStackTrace();
                 }
 
-                JSONObject obj = Listing.create(title, sa, mr, at, addrStr, cityStr, stateStr, latitude, longitude, profileID, t, password);
+                JSONObject obj = Listing.create(title, sa, mr, at, addrStr, cityStr, stateStr, latitude, longitude, profileID, t, password, description);
 
                 try {
                     response = obj.getInt("error");
@@ -225,10 +227,12 @@ public class CreateListing extends Fragment {
                     else
                         alertCreateListingSuccess(listingID);
                 } else if (response == Error.ERROR_SERVER_COMMUNICATION) {
+                    creatingProgress.dismiss();
                     alertErrorServer();
                 } else if (response == Error.ERROR_INCORRECT_PASSWORD) {
+                    creatingProgress.dismiss();
                     alertIncorrectPassword();
-                } else if (response == -2) {
+                } else if (response == Error.ERROR_LOCATION_NOT_FOUND) {
                     creatingProgress.dismiss();
                     alertLocationNotFound();
                 }

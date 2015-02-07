@@ -29,7 +29,6 @@
         android:id="@+id/listItem_text_tags"
         android:layout_alignParentBottom="false"
         android:layout_marginLeft="0dp"
-        android:text="tag"
         android:layout_alignParentLeft="false"
         android:layout_alignParentRight="false"
         android:layout_marginRight="5dp"

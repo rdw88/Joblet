@@ -29,7 +29,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ViewListing extends Activity {
-    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag, textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag;
+    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag,
+            textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription;
     private Button makeBid, addToWatchlist;
     private ImageView picture;
     private Typeface robotoRegular, robotoBlack, robotoMedium;
@@ -79,6 +80,7 @@ public class ViewListing extends Activity {
         picture = (ImageView) findViewById(R.id.picture_swiper);
         addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
         addToWatchlist.setTypeface(robotoMedium);
+        textDescription = (TextView) findViewById(R.id.listing_description);
 
         makeBid.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -141,6 +143,7 @@ public class ViewListing extends Activity {
             ownerName.setText(data.getString("owner_name"));
             timeCreated.setText(data.getString("time_created"));
             tag.setText(data.getString("tag"));
+            textDescription.setText(data.getString("job_description"));
             picture.setImageBitmap(bitmap);
         } catch (JSONException e) {
             e.printStackTrace();

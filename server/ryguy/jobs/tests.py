@@ -9,7 +9,7 @@ class ProfileTests(TestCase):
 	def __init__(self, arg):
 		super(ProfileTests, self).__init__(arg)
 		self.data = {'email':'ryan@gmail.com', 'first_name':'Ryan', 'last_name':'Wise', 'password':'password', 
-		'dob':'1-8-1994', 'tags':'Programming', 'city_code':'San Francisco, CA', 'profile_id':'349384', 
+		'age':'21', 'tags':'Programming', 'city_code':'San Francisco, CA', 'profile_id':'349384', 
 		'date_created': '1-18-2015', 'request':'create'}
 
 	def test_profile_creation(self):

@@ -18,19 +18,29 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.activity.EditProfile;
 import com.jobs.activity.MyListings;
+import com.jobs.activity.ViewListing;
 import com.jobs.backend.Address;
 import com.jobs.backend.ImageHelper;
+import com.jobs.backend.Listing;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids, textMyJobs;
     private ImageView profilePicture;
     private Button myListings, editProfile, watchlist, myBids;
     private JSONObject data;
+
+    private final Recent[] recentJobs = new Recent[2];
+    private final Recent[] recentBids = new Recent[2];
+    private final ImageView[] recentJobImages = new ImageView[2];
+    private final ImageView[] recentBidImages = new ImageView[2];
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +79,11 @@ public class LandingPage extends Fragment {
         textMyJobs = (TextView) view.findViewById(R.id.text_myjobs);
         textMyJobs.setTypeface(robotoMedium);
 
+        recentBidImages[0] = (ImageView) view.findViewById(R.id.mybids_recent1);
+        recentBidImages[1] = (ImageView) view.findViewById(R.id.mybids_recent2);
+        recentJobImages[0] = (ImageView) view.findViewById(R.id.myjobs_recent1);
+        recentJobImages[1] = (ImageView) view.findViewById(R.id.myjobs_recent2);
+
         //ImageView
 
         profilePicture = (ImageView) view.findViewById(R.id.profile_picture);
@@ -87,11 +102,18 @@ public class LandingPage extends Fragment {
         watchlist.setTypeface(robotoMedium);
 
         new AsyncTask<String, Void, String>() {
-            private Bitmap bitmap;
+            private Bitmap profileBitmap;
 
             protected String doInBackground(String... params) {
                 try {
-                    bitmap = Address.fetchPicture(data.getString("profile_picture"));
+                    profileBitmap = Address.fetchPicture(data.getString("profile_picture"));
+                    JSONArray rj = new JSONArray(data.getString("recent_jobs"));
+                    JSONArray rb = new JSONArray(data.getString("recent_bids"));
+
+                    for (int i = 0; i < rj.length(); i++) { // rj and rb should always be the same length
+                        recentBids[i] = new Recent(rb.getString(i));
+                        recentJobs[i] = new Recent(rj.getString(i));
+                    }
                 } catch (IOException |JSONException e) {
                     e.printStackTrace();
                 }
@@ -100,7 +122,33 @@ public class LandingPage extends Fragment {
             }
 
             protected void onPostExecute(String response) {
-                profilePicture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 3));
+                profilePicture.setImageBitmap(profileBitmap);
+
+                for (int i = 0; i < recentBidImages.length; i++) {
+                    final int index = i;
+
+                    if (recentBids[i] != null) {
+                        recentBidImages[i].setImageBitmap(recentBids[i].icon);
+                        recentBidImages[i].setOnClickListener(new View.OnClickListener(){
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), ViewListing.class);
+                                intent.putExtra("listing_id", recentBids[index].listingID);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
+                    if (recentJobs[i] != null) {
+                        recentJobImages[i].setImageBitmap(recentJobs[i].icon);
+                        recentJobImages[i].setOnClickListener(new View.OnClickListener(){
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), ViewListing.class);
+                                intent.putExtra("listing_id", recentJobs[index].listingID);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                }
             }
         }.execute();
 
@@ -134,5 +182,16 @@ public class LandingPage extends Fragment {
         }
 
         return view;
+    }
+
+    private class Recent {
+        public Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.recent_job_placeholder);
+        public String listingID;
+
+        public Recent(String listingID) throws IOException, JSONException {
+            String url = new JSONArray(Listing.get(listingID).getString("job_picture")).getString(0);
+            this.icon = ImageHelper.getCircularBitmapWithWhiteBorder(Address.fetchPicture(url), 3);
+            this.listingID = listingID;
+        }
     }
 }

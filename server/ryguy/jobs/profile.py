@@ -38,16 +38,13 @@ def create(args):
 	if len(p) > 0:
 		return False, ERROR_EMAIL_IN_USE
 
-	birth = args['dob'].split('-')
-	dob = datetime.date(int(birth[2]), int(birth[0]), int(birth[1]))
-
 	date_time = datetime.datetime.now()
 	encode = '%s%s%s' % (email, args['city_code'], date_time)
 	date_created = '%s-%s-%s' % (date_time.year, date_time.month, date_time.day)
 	profile_id = base64.b64encode(encode, '-_')
 
 	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=args['password'], 
-		dob=dob, tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created)
+		age=args['age'], tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
 
 	profile.save()
 	return True, None
@@ -135,9 +132,9 @@ def get(profile_id):
 	if not profile:
 		return None, ERROR_NO_SUCH_PROFILE
 
-	vals = profile.values('first_name', 'last_name', 'dob', 'email', 'city_code', 'tags', 'date_created', 
-		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings', 'profile_picture')[0]
-	vals['dob'] = vals['dob'].strftime('%m-%d-%Y')
+	vals = profile.values('first_name', 'last_name', 'age', 'email', 'city_code', 'tags', 'date_created', 
+		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings', 'profile_picture',
+		'recent_bids', 'recent_jobs', 'bio')[0]
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 
 	returned = dict()

@@ -3,8 +3,9 @@ from django.db import models
 class Profile(models.Model):
 	first_name = models.CharField(max_length=32)
 	last_name = models.CharField(max_length=32)
-	dob = models.DateField()
+	age = models.IntegerField(default=0)
 	tags = models.TextField() # Stored as a JSON object
+	bio = models.TextField(default='')
 	city_code = models.CharField(max_length=256)
 	profile_id = models.CharField(max_length=256)
 	date_created = models.DateField()
@@ -19,6 +20,8 @@ class Profile(models.Model):
 	negative_reputation = models.IntegerField(default=0)
 	jobs_completed = models.IntegerField(default=0)
 	listings_completed = models.IntegerField(default=0)
+	recent_jobs = models.TextField(default='[]') # Two most recent jobs currently
+	recent_bids = models.TextField(default='[]') # Two most recent bids currently
 
 	class Meta:
 		verbose_name = 'profile'
@@ -61,7 +64,6 @@ class Bid(models.Model):
 	listing_id = models.CharField(max_length=256)
 	amount = models.FloatField()
 	bidder_email = models.CharField(max_length=128)
-	bidder_device = models.CharField(max_length=256)
 	status = models.IntegerField()   # 0 for in progress, 1 for accepted, 2 for declined
 
 	class Meta:
