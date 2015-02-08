@@ -2,6 +2,8 @@ package com.jobs.backend;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.RectF;
 
 import org.apache.http.HttpStatus;
 import org.json.JSONException;
@@ -44,14 +46,35 @@ public class Address {
 
     public static Bitmap fetchPicture(String address) throws IOException {
         URL url = new URL(Address.FILES + address);
+        return fetchPicture(url);
+    }
+
+    public static Bitmap fetchPicture(String address, int dstWidth, int dstHeight) throws IOException {
+        URL url = new URL(Address.FILES + address);
+
+        Bitmap fetched = fetchPicture(url);
+
+        Matrix m = new Matrix();
+        RectF inRect = new RectF(0, 0, fetched.getWidth(), fetched.getHeight());
+        RectF outRect = new RectF(0, 0, dstWidth, dstHeight);
+        m.setRectToRect(inRect, outRect, Matrix.ScaleToFit.CENTER);
+        float[] vals = new float[9];
+        m.getValues(vals);
+
+        return Bitmap.createScaledBitmap(fetched, (int) (fetched.getWidth() * vals[0]), (int) (fetched.getHeight() * vals[4]), true);
+    }
+
+    private static Bitmap fetchPicture(URL url) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 
         DataInputStream is = new DataInputStream(conn.getInputStream());
-        Bitmap bitmap = BitmapFactory.decodeStream(is);
+        Bitmap fetched = BitmapFactory.decodeStream(is);
+
         is.close();
         conn.disconnect();
-        return bitmap;
+
+        return fetched;
     }
 
     /*

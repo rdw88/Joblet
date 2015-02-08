@@ -3,6 +3,8 @@ package com.jobs.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.os.Parcelable;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,252 +41,82 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
-public class CreateAccount extends Activity {
-    private EditText firstName, lastName, email, password, passwordRetry, age;
-    private AutoCompleteTextView city;
-    private Button addTags, create, gallery, camera;
-    private TextView tags;
-    private EditText bio;
-    private Calendar date;
-    private TextView t;
+public class CreateAccount extends FragmentActivity {
+    private static final int NUM_PAGES = 1;
     private Typeface robotoRegular, robotoMedium;
-    private ImageView picture;
-
-    private String imagePath;
-
-    private final ArrayList<String> locations = Resource.LOCATIONS;
-    private final ArrayList<String> selectedTags = new ArrayList<>();
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.create_account);
 
-        t = (TextView) findViewById(R.id.text_accountDetails_createAccount);
-        t.setTypeface(robotoRegular);
-        t = (TextView) findViewById(R.id.tags);
-        t.setTypeface(robotoRegular);
+        HashMap<String, String> map = new HashMap<>();
+        Bundle b = new Bundle();
+        b.putSerializable("account", map);
+        EmailFragment email = new EmailFragment();
+        email.setArguments(b);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment, email).commit();
     }
 
-    protected void onStart() {
-        super.onStart();
-        firstName = (EditText) findViewById(R.id.first_name);
-        firstName.setTypeface(robotoRegular);
-        lastName = (EditText) findViewById(R.id.last_name);
-        lastName.setTypeface(robotoRegular);
-        bio = (EditText) findViewById(R.id.bio);
-        bio.setTypeface(robotoRegular);
-        email = (EditText) findViewById(R.id.email);
-        email.setTypeface(robotoRegular);
-        password = (EditText) findViewById(R.id.password);
-        password.setTypeface(robotoRegular);
-        passwordRetry = (EditText) findViewById(R.id.password2);
-        passwordRetry.setTypeface(robotoRegular);
-        city = (AutoCompleteTextView) findViewById(R.id.city);
-        city.setTypeface(robotoRegular);
+    @SuppressWarnings("unchecked")
+    public static class EmailFragment extends Fragment {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final View v = inflater.inflate(R.layout.create_account_email, container, false);
+            Button next = (Button) v.findViewById(R.id.next);
+            Button previous = (Button) v.findViewById(R.id.previous);
+            final EditText email = (EditText) v.findViewById(R.id.email);
 
-        picture = (ImageView) findViewById(R.id.profile_picture);
-
-        gallery = (Button) findViewById(R.id.button_gallery);
-        camera = (Button) findViewById(R.id.button_camera);
-
-        gallery.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 0xab);
-            }
-        });
-
-        age = (EditText) findViewById(R.id.dob);
-        date = Calendar.getInstance();
-
-
-        tags = (TextView) findViewById(R.id.tags);
-        tags.setTypeface(robotoRegular);
-
-        addTags = (Button) findViewById(R.id.add_tags);
-        addTags.setTypeface(robotoRegular);
-        create = (Button) findViewById(R.id.button_create);
-        create.setTypeface(robotoMedium);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, locations);
-        city.setAdapter(adapter);
-
-        addTags.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                final View view = getLayoutInflater().inflate(R.layout.tag_selector, null);
-                ListView listView = (ListView) view.findViewById(R.id.tag_list);
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
-                        box.setChecked(!box.isChecked());
-
-                        if (box.isChecked())
-                            selectedTags.add(Resource.TAGS.get(position));
-                        else
-                            selectedTags.remove(Resource.TAGS.get(position));
-                    }
-                });
-
-                TagSelectorAdapter adapter = new TagSelectorAdapter(CreateAccount.this, Resource.TAGS);
-                listView.setAdapter(adapter);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
-
-                builder.setPositiveButton(R.string.done, new AlertDialog.OnClickListener(){
-                    public void onClick(DialogInterface di, int k){
-                        if (selectedTags.size() == 0)
-                            return;
-
-                        String str = "";
-
-                        for (int i = 0; i < selectedTags.size() - 1; i++) {
-                            str += selectedTags.get(i) + ", ";
-                        }
-
-                        str += selectedTags.get(selectedTags.size() - 1);
-                        tags.setText(str);
-                    }
-                });
-
-                builder.setTitle(R.string.ad_filter_title);
-                builder.setView(view);
-                builder.show();
-            }
-        });
-
-        create.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String pw = password.getText().toString();
-                String retry = passwordRetry.getText().toString();
-                if (tags.getText().toString().equals("")){
-                    alertNeedsTags();
-                } else if (!pw.equals(retry)) {
-                    alertPasswordMismatch();
-                } else {
-                    createAccount();
-                }
-            }
-        });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case 0xab:
-                if (resultCode == Activity.RESULT_OK) {
-                    imagePath = Resource.getRealPathFromURI(CreateAccount.this, data.getData());
-                    picture.setImageBitmap(BitmapFactory.decodeFile(imagePath));
-                }
-
-                break;
-        }
-    }
-
-    private class TagSelectorAdapter extends ArrayAdapter<String> {
-        private ArrayList<String> items;
-
-        public TagSelectorAdapter(Context context, ArrayList<String> items) {
-            super(context, R.layout.tag_list_item, items);
-            this.items = items;
-        }
-
-        public View getView(final int position, View currentView, ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.tag_list_item, parent, false);
-
-            TextView tag = (TextView) row.findViewById(R.id.tag_name);
-            tag.setText(items.get(position));
-
-            final CheckBox box = (CheckBox) row.findViewById(R.id.tag_checkbox);
-            if (selectedTags.contains(items.get(position))) {
-                box.setChecked(true);
-            }
-
-            box.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v) {
-                    if (box.isChecked()) {
-                        selectedTags.add(items.get(position));
-                    } else {
-                        selectedTags.remove(items.get(position));
-                    }
+            next.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view) {
+                    NameFragment name = new NameFragment();
+                    HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
+                    map.put("email", email.getText().toString());
+                    Bundle b = new Bundle();
+                    b.putSerializable("account", map);
+                    name.setArguments(b);
+                    FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment, name).commit();
                 }
             });
 
-            return row;
+            return v;
         }
     }
 
-    private void createAccount() {
-        final String fn = firstName.getText().toString();
-        final String ln = lastName.getText().toString();
-        final String em = email.getText().toString();
-        final String pw = password.getText().toString();
-        final String age = this.age.getText().toString();
-        final String sk = tags.getText().toString().replaceAll(" ", "");
-        final String b = bio.getText().toString();
+    @SuppressWarnings("unchecked")
+    public static class NameFragment extends Fragment {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View v = inflater.inflate(R.layout.create_account_name, container, false);
+            Button next = (Button) v.findViewById(R.id.next);
+            Button previous = (Button) v.findViewById(R.id.previous);
+            final EditText firstName = (EditText) v.findViewById(R.id.first_name);
+            final EditText lastName = (EditText) v.findViewById(R.id.last_name);
 
-        String c = city.getText().toString();
-        if (c.substring(c.length() - 1, c.length()).equals("\n") || c.substring(c.length() - 1, c.length()).equals("\r")) {
-            c = c.substring(0, c.length() - 2);
+            previous.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View view) {
+                    EmailFragment email = new EmailFragment();
+                    HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
+                    map.put("first_name", firstName.getText().toString());
+                    map.put("last_name", lastName.getText().toString());
+                    Bundle b = new Bundle();
+                    b.putSerializable("account", map);
+                    email.setArguments(b);
+                    FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment, email).commit();
+                }
+            });
+
+            return v;
         }
-        final String finalCity = c;
-
-        new AsyncTask<String, Void, String>() {
-            private int response;
-
-            protected String doInBackground(String... urls) {
-                try {
-                    response = Profile.createProfile(fn, ln, em, age, sk, finalCity, pw, b).getInt("error");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(String result) {
-                if (response == -1) {
-                    if (imagePath == null)
-                        alertCreateAccountSuccess();
-                    else
-                        uploadProfilePicture();
-                } else if (response == Error.ERROR_EMAIL_IN_USE) {
-                    alertEmailInUse();
-                } else if (response == Error.ERROR_SERVER_COMMUNICATION) {
-                    alertErrorServer();
-                }
-            }
-        }.execute();
-    }
-
-    private void uploadProfilePicture() {
-        new AsyncTask<String, Void, String>() {
-            private int status;
-
-            protected String doInBackground(String... params) {
-                status = Profile.upload(imagePath, email.getText().toString(), password.getText().toString());
-                return null;
-            }
-
-            protected void onPostExecute(String response) {
-                if (status == -1) {
-                    alertCreateAccountSuccess();
-                } else if (status == Error.ERROR_IMAGE_UPLOAD_FAILED) {
-                    alertImageUploadFailed();
-                }
-            }
-        }.execute();
     }
 
     private void alertImageUploadFailed() {
@@ -304,9 +138,9 @@ public class CreateAccount extends Activity {
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {
-                password.setText("");
-                passwordRetry.setText("");
-                password.setHighlightColor(0xffff0000);
+              //  password.setText("");
+               // passwordRetry.setText("");
+               // password.setHighlightColor(0xffff0000);
             }
         };
 
@@ -342,9 +176,9 @@ public class CreateAccount extends Activity {
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {
-                password.setText("");
-                passwordRetry.setText("");
-                email.setText("");
+                //password.setText("");
+                //passwordRetry.setText("");
+                //email.setText("");
             }
         };
 

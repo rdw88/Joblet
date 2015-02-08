@@ -106,7 +106,7 @@ public class LandingPage extends Fragment {
 
             protected String doInBackground(String... params) {
                 try {
-                    profileBitmap = Address.fetchPicture(data.getString("profile_picture"));
+                    profileBitmap = Address.fetchPicture(data.getString("profile_picture"), 600, 400);
                     JSONArray rj = new JSONArray(data.getString("recent_jobs"));
                     JSONArray rb = new JSONArray(data.getString("recent_bids"));
 
@@ -189,7 +189,7 @@ public class LandingPage extends Fragment {
         public String listingID;
 
         public Recent(String listingID) throws IOException, JSONException {
-            String url = new JSONArray(Listing.get(listingID).getString("job_picture")).getString(0);
+            String url = Listing.get(listingID).getString("thumbnail");
             this.icon = ImageHelper.getCircularBitmapWithWhiteBorder(Address.fetchPicture(url), 3);
             this.listingID = listingID;
         }

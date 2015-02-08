@@ -7,8 +7,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -173,7 +175,8 @@ public class ViewListing extends Activity {
             }
 
             protected void onPostExecute(String result) {
-                picture.setImageBitmap(ImageHelper.getCircularBitmapWithWhiteBorder(bitmap, 1));
+                picture.setImageBitmap(bitmap);
+
                 if (response.has("error")){
                     alertNoSuchListing();
                     return;
