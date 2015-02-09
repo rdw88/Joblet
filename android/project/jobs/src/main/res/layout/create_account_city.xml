@@ -8,33 +8,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How old are you?"
+        android:text="Enter the closest city to your \nlocation"
         android:textSize="22sp"
         android:textColor="@color/primary_information"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/text_birthdate" />
+        android:id="@+id/text_city" />
 
     <net.qiujuer.genius.widget.GeniusEditText
-        android:id="@+id/age"
+        android:id="@+id/city"
         android:layout_width="200dp"
         android:layout_height="45dp"
-        android:layout_below="@id/text_birthdate"
+        android:layout_below="@+id/text_city"
         android:layout_centerHorizontal="true"
-        android:hint="Age"
+        android:hint="City"
         android:background="@color/LuciteGreen_Primary"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:inputType="number"
+        android:paddingLeft="12dp"
         android:layout_marginTop="22dp"
         />
-
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/age"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/city"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true">
 
         <net.qiujuer.genius.widget.GeniusButton
@@ -69,7 +68,7 @@
             android:layout_toRightOf="@id/previous"
             android:layout_toEndOf="@id/previous"
             />
-    </RelativeLayout>
 
+    </RelativeLayout>
 
 </RelativeLayout>

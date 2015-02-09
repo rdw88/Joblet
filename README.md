@@ -1,4 +1,4 @@
-Jobs
+Joblet
 ===
 
-Mobile/Cloud application for getting the job you need done, done.
+A mobile application that connects people with others around their area for getting jobs done.
