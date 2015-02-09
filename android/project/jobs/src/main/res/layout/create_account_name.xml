@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your name"
+        android:textSize="22sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_enteryourname" />
+
+
+    <net.qiujuer.genius.widget.GeniusEditText
+        android:id="@+id/first_name"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/text_enteryourname"
+        android:layout_centerHorizontal="true"
+        android:hint="First Name"
+        android:background="@color/LuciteGreen_Primary"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:paddingLeft="12dp"
+        android:layout_marginTop="22dp"
+        />
+
+
+    <net.qiujuer.genius.widget.GeniusEditText
+        android:id="@+id/last_name"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/first_name"
+        android:layout_centerHorizontal="true"
+        android:hint="Last Name"
+        android:background="@color/LuciteGreen_Primary"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:paddingLeft="12dp"
+        android:layout_marginTop="12dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_name"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true">
+
+        <net.qiujuer.genius.widget.GeniusButton
+            android:id="@+id/previous"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Back"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            genius:g_textAppearance="light"
+            genius:g_theme="@array/ScubaBlue"
+            genius:g_touchEffect="ripple"
+            genius:g_cornerRadii_A="10dp"
+            genius:g_cornerRadii_D="10dp"
+            genius:g_blockButtonEffectHeight="2dp"
+            />
+
+        <net.qiujuer.genius.widget.GeniusButton
+            android:id="@+id/next"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginLeft="30dp"
+            genius:g_textAppearance="light"
+            genius:g_theme="@array/ScubaBlue"
+            genius:g_touchEffect="ripple"
+            genius:g_cornerRadii_B="10dp"
+            genius:g_cornerRadii_C="10dp"
+            genius:g_blockButtonEffectHeight="2dp"
+            android:layout_toRightOf="@id/previous"
+            android:layout_toEndOf="@id/previous"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

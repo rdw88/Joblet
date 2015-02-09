@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write a short description of you \nand your skills (Max 400 chars)"
+        android:textSize="22sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text_bio" />
+
+    <net.qiujuer.genius.widget.GeniusEditText
+        android:id="@+id/bio"
+        android:layout_width="fill_parent"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_bio"
+        android:layout_centerHorizontal="true"
+        android:hint="Bio"
+        android:background="@color/LuciteGreen_Primary"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="22dp"
+        android:maxLength="400"
+        android:lines="6"
+        android:minLines="4"
+        android:maxLines="6"
+        android:inputType="textMultiLine|textCapSentences"
+        android:scrollbars="vertical"
+        android:gravity="top|left"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bio"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true">
+
+        <net.qiujuer.genius.widget.GeniusButton
+            android:id="@+id/previous"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Back"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            genius:g_textAppearance="light"
+            genius:g_theme="@array/ScubaBlue"
+            genius:g_touchEffect="ripple"
+            genius:g_cornerRadii_A="10dp"
+            genius:g_cornerRadii_D="10dp"
+            genius:g_blockButtonEffectHeight="2dp"
+            />
+
+        <net.qiujuer.genius.widget.GeniusButton
+            android:id="@+id/next"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginLeft="30dp"
+            genius:g_textAppearance="light"
+            genius:g_theme="@array/ScubaBlue"
+            genius:g_touchEffect="ripple"
+            genius:g_cornerRadii_B="10dp"
+            genius:g_cornerRadii_C="10dp"
+            genius:g_blockButtonEffectHeight="2dp"
+            android:layout_toRightOf="@id/previous"
+            android:layout_toEndOf="@id/previous"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

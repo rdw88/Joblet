@@ -1,3 +1,16 @@
 *.pyc
 *.class
-project/
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+server/ryguy/templates
+server/ryguy/home
+server/ryguy/lolplays
+server/ryguy/static
+server/ryguy/restart
+server/ryguy/.ssh
+server/ryguy/music
+server/ryguy/manage.py

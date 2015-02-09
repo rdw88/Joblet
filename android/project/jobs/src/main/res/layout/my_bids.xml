@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_listing_job_title"
+        android:textSize="20sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Job Title"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_listing_current_bid"
+        android:textSize="14sp"
+        android:textColor="#378E43"
+        android:text="Your bid"
+        android:layout_below="@+id/my_listing_job_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="3dp"
+
+        android:phoneNumber="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_listing_tag"
+        android:textSize="12sp"
+        android:textColor="@color/secondary_information"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
+        android:text="tag"
+        android:layout_below="@+id/my_listing_current_bid"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/static_timeleft"
+        android:text="Time Left:"
+        android:textSize="12sp"
+        android:layout_marginRight="3dp"
+        android:textColor="@color/secondary_information"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="false"
+        android:layout_alignBottom="@+id/listing_timeleft"
+        android:layout_toLeftOf="@+id/listing_timeleft" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listing_timeleft"
+        android:text="2 d: 20 m : 30 s"
+        android:textSize="12sp"
+        android:layout_marginRight="32dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/secondary_information"
+        android:textIsSelectable="false"
+        android:layout_above="@+id/listing_enddate" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/static_enddate"
+        android:text="End Date:"
+        android:textSize="12sp"
+        android:layout_toLeftOf="@+id/listing_enddate"
+        android:layout_marginRight="3dp"
+        android:textColor="@color/secondary_information"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="false"
+        android:layout_alignBottom="@+id/listing_enddate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listing_enddate"
+        android:text="Month 22, 2015"
+        android:textSize="12sp"
+        android:layout_marginRight="32dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/secondary_information"
+        android:layout_alignBottom="@+id/my_listing_tag"
+        android:textIsSelectable="false" />
+
+</RelativeLayout>
