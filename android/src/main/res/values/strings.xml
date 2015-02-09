@@ -49,6 +49,8 @@
     <string name="ad_location_not_found_title">Location Not Found</string>
     <string name="ad_create_account_image_upload_failed">The profile picture you selected failed to be uploaded to our servers. This is most likely a problem on our side but the rest of your account was created successfully.</string>
     <string name="ad_create_account_image_upload_failed_title">Image Upload Failed</string>
+    <string name="ad_error_too_many_tags_title">Too Many Tags</string>
+    <string name="ad_error_too_many_tags">You may only have a maximum of 3 tags associated with your profile! Please select the three that most apply to you.</string>
     <string name="list_currentBid">$00.00</string>
     <string name="title_backgroungTint">#755C15</string>
     <string name="list_title">ListTitle</string>

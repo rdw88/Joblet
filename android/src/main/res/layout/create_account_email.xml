@@ -37,28 +37,12 @@
         android:layout_centerHorizontal="true">
 
         <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/previous"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:text="Back"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_A="10dp"
-            genius:g_cornerRadii_D="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            />
-
-        <net.qiujuer.genius.widget.GeniusButton
             android:id="@+id/next"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="Next"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
-            android:layout_marginLeft="30dp"
             genius:g_textAppearance="light"
             genius:g_theme="@array/ScubaBlue"
             genius:g_touchEffect="ripple"
