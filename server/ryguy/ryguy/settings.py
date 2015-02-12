@@ -62,7 +62,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jobs',
-        'USER': 'rwise',
+        'USER': 'postgres',
         'PASSWORD': 'asdf79269473',
         'HOST': 'localhost' 
     }

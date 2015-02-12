@@ -33,7 +33,8 @@
             android:layout_gravity="center_horizontal"
             android:visibility="visible"
             android:layout_centerInParent="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:scaleType="centerCrop"/>
 
 
         <RelativeLayout
@@ -109,46 +110,51 @@
             android:id="@+id/midanchor" />
 
 
-
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:text="Lists:"
+            android:layout_marginTop="10dp"
             android:textColor="@color/primary_information"
             android:id="@+id/lists_label"
-            android:paddingLeft="16dp"
-            android:layout_alignBottom="@+id/jobs_label"
-            android:layout_toRightOf="@+id/jobs_completed" />
+            android:layout_toEndOf="@id/midanchor"
+            android:layout_toRightOf="@id/midanchor"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"/>
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
             android:hint="00"
             android:textColor="@color/primary_information"
             android:id="@+id/lists_completed"
             android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@+id/lists_label"
-            android:layout_alignTop="@+id/lists_label" />
+            android:layout_toRightOf="@id/lists_label"
+            />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:text="Jobs:"
             android:textColor="#DD000000"
             android:id="@+id/jobs_label"
-            android:paddingLeft="16dp"
-            android:layout_alignTop="@+id/userTags"
-            android:layout_toRightOf="@+id/midanchor" />
+            android:layout_below="@id/lists_label"
+            android:layout_toRightOf="@id/midanchor"
+            android:layout_toEndOf="@id/midanchor"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"/>
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:hint="00"
             android:textColor="@color/primary_information"
             android:id="@+id/jobs_completed"
             android:layout_marginLeft="3dp"
-            android:layout_alignTop="@+id/jobs_label"
-            android:layout_toRightOf="@+id/jobs_label" />
+            android:layout_toRightOf="@id/jobs_label"
+            android:layout_below="@id/lists_label"/>
+
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -158,19 +164,17 @@
             android:text="@string/user_currentLocation"
             android:paddingTop="3dp"
             android:paddingRight="8dp"
-            android:paddingLeft="16dp" />
+            android:paddingLeft="16dp"
+            android:layout_marginBottom="-5dp"/>
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tags"
             android:textColor="#89000000"
             android:id="@+id/userTags"
-            android:layout_below="@+id/location"
+            android:layout_below="@id/location"
             android:paddingLeft="16dp"
             android:textSize="12dp" />
-
-
-
 
 
         <RelativeLayout
@@ -369,8 +373,8 @@
 
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/my_listings"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="140dp"
+                android:layout_height="45dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="MY LISTINGS"
@@ -395,8 +399,8 @@
 
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/watchlist"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="140dp"
+                android:layout_height="45dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="WATCHLIST"

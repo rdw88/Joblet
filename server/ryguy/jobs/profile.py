@@ -126,7 +126,8 @@ unique profile ID.
 
 '''
 
-def get(profile_id):
+def get(data):
+	profile_id = data['profile_id']
 	profile = _fetch(profile_id)
 
 	if not profile:
@@ -217,8 +218,8 @@ def _fetch(profile_id):
 	return profile
 
 
-def getID(email):
-	return { 'profile_id' : Profile.objects.get(email=email).profile_id }, None
+def getID(data):
+	return { 'profile_id' : Profile.objects.get(email=data['email']).profile_id }, None
 
 
 def device_id(args):
@@ -232,3 +233,17 @@ def device_id(args):
 	profile.save()
 
 	return True, None
+
+
+'''
+
+Returns true if the provided email can be used to create a new account
+
+'''
+def confirm_email(data):
+	try:
+		Profile.objects.get(email=data['email'])
+	except Profile.DoesNotExist:
+		return True, None
+
+	return False, ERROR_EMAIL_IN_USE

@@ -41,6 +41,8 @@ public class Address {
 			e.printStackTrace();
 		}
 
+        System.out.println(encoded);
+
 		return encoded;
 	}
 

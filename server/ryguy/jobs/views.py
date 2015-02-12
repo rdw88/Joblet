@@ -35,8 +35,9 @@ We want to limit personal information for users to prevent discrimination.
 def profile(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
-
-		result, err_code = mod_profile.get(data['profile_id']) if data['request'] == 'profile' else mod_profile.getID(data['email'])
+		operation = data['request']
+		
+		result, err_code = getattr(mod_profile, operation)(data)
 
 		if not err_code: # result will be a dictionary to send back to client.
 			return HttpResponse(json.dumps(result), content_type='application/json')

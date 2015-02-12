@@ -43,6 +43,7 @@
             android:text="Next"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
+            android:enabled="false"
             genius:g_textAppearance="light"
             genius:g_theme="@array/ScubaBlue"
             genius:g_touchEffect="ripple"

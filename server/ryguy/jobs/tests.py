@@ -10,7 +10,7 @@ class ProfileTests(TestCase):
 		super(ProfileTests, self).__init__(arg)
 		self.data = {'email':'ryan@gmail.com', 'first_name':'Ryan', 'last_name':'Wise', 'password':'password', 
 		'age':'21', 'tags':'Programming', 'city_code':'San Francisco, CA', 'profile_id':'349384', 
-		'date_created': '1-18-2015', 'request':'create'}
+		'date_created': '1-18-2015', 'request':'create', 'bio': 'This is my random bio.'}
 
 	def test_profile_creation(self):
 		res, err = profile.create(self.data)
@@ -35,36 +35,33 @@ class ProfileTests(TestCase):
 
 
 class ListingTests(TestCase):
-	def test_large_creation(self):
-		prof = {'email':'ryan@gmail.com', 'first_name':'Ryan', 'last_name':'Wise', 'password':'password', 
-		'dob':'1-8-1994', 'tags':'Programming', 'city_code':'San Francisco, CA', 'profile_id':'349384', 
-		'date_created': '1-18-2015', 'request':'create'}
+	def __init__(self, arg):
+		super(ListingTests, self).__init__(arg)
+		self.test_profile = {'email':'ryan@gmail.com', 'first_name':'Ryan', 'last_name':'Wise', 'password':'password', 
+					'age': 21, 'tags':'Programming', 'city_code':'San Francisco, CA', 'profile_id':'349384', 
+					'date_created': '1-18-2015', 'request':'create', 'bio' : 'this is my random bio.'}
 
-		profile.create(prof)
-		prof_id = Profile.objects.get(email='ryan@gmail.com').profile_id
-
-		l = {'profile_id' : prof_id, 'password':'password',
-		'job_title' : '23', 'starting_amount' : '50', 'current_bid': '50', 'min_reputation':'50',
+		self.test_listing = {'password':'password',
+		'job_title' : 'random job', 'starting_amount' : 50, 'current_bid': 50, 'min_reputation':50,
 		'active_until':'1-23-2015 5:20PM', 'tag' : 'Programming', 'address' : '1234 h ln', 'city':'cityname',
-		'state':'CA', 'latitude' : '45', 'longitude': '55'}
+		'state':'CA', 'latitude' : 45, 'longitude': 55, 'job_description' : 'Random job description'}
 
-		now = time.time() * 1000.0
+	def test_listing_creation(self):
+		profile.create(self.test_profile)
+		prof_id = Profile.objects.get(email=self.test_profile['email']).profile_id
+		self.test_listing['profile_id'] = prof_id
+		response, error = listing.create(self.test_listing)	
 
-		for i in range(10000):
-			lis, err = listing.create(l)
+		self.assertEqual(error, None)
 
-			if i % 1000 == 0:
-				print i
-
-		print (time.time() * 1000.0) - now
-
-		all_listings = Listing.objects.all()
-		for i in range(10000):
-			at = str(all_listings[i].active_until)
-
-			if at == '1-22-2015':
-				print 'k'
-
-		print (time.time() * 1000.0) - now
+		self.listing_id = response['listing_id']
 
 
+	def test_get_listing(self):
+		self.test_listing_creation()
+		response, error = listing.get({'listing_id' : self.listing_id})
+		self.assertEqual(error, None)
+		
+		for key in response:
+			if key in self.test_listing:
+				self.assertEqual(self.test_listing[key], response[key])

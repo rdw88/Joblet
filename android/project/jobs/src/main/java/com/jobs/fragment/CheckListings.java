@@ -84,11 +84,14 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         if (filtered.size() == 0) {
             try {
                 JSONObject obj = new JSONObject(profileData);
-                String tags = obj.getString("tags");
-                String[] tagsArray = tags.split(",");
+                JSONArray tags = new JSONArray(obj.getString("tags"));
 
-                for (int i = 0; i < tagsArray.length; i++) {
-                    filtered.add(tagsArray[i]);
+                try {
+                    for (int i = 0; i < tags.length(); i++) {
+                        filtered.add(tags.getString(i));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -152,7 +155,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     }
 
     private void fill() {
-        if (filtered.size() == 0) {
+        if (filtered.size() == 0 && adapter != null) {
             adapter.clear();
             adapter.notifyDataSetChanged();
             return;
@@ -161,13 +164,9 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         new AsyncTask<String, Void, String>() {
             protected String doInBackground(String... urls) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                String tags = "";
-                for (int i = 0; i < filtered.size() - 1; i++) {
-                    tags += filtered.get(i) + ",";
-                }
 
-                tags += filtered.get(filtered.size() - 1);
-                map.put("tags", tags);
+                JSONArray tags = new JSONArray(filtered);
+                map.put("tags", tags.toString());
 
                 allListings = Listing.search(map);
                 return null;
@@ -183,7 +182,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
                         int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
                         for (int i = 0; i < len; i++) {
-                            JSONObject obj = (JSONObject) allListings.get(i);
+                            System.out.println(allListings.getJSONObject(i));
+                            JSONObject obj = allListings.getJSONObject(i);
                             Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
                                     obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),
                                     obj.getDouble("lat"), obj.getDouble("long"));

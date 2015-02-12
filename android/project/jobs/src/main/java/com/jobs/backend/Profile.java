@@ -30,17 +30,8 @@ public class Profile {
 	/*
 	 * Returns -1 if created successfully, and and error code otherwise.
 	 */
-	public static JSONObject createProfile(String firstName, String lastName, String email, String age, String tags, String cityCode, String password, String bio) {
-		Map<String, String> map = new HashMap<String, String>();
+	public static JSONObject createProfile(HashMap<String, String> map) {
 		map.put("request", "create");
-		map.put("first_name", firstName);
-		map.put("last_name", lastName);
-		map.put("password", password);
-		map.put("age", age);
-		map.put("tags", tags);
-		map.put("city_code", cityCode);
-        map.put("email", email);
-        map.put("bio", bio);
 
 		try {
 			return Address.post(map, Address.PROFILE);
@@ -103,7 +94,7 @@ public class Profile {
 
 	public static JSONObject getProfile(String profileId) {
 		Map<String, String> map = new HashMap<String, String>();
-        map.put("request", "profile");
+        map.put("request", "get");
 		map.put("profile_id", profileId);
 
 		try {
@@ -146,7 +137,7 @@ public class Profile {
 
     public static String getID(String email) {
         Map<String, String> data = new HashMap<>();
-        data.put("request", "get_id");
+        data.put("request", "getID");
         data.put("email", email);
 
         try {
@@ -213,5 +204,19 @@ public class Profile {
         }
 
         return -1;
+    }
+
+    public static boolean confirmEmailCanBeUsed(String email) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("request", "confirm_email");
+        map.put("email", email);
+
+        try{
+            String response = Address.get(map, Address.PROFILE);
+            return response.equals("true");
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

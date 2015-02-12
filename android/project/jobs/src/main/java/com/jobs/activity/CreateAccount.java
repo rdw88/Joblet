@@ -9,13 +9,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +35,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jobs.R;
-import com.jobs.backend.Resource;
+import com.jobs.backend.*;
+
+import net.qiujuer.genius.Genius;
+import net.qiujuer.genius.widget.GeniusEditText;
+import net.qiujuer.genius.widget.attribute.EditTextAttributes;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +51,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class CreateAccount extends FragmentActivity {
     private static final String FRAGMENT_INDEX_KEY = "fragment_index";
@@ -89,12 +101,25 @@ public class CreateAccount extends FragmentActivity {
 
     @SuppressWarnings("unchecked")
     public static class EmailFragment extends Fragment {
-        private EditText email;
+        private GeniusEditText email;
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final View v = inflater.inflate(R.layout.create_account_email, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
-            email = (EditText) v.findViewById(R.id.email);
+            next = (Button) v.findViewById(R.id.next);
+            email = (GeniusEditText) v.findViewById(R.id.email);
+
+            email.setOnKeyListener(new View.OnKeyListener() {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    String input = email.getText().toString();
+
+                    if (input.contains("@") && input.indexOf(".") > input.indexOf("@")) {
+                        confirmEmail();
+                    }
+
+                    return false;
+                }
+            });
 
             next.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -103,6 +128,31 @@ public class CreateAccount extends FragmentActivity {
             });
 
             return v;
+        }
+
+        private void confirmEmail() {
+            new AsyncTask<String, Void, String>() {
+                private boolean canBeUsed;
+
+                protected String doInBackground(String... params) {
+                    canBeUsed = Profile.confirmEmailCanBeUsed(params[0]);
+                    return null;
+                }
+
+                protected void onPostExecute(String message) {
+                    EditTextAttributes attr = email.getAttributes();
+
+                    if (canBeUsed) {
+                        attr.setTheme(R.array.LuciteGreen, getActivity().getResources());
+                        next.setEnabled(true);
+                    } else {
+                        attr.setTheme(R.array.Marsala, getActivity().getResources());
+                        next.setEnabled(false);
+                    }
+
+                    attr.notifyAttributeChange();
+                }
+            }.execute(email.getText().toString());
         }
 
         private HashMap<String, String> updateAccount() {
@@ -114,14 +164,18 @@ public class CreateAccount extends FragmentActivity {
 
     @SuppressWarnings("unchecked")
     public static class PasswordFragment extends Fragment {
-        private EditText password;
+        private EditText password, confirm;
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_password, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.next);
             Button previous = (Button) v.findViewById(R.id.previous);
             password = (EditText) v.findViewById(R.id.password);
-            final EditText confirm = (EditText) v.findViewById(R.id.password2);
+            confirm = (EditText) v.findViewById(R.id.password2);
+
+            password.setOnKeyListener(new KeyListener());
+            confirm.setOnKeyListener(new KeyListener());
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -137,7 +191,7 @@ public class CreateAccount extends FragmentActivity {
                     if (pass.equals(passAgain))
                         CreateAccount.nextFragment(getActivity(), updateAccount(), getArguments().getInt(FRAGMENT_INDEX_KEY));
                     else
-                        CreateAccount.alertPasswordMismatch(getActivity());
+                        CreateAccount.alertPasswordMismatch(getActivity()); // this probably should never happen, but just to be safe.
                 }
             });
 
@@ -149,18 +203,36 @@ public class CreateAccount extends FragmentActivity {
             map.put("password", password.getText().toString());
             return map;
         }
+
+        private class KeyListener implements View.OnKeyListener {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                next.setEnabled(false);
+                String pass = password.getText().toString();
+                String confirmText = confirm.getText().toString();
+
+                if (confirmText.equals(pass) && !pass.equals("")) {
+                    next.setEnabled(true);
+                }
+
+                return false;
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
     public static class NameFragment extends Fragment {
         private EditText firstName, lastName;
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_name, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.next);
             Button previous = (Button) v.findViewById(R.id.previous);
             firstName = (EditText) v.findViewById(R.id.first_name);
             lastName = (EditText) v.findViewById(R.id.last_name);
+
+            firstName.setOnKeyListener(new KeyListener());
+            lastName.setOnKeyListener(new KeyListener());
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -183,17 +255,33 @@ public class CreateAccount extends FragmentActivity {
             map.put("last_name", lastName.getText().toString());
             return map;
         }
+
+        private class KeyListener implements View.OnKeyListener {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (!firstName.getText().toString().equals("") && !lastName.getText().toString().equals(""))
+                    next.setEnabled(true);
+                else
+                    next.setEnabled(false);
+
+                return false;
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
     public static class CityFragment extends Fragment {
-        private EditText city;
+        private EditText city, state;
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_city, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.next);
             Button previous = (Button) v.findViewById(R.id.previous);
             city = (EditText) v.findViewById(R.id.city);
+            state = (EditText) v.findViewById(R.id.state);
+
+            city.setOnKeyListener(new KeyListener());
+            state.setOnKeyListener(new KeyListener());
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -212,20 +300,46 @@ public class CreateAccount extends FragmentActivity {
 
         private HashMap<String, String> updateAccount() {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
-            map.put("city", city.getText().toString());
+            map.put("city_code", city.getText().toString() + ", " + state.getText().toString());
             return map;
+        }
+
+        private class KeyListener implements View.OnKeyListener {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                String cityName = city.getText().toString();
+                String stateName = state.getText().toString();
+
+                if (!cityName.equals("") && !stateName.equals("")) {
+                    try {
+                        Geocoder geo = new Geocoder(getActivity());
+                        List<Address> addr = geo.getFromLocationName(cityName + ", " + stateName, 1);
+                        if (addr == null || addr.isEmpty()) {
+                            next.setEnabled(false);
+                        } else {
+                            next.setEnabled(true);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                return false;
+            }
         }
     }
 
     @SuppressWarnings("unchecked")
     public static class AgeFragment extends Fragment {
         private EditText age;
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_age, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.next);
             Button previous = (Button) v.findViewById(R.id.previous);
             age = (EditText) v.findViewById(R.id.age);
+
+            age.setOnKeyListener(new KeyListener());
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -246,6 +360,17 @@ public class CreateAccount extends FragmentActivity {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
             map.put("age", age.getText().toString());
             return map;
+        }
+
+        private class KeyListener implements View.OnKeyListener {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (!age.getText().toString().equals("") && !next.isEnabled())
+                    next.setEnabled(true);
+                else
+                    next.setEnabled(false);
+
+                return false;
+            }
         }
     }
 
@@ -391,7 +516,7 @@ public class CreateAccount extends FragmentActivity {
 
         private HashMap<String, String> updateAccount() {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
-            map.put("profile_picture", profilePicturePath);
+            map.put("profile_picture", "testpic");
             return map;
         }
     }
@@ -402,10 +527,11 @@ public class CreateAccount extends FragmentActivity {
         private TextView[] tagViews = new TextView[MAX_TAGS];
         private int[] tagIDs = {R.id.tag1, R.id.tag2, R.id.tag3};
         private static final ArrayList<String> SELECTED_TAGS = new ArrayList<>();
+        private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_tags, container, false);
-            Button next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.next);
             Button previous = (Button) v.findViewById(R.id.previous);
             ImageButton selectTags = (ImageButton) v.findViewById(R.id.selectTags);
 
@@ -442,6 +568,11 @@ public class CreateAccount extends FragmentActivity {
                                 return;
                             }
 
+                            if (SELECTED_TAGS.size() > 0)
+                                next.setEnabled(true);
+                            else
+                                next.setEnabled(false);
+
                             for (int i = 0; i < tagViews.length; i++) {
                                 if (i >= SELECTED_TAGS.size()) {
                                     tagViews[i].setText("");
@@ -474,7 +605,7 @@ public class CreateAccount extends FragmentActivity {
                         return;
                     }
 
-                    CreateAccount.createAccount(updateAccount());
+                    CreateAccount.createAccount(getActivity(), updateAccount());
                 }
             });
 
@@ -534,10 +665,30 @@ public class CreateAccount extends FragmentActivity {
         }
     }
 
+    private static void createAccount(final Activity context, final HashMap<String, String> account) {
+        new AsyncTask<String, Void, String>() {
+            private int response;
 
+            protected String doInBackground(String... params) {
+                try {
+                    response = Profile.createProfile(account).getInt("error");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-    private static void createAccount(HashMap<String, String> account) {
+                return null;
+            }
 
+            protected void onPostExecute(String res) {
+                if (response == -1) {
+                    CreateAccount.alertCreateAccountSuccess(context);
+                } else if (response == com.jobs.backend.Error.ERROR_SERVER_COMMUNICATION) {
+                    CreateAccount.alertErrorServer(context);
+                } else if (response == com.jobs.backend.Error.ERROR_EMAIL_IN_USE) {
+                    CreateAccount.alertEmailInUse(context);
+                }
+            }
+        }.execute();
     }
 
     private void alertImageUploadFailed() {
@@ -572,14 +723,14 @@ public class CreateAccount extends FragmentActivity {
         dialog.show();
     }
 
-    private void alertCreateAccountSuccess() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+    private static void alertCreateAccountSuccess(final Activity context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.ad_create_account_success);
         builder.setTitle(R.string.ad_create_account_success_title);
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface di, int i) {
-                finish();
+                context.finish();
             }
         };
 
@@ -590,8 +741,8 @@ public class CreateAccount extends FragmentActivity {
         dialog.show();
     }
 
-    private void alertEmailInUse() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+    private static void alertEmailInUse(Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.ad_email_in_use);
         builder.setTitle(R.string.ad_email_in_use_title);
 
@@ -610,8 +761,8 @@ public class CreateAccount extends FragmentActivity {
         dialog.show();
     }
 
-    private void alertErrorServer() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+    private static void alertErrorServer(Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.ad_error_server_comm);
         builder.setTitle(R.string.ad_error_server_comm_title);
 

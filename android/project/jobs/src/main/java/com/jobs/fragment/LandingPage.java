@@ -176,7 +176,13 @@ public class LandingPage extends Fragment {
             negativeReputation.setText(data.getString("negative_reputation"));
             listings.setText(data.getString("listings_completed"));
             jobs.setText(data.getString("jobs_completed"));
-            userTags.setText(data.getString("tags"));
+
+            String str = "";
+            JSONArray tags = new JSONArray(data.getString("tags"));
+            for (int i = 0; i < tags.length(); i++)
+                str += tags.getString(i) + " ";
+
+            userTags.setText(str);
         } catch (JSONException e) {
             e.printStackTrace();
         }

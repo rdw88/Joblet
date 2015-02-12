@@ -91,7 +91,7 @@ If more than one listing is found, we want to sort the results by the given toke
 '''
 
 def search(tokens):
-	tags = tokens['tags'].split(',')
+	tags = json.loads(tokens['tags'])
 	results_list = list()
 
 	for tag in tags:
