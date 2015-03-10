@@ -92,6 +92,8 @@ def edit(args):
 	if str(prof.password) != args['password']:
 		return None, ERROR_INCORRECT_PASSWORD
 
+	del args['password']
+
 	for key in args:
 		prof.__dict__[key] = args[key]
 
