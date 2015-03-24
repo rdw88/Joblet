@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:genius="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+    android:layout_height="fill_parent">
 
 <RelativeLayout
     android:orientation="vertical" android:layout_width="fill_parent"
@@ -32,14 +32,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/view_listing_title"
         android:layout_gravity="center_horizontal"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:text="sample"
         android:textColor="#FCFCFC"
-        android:layout_marginLeft="59dp"
-        android:layout_marginRight="59dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="3dp"
-        android:layout_alignBottom="@+id/picture_holder" />
+        android:layout_alignBottom="@+id/picture_holder"
+        android:layout_centerHorizontal="true" />
 
 
     <LinearLayout
@@ -47,7 +49,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/linearLayout_info"
-        android:background="@drawable/card"
+
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
@@ -62,9 +64,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_currentbid"
             android:text="Current Bid:"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -74,10 +76,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/view_listing_current_bid"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:layout_marginTop="3dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="52dp" />
+            android:layout_marginLeft="32dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -89,10 +91,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_listing_description"
-            android:text="Description"
-            android:textColor="@color/secondary_information"
-            android:textSize="16sp"
-            android:layout_marginLeft="52dp"
+            android:text="Description:"
+            android:textColor="#212121"
+            android:textSize="22sp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -101,10 +103,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/listing_description"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:layout_marginTop="3dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="52dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="52dp"/>
 
 
@@ -120,9 +122,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_ownername"
             android:text="Owner Name:"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -132,10 +134,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:id="@+id/view_listing_owner_name"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="52dp" />
+            android:layout_marginLeft="32dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -151,9 +153,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_ownerreputation"
             android:text="Owner Reputation:"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -162,11 +164,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:id="@+id/view_listing_owner_reputation"
             android:layout_centerHorizontal="true"
 
-            android:layout_marginLeft="52dp" />
+            android:layout_marginLeft="32dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -181,9 +183,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_location"
             android:text="Location:"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -192,11 +194,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:id="@+id/view_listing_job_location"
 
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="52dp" />
+            android:layout_marginLeft="32dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -212,9 +214,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_listingtimecreated"
             android:text="List Created:"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -226,10 +228,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
             android:id="@+id/view_listing_time_created"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="52dp" />
+            android:layout_marginLeft="32dp" />
 
         <ImageView
             android:layout_width="fill_parent"
@@ -238,15 +240,14 @@
             android:layout_marginTop="8dp"
             android:id="@+id/line1" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_tag"
-            android:text="List Tag(s):"
-            android:textSize="16sp"
-            android:textColor="@color/secondary_information"
-            android:layout_marginLeft="52dp"
+            android:id="@+id/text_listingtimetoend"
+            android:text="List Ends on:"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             />
 
@@ -255,47 +256,114 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textSize="14sp"
-            android:textColor="@color/primary_information"
+            android:textColor="#212121"
+            android:id="@+id/view_listing_time_toend"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="32dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_listingtimeleft"
+            android:text="Time Left:"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:id="@+id/view_listing_timeleft"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="32dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="8dp"
+            android:id="@+id/line9" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_tag"
+            android:text="List Tag(s):"
+            android:textSize="22sp"
+            android:textColor="#212121"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textSize="14sp"
+            android:textColor="#212121"
             android:textStyle="bold"
             android:id="@+id/view_listing_tag"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="52dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="32dp" />
 
 
         </LinearLayout>
 
 
 
-    <Button
-    android:layout_width="160dp"
-    android:layout_height="wrap_content"
-    android:textSize="14sp"
+    <net.qiujuer.genius.widget.GeniusButton
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+    android:textSize="12sp"
     android:text="PLACE BID"
+    android:background="#f05454"
     android:textColor="#FFFFFF"
-    android:background="@drawable/button_blue"
     android:textAllCaps="false"
     android:id="@+id/view_listing_make_bid"
     android:layout_gravity="center_horizontal"
+        genius:g_theme="@array/Marsala"
+        genius:g_touchEffect="ripple"
+        genius:g_blockButtonEffectHeight="2dp"
         android:padding="8dp"
         android:layout_toLeftOf="@+id/midanchor"
         android:layout_marginRight="8dp"
         android:layout_below="@+id/linearLayout_info"
         android:layout_marginBottom="16dp" />
 
-    <Button
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
+    <net.qiujuer.genius.widget.GeniusButton
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:textSize="12sp"
         android:text="ADD TO WATCHLIST"
+        android:background="#f05454"
         android:textColor="#FFFFFF"
-        android:background="@drawable/button_blue"
         android:textAllCaps="false"
         android:id="@+id/view_listing_add_watchlist"
         android:layout_gravity="center_horizontal"
         android:padding="8dp"
         android:layout_toRightOf="@+id/midanchor"
         android:layout_marginLeft="8dp"
+        genius:g_theme="@array/Marsala"
+        genius:g_touchEffect="ripple"
+        genius:g_blockButtonEffectHeight="2dp"
         android:layout_alignTop="@+id/view_listing_make_bid" />
 
     <Space

@@ -58,7 +58,7 @@ public class CreateAccount extends FragmentActivity {
     private static final int ACTION_TAKE_PICTURE = 1;
     private static final int ACTION_SELECT_PICTURE = 2;
     private static final int NUM_PAGES = 1;
-    private Typeface robotoRegular, robotoMedium;
+    private static Typeface robotoRegular, robotoMedium, robotoThin;
 
     private static final Fragment[] FRAGMENT_ORDER = {new EmailFragment(), new PasswordFragment(), new NameFragment(), new CityFragment(), new AgeFragment(), new BioFragment(),
                                                             new ProfilePictureFragment(), new TagsFragment()};
@@ -67,6 +67,7 @@ public class CreateAccount extends FragmentActivity {
         super.onCreate(savedInstanceState);
         robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        robotoThin = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         setContentView(R.layout.create_account);
 
         HashMap<String, String> map = new HashMap<>();
@@ -101,13 +102,19 @@ public class CreateAccount extends FragmentActivity {
 
     @SuppressWarnings("unchecked")
     public static class EmailFragment extends Fragment {
-        private GeniusEditText email;
+        private EditText email;
         private Button next;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final View v = inflater.inflate(R.layout.create_account_email, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_emailtitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_email);
+            instructions.setTypeface(robotoMedium);
             next = (Button) v.findViewById(R.id.next);
-            email = (GeniusEditText) v.findViewById(R.id.email);
+            next.setTypeface(robotoMedium);
+            email = (EditText) v.findViewById(R.id.email);
+            email.setTypeface(robotoRegular);
 
             email.setOnKeyListener(new View.OnKeyListener() {
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -140,17 +147,14 @@ public class CreateAccount extends FragmentActivity {
                 }
 
                 protected void onPostExecute(String message) {
-                    EditTextAttributes attr = email.getAttributes();
 
                     if (canBeUsed) {
-                        attr.setTheme(R.array.LuciteGreen, getActivity().getResources());
+                        email.setBackgroundColor(getResources().getColor(R.color.Treetop_Primary));
                         next.setEnabled(true);
                     } else {
-                        attr.setTheme(R.array.Marsala, getActivity().getResources());
+                        email.setBackgroundColor(getResources().getColor(R.color.Marsala_Primary));
                         next.setEnabled(false);
                     }
-
-                    attr.notifyAttributeChange();
                 }
             }.execute(email.getText().toString());
         }
@@ -169,10 +173,18 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_password, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_passwordtitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_password);
+            instructions.setTypeface(robotoRegular);
             next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             password = (EditText) v.findViewById(R.id.password);
+            password.setTypeface(robotoRegular);
             confirm = (EditText) v.findViewById(R.id.password2);
+            confirm.setTypeface(robotoRegular);
 
             password.setOnKeyListener(new KeyListener());
             confirm.setOnKeyListener(new KeyListener());
@@ -226,10 +238,18 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_name, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_nametitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_enteryourname);
+            instructions.setTypeface(robotoRegular);
             next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             firstName = (EditText) v.findViewById(R.id.first_name);
+            firstName.setTypeface(robotoRegular);
             lastName = (EditText) v.findViewById(R.id.last_name);
+            lastName.setTypeface(robotoRegular);
 
             firstName.setOnKeyListener(new KeyListener());
             lastName.setOnKeyListener(new KeyListener());
@@ -275,10 +295,18 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_city, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_citytitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_city);
+            instructions.setTypeface(robotoRegular);
             next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             city = (EditText) v.findViewById(R.id.city);
+            city.setTypeface(robotoRegular);
             state = (EditText) v.findViewById(R.id.state);
+            state.setTypeface(robotoRegular);
 
             city.setOnKeyListener(new KeyListener());
             state.setOnKeyListener(new KeyListener());
@@ -335,10 +363,16 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_age, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_agetitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_age);
+            instructions.setTypeface(robotoRegular);
             next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             age = (EditText) v.findViewById(R.id.age);
-
+            age.setTypeface(robotoRegular);
             age.setOnKeyListener(new KeyListener());
 
             previous.setOnClickListener(new View.OnClickListener(){
@@ -380,9 +414,16 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_bio, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_biotitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_bio);
+            instructions.setTypeface(robotoRegular);
             Button next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             bio = (EditText) v.findViewById(R.id.bio);
+            bio.setTypeface(robotoRegular);
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -413,8 +454,12 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_profilepicture, container, false);
+            TextView instructions = (TextView) v.findViewById(R.id.text_uploadpicture);
+            instructions.setTypeface(robotoRegular);
             Button next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             ImageButton gallery = (ImageButton) v.findViewById(R.id.gallery);
             ImageButton camera = (ImageButton) v.findViewById(R.id.camera);
             preview = (ImageView) v.findViewById(R.id.preview);
@@ -531,8 +576,14 @@ public class CreateAccount extends FragmentActivity {
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_tags, container, false);
+            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_tagtitle);
+            instructionsTitle.setTypeface(robotoThin);
+            TextView instructions = (TextView) v.findViewById(R.id.text_Tag);
+            instructions.setTypeface(robotoRegular);
             next = (Button) v.findViewById(R.id.next);
+            next.setTypeface(robotoMedium);
             Button previous = (Button) v.findViewById(R.id.previous);
+            previous.setTypeface(robotoMedium);
             ImageButton selectTags = (ImageButton) v.findViewById(R.id.selectTags);
 
             for (int i = 0; i < tagViews.length; i++) {
@@ -628,6 +679,7 @@ public class CreateAccount extends FragmentActivity {
 
                 TextView tag = (TextView) row.findViewById(R.id.tag_name);
                 tag.setText(items.get(position));
+                tag.setTypeface(robotoRegular);
 
                 final CheckBox box = (CheckBox) row.findViewById(R.id.tag_checkbox);
                 if (SELECTED_TAGS.contains(items.get(position))) {

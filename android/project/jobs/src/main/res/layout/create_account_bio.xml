@@ -8,14 +8,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Write a short description of you \nand your skills (Max 400 chars)"
-        android:textSize="22sp"
+        android:text="Write a Biography"
+        android:textSize="34sp"
         android:textColor="@color/primary_information"
-        android:layout_marginTop="80dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/text_bio" />
+        android:layout_alignLeft="@+id/text_bio"
+        android:layout_marginTop="45dp"
+        android:id="@+id/text_biotitle" />
 
-    <net.qiujuer.genius.widget.GeniusEditText
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This will be the description of you and your skills which will be read by other users so remember to be professional"
+        android:textSize="16sp"
+        android:textColor="@color/primary_information"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="26dp"
+        android:paddingLeft="2dp"
+        android:id="@+id/text_bio"
+        android:layout_below="@+id/text_biotitle" />
+
+    <EditText
         android:id="@+id/bio"
         android:layout_width="fill_parent"
         android:layout_marginRight="40dp"
@@ -25,9 +38,8 @@
         android:layout_below="@id/text_bio"
         android:layout_centerHorizontal="true"
         android:hint="Bio"
-        android:background="@color/LuciteGreen_Primary"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/primary_information"
+        android:textColorHint="@color/secondary_information"
         android:layout_marginTop="22dp"
         android:maxLength="400"
         android:lines="6"
@@ -35,6 +47,8 @@
         android:maxLines="6"
         android:inputType="textMultiLine|textCapSentences"
         android:scrollbars="vertical"
+        android:paddingLeft="12dp"
+        android:textSize="14sp"
         android:gravity="top|left"
         />
 
@@ -47,7 +61,7 @@
 
         <net.qiujuer.genius.widget.GeniusButton
             android:id="@+id/previous"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="40dp"
             android:text="Back"
             android:textColor="#FFFFFF"
@@ -62,7 +76,7 @@
 
         <net.qiujuer.genius.widget.GeniusButton
             android:id="@+id/next"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="40dp"
             android:text="Next"
             android:textColor="#FFFFFF"

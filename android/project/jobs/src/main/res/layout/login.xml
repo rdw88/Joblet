@@ -11,27 +11,29 @@
     <ImageView android:layout_width="225dp"
         android:layout_height="225dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/logo_welcome"
         android:src="@drawable/logo_login"
         android:layout_centerHorizontal="true"
-         />
+        android:layout_marginBottom="12dp" />
 
 
     <EditText android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:hint="  Email Address"
         android:inputType="textEmailAddress"
         android:id="@+id/email"
+        android:textSize="12sp"
         android:background="#ecf0f1"
         android:padding="10dp"
         android:layout_below="@+id/logo_welcome"
         android:layout_centerHorizontal="true" />
 
     <EditText android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
+        android:textSize="12sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:hint=" Password"
@@ -60,7 +62,7 @@
         android:layout_marginTop="8dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textColor="#F9F9F9"
         android:text="LOG IN"
         android:textSize="14sp"
@@ -68,45 +70,43 @@
         android:layout_below="@+id/checkbox_remember_me"
         android:layout_centerHorizontal="true"
         genius:g_textAppearance="light"
-        genius:g_theme="@array/ScubaBlue"
+        genius:g_theme="@array/Marsala"
         genius:g_touchEffect="ripple"
         genius:g_blockButtonEffectHeight="2dp"/>
 
-    <net.qiujuer.genius.widget.GeniusButton
+    <Button
+        android:background="@drawable/button"
         android:id="@+id/forgotPass"
         android:layout_width="225dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textColor="#F9F9F9"
         android:text="FORGOT PASSWORD"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/login"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_centerHorizontal="true"
-        genius:g_textAppearance="light"
-        genius:g_theme="@array/ScubaBlue"
-        genius:g_touchEffect="ripple"
-        genius:g_blockButtonEffectHeight="2dp"/>
+        android:layout_alignParentBottom="true" />
 
     <net.qiujuer.genius.widget.GeniusButton
         android:id="@+id/btn_create_account"
         android:layout_width="225dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:textColor="#F9F9F9"
         android:text="CREATE ACCOUNT"
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/forgotPass"
         android:layout_centerHorizontal="true"
         genius:g_textAppearance="light"
-        genius:g_theme="@array/ScubaBlue"
+        genius:g_theme="@array/Marsala"
         genius:g_touchEffect="ripple"
-        genius:g_blockButtonEffectHeight="2dp"/>
+        genius:g_blockButtonEffectHeight="2dp"
+        android:layout_below="@+id/login" />
 
 
 

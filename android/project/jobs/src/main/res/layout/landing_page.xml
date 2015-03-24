@@ -5,8 +5,6 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
 
-
-
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +12,6 @@
     android:background="@color/white"
     android:weightSum="1"
     android:label="Joblet"
-
     >
 
     <RelativeLayout
@@ -114,7 +111,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:text="Lists:"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:textColor="@color/primary_information"
             android:id="@+id/lists_label"
             android:layout_toEndOf="@id/midanchor"
@@ -124,7 +121,7 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:textSize="14sp"
             android:hint="00"
             android:textColor="@color/primary_information"
@@ -143,7 +140,8 @@
             android:layout_toRightOf="@id/midanchor"
             android:layout_toEndOf="@id/midanchor"
             android:layout_marginLeft="60dp"
-            android:layout_marginStart="60dp"/>
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="8dp" />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,20 +182,11 @@
             android:id="@+id/relative_jobs"
             android:layout_marginTop="8dp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/briefcase"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_centerVertical="true" />
-
             <Button
                 android:background="@color/white"
                 android:id="@+id/my_jobs"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:textColor="#468DCB"
@@ -209,39 +198,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Jobs"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="72dp"
-                android:textSize="20sp"
+                android:layout_marginLeft="22dp"
+                android:textSize="32dp"
                 android:id="@+id/text_myjobs"
-                android:textColor="@color/primary_information"
-                android:singleLine="true" />
+                android:textColor="#212121"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                style="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_currentJobs"
-                android:textSize="12sp"
-                android:layout_marginLeft="6dp"
+                android:textSize="22dp"
+                android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/text_currentjobs"
                 android:layout_alignBottom="@+id/text_currentjobs"
-                android:textColor="@color/secondary_information"
-                android:id="@+id/user_currentJobsNumber" />
+                android:textColor="#727272"
+                android:id="@+id/user_currentJobsNumber"
+                style="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_currentjobs"
                 android:text="Current Jobs:"
-                android:layout_marginLeft="72dp"
-                android:textSize="12sp"
-                android:layout_below="@+id/text_myjobs"
-                android:textColor="@color/secondary_information"
-                android:layout_marginBottom="8dp" />
+                android:textSize="22dp"
+                android:textColor="#727272"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/midspace2"
+                android:layout_marginBottom="6dp"
+                android:layout_alignBottom="@+id/text_myjobs"
+                style="bold" />
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#E0E0E0"
                 android:id="@+id/line1" />
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="5dp"
+                android:id="@+id/midspace2"
+                android:layout_centerHorizontal="true" />
+
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -249,33 +248,6 @@
                 android:background="#E0E0E0"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/line2" />
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="20dp"
-                android:background="@drawable/icon_briefcase"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/myjobs_recent1"
-                android:src="@drawable/recent_job_placeholder"
-                android:layout_toRightOf="@+id/user_currentJobsNumber"
-                android:layout_marginLeft="39dp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/myjobs_recent2"
-                android:src="@drawable/recent_job_placeholder"
-                android:layout_toRightOf="@+id/myjobs_recent1"
-                android:layout_marginLeft="16dp" />
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -298,33 +270,43 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Bids:"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="72dp"
-                android:textSize="20sp"
+                android:text="My Bids"
+                android:layout_marginLeft="22dp"
+                android:textSize="32sp"
                 android:id="@+id/text_mybids"
-                android:textColor="@color/primary_information" />
+                android:textColor="#212121"
+                android:layout_centerVertical="true"
+                style="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/user_bidspending"
-                android:textSize="12sp"
+                android:textSize="22dp"
                 android:layout_toRightOf="@+id/text_bidspending"
                 android:layout_alignBottom="@+id/text_bidspending"
-                android:layout_marginLeft="6dp"
-                android:textColor="@color/secondary_information" />
+                android:layout_marginLeft="4dp"
+                android:textColor="#727272"
+                android:id="@+id/user_currentBidsNumber"
+                style="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_bidspending"
                 android:text="Bids Pending:"
-                android:layout_below="@+id/text_mybids"
-                android:layout_marginLeft="72dp"
-                android:textSize="12sp"
-                android:textColor="@color/secondary_information"
-                android:layout_marginBottom="8dp" />
+                android:textSize="22sp"
+                android:textColor="#727272"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/midspace"
+                android:layout_alignBottom="@+id/text_mybids"
+                android:layout_marginBottom="6dp"
+                style="bold" />
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="5dp"
+                android:id="@+id/midspace"
+                android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -332,33 +314,6 @@
                 android:background="#E0E0E0"
                 android:id="@+id/line3"
                 android:layout_alignParentBottom="true" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/icon_gavel"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/mybids_recent1"
-                android:src="@drawable/recent_job_placeholder"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/text_bidspending"
-                android:layout_marginLeft="50dp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/mybids_recent2"
-                android:src="@drawable/recent_job_placeholder"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/mybids_recent1"
-                android:layout_marginLeft="16dp" />
-
 
         </RelativeLayout>
 
@@ -368,25 +323,25 @@
             android:id="@+id/btm"
             android:layout_below="@+id/relative_bids"
             android:paddingRight="8dp"
-            android:paddingLeft="8dp">
+            android:paddingLeft="8dp"
+            android:layout_alignParentRight="true">
 
 
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/my_listings"
                 android:layout_width="140dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="MY LISTINGS"
+                android:background="#f05454"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_toLeftOf="@+id/anchor_middle"
                 android:layout_marginRight="14dp"
-                genius:g_textAppearance="light"
-                genius:g_theme="@array/ScubaBlue"
+                genius:g_theme="@array/Marsala"
                 genius:g_touchEffect="ripple"
-                genius:g_blockButtonEffectHeight="2dp"
                 android:layout_centerVertical="true" />
 
 
@@ -400,37 +355,65 @@
             <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/watchlist"
                 android:layout_width="140dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
                 android:text="WATCHLIST"
+                android:background="#f05454"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:layout_gravity="center_horizontal"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/anchor_middle"
                 android:layout_alignTop="@+id/my_listings"
                 android:layout_marginLeft="14dp"
-                genius:g_textAppearance="light"
-                genius:g_theme="@array/ScubaBlue"
+                genius:g_theme="@array/Marsala"
                 genius:g_touchEffect="ripple"
-                genius:g_blockButtonEffectHeight="2dp"
                 />
 
 
         </RelativeLayout>
 
+        </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/relative_username"
+        android:layout_alignBottom="@+id/pictureFrame">
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name"
+            android:textSize="30dp"
+            android:textColor="#FCFCFC"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="10dp"
+            android:textIsSelectable="false"
+            android:layout_alignParentBottom="true"
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/fabspacer" />
 
-
-
+        <Space
+            android:layout_width="90dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/user_name"
+            android:id="@+id/fabspacer" />
 
         </RelativeLayout>
+
+
+</RelativeLayout>
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:nestedScrollingEnabled="true"
-        android:id="@+id/relative_fab">
+        android:id="@+id/relative_fab"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
         <Button
             android:background="@drawable/dynamic_button_editprofile"
@@ -449,29 +432,5 @@
             android:id="@+id/action_anchor"
             android:focusableInTouchMode="true" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/relative_username"
-        android:layout_alignBottom="@+id/pictureFrame">
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/user_name"
-            android:textSize="30dp"
-            android:textColor="#FCFCFC"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="14dp"
-            android:textIsSelectable="false"
-            android:layout_alignParentBottom="true" />
-
-        </RelativeLayout>
-
-
-</RelativeLayout>
 
 </RelativeLayout>

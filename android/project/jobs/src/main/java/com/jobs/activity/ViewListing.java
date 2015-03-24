@@ -32,7 +32,8 @@ import java.text.NumberFormat;
 
 public class ViewListing extends Activity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag,
-            textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription;
+            textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription,
+            constantTextDescription, constantTextListEndsOn, textListEndsOn, constantTimeLeft, textTimeLeft;
     private Button makeBid, addToWatchlist;
     private ImageView picture;
     private Typeface robotoRegular, robotoBlack, robotoMedium;
@@ -83,6 +84,17 @@ public class ViewListing extends Activity {
         addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
         addToWatchlist.setTypeface(robotoMedium);
         textDescription = (TextView) findViewById(R.id.listing_description);
+        textDescription.setTypeface(robotoRegular);
+        constantTextDescription = (TextView) findViewById(R.id.text_listing_description);
+        constantTextDescription.setTypeface(robotoMedium);
+        constantTextListEndsOn = (TextView) findViewById(R.id.text_listingtimetoend);
+        constantTextListEndsOn.setTypeface(robotoMedium);
+        textListEndsOn = (TextView) findViewById(R.id.view_listing_time_toend);
+        textListEndsOn.setTypeface(robotoRegular);
+        constantTimeLeft = (TextView) findViewById(R.id.text_listingtimeleft);
+        constantTimeLeft.setTypeface(robotoMedium);
+        textTimeLeft = (TextView) findViewById(R.id.view_listing_timeleft);
+        textTimeLeft.setTypeface(robotoRegular);
 
         makeBid.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {

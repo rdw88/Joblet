@@ -49,8 +49,9 @@ import java.util.List;
 
 public class CreateListing extends Fragment {
     private String userData;
-    private EditText jobTitle, startingAmount, minRep, city, address, state, activeTime, jobDescription;
-    private TextView tag;
+    private EditText jobTitle, startingAmount, minRep, city, address, state, jobDescription,
+                    listingEndTime, listingEndDate;
+    private TextView tag, textGallery, textCamera;
     private Button uploadPicture, create;
 
     private String tagSelected, imagePath;
@@ -59,7 +60,8 @@ public class CreateListing extends Fragment {
 
     public void onStart() {
         super.onStart();
-
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
@@ -67,13 +69,17 @@ public class CreateListing extends Fragment {
         city = (EditText) getActivity().findViewById(R.id.listing_location_city);
         state = (EditText) getActivity().findViewById(R.id.listing_location_state);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
+        textGallery = (TextView) getActivity().findViewById(R.id.text_gallery);
+        textGallery.setTypeface(robotoMedium);
+        textCamera = (TextView) getActivity().findViewById(R.id.text_camera);
+        textCamera.setTypeface(robotoMedium);
+        listingEndDate = (EditText) getActivity().findViewById(R.id.listing_enddate);
+        listingEndTime = (EditText) getActivity().findViewById(R.id.listing_endtime);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
-        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
-        Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+
         tag.setTypeface(customFont);
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         create.setTypeface(robotoMedium);
-        Button pickDate = (Button) getActivity().findViewById(R.id.button_createListing_pickDate);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_gallery);
         jobDescription = (EditText) getActivity().findViewById(R.id.listing_description);
 
@@ -82,13 +88,6 @@ public class CreateListing extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, 0xab);
-            }
-        });
-
-        pickDate.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
             }
         });
 

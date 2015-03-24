@@ -19,7 +19,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:background="#F8F9F9"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/primary_information"
                 android:textColorHint="@color/primary_information"
                 android:id="@+id/listing_name"
@@ -28,15 +28,13 @@
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:maxLength="100"
-                genius:g_fieldStyle="box"
-                genius:g_borderWidth="2dp"
                 genius:g_fontFamily="roboto"
                 />
         <net.qiujuer.genius.widget.GeniusEditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="#F8F9F9"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:textColorHint="@color/primary_information"
             android:id="@+id/listing_description"
@@ -45,8 +43,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:padding="10dp"
-            genius:g_fieldStyle="box"
-            genius:g_borderWidth="2dp"
             genius:g_fontFamily="roboto"
             />
 
@@ -54,7 +50,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:background="#F8F9F9"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/primary_information"
                 android:textColorHint="@color/primary_information"
                 android:id="@+id/listing_location_address"
@@ -62,8 +58,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:padding="10dp"
-                genius:g_fieldStyle="box"
-                genius:g_borderWidth="2dp"
                 genius:g_fontFamily="roboto"
                 />
 
@@ -71,7 +65,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="#F8F9F9"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:textColorHint="@color/primary_information"
             android:id="@+id/listing_location_city"
@@ -79,8 +73,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:padding="10dp"
-            genius:g_fieldStyle="box"
-            genius:g_borderWidth="2dp"
             genius:g_fontFamily="roboto"
             />
 
@@ -88,7 +80,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="#F8F9F9"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:hint="State"
             android:layout_gravity="center_horizontal"
@@ -96,15 +88,13 @@
             android:padding="10dp"
             android:id="@+id/listing_location_state"
             android:textColorHint="@color/primary_information"
-            genius:g_fieldStyle="box"
-            genius:g_borderWidth="2dp"
             genius:g_fontFamily="roboto"/>
 
         <net.qiujuer.genius.widget.GeniusEditText
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:background="#F8F9F9"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/primary_information"
                 android:textColorHint="@color/primary_information"
                 android:id="@+id/starting_amount"
@@ -113,8 +103,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:padding="10dp"
-                genius:g_fieldStyle="box"
-                genius:g_borderWidth="2dp"
                 genius:g_fontFamily="roboto"
                 />
 
@@ -122,7 +110,7 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:background="#F8F9F9"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/primary_information"
                 android:textColorHint="@color/primary_information"
                 android:inputType="number"
@@ -132,24 +120,22 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:padding="10dp"
-                genius:g_fieldStyle="box"
-                genius:g_borderWidth="2dp"
                 genius:g_fontFamily="roboto"
                 />
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Pick Tag(s)"
+            android:text=" Enter up to three tags"
             android:id="@+id/text_tag_createListing"
             android:textSize="18sp"
             android:textColor="@color/cementInfo"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="3dp" />
+            android:layout_marginBottom="8dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp">
+            android:layout_height="80dp">
 
                <Button
                 android:background="@drawable/dynamic_button_tag"
@@ -161,6 +147,29 @@
                 android:layout_marginRight="65dp"
                 android:layout_toLeftOf="@+id/anchor"
                 android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gallery"
+                android:textSize="12sp"
+                android:id="@+id/text_gallery"
+                android:layout_alignLeft="@+id/button_createListing_gallery"
+                android:layout_below="@+id/button_createListing_gallery"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="camera"
+                android:textSize="12sp"
+                android:id="@+id/text_camera"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/button_createListing_camera"
+                android:layout_alignLeft="@+id/button_createListing_camera" />
+
             <Button
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -188,36 +197,61 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Choose Picture(s)"
+            android:text=" Upload pictures of the job"
             android:id="@+id/text_picturesSelected_createListing"
             android:textSize="20sp"
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="3dp" />
-        <Button
-                android:background="@drawable/dynamic_button_expirationdate"
-                android:id="@+id/button_createListing_pickDate"
-                android:layout_width="165dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                />
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp" />
+
+        <net.qiujuer.genius.widget.GeniusEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="#F8F9F9"
+            android:textSize="14sp"
+            android:textColor="@color/primary_information"
+            android:textColorHint="@color/primary_information"
+            android:id="@+id/listing_enddate"
+            android:hint="Listing expiration date"
+            android:inputType="date"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            genius:g_fontFamily="roboto"
+            />
+
+        <net.qiujuer.genius.widget.GeniusEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="#F8F9F9"
+            android:textSize="14sp"
+            android:textColor="@color/primary_information"
+            android:textColorHint="@color/primary_information"
+            android:id="@+id/listing_endtime"
+            android:hint="Listing expiration time"
+            android:inputType="time"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            genius:g_fontFamily="roboto"
+            />
+
+
         <net.qiujuer.genius.widget.GeniusButton
                 android:id="@+id/button_createListing_postListing"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="POST LISTING"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:layout_gravity="center_horizontal"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="22dp"
             android:layout_marginBottom="16dp"
             genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
+            genius:g_theme="@array/Marsala"
             genius:g_touchEffect="ripple"
             genius:g_blockButtonEffectHeight="2dp"/>
     </LinearLayout>

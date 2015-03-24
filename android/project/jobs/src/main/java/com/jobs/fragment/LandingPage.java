@@ -32,7 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LandingPage extends Fragment {
-    private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids, textMyJobs;
+    private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids,
+            textMyJobs, subTextMyJobs, textMyJobsNumber, subTextMyBids, textMyBidsNumber;
     private ImageView profilePicture;
     private Button myListings, editProfile, watchlist, myBids;
     private JSONObject data;
@@ -52,6 +53,8 @@ public class LandingPage extends Fragment {
         Typeface robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
         Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface robotoThin = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+
 
         try {
             data = new JSONObject(getArguments().getString("data"));
@@ -75,14 +78,24 @@ public class LandingPage extends Fragment {
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
         jobs.setTypeface(robotoRegular);
         textMyBids = (TextView) view.findViewById(R.id.text_mybids);
-        textMyBids.setTypeface(robotoMedium);
+        textMyBids.setTypeface(robotoRegular);
         textMyJobs = (TextView) view.findViewById(R.id.text_myjobs);
-        textMyJobs.setTypeface(robotoMedium);
+        textMyJobs.setTypeface(robotoRegular);
+        subTextMyJobs = (TextView) view.findViewById(R.id.text_currentjobs);
+        subTextMyJobs.setTypeface(robotoRegular);
+        textMyJobsNumber = (TextView) view.findViewById(R.id.user_currentJobsNumber);
+        textMyJobsNumber.setTypeface(robotoRegular);
+        subTextMyBids = (TextView) view.findViewById(R.id.text_bidspending);
+        subTextMyBids.setTypeface(robotoRegular);
+        textMyBidsNumber = (TextView) view.findViewById(R.id.user_currentBidsNumber);
+        textMyBidsNumber.setTypeface(robotoRegular);
 
+        /*
         recentBidImages[0] = (ImageView) view.findViewById(R.id.mybids_recent1);
         recentBidImages[1] = (ImageView) view.findViewById(R.id.mybids_recent2);
         recentJobImages[0] = (ImageView) view.findViewById(R.id.myjobs_recent1);
         recentJobImages[1] = (ImageView) view.findViewById(R.id.myjobs_recent2);
+        */
 
         //ImageView
 

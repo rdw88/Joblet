@@ -8,7 +8,7 @@
     <!-- Colors -->
     <color name="cementInfo">#000000</color>
     <color name="button">#FFE158</color>
-    <color name="title_color">#ff68ccb7</color>
+    <color name="title_color">#f05d5e</color>
     <color name="background_white">#F9F9F9</color>+
     <color name="white">#FFFFFF</color>
     <color name="background_main">#E6E6E6</color>
@@ -41,7 +41,8 @@
     <style name="MyActionBarTabText">
         <item name="android:actionBarSize">@dimen/tab_bar_height</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">18sp</item>
+
     </style>
 
     <style name="PopupMenu">
@@ -59,13 +60,16 @@
         <item name="android:actionBarSize">@dimen/action_bar_height</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
         <item name="android:homeAsUpIndicator">@drawable/actionbar_back</item>
+        <item name="colorControlNormal">#f05d5e</item>
+        <item name="colorControlActivated">#f05d5e</item>
+        <item name="colorControlHighlight">#f05d5e</item>
     </style>
 
     <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
         <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
         <item name="android:textSize">20dp</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-        <item name="android:background">@color/LuciteGreen_Primary</item>
+        <item name="android:background">#f05d5e</item>
         <item name="android:icon">@drawable/actionbar_icon</item>
     </style>
 
