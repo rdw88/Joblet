@@ -32,9 +32,10 @@ public class Profile {
 	 */
 	public static JSONObject createProfile(HashMap<String, String> map) {
 		map.put("request", "create");
+        JSONObject response = null;
 
 		try {
-			return Address.post(map, Address.PROFILE);
+			response = Address.post(map, Address.PROFILE);
 		} catch (IOException | JSONException e) {
 			e.printStackTrace();
             JSONObject error = new JSONObject();
@@ -47,7 +48,16 @@ public class Profile {
 
             return error;
 		}
-	}
+
+        int res = Profile.upload(map.get("profile_picture"), map.get("email"), map.get("password"));
+        try {
+            response.put("error", res);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
 
     public static JSONObject login(String email, String password) {
         Map<String, String> data = new HashMap<>();
