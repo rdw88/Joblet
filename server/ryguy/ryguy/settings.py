@@ -90,9 +90,9 @@ USE_TZ = True
 STATIC_URL = '/files/'
 
 STATICFILES_DIRS = (
-	'/usr/local/apache2/htdocs/django/ryguy/static',
+	BASE_DIR + '/static',
 )
 
 TEMPLATE_DIRS = (
-    '/usr/local/apache2/htdocs/django/ryguy/templates',
+    BASE_DIR + '/templates',
 )
