@@ -102,6 +102,7 @@ public class Login extends Activity {
                             alertIncorrectPassword();
                         } else if (response == -1) {
                             if (checkPlayServices()) {
+                                System.out.println("Registering");
                                 gcm = GoogleCloudMessaging.getInstance(Login.this);
                                 registerInBackground(email.getText().toString());
                             }

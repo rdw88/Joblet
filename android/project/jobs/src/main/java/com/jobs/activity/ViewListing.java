@@ -141,38 +141,28 @@ public class ViewListing extends Activity {
             }
         });
 
-        fillFromServer();
-    }
+        Bundle b = getIntent().getExtras();
+        if (b.containsKey("listing_id"))
+            fillFromServer();
+        else {
+            JSONObject data = null;
+            try {
+                data = new JSONObject(b.getString("listing"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-    private void fill(JSONObject data, Bitmap bitmap) {
-        NumberFormat money = new DecimalFormat("#0.00");
-
-
-        try {
-            String loc = Resource.formatLocation(data.getString("address"), data.getString("city"), data.getString("state"));
-            title.setText(data.getString("job_title"));
-            currentBid.setText("$" + money.format(data.getDouble("current_bid")));
-            ownerReputation.setText(data.getString("owner_reputation"));
-            jobLocation.setText(loc);
-            ownerName.setText(data.getString("owner_name"));
-            timeCreated.setText(data.getString("time_created"));
-            tag.setText(data.getString("tag"));
-            textDescription.setText(data.getString("job_description"));
-            picture.setImageBitmap(bitmap);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            fill(data);
         }
     }
 
-    private void fillFromServer() {
+    private void fill(final JSONObject data) {
         new AsyncTask<String, Void, String>() {
-            private JSONObject response;
             private Bitmap bitmap;
 
-            protected String doInBackground(String... urls) {
-                response = Listing.get(getIntent().getExtras().getString("listing_id"));
+            protected String doInBackground(String... args) {
                 try {
-                    String pictureURL = response.getString("thumbnail");
+                    String pictureURL = data.getString("thumbnail");
 
                     try {
                         bitmap = Address.fetchPicture(pictureURL);
@@ -183,18 +173,47 @@ public class ViewListing extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                return null;
+            }
+
+            protected void onPostExecute(String res) {
+                NumberFormat money = new DecimalFormat("#0.00");
+
+                try {
+                    String loc = Resource.formatLocation(data.getString("address"), data.getString("city"), data.getString("state"));
+                    title.setText(data.getString("job_title"));
+                    currentBid.setText("$" + money.format(data.getDouble("current_bid")));
+                    ownerReputation.setText(data.getString("owner_reputation"));
+                    jobLocation.setText(loc);
+                    ownerName.setText(data.getString("owner_name"));
+                    timeCreated.setText(data.getString("time_created"));
+                    tag.setText(data.getString("tag"));
+                    textDescription.setText(data.getString("job_description"));
+                    picture.setImageBitmap(bitmap);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
+    }
+
+    private void fillFromServer() {
+        new AsyncTask<String, Void, String>() {
+            private JSONObject response;
+
+            protected String doInBackground(String... urls) {
+                response = Listing.get(getIntent().getExtras().getString("listing_id"));
                 return null;
             }
 
             protected void onPostExecute(String result) {
-                picture.setImageBitmap(bitmap);
-
                 if (response.has("error")){
                     alertNoSuchListing();
                     return;
                 }
 
-                fill(response, bitmap);
+                fill(response);
             }
         }.execute();
     }

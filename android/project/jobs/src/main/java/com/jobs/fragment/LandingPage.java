@@ -89,12 +89,12 @@ public class LandingPage extends Fragment {
         subTextMyBids.setTypeface(robotoRegular);
         textMyBidsNumber = (TextView) view.findViewById(R.id.user_currentBidsNumber);
         textMyBidsNumber.setTypeface(robotoRegular);
-
-        /*
+/*
         recentBidImages[0] = (ImageView) view.findViewById(R.id.mybids_recent1);
         recentBidImages[1] = (ImageView) view.findViewById(R.id.mybids_recent2);
         recentJobImages[0] = (ImageView) view.findViewById(R.id.myjobs_recent1);
         recentJobImages[1] = (ImageView) view.findViewById(R.id.myjobs_recent2);
+
         */
 
         //ImageView
@@ -137,7 +137,8 @@ public class LandingPage extends Fragment {
             protected void onPostExecute(String response) {
                 profilePicture.setImageBitmap(profileBitmap);
 
-                for (int i = 0; i < recentBidImages.length; i++) {
+                // TODO: Recent bid/job images.
+                /*for (int i = 0; i < recentBidImages.length; i++) {
                     final int index = i;
 
                     if (recentBids[i] != null) {
@@ -161,7 +162,7 @@ public class LandingPage extends Fragment {
                             }
                         });
                     }
-                }
+                }*/
             }
         }.execute();
 

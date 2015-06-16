@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.*;
+import com.jobs.backend.Error;
 
 import net.qiujuer.genius.Genius;
 import net.qiujuer.genius.widget.GeniusEditText;
@@ -561,7 +562,7 @@ public class CreateAccount extends FragmentActivity {
 
         private HashMap<String, String> updateAccount() {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
-            map.put("profile_picture", "testpic");
+            map.put("profile_picture", profilePicturePath);
             return map;
         }
     }
@@ -738,13 +739,15 @@ public class CreateAccount extends FragmentActivity {
                     CreateAccount.alertErrorServer(context);
                 } else if (response == com.jobs.backend.Error.ERROR_EMAIL_IN_USE) {
                     CreateAccount.alertEmailInUse(context);
+                } else if (response == Error.ERROR_IMAGE_UPLOAD_FAILED) {
+                    CreateAccount.alertImageUploadFailed(context);
                 }
             }
         }.execute();
     }
 
-    private void alertImageUploadFailed() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(CreateAccount.this);
+    private static void alertImageUploadFailed(Context context) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.ad_create_account_image_upload_failed);
         builder.setTitle(R.string.ad_create_account_image_upload_failed_title);
 
