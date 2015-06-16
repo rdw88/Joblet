@@ -22,7 +22,10 @@ import com.jobs.activity.ViewListing;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.DecimalFormat;
+import java.util.Iterator;
 
 public class GcmIntentService extends IntentService {
     public static int NOTIFICATION_ID = 1;
@@ -39,13 +42,13 @@ public class GcmIntentService extends IntentService {
 
         if (!extras.isEmpty()) {
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-                String[] params = getParams(extras.toString());
-                int code = Integer.parseInt(params[0]);
+                Bundle params = getParams(extras.getString("data"));
+                int code = Integer.parseInt(params.getString("type"));
 
                 if (code == 0)
-                    newBidNotification(params[1], Double.parseDouble(params[2]), params[3]);
+                    newBidNotification(params.getString("bidder_email"), Double.parseDouble(params.getString("bid_amount")), params.getString("bid_id"));
                 else if (code == 1) {
-                    newBidResponseNotification(params[1], Integer.parseInt(params[2]), Double.parseDouble(params[3]));
+                    newBidResponseNotification(params.getString("listing_id"), Integer.parseInt(params.getString("status")), Double.parseDouble(params.getString("amount")));
                 }
             }
         }
@@ -53,16 +56,32 @@ public class GcmIntentService extends IntentService {
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private String[] getParams(String s) {
-        String text = s.substring(s.indexOf("data=") + 5, s.indexOf(","));
-        return text.split("&");
+    private Bundle getParams(String str) {
+        String s = null;
+        try {
+            s = URLDecoder.decode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String[] data = s.split("&");
+        Bundle b = new Bundle();
+
+        for (int i = 0; i < data.length; i++) {
+            String[] kv = data[i].split("=", 2);
+            b.putString(kv[0], kv[1]);
+            System.out.println("TEST: " + kv[0] + " " + kv[1]);
+        }
+
+        return b;
     }
 
     private void newBidNotification(String email, double amount, String bidID) {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         NOTIFICATION_ID++;
 
-        String message = email + " made a bid of $" + amount + "!";
+        DecimalFormat format = new DecimalFormat("#.##");
+        String message = email + " made a bid of $" + format.format(amount) + "!";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setSmallIcon(R.drawable.logo);
