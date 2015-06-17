@@ -182,7 +182,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
                         int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
                         for (int i = 0; i < len; i++) {
-                            System.out.println(allListings.getJSONObject(i));
                             JSONObject obj = allListings.getJSONObject(i);
                             Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
                                     obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),

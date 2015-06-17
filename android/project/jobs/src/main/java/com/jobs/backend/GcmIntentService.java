@@ -45,10 +45,12 @@ public class GcmIntentService extends IntentService {
                 Bundle params = getParams(extras.getString("data"));
                 int code = Integer.parseInt(params.getString("type"));
 
-                if (code == 0)
+                if (code == Address.PUSH_NOTIFICATION_NEW_BID)
                     newBidNotification(params.getString("bidder_email"), Double.parseDouble(params.getString("bid_amount")), params.getString("bid_id"));
-                else if (code == 1) {
+                else if (code == Address.PUSH_NOTIFICATION_BID_RESPONSE) {
                     newBidResponseNotification(params.getString("listing_id"), Integer.parseInt(params.getString("status")), Double.parseDouble(params.getString("amount")));
+                } else if (code == Address.PUSH_NOTIFICATION_BID_ACCEPTED) {
+                    newBidAcceptedNotification(params.getString("job_title"), Double.parseDouble(params.getString("amount")), params.getString("listing_id"));
                 }
             }
         }
@@ -70,7 +72,6 @@ public class GcmIntentService extends IntentService {
         for (int i = 0; i < data.length; i++) {
             String[] kv = data[i].split("=", 2);
             b.putString(kv[0], kv[1]);
-            System.out.println("TEST: " + kv[0] + " " + kv[1]);
         }
 
         return b;
@@ -143,5 +144,29 @@ public class GcmIntentService extends IntentService {
                 mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
             }
         }.execute();
+    }
+
+    private void newBidAcceptedNotification(String jobTitle, double amount, String listingID) {
+        mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NOTIFICATION_ID++;
+
+        DecimalFormat format = new DecimalFormat("#.##");
+        String message = "Your bid of $" + format.format(amount) + " for " + jobTitle + " was accepted! Click to get in contact.";
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.drawable.logo);
+        mBuilder.setContentTitle("Joblet");
+        mBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+        mBuilder.setContentText(message);
+        mBuilder.setTicker("Your bid was accepted!");
+
+        /*Intent intent = new Intent(this, ViewBid.class);
+        intent.putExtra("email", email);
+        intent.putExtra("amount", amount);
+        intent.putExtra("bid_id", bidID);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        mBuilder.setContentIntent(pi);*/
+
+        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
 }

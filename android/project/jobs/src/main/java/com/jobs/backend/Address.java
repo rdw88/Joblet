@@ -24,6 +24,11 @@ public class Address {
     public static final String BID = "http://ryguy.me/bid/";
     public static final String FILES = "http://joblet-static.s3-website-us-west-1.amazonaws.com/";
 
+    public static final int PUSH_NOTIFICATION_NEW_BID = 0;
+    public static final int PUSH_NOTIFICATION_BID_RESPONSE = 1;
+    public static final int PUSH_NOTIFICATION_BID_ACCEPTED = 2;
+    public static final int PUSH_NOTIFICATION_BID_FINALIZED = 3;
+
 	public static String urlEncode(Map<String, String> map) {
 		Set<String> keys = map.keySet();
 		Iterator<String> it = keys.iterator();

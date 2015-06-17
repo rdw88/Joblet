@@ -5,12 +5,12 @@ import profile
 import json
 import os
 from PIL import Image
-from models import Listing, Profile
+from models import Listing, Profile, Bid
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD, ERROR_NO_BID_MADE, ERROR_BID_DOES_NOT_EXIST
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from ryguy.settings import BASE_DIR
-from helper import send_push_notification
+from helper import send_push_notification, PUSH_NOTIFICATION_BID_ACCEPTED
 
 
 LISTING_STATUS_ACTIVE = 0
@@ -113,7 +113,6 @@ listing goes to this function. Updates to a listing can include:
 
 	- Creator opens a job offer to the public.
 	- Creator accepts a job offer, therefore closing the listing to the public.
-	- Someone offers a lower price to do the job, current price needs to be updated
 
 '''
 
@@ -123,20 +122,29 @@ def update(args):
 	listing = Listing.objects.get(listing_id=id)
 
 	if operation == 'status':
-		if int(args['status']) == 2: # Check to make sure at least one bid has been accepted
-			if not listing.last_accepted_bid:
+		if int(args['status']) == 2:
+			if not listing.last_accepted_bid: # Check to make sure at least one bid has been accepted
 				return False, ERROR_NO_BID_MADE
 
+			try:
+				chosen_bid = Bid.objects.get(bid_id=listing.last_accepted_bid)
+			except Bid.DoesNotExist:
+				return False, ERROR_BID_DOES_NOT_EXIST
 
-
-			#send_push_notification()
+			try:
+				bidder = Profile.objects.get(email=chosen_bid.bidder_email)
+			except Profile.DoesNotExist:
+				return False, ERROR_BID_DOES_NOT_EXIST
+			print 'Got device id for %s' % str(bidder.email)
+			data = {'type': PUSH_NOTIFICATION_BID_ACCEPTED, 'job_title': listing.job_title, 'amount': chosen_bid.amount, 'listing_id': id}
+			send_push_notification(bidder.device_id, data)
 
 		listing.__dict__['status'] = args['status']
 		listing.save()
 
-
-
 		return True, None
+
+	return False, 0
 
 
 '''
