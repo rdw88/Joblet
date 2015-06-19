@@ -229,4 +229,18 @@ public class Profile {
             return false;
         }
     }
+
+    public static boolean logout(String email) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("request", "logout");
+        map.put("email", email);
+
+        try {
+            JSONObject res = Address.post(map, Address.PROFILE);
+            return res.getInt("error") == -1;
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -38,6 +38,7 @@ import java.io.IOException;
 public class Login extends Activity {
     private EditText email;
     private EditText password;
+    private CheckBox rememberMe;
 
     private ProgressDialog dialog;
 
@@ -49,29 +50,45 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.login);
         Resource.initLocations(this);
         Resource.initTags(this);
+
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        if (prefs.contains("email") && prefs.contains("password")) {
+            if (prefs.getBoolean("isLoggedIn", false)) {
+                doLogin(prefs.getString("email", null), prefs.getString("password", null));
+                return;
+            }
+        }
     }
 
     protected void onStart() {
         super.onStart();
 
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        if (!prefs.getBoolean("isLoggedIn", false))
+            startUI();
+    }
+
+    private void startUI() {
+        setContentView(R.layout.login);
+
         Typeface robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        final CheckBox rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
+        rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
         rememberMe.setTypeface(robotoRegular);
+
+        Button login = (Button) findViewById(R.id.login);
 
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         if (prefs.contains("email") && prefs.contains("password")) {
-            email.setText(prefs.getString("email", null));
             password.setText(prefs.getString("password", null));
+            email.setText(prefs.getString("email", null));
             rememberMe.setChecked(true);
         }
 
-        Button login = (Button) findViewById(R.id.login);
         login.setTypeface(robotoMedium);
         login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -81,36 +98,11 @@ public class Login extends Activity {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("email", email.getText().toString());
                     editor.putString("password", password.getText().toString());
+                    editor.putBoolean("isLoggedIn", true);
                     editor.apply();
                 }
 
-                new AsyncTask<String, Void, String>() {
-                    private int response;
-
-                    protected String doInBackground(String... urls) {
-                        try {
-                            response = Profile.login(email.getText().toString(), password.getText().toString()).getInt("error");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-
-                    protected void onPostExecute(String result) {
-                        if (response == Error.ERROR_INCORRECT_PASSWORD || response == Error.ERROR_NO_SUCH_PROFILE) {
-                            dialog.dismiss();
-                            alertIncorrectPassword();
-                        } else if (response == -1) {
-                            if (checkPlayServices()) {
-                                System.out.println("Registering");
-                                gcm = GoogleCloudMessaging.getInstance(Login.this);
-                                registerInBackground(email.getText().toString());
-                            }
-
-                            getProfileInfo();
-                        }
-                    }
-                }.execute();
+                doLogin(email.getText().toString(), password.getText().toString());
             }
         });
         Button forgotPassword = (Button) findViewById(R.id.forgotPass);
@@ -125,12 +117,43 @@ public class Login extends Activity {
         });
     }
 
-    private void getProfileInfo() {
+    private void doLogin(final String email, final String password) {
+        new AsyncTask<String, Void, String>() {
+            private int response;
+
+            protected String doInBackground(String... urls) {
+                try {
+                    response = Profile.login(email, password).getInt("error");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String result) {
+                if (dialog != null)
+                    dialog.dismiss();
+
+                if (response == Error.ERROR_INCORRECT_PASSWORD || response == Error.ERROR_NO_SUCH_PROFILE) {
+                    alertIncorrectPassword();
+                } else if (response == -1) {
+                    if (checkPlayServices()) {
+                        gcm = GoogleCloudMessaging.getInstance(Login.this);
+                        registerInBackground(email);
+                    }
+
+                    getProfileInfo(email);
+                }
+            }
+        }.execute();
+    }
+
+    private void getProfileInfo(final String email) {
         new AsyncTask<String, Void, String>() {
             private String response;
 
             protected String doInBackground(String... urls) {
-                String profileID = Profile.getID(email.getText().toString());
+                String profileID = Profile.getID(email);
                 response = Profile.getProfile(profileID).toString();
                 return null;
             }
@@ -142,10 +165,21 @@ public class Login extends Activity {
                 editor.apply();
                 Intent intent = new Intent(Login.this, Main.class);
                 intent.putExtra("data", response);
-                startActivity(intent);
-                dialog.dismiss();
+                startActivityForResult(intent, 0xff);
             }
         }.execute();
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 0xff:
+                SharedPreferences.Editor prefs = getPreferences(Context.MODE_PRIVATE).edit();
+                prefs.putBoolean("isLoggedIn", false);
+                prefs.apply();
+                break;
+        }
     }
 
     protected void onResume() {

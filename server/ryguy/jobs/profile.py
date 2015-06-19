@@ -74,6 +74,25 @@ def login(args):
 
 '''
 
+Removes the user's device from the device_id associated with their profile
+
+'''
+def logout(args):
+	email = args['email']
+
+	try:
+		profile = Profile.objects.get(email=email)
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
+
+	profile.__dict__['device_id'] = ''
+	profile.save()
+
+	return True, None
+
+
+'''
+
 Given a user's unique profile ID, changes everything in their
 profile that is supplied in args.
 

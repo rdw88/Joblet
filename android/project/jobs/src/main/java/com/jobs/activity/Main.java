@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 
@@ -15,6 +16,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
@@ -22,10 +25,14 @@ import android.widget.Button;
 
 import com.jobs.R;
 import com.jobs.backend.Address;
+import com.jobs.backend.Profile;
 import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -93,6 +100,28 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         pager.setCurrentItem(MAIN_PAGE);
     }
 
+    private void logout() {
+        new AsyncTask<String, Void, String>() {
+            protected String doInBackground(String... params) {
+                String email = "";
+                try {
+                    JSONObject d = new JSONObject(data);
+                    email = d.getString("email");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Profile.logout(email);
+                return null;
+            }
+
+            protected void onPostExecute(String res) {
+                setResult(0xff);
+                finish();
+            }
+        }.execute();
+    }
+
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }
@@ -108,13 +137,11 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }
 
-    /**
-     * Make log out ovoerflow menu item work here
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.overflow, menu);
+        return super.onCreateOptionsMenu(menu);
     }
-    **/
 
     public class MainPagerAdapter extends FragmentPagerAdapter {
         public MainPagerAdapter(FragmentManager fm) {
@@ -147,10 +174,17 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
         }
     }
 
+    public void onBackPressed() {
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                return true;
+
+            case R.id.logout:
+                logout();
                 return true;
         }
         return super.onOptionsItemSelected(item);
