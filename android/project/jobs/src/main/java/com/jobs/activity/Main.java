@@ -3,6 +3,7 @@ package com.jobs.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -31,6 +32,7 @@ import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,6 +47,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     private ViewPager pager;
     private TabsPagerAdapter mAdapter;
     private String data;
+    private String notificationData;
     private Button logout;
     private String[] tabs = {"Create", "Profile", "Browse"};
 
@@ -98,6 +101,34 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
+    }
+
+    public void onStart() {
+        super.onStart();
+
+        new AsyncTask<String, Void, String>() {
+            private JSONArray array;
+
+            protected String doInBackground(String... params) {
+                String email = null;
+                String password = null;
+
+                try {
+                    JSONObject obj = new JSONObject(data);
+                    email = obj.getString("email");
+                    password = obj.getString("password");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                array = Profile.getNotifications(email, password);
+                return null;
+            }
+
+            public void onPostExecute(String res) {
+                notificationData = array.toString();
+            }
+        }.execute();
     }
 
     private void logout() {
@@ -185,6 +216,12 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
             case R.id.logout:
                 logout();
+                return true;
+
+            case R.id.notifications:
+                Intent intent = new Intent(Main.this, Notifications.class);
+                intent.putExtra("notification_data", notificationData);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

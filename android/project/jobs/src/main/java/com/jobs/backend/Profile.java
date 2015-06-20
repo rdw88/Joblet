@@ -22,6 +22,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -227,6 +228,21 @@ public class Profile {
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public static JSONArray getNotifications(String email, String password) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("request", "get_notifications");
+        map.put("email", email);
+        map.put("password", password);
+
+        try {
+            String res = Address.get(map, Address.PROFILE);
+            return new JSONArray(res);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

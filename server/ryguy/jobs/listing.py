@@ -4,13 +4,14 @@ import re
 import profile
 import json
 import os
+import locale
 from PIL import Image
 from models import Listing, Profile, Bid
 from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD, ERROR_NO_BID_MADE, ERROR_BID_DOES_NOT_EXIST
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from ryguy.settings import BASE_DIR
-from helper import send_push_notification, PUSH_NOTIFICATION_BID_ACCEPTED
+import notification
 
 
 LISTING_STATUS_ACTIVE = 0
@@ -135,9 +136,11 @@ def update(args):
 				bidder = Profile.objects.get(email=chosen_bid.bidder_email)
 			except Profile.DoesNotExist:
 				return False, ERROR_BID_DOES_NOT_EXIST
-			print 'Got device id for %s' % str(bidder.email)
-			data = {'type': PUSH_NOTIFICATION_BID_ACCEPTED, 'job_title': listing.job_title, 'amount': chosen_bid.amount, 'listing_id': id}
-			send_push_notification(bidder.device_id, data)
+
+			locale.setlocale(locale.LC_ALL, '')
+			notification_title = 'Your offer was accepted!'
+			notification_description = 'Your bid of %s for %s was accepted! Click to get in contact.' % (locale.currency(float(chosen_bid.amount)), listing.job_title)
+			notification.create(notification_title, notification_description, bidder.email, bidder.password, None)
 
 		listing.__dict__['status'] = args['status']
 		listing.save()

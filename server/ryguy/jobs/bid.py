@@ -1,8 +1,9 @@
 import requests
 import json
+import locale
 from models import Listing, Profile, Bid
 from error import ERROR_NO_SUCH_LISTING, ERROR_NO_SUCH_PROFILE
-from helper import send_push_notification, PUSH_NOTIFICATION_NEW_BID, PUSH_NOTIFICATION_BID_RESPONSE, PUSH_NOTIFICATION_BID_ACCEPTED
+import notification
 
 BID_STATUS_UNDETERMINED = 0
 BID_STATUS_ACCEPTED = 1
@@ -51,10 +52,12 @@ def make_bid(args):
 	listing.save()
 
 	owner = Profile.objects.get(profile_id=listing.profile_id)
-	owner_device = str(owner.device_id)
+	locale.setlocale(locale.LC_ALL, '')
+	notification_title = 'Someone made a bid!'
+	notification_description = '%s made a bid of %s!' % (bidder_email, locale.currency(float(bid_amount)))
+	extras = {'bid_id' : bid_id}
 
-	data = {'type' : PUSH_NOTIFICATION_NEW_BID, 'bidder_email' : bidder_email, 'bid_amount' : bid_amount, 'bid_id' : bid_id}
-	send_push_notification(owner_device, data)
+	notification.create(notification_title, notification_description, owner.email, owner.password, extras)
 
 	return True, None
 
@@ -84,8 +87,11 @@ def accept(args):
 	listing.__dict__['last_accepted_bid'] = bid.bid_id
 	listing.save()
 
-	data = {'type' : PUSH_NOTIFICATION_BID_RESPONSE, 'listing_id' : bid.listing_id, 'status' : BID_STATUS_ACCEPTED, 'amount' : bid.amount}
-	send_push_notification(bidder_profile.device_id, data)
+	locale.setlocale(locale.LC_ALL, '')
+	notification_title = 'Bid Accepted!'
+	notification_description = 'Your bid of %s for %s was accepted!' % (locale.currency(float(bid.amount)), listing.job_title)
+
+	notification.create(notification_title, notification_description, bidder_profile.email, bidder_profile.password, None)
 
 	return True, None
 
@@ -101,8 +107,13 @@ def decline(args):
 	except Profile.DoesNotExist:
 		return False, ERROR_NO_SUCH_PROFILE
 
-	data = {'type' : PUSH_NOTIFICATION_BID_RESPONSE, 'listing_id' : bid.listing_id, 'status' : BID_STATUS_DECLINED, 'amount' : bid.amount}
-	send_push_notification(bidder_profile.device_id, data)
+	listing = Listing.objects.get(listing_id=bid.listing_id)
+
+	locale.setlocale(locale.LC_ALL, '')
+	notification_title = 'Bid Declined'
+	notification_description = 'Your bid of %s for %s was declined.' % (locale.currency(float(bid.amount)), listing.job_title)
+	
+	notification.create(notification_title, notification_description, bidder_profile.email, bidder_profile.password, None)
 
 	return True, None
 

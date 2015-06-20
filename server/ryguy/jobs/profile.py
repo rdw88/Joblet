@@ -15,6 +15,7 @@ import shutil
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
+import notification
 
 '''
 
@@ -164,6 +165,22 @@ def get(data):
 		returned[key] = vals[key]
 
 	return returned, None
+
+
+
+def get_notifications(data):
+	email = data['email']
+	password = data['password']
+
+	try:
+		profile = Profile.objects.get(email=email)
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
+
+	if password != profile.password:
+		return False, ERROR_INCORRECT_PASSWORD
+
+	return notification.get_all_notifications(profile), None
 
 
 '''

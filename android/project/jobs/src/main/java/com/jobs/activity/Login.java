@@ -142,19 +142,26 @@ public class Login extends Activity {
                         registerInBackground(email);
                     }
 
-                    getProfileInfo(email);
+                    getProfileInfo(email, password);
                 }
             }
         }.execute();
     }
 
-    private void getProfileInfo(final String email) {
+    private void getProfileInfo(final String email, final String password) {
         new AsyncTask<String, Void, String>() {
             private String response;
 
             protected String doInBackground(String... urls) {
                 String profileID = Profile.getID(email);
-                response = Profile.getProfile(profileID).toString();
+                JSONObject obj = Profile.getProfile(profileID);
+                try {
+                    obj.put("password", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                response = obj.toString();
                 return null;
             }
 

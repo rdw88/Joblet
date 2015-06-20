@@ -80,6 +80,9 @@
         <activity android:name="com.jobs.activity.MyListingBids"
             android:label="@string/app_name"/>
 
+        <activity android:name="com.jobs.activity.Notifications"
+            android:label="@string/app_name"/>
+
     </application>
 
 </manifest>

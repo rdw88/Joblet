@@ -69,3 +69,16 @@ class Bid(models.Model):
 	class Meta:
 		verbose_name = 'bid'
 		verbose_name_plural = 'bids'
+
+
+class Notification(models.Model):
+	notification_id = models.CharField(max_length=64)
+	email = models.CharField(max_length=128)
+	password = models.CharField(max_length=128)
+	time_created = models.CharField(max_length=64)
+	title = models.CharField(max_length=128)
+	description = models.TextField()
+
+	class Meta:
+		verbose_name = 'notification'
+		verbose_name_plural = 'notifications'
