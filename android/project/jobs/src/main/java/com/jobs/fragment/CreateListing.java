@@ -2,66 +2,91 @@ package com.jobs.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.location.*;
 import android.location.Address;
-import android.net.Uri;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import com.google.android.gms.location.GeofenceStatusCodes;
 import com.jobs.R;
 import com.jobs.activity.ViewListing;
-import com.jobs.backend.*;
 import com.jobs.backend.Error;
+import com.jobs.backend.Listing;
+import com.jobs.backend.Resource;
+import com.nhaarman.listviewanimations.itemmanipulation.TouchEventHandler;
+import com.rey.material.widget.RippleManager;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+import net.qiujuer.genius.Genius;
+import net.qiujuer.genius.animation.TouchEffect;
+import net.qiujuer.genius.animation.TouchEffectAnimator;
+import net.qiujuer.genius.widget.GeniusButton;
+import net.qiujuer.genius.widget.GeniusCheckBox;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class CreateListing extends Fragment {
-    private String userData;
-    private EditText jobTitle, startingAmount, minRep, city, address, state, jobDescription,
-                    listingEndTime, listingEndDate;
-    private TextView tag, textGallery, textCamera;
-    private Button uploadPicture, create;
+public class CreateListing extends Fragment implements
+    TimePickerDialog.OnTimeSetListener,
+    DatePickerDialog.OnDateSetListener
+{
 
+    private String userData;
+    private EditText jobTitle, startingAmount, minRep, city, address, state, jobDescription;
+    private TextView tag, textGallery, textCamera;
+    private Button create, listingEndTime, listingEndDate;
+    private Button settags, uploadPicture, cameraBtn;
     private String tagSelected, imagePath;
     private ProgressDialog creatingProgress;
-    private TextView t;
+    private ImageView expirationtimecancel, expirationdatecancel, tagcancel;
+    private TextView t, setdate, settime, tag1, tag2, tag3, createdescription;
+    private int setYear, setMonth, setDay;
+    private int setHours, setMinutes;
+    private boolean dateSet, eDCVisible, eTCVisible, tCVisible;
+    private boolean tag1Visible, tag2Visible, tag3Visiblie;
+    private ArrayList<String> tagArray;
 
     public void onStart() {
         super.onStart();
-        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface robotoThin = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
+        dateSet = false;
+        eTCVisible = false;
+        eDCVisible = false;
+        tCVisible = false;
+        tag1Visible = false;
+        tag2Visible = false;
+        tag3Visiblie = false;
+        tagArray = new ArrayList();
+        createdescription = (TextView) getActivity().findViewById(R.id.pagedescription);
+        createdescription.setTypeface(robotoThin);
         jobTitle = (EditText) getActivity().findViewById(R.id.listing_name);
         startingAmount = (EditText) getActivity().findViewById(R.id.starting_amount);
         minRep = (EditText) getActivity().findViewById(R.id.min_reputation);
@@ -69,19 +94,65 @@ public class CreateListing extends Fragment {
         city = (EditText) getActivity().findViewById(R.id.listing_location_city);
         state = (EditText) getActivity().findViewById(R.id.listing_location_state);
         //activeTime = (EditText) getActivity().findViewById(R.id.active_time);
-        textGallery = (TextView) getActivity().findViewById(R.id.text_gallery);
-        textGallery.setTypeface(robotoMedium);
-        textCamera = (TextView) getActivity().findViewById(R.id.text_camera);
-        textCamera.setTypeface(robotoMedium);
-        listingEndDate = (EditText) getActivity().findViewById(R.id.listing_enddate);
-        listingEndTime = (EditText) getActivity().findViewById(R.id.listing_endtime);
+        listingEndDate = (Button) getActivity().findViewById(R.id.listing_enddate);
+        listingEndDate.setTypeface(robotoMedium);
+        listingEndTime = (Button) getActivity().findViewById(R.id.listing_endtime);
+        listingEndTime.setTypeface(robotoMedium);
         tag = (TextView) getActivity().findViewById(R.id.text_tag_createListing);
-
-        tag.setTypeface(customFont);
+        tag.setTypeface(robotoRegular);
         create = (Button) getActivity().findViewById(R.id.button_createListing_postListing);
         create.setTypeface(robotoMedium);
         uploadPicture = (Button) getActivity().findViewById(R.id.button_createListing_gallery);
+        uploadPicture.setTypeface(robotoMedium);
+        cameraBtn = (Button) getActivity().findViewById(R.id.button_createListing_camera);
+        cameraBtn.setTypeface(robotoMedium);
         jobDescription = (EditText) getActivity().findViewById(R.id.listing_description);
+        settime = (TextView) getActivity().findViewById(R.id.settime);
+        setdate = (TextView) getActivity().findViewById(R.id.setdate);
+        settime.setTypeface(robotoRegular);
+        expirationdatecancel = (ImageView) getActivity().findViewById(R.id.expirationdatecancel);
+        expirationtimecancel = (ImageView) getActivity().findViewById(R.id.expirationtimecancel);
+        tagcancel = (ImageView) getActivity().findViewById(R.id.tagcancel);
+        tagcancel.setVisibility(View.INVISIBLE);
+        expirationdatecancel.setVisibility(View.INVISIBLE);
+        expirationtimecancel.setVisibility(View.INVISIBLE);
+        tag1 = (TextView) getActivity().findViewById(R.id.tag1);
+        tag1.setTypeface(robotoThin);
+        tag1.setVisibility(View.INVISIBLE);
+        tag2 = (TextView) getActivity().findViewById(R.id.tag2);
+        tag2.setTypeface(robotoThin);
+        tag2.setVisibility(View.INVISIBLE);
+        tag3 = (TextView) getActivity().findViewById(R.id.tag3);
+        tag3.setTypeface(robotoThin);
+        tag3.setVisibility(View.INVISIBLE);
+        settags = (Button) getActivity().findViewById(R.id.set_tag);
+        settags.setTypeface(robotoMedium);
+        listingEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                    CreateListing.this,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+        }});
+        listingEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                    CreateListing.this,
+                    now.get(Calendar.HOUR_OF_DAY),
+                    now.get(Calendar.MINUTE),
+                    false
+              );
+                tpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
+          }
+      });
+
 
         uploadPicture.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -109,11 +180,91 @@ public class CreateListing extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String s = Resource.TAGS.get(position);
-                        tag.setText("Tag: " + s);
                         tagSelected = s;
                         dialog.dismiss();
+                        if(tagArray.size() < 3) {
+                            tagArray.add(Resource.TAGS.get(position));
+                            tagcancel.setVisibility(View.VISIBLE);
+                        }
+                        for(int i = 0; i < tagArray.size() ; i++){
+                            if(tagArray.size() == 3){
+                                tag1.setText(tagArray.get(0));
+                                tag2.setText(tagArray.get(1));
+                                tag3.setText(tagArray.get(2));
+                                tCVisible = true;
+                                tag1.setVisibility(View.VISIBLE);
+                                tag2.setVisibility(View.VISIBLE);
+                                tag3.setVisibility(View.VISIBLE);
+                            }
+                            if(tagArray.size() == 2){
+                                tag1.setText(tagArray.get(0));
+                                tag2.setText(tagArray.get(1));
+                                tCVisible = true;
+                                tag1.setVisibility(View.VISIBLE);
+                                tag2.setVisibility(View.VISIBLE);
+                            }
+                            if(tagArray.size() == 1){
+                                tag1.setText(tagArray.get(0));
+                                tCVisible = true;
+                                tag1.setVisibility(View.VISIBLE);
+                            }
+                        }
                     }
                 });
+            }
+        });
+
+        expirationdatecancel.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent me) {
+                if(eDCVisible) {
+                    setdate.setText("- - / - - / - -");
+                    setYear = -1;
+                    setDay = -1;
+                    setMonth = -1;
+                    expirationdatecancel.setVisibility(View.INVISIBLE);
+                    eDCVisible = false;
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        });
+        expirationtimecancel.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent me) {
+                if(eTCVisible) {
+                    settime.setText("- - : - -");
+                    setMinutes = -1;
+                    setHours = -1;
+                    expirationtimecancel.setVisibility(View.INVISIBLE);
+                    eTCVisible = false;
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        });
+        tagcancel.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent me){
+                if(tCVisible){
+                    tag1.setVisibility(View.INVISIBLE);
+                    tag1.setText("-");
+                    tag1Visible = false;
+                    tag2.setVisibility(View.INVISIBLE);
+                    tag2.setText("-");
+                    tag2Visible = false;
+                    tag3.setVisibility(View.INVISIBLE);
+                    tag3.setText("-");
+                    tag3Visiblie = false;
+                    tagArray.clear();
+                    tCVisible = false;
+                    tagcancel.setVisibility(View.INVISIBLE);
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
         });
 
@@ -138,6 +289,71 @@ public class CreateListing extends Fragment {
                 builder.show();
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        setYear = year;
+        setMonth = monthOfYear;
+        setDay = dayOfMonth;
+        Calendar cal = Calendar.getInstance();
+        Date curDate = new Date();
+        cal.setTime(curDate);
+        int curYear = cal.get(Calendar.YEAR);
+        int curMonth = cal.get(Calendar.MONTH);
+        int curDay = cal.get(Calendar.DAY_OF_MONTH);
+        if((setYear >= curYear) && (setMonth >= curMonth)
+                && (setDay >= curDay)) {
+            dateSet = true;
+            setdate.setText("" + setDay + "/" + setMonth + "/" + setYear);
+            expirationdatecancel.setVisibility(View.VISIBLE);
+            eDCVisible = true;
+        }
+        else{
+            dateSet = false;
+        }
+    }
+
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+        setHours = hourOfDay;
+        setMinutes = minute;
+        boolean isPM = false;
+        Calendar cal = Calendar.getInstance();
+        Date curDate = new Date();
+        cal.setTime(curDate);
+        int curHours = cal.get(Calendar.HOUR_OF_DAY);
+        int curMinutes = cal.get(Calendar.MINUTE);
+        int curYear = cal.get(Calendar.YEAR);
+        int curMonth = cal.get(Calendar.MONTH);
+        int curDay = cal.get(Calendar.DAY_OF_MONTH);
+        if(setHours >= 12){
+            isPM = true;
+        }
+        String amorpm = null;
+        if(isPM){
+            amorpm = new String("PM");
+            if(setHours != 12){
+                setHours = setHours - 12;
+            }
+        }
+        else{
+            amorpm = new String("AM");
+        }
+        if(dateSet) {
+            if ((curMonth == setMonth) && (curDay == setDay) && (curYear == setYear)) {
+                if (setHours >= curHours && setMinutes >= curMinutes) {
+                    expirationtimecancel.setVisibility(View.VISIBLE);
+                    eTCVisible = true;
+                    settime.setText("" + setHours + ":" + setMinutes + " " + amorpm);
+                }
+            }
+            else {
+                settime.setText("" + setHours + ":" + setMinutes + " " + amorpm);
+                expirationtimecancel.setVisibility(View.VISIBLE);
+                eTCVisible = true;
+            }
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -278,9 +494,9 @@ public class CreateListing extends Fragment {
 
             TextView tag = (TextView) row.findViewById(R.id.tag);
             tag.setText(items.get(position));
-
             return row;
         }
+
     }
 
     private void alertCreateListingSuccess(final String listingID) {
@@ -373,6 +589,28 @@ public class CreateListing extends Fragment {
         dialog.show();
     }
 
+    /** Calculates the center X and center Y coord of a view and
+     * returns an array which has the centerx as the first element and
+     * centery as the second element.
+     * @param v The view whose center coords will be calculated and returned
+     * @return An int array in which the first position is the centerx and the
+     * second index is the centery
+     */
+    private int[] calcCenter(View v){
+        int cx = (v.getLeft() + v.getRight()) / 2;
+        int cy = (v.getTop() + v.getBottom()) / 2;
+        int[] toReturn = {cx, cy};
+        return toReturn;
+    }
+
+    /** Calculate the final radius for a view and returns that as an int.
+     * @param v The view whose final radius will be calculated for.
+     * @return An int that is the final radius for the view v.
+     */
+    private int calcFinalRadius(View v){
+        return Math.max(v.getWidth(), v.getHeight());
+    }
+
     private void alertLocationNotFound() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.ad_location_not_found);
@@ -389,4 +627,5 @@ public class CreateListing extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }

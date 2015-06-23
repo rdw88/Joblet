@@ -25,6 +25,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
 
@@ -38,7 +40,8 @@ import java.io.IOException;
 public class Login extends Activity {
     private EditText email;
     private EditText password;
-    private CheckBox rememberMe;
+    private com.rey.material.widget.CheckBox rememberMe;
+    private TextView remembermeText;
 
     private ProgressDialog dialog;
 
@@ -75,13 +78,18 @@ public class Login extends Activity {
 
         Typeface robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         Typeface robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface robotoThin = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
-        rememberMe.setTypeface(robotoRegular);
 
-        Button login = (Button) findViewById(R.id.login);
+        rememberMe = (com.rey.material.widget.CheckBox) findViewById(R.id.checkbox_remember_me);
 
+        com.rey.material.widget.Button login = (com.rey.material.widget.Button) findViewById(R.id.login);
+
+        final com.rey.material.widget.CheckBox rememberMe =
+                (com.rey.material.widget.CheckBox) findViewById(R.id.checkbox_remember_me);
+        remembermeText = (TextView) findViewById(R.id.remembermeText);
+        remembermeText.setTypeface(robotoRegular);
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
         if (prefs.contains("email") && prefs.contains("password")) {
             password.setText(prefs.getString("password", null));

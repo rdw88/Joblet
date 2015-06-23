@@ -7,12 +7,14 @@
 
     <!-- Colors -->
     <color name="cementInfo">#000000</color>
-    <color name="button">#FFE158</color>
+    <color name="button">#ffb200</color>
+    <color name="button_med">#ffdf81</color>
     <color name="title_color">#f05d5e</color>
     <color name="background_white">#F9F9F9</color>+
     <color name="white">#FFFFFF</color>
     <color name="background_main">#E6E6E6</color>
     <color name="background_launch">#E6E6E6</color>
+    <color name="background_light">#E1F5FE</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
     <color name="tab_background">#F38E1F</color>
@@ -22,8 +24,9 @@
     <color name="gradient_light_start">#30000000</color>
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
-
-
+    <color name="mdtp_accent_color">#f05d5e</color>
+    <color name="mdtp_accent_color_dark">#f05d5e</color>
+    <color name="card_titlecolor">#75ff02</color>
 
 
     <!-- Application themes. -->
@@ -82,5 +85,21 @@
 
     <!-- Button theme -->
 
+    <style name="buttonmedWithRipple" parent="Material.Drawable.Ripple.Wave.Light">
+        <item name="android:background">@null</item>
+        <item name="rd_cornerRadius">45dp</item>
+    </style>
+
+    <style name="buttonWithRipple" parent="Material.Drawable.Ripple.Wave.Light">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="Material.Widget.FloatingActionButton.Light" parent="Material.Drawable.Ripple.Touch.Light">
+        <item name="fab_radius">28dp</item>
+        <item name="fab_elevation">4dp</item>
+        <item name="fab_iconSize">24dp</item>
+        <item name="fab_interpolator">@android:anim/decelerate_interpolator</item>
+        <item name="fab_animDuration">@android:integer/config_mediumAnimTime</item>
+    </style>
 
 </resources>

@@ -2,4 +2,14 @@
 <resources>
     <dimen name="action_bar_height">52dp</dimen>
     <dimen name="tab_bar_height">40dp</dimen>
+    <dimen name="button_textsize">18sp</dimen>
+    <dimen name="button_width">180dp</dimen>
+    <dimen name="button_widthwide">225dp</dimen>
+    <dimen name="button_height">55dp</dimen>
+    <dimen name="button_widthshort">100dp</dimen>
+    <dimen name="card_marginTop">3dp</dimen>
+    <dimen name="card_marginLeft">14dp</dimen>
+    <dimen name="card_marginRight">14dp</dimen>
+    <integer name="buttonmed_cornerradius">45</integer>
+    <dimen name="mini_padding">4dp</dimen>
 </resources>

@@ -43,6 +43,8 @@ import java.util.List;
 
 public class Main extends FragmentActivity implements ActionBar.TabListener {
     private static final int MAIN_PAGE = 1;
+    // TODO: Make gpsOn true whenever the gps is on
+    public static boolean gpsOn = false;
     private MainPagerAdapter adapter;
     private ViewPager pager;
     private TabsPagerAdapter mAdapter;
@@ -225,5 +227,9 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static boolean isGpsOn(){
+        return gpsOn;
     }
 }

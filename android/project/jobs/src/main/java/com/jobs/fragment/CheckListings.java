@@ -5,30 +5,38 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dexafree.materialList.controller.MaterialListAdapter;
+import com.dexafree.materialList.controller.RecyclerItemClickListener;
+import com.dexafree.materialList.model.CardItemView;
+import com.dexafree.materialList.view.MaterialListView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.jobs.R;
+import com.jobs.activity.Main;
 import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
+import com.jobs.ui.ListItemCard;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,14 +46,16 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CheckListings extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private ListView listings;
+    private MaterialListView listings;
+    private RecyclerView.LayoutManager layoutManager;
+    private MaterialListAdapter adapter;
+    private RecyclerView.OnScrollListener scrollListener;
     private String profileData;
-    private ListingAdapter adapter;
-    private final ArrayList<Item> elements = new ArrayList<>();
+    private final ArrayList<FeedItem> elements = new ArrayList<>();
     private final ArrayList<String> filtered = new ArrayList<>();
-
     private JSONArray allListings;
     private static final int NUM_LISTINGS_SHOWN = 10;
     private int page;
@@ -55,8 +65,13 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     private double currentLatitude;
     private double currentLongitude;
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
 
         googleClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
@@ -80,7 +95,9 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
     public void onStart() {
         super.onStart();
-
+        listings = (MaterialListView) getActivity().findViewById(R.id.listing_list);
+        adapter = new MaterialListAdapter();
+        listings.setAdapter(adapter);
         if (filtered.size() == 0) {
             try {
                 JSONObject obj = new JSONObject(profileData);
@@ -98,7 +115,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             }
         }
 
-        Button filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
+        com.rey.material.widget.FloatingActionButton filter = (com.rey.material.widget.FloatingActionButton    ) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
@@ -133,6 +150,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         });
 
         fill();
+
+
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -144,6 +163,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     public void onStop() {
         super.onStop();
         elements.removeAll(elements);
+        adapter.clear();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -156,6 +176,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
     private void fill() {
         if (filtered.size() == 0 && adapter != null) {
+            // I changed the adapter so I'm not sure if this still works
             adapter.clear();
             adapter.notifyDataSetChanged();
             return;
@@ -183,11 +204,13 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                         int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
                         for (int i = 0; i < len; i++) {
                             JSONObject obj = allListings.getJSONObject(i);
-                            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
+                            FeedItem feedItem = new FeedItem(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
                                     obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),
                                     obj.getDouble("lat"), obj.getDouble("long"));
 
-                            elements.add(item);
+                            elements.add(feedItem);
+                            ListItemCard card = generateCard(feedItem);
+                            adapter.add(card);
                         }
                     } else
                         elements.removeAll(elements);
@@ -195,23 +218,33 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                     e.printStackTrace();
                 }
 
-                listings = (ListView) getActivity().findViewById(R.id.listing_list);
-                listings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                listings.addOnItemTouchListener(new RecyclerItemClickListener.OnItemClickListener() {
+                    public void onItemClick(CardItemView view, int position) {
                         String listingID = elements.get(position).listingID;
                         Intent intent = new Intent(getActivity(), ViewListing.class);
                         intent.putExtra("listing_id", listingID);
                         startActivity(intent);
                     }
+                    // I don't know what item long click does
+                    public void onItemLongClick(CardItemView view, int position) {
+                        return;
+                    }
                 });
 
-                listings.setOnScrollListener(new AbsListView.OnScrollListener() {
-                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                listings.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                    public void onScrollStateChanged(RecyclerView view, int scrollState) {
                     }
+                    int visibleItemCount, firstVisibleItem, totalItemCount;
+                    public void onScrolled(RecyclerView view, int dx, int dy) {
+                        // NEED TO CHANGE THIS
 
-                    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        visibleItemCount = listings.getChildCount();
+                        totalItemCount = listings.getLayoutManager().getItemCount();
+
+                        LinearLayoutManager llm = ((LinearLayoutManager)listings.getLayoutManager());
+                        firstVisibleItem = llm.findFirstVisibleItemPosition(); // This might not actually work I'm not sure its sorta a hack
                         int last = firstVisibleItem + visibleItemCount;
-
                         if (last == totalItemCount && !loading && totalItemCount >= NUM_LISTINGS_SHOWN && totalItemCount != allListings.length()) {
                             try {
                                 loadMore();
@@ -221,8 +254,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                         }
                     }
                 });
-                adapter = new ListingAdapter(getActivity(), elements);
-                listings.setAdapter(adapter);
             }
         }.execute();
     }
@@ -235,11 +266,11 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
         for (int i = page * NUM_LISTINGS_SHOWN; i < indices && i < allListings.length(); i++) {
             JSONObject obj = (JSONObject) allListings.get(i);
-            Item item = new Item(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
+            FeedItem feedItem = new FeedItem(obj.getString("job_title"), obj.getString("tag"), obj.getDouble("current_bid"),
                     obj.getDouble("owner_reputation"), obj.getString("listing_id"), obj.getString("thumbnail"),
                     obj.getDouble("lat"), obj.getDouble("long"));
 
-            elements.add(item);
+            elements.add(feedItem);
         }
 
         adapter.notifyDataSetChanged();
@@ -296,16 +327,13 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         }
     }
 
-    private class ListingAdapter extends ArrayAdapter<Item> {
-        private ArrayList<Item> items;
+    /*
+    private class ListingAdapter extends ArrayAdapter<FeedItem> {
+        private ArrayList<FeedItem> feedItems;
 
-        public Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
-        public Typeface moneyFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
-        public Typeface robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
-
-        public ListingAdapter(Context context, ArrayList<Item> items) {
-            super(context, R.layout.check_listing_list_item, items);
-            this.items = items;
+        public ListingAdapter(Context context, ArrayList<FeedItem> feedItems) {
+            super(context, R.layout.check_listing_list_item, feedItems);
+            this.feedItems = feedItems;
         }
 
         @Override
@@ -321,20 +349,20 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             currentBid.setTypeface(robotoMedium);
             TextView tags = (TextView) row.findViewById(R.id.listItem_text_tags);
             tags.setTypeface(customFont);
-            currentBid.setText("$" + format.format(items.get(position).currentBid));
+            currentBid.setText("$" + format.format(feedItems.get(position).currentBid));
             TextView reputation = (TextView) row.findViewById(R.id.owner_reputation);
-            title.setText(items.get(position).title);
-            reputation.setText(Double.toString(items.get(position).reputation));
-            tags.setText(tags.getText() + items.get(position).tag);
+            title.setText(feedItems.get(position).title);
+            reputation.setText(Double.toString(feedItems.get(position).reputation));
+            tags.setText(tags.getText() + feedItems.get(position).tag);
             TextView distance = (TextView) row.findViewById(R.id.listing_distance);
 
             if (currentLatitude != 0 && currentLongitude != 0) {
-                double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, items.get(position).latitude, items.get(position).longitude);
+                double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, feedItems.get(position).latitude, feedItems.get(position).longitude);
                 NumberFormat distanceFormat = new DecimalFormat("#0.0");
                 distance.setText(distanceFormat.format(distanceAway) + " mi");
             }
 
-            if (items.get(position).thumbnail.equals(""))
+            if (feedItems.get(position).thumbnail.equals(""))
                 return row;
 
             new AsyncTask<String, Void, String>() {
@@ -342,7 +370,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
                 protected String doInBackground(String... urls) {
                     try {
-                        bitmap = Address.fetchPicture(items.get(position).thumbnail);
+                        bitmap = Address.fetchPicture(feedItems.get(position).thumbnail);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -358,9 +386,10 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         }
 
         public int getCount() {
-            return items.size();
+            return feedItems.size();
         }
     }
+    */
 
     private void alertErrorServer() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -379,7 +408,16 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         dialog.show();
     }
 
-    private class Item {
+
+    // WHAT I'VE CHANGED:
+    //          - Item has become FeedItem and it has the same definitions
+    //          - I'm changing the listview to a recyclerview so we can use
+    //            cards created by a library instead of my attempt to ghetto-rig
+    //            the cards using an older api.
+    //          - As dictated by my current understanding, all we need is a generic view
+    //            on R.id.check_listing_list_item and we fill it with a card using code
+    //            in Java. I'm attempting to do this.
+    private class FeedItem {
         public String title;
         public String tag;
         public double currentBid;
@@ -388,9 +426,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         public double longitude;
         public String listingID;
         public String thumbnail;
-
-        public Item(String title, String tag, double currentBid, double reputation, String listingID,
-                    String thumbnail, double latitude, double longitude) {
+        public FeedItem(String title, String tag, double currentBid, double reputation, String listingID,
+                        String thumbnail, double latitude, double longitude) {
             this.title = title;
             this.tag = tag;
             this.currentBid = currentBid;
@@ -401,4 +438,109 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             this.longitude = longitude;
         }
     }
+
+    private class MyRecyclerAdapter extends RecyclerView.Adapter<CardListHolder>{
+        private List<FeedItem> feedItemList;
+        private Context mContext;
+
+        public MyRecyclerAdapter(Context context, ArrayList<FeedItem> feedItemList){
+            this.feedItemList = feedItemList;
+            this.mContext = context;
+        }
+
+
+
+        @Override
+        public  CardListHolder onCreateViewHolder(ViewGroup viewGroup, int i){
+            // Inflate layout
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View v = inflater.from(viewGroup.getContext()).inflate(R.layout.listitem_card, null);
+            // Create CardListHolder
+            CardListHolder clh = new CardListHolder(v, feedItemList.get(i));
+            return clh;
+        }
+
+
+        @Override
+        public void onBindViewHolder(final CardListHolder clh, int i){
+            FeedItem feedItem = feedItemList.get(i);
+        }
+        @Override
+        public int getItemCount(){
+            return (feedItemList != null ? feedItemList.size() : 0);
+        }
+    }
+
+    /** A Class that defines a row of the RecyclerView which is just a singular
+     * picture card.
+     */
+    private class CardListHolder extends RecyclerView.ViewHolder{
+        protected ListItemCard  card; // Each row will be a card
+
+        public CardListHolder(View view, FeedItem fi){
+            super(view);
+            this.card = generateCard(fi);
+        }
+
+        public ListItemCard  getCard(){
+            return card;
+        }
+    }
+
+    private double calcDistanceAway(FeedItem fi) {
+        double distanceAway =
+                Resource.calculateDistanceInMiles(currentLatitude, currentLongitude,
+                fi.latitude, fi.longitude);
+        return distanceAway;
+    }
+
+    private ListItemCard  generateCard(FeedItem fitem){
+        final ListItemCard  card = new ListItemCard (getActivity());
+        final FeedItem fi = fitem;
+        String title = fi.title;
+        NumberFormat format = new DecimalFormat("#0.00");
+        String description = "";
+        double amt = fi.currentBid;
+        String currentbid = "$ " + format.format(amt);
+        card.setSubtitle(currentbid);
+        description +=  " " + fi.tag;
+        card.setTitle(title);
+        double distanceAway;
+        if(Main.isGpsOn()) {
+            distanceAway = calcDistanceAway(fi);
+            description = description + "[" + distanceAway + "mi]";
+        }
+        card.setDescription(description);
+        new AsyncTask<String, Void, String>() {
+            private Bitmap bitmap;
+
+            protected String doInBackground(String... urls) {
+                try {
+                    bitmap = Address.fetchPicture(fi.thumbnail);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            protected void onPostExecute(String result) {
+
+            }
+        }.execute();
+
+        card.setButtonText("ADD TO WATCHLIST");
+        String colorPrimaryInfo = "#DD000000";
+        String colorSecondaryInfo = "#89000000";
+        int titleColor = Color.parseColor(colorPrimaryInfo);
+        int descripColor = Color.parseColor(colorSecondaryInfo);
+        int bidColor = Color.parseColor("#4CAF50");
+        int btnColor = Color.parseColor(colorPrimaryInfo);
+        card.setTitleColor(titleColor);
+        card.setDescriptionColor(descripColor);
+        card.setSubtitleColor(bidColor);
+        card.setButtonTextColor(btnColor);
+        return card;
+    }
+
+
 }

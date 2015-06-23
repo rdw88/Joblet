@@ -2,9 +2,10 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:genius="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#EEEEEE"
+    android:background="@color/background_light"
 
     >
     <LinearLayout
@@ -14,6 +15,17 @@
             android:label="Create Listing"
             android:icon="@drawable/logo"
             >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="22dp"
+            android:id="@+id/pagedescription"
+            android:text="Create a new job listing by filling out information"
+            android:textSize="32dp"
+            />
 
         <net.qiujuer.genius.widget.GeniusEditText
                 android:layout_width="300dp"
@@ -25,7 +37,7 @@
                 android:id="@+id/listing_name"
                 android:hint="Job Name (max 100 characters)"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="22dp"
                 android:padding="10dp"
                 android:maxLength="100"
                 genius:g_fontFamily="roboto"
@@ -125,7 +137,7 @@
 
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Enter up to three tags"
+            android:text=" Enter up to three tags:"
             android:id="@+id/text_tag_createListing"
             android:textSize="18sp"
             android:textColor="@color/cementInfo"
@@ -134,67 +146,77 @@
             android:layout_marginBottom="8dp" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tagbuttoncontainer"
+            android:layout_marginTop="2dp">
 
-               <Button
-                android:background="@drawable/dynamic_button_tag"
-                android:id="@+id/set_tag"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="65dp"
-                android:layout_toLeftOf="@+id/anchor"
-                android:layout_centerInParent="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="gallery"
-                android:textSize="12sp"
-                android:id="@+id/text_gallery"
-                android:layout_alignLeft="@+id/button_createListing_gallery"
-                android:layout_below="@+id/button_createListing_gallery"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginRight="28dp"
+                android:layout_marginLeft="28dp"
+                android:id="@+id/tagcontainer">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="camera"
-                android:textSize="12sp"
-                android:id="@+id/text_camera"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="2dp"
-                android:layout_below="@+id/button_createListing_camera"
-                android:layout_alignLeft="@+id/button_createListing_camera" />
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/dynamic_button_gallery"
-                android:id="@+id/button_createListing_gallery"
-                android:layout_centerInParent="true" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="5dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/anchor" />
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/dynamic_button_camera"
-                android:layout_toRightOf="@+id/anchor"
-                android:layout_toEndOf="@+id/set_tag"
-                android:layout_marginLeft="65dp"
-                android:id="@+id/button_createListing_camera"
-                android:layout_centerInParent="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tag1"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_information"
+                    android:id="@+id/tag1"
+                    android:layout_centerHorizontal="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tag2"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_information"
+                    android:id="@+id/tag2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tag1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tag3"
+                    android:textSize="16dp"
+                    android:textColor="@color/primary_information"
+                    android:id="@+id/tag3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tag2" />
 
             </RelativeLayout>
 
+            <com.rey.material.widget.Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_med"
+                android:textSize="@dimen/button_textsize"
+                android:textColor="#212121"
+                android:id="@+id/set_tag"
+                android:text="Choose Tags"
+                android:inputType="date"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                style="@style/buttonmedWithRipple"
+                android:layout_marginLeft="42dp"
+                android:layout_below="@+id/tagcontainer"
+                android:layout_marginTop="12dp"
+                />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_cancel_black_36dp"
+                android:id="@+id/tagcancel"
+                android:layout_marginRight="22dp"
+                android:layout_marginLeft="22dp"
+                android:layout_toRightOf="@+id/set_tag"
+                android:layout_alignTop="@+id/set_tag"
+                android:layout_marginTop="17dp" />
+
+
+        </RelativeLayout>
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Upload pictures of the job"
@@ -203,56 +225,142 @@
             android:textColor="@color/cementInfo"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp" />
-
-        <net.qiujuer.genius.widget.GeniusEditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="#F8F9F9"
-            android:textSize="14sp"
-            android:textColor="@color/primary_information"
-            android:textColorHint="@color/primary_information"
-            android:id="@+id/listing_enddate"
-            android:hint="Listing expiration date"
-            android:inputType="date"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            genius:g_fontFamily="roboto"
-            />
-
-        <net.qiujuer.genius.widget.GeniusEditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="#F8F9F9"
-            android:textSize="14sp"
-            android:textColor="@color/primary_information"
-            android:textColorHint="@color/primary_information"
-            android:id="@+id/listing_endtime"
-            android:hint="Listing expiration time"
-            android:inputType="time"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            genius:g_fontFamily="roboto"
-            />
-
-
-        <net.qiujuer.genius.widget.GeniusButton
-                android:id="@+id/button_createListing_postListing"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:text="POST LISTING"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
+            android:layout_marginTop="22dp" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/picBtnContainer"
+            android:layout_marginTop="12dp">
+            <com.rey.material.widget.Button
+                android:layout_width="@dimen/button_widthshort"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_med"
+                android:textSize="@dimen/button_textsize"
+                android:textColor="#212121"
+                android:id="@+id/button_createListing_gallery"
+                android:text="Gallery"
+                android:inputType="date"
                 android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                style="@style/buttonmedWithRipple"
+                android:layout_toLeftOf="@+id/picContMidAnchor"
+                android:layout_marginRight="18dp" />
+            <com.rey.material.widget.Button
+                android:layout_width="@dimen/button_widthshort"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_med"
+                android:textSize="@dimen/button_textsize"
+                android:textColor="#212121"
+                android:id="@+id/button_createListing_camera"
+                android:text="Camera"
+                android:inputType="date"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                style="@style/buttonmedWithRipple"
+                android:layout_toRightOf="@+id/picContMidAnchor"
+                android:layout_marginLeft="18dp" />
+            <Space
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:id="@+id/picContMidAnchor"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/expirationdateContainer"
+            android:layout_marginTop="32dp">
+            <com.rey.material.widget.Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_med"
+                android:textSize="@dimen/button_textsize"
+                android:textColor="#212121"
+                android:id="@+id/listing_enddate"
+                android:text="Expiration Date"
+                android:inputType="date"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                style="@style/buttonmedWithRipple"
+                android:layout_marginLeft="28dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- - / - - / - -"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/listing_enddate"
+                android:layout_marginLeft="10dp"
+                android:textSize="22dp"
+                android:textColor="@color/primary_information"
+                android:id="@+id/setdate"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_cancel_black_36dp"
+                android:id="@+id/expirationdatecancel"
+                android:layout_toRightOf="@+id/setdate"
+                android:layout_marginLeft="4dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/expirationtimeContainer"
+            android:layout_marginTop="22dp">
+            <com.rey.material.widget.Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:background="@drawable/button_med"
+                android:textColor="#212121"
+                android:textSize="@dimen/button_textsize"
+                android:id="@+id/listing_endtime"
+                android:text="Expiration Time"
+                android:inputType="time"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                style="@style/buttonmedWithRipple"
+                android:layout_marginLeft="28dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- - : - -"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/listing_endtime"
+                android:layout_marginLeft="12dp"
+                android:textSize="22dp"
+                android:textColor="@color/primary_information"
+                android:id="@+id/settime"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_cancel_black_36dp"
+                android:id="@+id/expirationtimecancel"
+                android:layout_toRightOf="@+id/settime"
+                android:layout_marginLeft="4dp" />
+        </RelativeLayout>
+
+        <com.rey.material.widget.Button
+            android:id="@+id/button_createListing_postListing"
+            android:layout_width="@dimen/button_widthwide"
+            android:layout_height="@dimen/button_height"
+            android:text="POST LISTING"
+            android:textColor="#FFFFFF"
+            android:background="@color/button"
+            android:textSize="@dimen/button_textsize"
+            android:layout_gravity="center_horizontal"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="16dp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/Marsala"
-            genius:g_touchEffect="ripple"
-            genius:g_blockButtonEffectHeight="2dp"/>
+            app:rd_enable="true"
+            app:rd_rippleType="wave"
+            android:layout_below="@+id/login"
+            style="@style/buttonWithRipple"/>
     </LinearLayout>
 </ScrollView>
