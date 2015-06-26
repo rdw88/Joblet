@@ -140,7 +140,7 @@
             android:text=" Enter up to three tags:"
             android:id="@+id/text_tag_createListing"
             android:textSize="18sp"
-            android:textColor="@color/cementInfo"
+            android:textColor="@color/primary_information"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp" />
@@ -222,7 +222,7 @@
             android:text=" Upload pictures of the job"
             android:id="@+id/text_picturesSelected_createListing"
             android:textSize="20sp"
-            android:textColor="@color/cementInfo"
+            android:textColor="@color/primary_information"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="12dp"
             android:layout_marginTop="22dp" />

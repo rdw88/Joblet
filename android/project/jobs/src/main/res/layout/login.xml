@@ -85,7 +85,6 @@
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:textColor="#F9F9F9"
-        android:background="@color/button"
         android:text="LOG IN"
         android:textSize="@dimen/button_textsize"
         android:layout_gravity="center_horizontal"
@@ -94,15 +93,15 @@
         style="@style/buttonWithRipple"/>
 
     <Button
-        android:background="@drawable/button"
+        android:background="@color/transparent"
         android:id="@+id/forgotPass"
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:layout_height="40dp"
         android:textColor="#F9F9F9"
         android:text="FORGOT PASSWORD"
-        android:textSize="@dimen/button_textsize"
+        android:textSize="12sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"

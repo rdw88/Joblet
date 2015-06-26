@@ -6,27 +6,21 @@
     -->
 
     <!-- Colors -->
-    <color name="cementInfo">#000000</color>
     <color name="button">#ffb200</color>
     <color name="button_med">#ffdf81</color>
     <color name="title_color">#f05d5e</color>
-    <color name="background_white">#F9F9F9</color>+
-    <color name="white">#FFFFFF</color>
-    <color name="background_main">#E6E6E6</color>
-    <color name="background_launch">#E6E6E6</color>
     <color name="background_light">#E1F5FE</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
+    <color name="softwhite">#FAFAFA</color>
+    <color name="moneygreen">#4CAF50</color>
+    <color name="gradient_light_start">#30000000</color>
     <color name="tab_background">#F38E1F</color>
     <color name="tab_background_selected">#FFCC80</color>
-    <color name="gradient_start">#50000000</color>
-    <color name="gradient_almost_transparent">#10000000</color>
-    <color name="gradient_light_start">#30000000</color>
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
     <color name="mdtp_accent_color">#f05d5e</color>
     <color name="mdtp_accent_color_dark">#f05d5e</color>
-    <color name="card_titlecolor">#75ff02</color>
 
 
     <!-- Application themes. -->
@@ -38,12 +32,16 @@
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
         <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="android:actionBarWidgetTheme">@style/PopupMenuTextView</item>
+        <item name="colorPrimary">@color/title_color</item>
+        <item name="colorPrimaryDark">@color/title_color</item>
+        <item name="colorAccent">@color/background_light</item>
+        <item name="colorControlNormal">#f05d5e</item>
     </style>
 
-    <!-- ActionBar tabs text styles -->
+
     <style name="MyActionBarTabText">
         <item name="android:actionBarSize">@dimen/tab_bar_height</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/softwhite</item>
         <item name="android:textSize">18sp</item>
 
     </style>
@@ -63,6 +61,9 @@
         <item name="android:actionBarSize">@dimen/action_bar_height</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
         <item name="android:homeAsUpIndicator">@drawable/actionbar_back</item>
+        <item name="colorPrimary">@color/title_color</item>
+        <item name="colorPrimaryDark">@color/title_color</item>
+        <item name="colorAccent">@color/background_light</item>
         <item name="colorControlNormal">#f05d5e</item>
         <item name="colorControlActivated">#f05d5e</item>
         <item name="colorControlHighlight">#f05d5e</item>
@@ -70,17 +71,90 @@
 
     <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
         <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
         <item name="android:background">#f05d5e</item>
         <item name="android:icon">@drawable/actionbar_icon</item>
     </style>
 
     <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/softwhite</item>
         <item name="android:textSize">22sp</item>
     </style>
 
+
+    <!-- RelativeView theme -->
+
+    <style name="nextprevContainer">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:padding">@dimen/big_padding</item>
+    </style>
+
+    <!-- TextView theme -->
+
+    <style name="insturctionsTitle">
+        <item name="android:padding">@dimen/big_padding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/primary_information</item>
+    </style>
+
+    <style name="instructionsSubTitle">
+        <item name="android:padding">@dimen/big_padding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/secondary_information</item>
+    </style>
+
+    <style name="listingCurbid">
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/big_padding</item>
+        <item name="android:paddingLeft">@dimen/big_padding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/moneygreen</item>
+    </style>
+
+    <style name="listingdetails">
+        <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
+        <item name="android:paddingRight">@dimen/big_padding</item>
+        <item name="android:paddingLeft">@dimen/big_padding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="listinginfo">
+    <item name="android:paddingTop">@dimen/small_padding</item>
+    <item name="android:paddingBottom">@dimen/small_padding</item>
+    <item name="android:paddingRight">@dimen/big_padding</item>
+    <item name="android:paddingLeft">@dimen/big_padding</item>
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:textColor">@color/primary_information</item>
+    </style>
+
+    <style name="listinginfoNoPadding">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primary_information</item>
+    </style>
+
+    <!-- EditText theme -->
+
+    <style name="edittextFullspan" parent="Material.Widget.EditText.Light">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/big_padding</item>
+    </style>
 
 
     <!-- Button theme -->
@@ -91,7 +165,9 @@
     </style>
 
     <style name="buttonWithRipple" parent="Material.Drawable.Ripple.Wave.Light">
-        <item name="android:background">@null</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="rd_cornerRadius">2dp</item>
+
     </style>
 
     <style name="Material.Widget.FloatingActionButton.Light" parent="Material.Drawable.Ripple.Touch.Light">

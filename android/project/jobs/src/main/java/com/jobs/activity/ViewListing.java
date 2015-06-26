@@ -54,8 +54,6 @@ public class ViewListing extends Activity {
 
         title = (TextView) findViewById(R.id.view_listing_title);
         title.setTypeface(robotoRegular);
-        textCurrentBid = (TextView) findViewById(R.id.text_currentbid);
-        textCurrentBid.setTypeface(robotoMedium);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
         currentBid.setTypeface(robotoRegular);
         textOwnerReputation = (TextView) findViewById(R.id.text_ownerreputation);
@@ -70,12 +68,6 @@ public class ViewListing extends Activity {
         textOwnerName.setTypeface(robotoMedium);
         ownerName = (TextView) findViewById(R.id.view_listing_owner_name);
         ownerName.setTypeface(robotoRegular);
-        textTimeCreated = (TextView) findViewById(R.id.text_listingtimecreated);
-        textTimeCreated.setTypeface(robotoMedium);
-        timeCreated = (TextView) findViewById(R.id.view_listing_time_created);
-        timeCreated.setTypeface(robotoRegular);
-        textTag = (TextView) findViewById(R.id.text_tag);
-        textTag.setTypeface(robotoMedium);
         tag = (TextView) findViewById(R.id.view_listing_tag);
         tag.setTypeface(robotoRegular);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
@@ -85,14 +77,6 @@ public class ViewListing extends Activity {
         addToWatchlist.setTypeface(robotoMedium);
         textDescription = (TextView) findViewById(R.id.listing_description);
         textDescription.setTypeface(robotoRegular);
-        constantTextDescription = (TextView) findViewById(R.id.text_listing_description);
-        constantTextDescription.setTypeface(robotoMedium);
-        constantTextListEndsOn = (TextView) findViewById(R.id.text_listingtimetoend);
-        constantTextListEndsOn.setTypeface(robotoMedium);
-        textListEndsOn = (TextView) findViewById(R.id.view_listing_time_toend);
-        textListEndsOn.setTypeface(robotoRegular);
-        constantTimeLeft = (TextView) findViewById(R.id.text_listingtimeleft);
-        constantTimeLeft.setTypeface(robotoMedium);
         textTimeLeft = (TextView) findViewById(R.id.view_listing_timeleft);
         textTimeLeft.setTypeface(robotoRegular);
 
@@ -187,7 +171,10 @@ public class ViewListing extends Activity {
                     ownerReputation.setText(data.getString("owner_reputation"));
                     jobLocation.setText(loc);
                     ownerName.setText(data.getString("owner_name"));
-                    timeCreated.setText(data.getString("time_created"));
+                    /* TODO: Get the time_created in a date form not a String form and calculate how
+                     *much time is left and then use that to set the text for timeleft
+                     */
+                    //timeCreated.setText(data.getString("time_created"));
                     tag.setText(data.getString("tag"));
                     textDescription.setText(data.getString("job_description"));
                     picture.setImageBitmap(bitmap);
