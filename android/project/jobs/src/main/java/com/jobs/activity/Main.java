@@ -17,12 +17,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.Address;
@@ -31,6 +43,13 @@ import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.rey.material.app.ToolbarManager;
+import com.rey.material.util.ThemeUtil;
+import com.rey.material.widget.TabPageIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,39 +59,125 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 
-
-public class Main extends FragmentActivity implements ActionBar.TabListener {
-    private static final int MAIN_PAGE = 1;
+//FragmentActivity was what it extended
+public class Main extends AppCompatActivity implements ActionBar.TabListener {
+    private static final int MAIN_PAGE = 0;
     // TODO: Make gpsOn true whenever the gps is on
-    public static boolean gpsOn = false;
+    public static boolean isGpsOn = false;
     private MainPagerAdapter adapter;
     private ViewPager pager;
     private TabsPagerAdapter mAdapter;
-    private String data;
-    private String notificationData;
+    private DrawerAdapter mDrawerAdapter;
+    private Toolbar mToolbar;
+    private Drawer drawer = null;
+    private ToolbarManager mToolbarManager;
+    private String data, notificationData;
     private Button logout;
-    private String[] tabs = {"Create", "Profile", "Browse"};
+
+    private TabPageIndicator tpi;
+
+    /* I'm removing the create tab because that functionality will be accessed by using
+     * the drawer I still need to add. */
+    private Tab[] mTabs = new Tab[]{Tab.PROFILE, Tab.BROWSE};
+
+    // EXPERIMENT -> Seems to have worked
+    class DrawerAdapter extends BaseAdapter implements View.OnClickListener {
+
+        private Tab mSelectedTab;
+
+        public void setSelected(Tab tab){
+            if(tab != mSelectedTab){
+                mSelectedTab = tab;
+                //notifyDataSetInvalidated();
+            }
+        }
+
+        public Tab getSelectedTab(){
+            return mSelectedTab;
+        }
+
+        @Override
+        public int getCount() {
+            return mTabs.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mTabs[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = convertView;
+            if(v == null) {
+                v = LayoutInflater.from(Main.this).inflate(R.layout.row_drawer, null);
+                v.setOnClickListener(this);
+            }
+
+            v.setTag(position);
+            Tab tab = (Tab)getItem(position);
+            ((TextView)v).setText(tab.toString());
+
+            if(tab == mSelectedTab) {
+                v.setBackgroundColor(ThemeUtil.colorPrimary(Main.this, 0));
+                ((TextView)v).setTextColor(0xFFFFFFFF);
+            }
+            else {
+                v.setBackgroundResource(0);
+                ((TextView)v).setTextColor(0xFF000000);
+            }
+
+            return v;
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = (Integer)v.getTag();
+            pager.setCurrentItem(position);
+            //dl_navigator.closeDrawer(fl_drawer);
+        }
+    }
+
+    // END EXPERIMENT
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_main);
         pager = (ViewPager) findViewById(R.id.pager);
-        final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        //changes tab background
-        actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.drawable.tab_background));
 
-
-        pager.setAdapter(mAdapter);
-
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
-        }
-
-        data = getIntent().getExtras().getString("data");
-        adapter = new MainPagerAdapter(getSupportFragmentManager());
+        tpi = (TabPageIndicator) findViewById(R.id.main_tpi);
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), mTabs);
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        pager.setAdapter(adapter);
+        tpi.setViewPager(pager, MAIN_PAGE);
+        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.softwhite));
+        drawer = new DrawerBuilder()
+                .withActivity(this)
+                .withFullscreen(false)
+                .withActionBarDrawerToggle(true)
+                .withToolbar(mToolbar)
+                .withTranslucentStatusBar(false)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("Sample")
+                ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(AdapterView<?> adapterView, View view, int position, long id, IDrawerItem iDrawerItem) {
+                        return false;
+                    }
+
+
+                })
+        .build();
+        data = getIntent().getExtras().getString("data");
+
 
         try {
             ViewConfiguration config = ViewConfiguration.get(this);
@@ -87,11 +192,12 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             public void onPageSelected(int page) {
-                getActionBar().setTitle(Resource.PAGE_ORDER[page]);
                 final InputMethodManager imm = (InputMethodManager)getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(pager.getWindowToken(), 0);
-                getActionBar().setSelectedNavigationItem(page);
+                //getActionBar().setSelectedNavigationItem(page);
+                tpi.setCurrentItem(page);
+                tpi.setSelected(true);
             }
 
             public void onPageScrollStateChanged(int page) {
@@ -101,7 +207,6 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
         });
 
-        pager.setAdapter(adapter);
         pager.setCurrentItem(MAIN_PAGE);
     }
 
@@ -168,6 +273,7 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+        pager.setCurrentItem(tab.getPosition());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -177,37 +283,49 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
     }
 
     public class MainPagerAdapter extends FragmentPagerAdapter {
-        public MainPagerAdapter(FragmentManager fm) {
+        Fragment[] mFragments;
+        Tab[] tabs;
+        public MainPagerAdapter(FragmentManager fm, Tab[] tabs) {
             super(fm);
+            mFragments = new Fragment[mTabs.length];
+            mTabs = tabs;
         }
 
         public Fragment getItem(int i) {
-            Fragment fragment = null;
-
-            if (i == 0) {
-                fragment = new CreateListing();
-
-            } else if (i == 1) {
-                fragment = new LandingPage();
-
-            } else if (i == 2) {
-                fragment = new CheckListings();
-
+            if(mFragments[i] == null) {
+                switch (mTabs[i]){
+                    case PROFILE:
+                        mFragments[i] = new LandingPage();
+                        break;
+                    case BROWSE:
+                        mFragments[i] = new CheckListings();
+                        break;
+                }
             }
-
             Bundle args = new Bundle();
             args.putString("data", data);
-            fragment.setArguments(args);
+            mFragments[i].setArguments(args);
+            return mFragments[i];
+        }
 
-            return fragment;
+        @Override
+        public CharSequence getPageTitle(int position){
+            return mTabs[position].toString().toUpperCase();
         }
 
         public int getCount() {
-            return 3;
+            return mFragments.length;
         }
     }
 
+    @Override
     public void onBackPressed() {
+        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        if (drawer != null && drawer.isDrawerOpen()) {
+            drawer.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -216,20 +334,52 @@ public class Main extends FragmentActivity implements ActionBar.TabListener {
                 onBackPressed();
                 return true;
 
-            case R.id.logout:
-                logout();
-                return true;
+            case R.id.morevert:
+                View menuItemView = findViewById(R.id.morevert);
+                PopupMenu popupMenu = new PopupMenu(this, menuItemView);
+                popupMenu.getMenuInflater()
+                        .inflate(R.menu.overflowlist, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.notifications:
+                                Intent intent = new Intent(Main.this, Notifications.class);
+                                intent.putExtra("notification_data", notificationData);
+                                startActivity(intent);
+                                return true;
 
-            case R.id.notifications:
-                Intent intent = new Intent(Main.this, Notifications.class);
-                intent.putExtra("notification_data", notificationData);
-                startActivity(intent);
-                return true;
+                            case R.id.logout:
+                                logout();
+                                return true;
+
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+    }
+
+    /** The enum that will define the individual tabs */
+    public enum Tab {
+        PROFILE ("Profile"),
+        BROWSE ("Browse");
+        private final String name;
+        Tab(String s){
+            name = s;
+        }
+        public boolean equalsName(String toCompare){
+            return (toCompare != null) && name.equals(toCompare);
+        }
+
+        public String toString(){
+            return name;
+        }
     }
 
     public static boolean isGpsOn(){
-        return gpsOn;
+        return isGpsOn;
     }
 }

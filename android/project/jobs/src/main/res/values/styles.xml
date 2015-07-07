@@ -9,7 +9,7 @@
     <color name="button">#ffb200</color>
     <color name="button_med">#ffdf81</color>
     <color name="title_color">#f05d5e</color>
-    <color name="background_light">#E1F5FE</color>
+    <color name="background_light">#EAEAEA</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
     <color name="softwhite">#FAFAFA</color>
@@ -19,19 +19,18 @@
     <color name="tab_background_selected">#FFCC80</color>
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
+    <color name="indicator_color">#03A9F4</color>
+    <!-- #00E5FF -->
     <color name="mdtp_accent_color">#f05d5e</color>
     <color name="mdtp_accent_color_dark">#f05d5e</color>
 
 
     <!-- Application themes. -->
 
-    <style name="AppTheme2" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
-        <item name="android:actionBarSize">@dimen/action_bar_height</item>
-        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
-        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
-        <item name="android:actionBarWidgetTheme">@style/PopupMenuTextView</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:dropDownListViewStyle">@style/PopupMenuTextView</item>
         <item name="colorPrimary">@color/title_color</item>
         <item name="colorPrimaryDark">@color/title_color</item>
         <item name="colorAccent">@color/background_light</item>
@@ -47,34 +46,60 @@
     </style>
 
     <style name="PopupMenu">
-        <item name="android:popupBackground">#FFCC80</item>
+        <item name="android:popupBackground">@color/softwhite</item>
     </style>
 
-    <style name="PopupMenuTextView" parent="@style/android:Theme.Holo.Light">
+    <style name="PopupMenuTextView" parent="@style/android:Widget.Holo.ListView.DropDown">
         <item name="android:textColor">#DD000000</item>
+        <item name="android:divider">@color/divider_grey</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:background">@color/softwhite</item>
     </style>
 
 
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/AppTheme_ActionBar</item>
-        <item name="android:actionBarSize">@dimen/action_bar_height</item>
-        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-        <item name="android:homeAsUpIndicator">@drawable/actionbar_back</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/title_color</item>
         <item name="colorPrimaryDark">@color/title_color</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="colorAccent">@color/background_light</item>
         <item name="colorControlNormal">#f05d5e</item>
         <item name="colorControlActivated">#f05d5e</item>
         <item name="colorControlHighlight">#f05d5e</item>
     </style>
 
-    <style name="AppTheme_ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:titleTextStyle">@style/AppTheme_ActionBar_Title</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-        <item name="android:background">#f05d5e</item>
-        <item name="android:icon">@drawable/actionbar_icon</item>
+        <item name="android:height">@dimen/action_bar_height</item>
+        <item name="android:background">@color/title_color</item>
+        <item name="homeAsUpIndicator">@drawable/ic_menu_white_24dp</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_menu_white_24dp</item>
+        <item name="android:showAsAction">always</item>
+    </style>
+
+    <style  name="TabPageIndicator"  parent="Material.Widget.TabPageIndicator.Light">
+        <item name="android:background">@color/title_color</item>
+        <item name="android:textColor">@color/softwhite</item>
+        <item name="android:textSize">22sp</item>
+        <item name="tpi_tabPadding">12dp</item>
+        <item name="tpi_tabRipple">@style/TabRippleStyle</item>
+        <item name="tpi_indicatorHeight">3dp</item>
+        <item name="tpi_indicatorColor">@color/indicator_color</item>
+        <item name="android:textAppearance">@style/TabText</item>
+        <item name="tpi_mode">fixed</item>
+    </style>
+
+    <style name="TabText" >
+        <item name="android:textColor">@color/softwhite</item>
+    </style>
+
+    <style name="TabRippleStyle" parent="Material.Drawable.Ripple.Wave">
+        <item name="android:background">@color/title_color</item>
+        <item name="rd_rippleAnimDuration">300</item>
+        <item name="rd_maskType">rectangle</item>
+        <item name="rd_cornerRadius">0dp</item>
+        <item name="rd_padding">0dp</item>
     </style>
 
     <style name="AppTheme_ActionBar_Title" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
@@ -82,6 +107,10 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="ToolbarRippleStyle" parent="Material.Drawable.Ripple.Touch.MatchView.Light">
+        <item name="rd_backgroundColor">@android:color/transparent</item>
+        <item name="rd_rippleColor">#33FFFFFF</item>
+    </style>
 
     <!-- RelativeView theme -->
 

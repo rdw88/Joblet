@@ -48,8 +48,8 @@
                 android:layout_height="2dp"
                 android:id="@+id/midanchor2"
                 android:layout_centerHorizontal="true" />
-            
-            
+
+
             <ImageView android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:id="@+id/reputationUp"
@@ -178,74 +178,56 @@
             android:textSize="12dp" />
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="68dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_below="@+id/jobs_label"
-            android:id="@+id/relative_jobs"
-            android:layout_marginTop="8dp">
+            android:id="@+id/container_myjobs"
+            android:layout_marginTop="8dp"
+            android:clickable="false">
 
-            <Button
-                android:background="#FAFAFA"
-                android:id="@+id/my_jobs"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:paddingRight="8dp"
-                android:paddingLeft="8dp"
-                android:textColor="#468DCB"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Jobs"
-                android:layout_marginLeft="22dp"
-                android:textSize="32dp"
-                android:id="@+id/text_myjobs"
-                android:textColor="#212121"
-                android:singleLine="true"
-                android:layout_centerVertical="true"
-                style="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_currentJobs"
-                android:textSize="22dp"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@+id/text_currentjobs"
-                android:layout_alignBottom="@+id/text_currentjobs"
-                android:textColor="#727272"
-                android:id="@+id/user_currentJobsNumber"
-                style="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_currentjobs"
-                android:text="Current Jobs:"
-                android:textSize="22dp"
-                android:textColor="#727272"
-                android:layout_centerVertical="true"
-                android:layout_alignLeft="@+id/midspace2"
-                android:layout_marginBottom="6dp"
-                android:layout_alignBottom="@+id/text_myjobs"
-                style="bold" />
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#E0E0E0"
                 android:id="@+id/line1" />
-            <Space
-                android:layout_width="40dp"
-                android:layout_height="5dp"
-                android:id="@+id/midspace2"
-                android:layout_centerHorizontal="true" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Jobs"
+                android:textSize="32dp"
+                android:padding="@dimen/big_padding"
+                android:id="@+id/text_myjobs"
+                android:textColor="@color/primary_information"
+                />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_currentJobs"
+                    android:textSize="22dp"
+                    android:paddingLeft="@dimen/big_padding"
+                    android:textColor="@color/secondary_information"
+                    android:id="@+id/user_currentJobsNumber"
+                    android:layout_toRightOf="@+id/text_currentjobs" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_currentjobs"
+                    android:text="Current Jobs:"
+                    android:paddingLeft="@dimen/big_padding"
+                    android:paddingBottom="@dimen/big_padding"
+                    android:textSize="22dp"
+                    android:textColor="#727272"
+                    android:layout_centerVertical="true"
+                    />
+            </RelativeLayout>
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -253,65 +235,52 @@
                 android:background="#E0E0E0"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/line2" />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="68dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:id="@+id/relative_bids"
-            android:layout_below="@+id/relative_jobs">
-
-             <Button
-                android:background="#FAFAFA"
-                android:id="@+id/my_bids"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:paddingRight="8dp"
-                android:paddingLeft="8dp"
-                android:textColor="#468DCB"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"/>
+            android:layout_below="@+id/container_myjobs"
+            android:clickable="false">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Bids"
-                android:layout_marginLeft="22dp"
                 android:textSize="32sp"
+                android:padding="@dimen/big_padding"
                 android:id="@+id/text_mybids"
-                android:textColor="#212121"
-                android:layout_centerVertical="true"
-                style="bold" />
+                android:textColor="@color/primary_information"
+                />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_bidspending"
-                android:textSize="22dp"
-                android:layout_toRightOf="@+id/text_bidspending"
-                android:layout_alignBottom="@+id/text_bidspending"
-                android:layout_marginLeft="4dp"
-                android:textColor="#727272"
-                android:id="@+id/user_currentBidsNumber"
-                style="bold" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_bidspending"
-                android:text="Bids Pending:"
-                android:textSize="22sp"
-                android:textColor="#727272"
-                android:layout_centerVertical="true"
-                android:layout_alignLeft="@+id/midspace"
-                android:layout_alignBottom="@+id/text_mybids"
-                android:layout_marginBottom="6dp"
-                style="bold" />
-            <Space
-                android:layout_width="40dp"
-                android:layout_height="5dp"
-                android:id="@+id/midspace"
-                android:layout_centerHorizontal="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_bidspending"
+                    android:textSize="22dp"
+                    android:paddingLeft="@dimen/big_padding"
+                    android:textColor="@color/secondary_information"
+                    android:id="@+id/user_currentBidsNumber"
+                    android:layout_toRightOf="@+id/text_bidspending" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_bidspending"
+                    android:text="Bids Pending:"
+                    android:paddingLeft="@dimen/big_padding"
+                    android:paddingBottom="@dimen/big_padding"
+                    android:textSize="22sp"
+                    android:textColor="@color/secondary_information"
+                    />
+
+            </RelativeLayout>
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -320,7 +289,7 @@
                 android:id="@+id/line3"
                 android:layout_alignParentBottom="true" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"

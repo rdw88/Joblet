@@ -105,12 +105,7 @@ public class LandingPage extends Fragment {
         //Buttons
         myListings = (Button) view.findViewById(R.id.my_listings);
         myListings.setTypeface(robotoMedium);
-
-        myBids = (Button) view.findViewById(R.id.my_bids);
-
-
         editProfile = (Button) view.findViewById(R.id.edit_profile);
-
         watchlist = (Button) view.findViewById(R.id.watchlist);
         watchlist.setTypeface(robotoMedium);
 
