@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:genius="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,86 +12,78 @@
         android:text="Write a Biography"
         android:textSize="34sp"
         android:textColor="@color/primary_information"
-        android:layout_alignLeft="@+id/text_bio"
-        android:layout_marginTop="45dp"
-        android:id="@+id/text_biotitle" />
+        android:id="@+id/text_biotitle"
+        android:padding="@dimen/big_padding"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This will be the description of you and your skills which will be read by other users so remember to be professional"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@color/primary_information"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="26dp"
-        android:paddingLeft="2dp"
         android:id="@+id/text_bio"
-        android:layout_below="@+id/text_biotitle" />
+        android:layout_below="@+id/text_biotitle"
+        android:padding="@dimen/big_padding"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp" />
 
     <EditText
         android:id="@+id/bio"
         android:layout_width="fill_parent"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_weight="2"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_bio"
-        android:layout_centerHorizontal="true"
         android:hint="Bio"
         android:textColor="@color/primary_information"
         android:textColorHint="@color/secondary_information"
-        android:layout_marginTop="22dp"
         android:maxLength="400"
         android:lines="6"
         android:minLines="4"
         android:maxLines="6"
         android:inputType="textMultiLine|textCapSentences"
         android:scrollbars="vertical"
-        android:paddingLeft="12dp"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:gravity="top|left"
-        />
+        android:layout_centerInParent="true" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bio"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp">
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/previous"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:text="Back"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_A="10dp"
-            genius:g_cornerRadii_D="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            />
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/next"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:text="Next"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginLeft="30dp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_B="10dp"
-            genius:g_cornerRadii_C="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            android:layout_toRightOf="@id/previous"
-            android:layout_toEndOf="@id/previous"
-            />
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:text="PREVIOUS"
+            app:rd_enable="true"
+            android:id="@+id/bio_previous"
+            android:layout_toLeftOf="@+id/bio_midanchor"
+            android:layout_marginRight="24dp" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:id="@+id/bio_midanchor"
+            android:layout_centerHorizontal="true" />
+
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:layout_toRightOf="@+id/bio_midanchor"
+            android:text="NEXT"
+            app:rd_enable="true"
+            android:id="@+id/bio_next"
+            android:layout_marginLeft="24dp" />
+
 
     </RelativeLayout>
 </RelativeLayout>

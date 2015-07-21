@@ -6,7 +6,7 @@
     -->
 
     <!-- Colors -->
-    <color name="button">#ffb200</color>
+    <color name="button">#2196f3</color>
     <color name="button_med">#ffdf81</color>
     <color name="title_color">#f05d5e</color>
     <color name="background_light">#EAEAEA</color>
@@ -19,15 +19,32 @@
     <color name="tab_background_selected">#FFCC80</color>
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
-    <color name="indicator_color">#03A9F4</color>
+    <color name="indicator_color">#2196F3</color>
     <!-- #00E5FF -->
     <color name="mdtp_accent_color">#f05d5e</color>
     <color name="mdtp_accent_color_dark">#f05d5e</color>
 
+    <!-- Material DEFAULT colors -->
+    <color name="material_drawer_primary">#2196F3</color>
+    <color name="material_drawer_primary_dark">#1976D2</color>
+    <color name="material_drawer_primary_light">#BBDEFB</color>
+    <color name="material_drawer_accent">#FF4081</color>
+
+    <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
+    <!-- MaterialDrawer DEFAULT colors -->
+    <color name="material_drawer_background">#F9F9F9</color>
+    <!-- Material DEFAULT text / items colors -->
+    <color name="material_drawer_icons">#FFF</color>
+    <color name="material_drawer_primary_text">#DE000000</color>
+    <color name="material_drawer_primary_icon">#8A000000</color>
+    <color name="material_drawer_secondary_text">#8A000000</color>
+    <color name="material_drawer_hint_text">#42000000</color>
+    <color name="material_drawer_divider">#1F000000</color>
+
 
     <!-- Application themes. -->
 
-    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme2" parent="MaterialDrawerTheme.Light">
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:dropDownListViewStyle">@style/PopupMenuTextView</item>
@@ -35,6 +52,20 @@
         <item name="colorPrimaryDark">@color/title_color</item>
         <item name="colorAccent">@color/background_light</item>
         <item name="colorControlNormal">#f05d5e</item>
+        <item name="drawerArrowStyle">@style/MaterialDrawer.DrawerArrowStyle</item>
+
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/material_drawer_background</item>
+        <item name="material_drawer_icons">@color/material_drawer_icons</item>
+        <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
+        <item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>
+        <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
+        <item name="material_drawer_divider">@color/material_drawer_divider</item>
+        <item name="material_drawer_selected">@color/material_drawer_selected</item>
+        <item name="material_drawer_selected_text">@color/material_drawer_selected_text</item>
+        <item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>
     </style>
 
 
@@ -57,8 +88,12 @@
     </style>
 
 
+    <style name="MaterialDrawer.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">false</item>
+        <item name="color">@color/softwhite</item>
+    </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/title_color</item>
         <item name="colorPrimaryDark">@color/title_color</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -76,6 +111,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_menu_white_24dp</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_menu_white_24dp</item>
         <item name="android:showAsAction">always</item>
+    </style>
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style  name="TabPageIndicator"  parent="Material.Widget.TabPageIndicator.Light">
@@ -197,6 +235,10 @@
         <item name="android:background">@drawable/button</item>
         <item name="rd_cornerRadius">2dp</item>
 
+    </style>
+
+    <style name="buttonlanding" parent="buttonWithRipple">
+        <item name="android:background">@drawable/button_landing</item>
     </style>
 
     <style name="Material.Widget.FloatingActionButton.Light" parent="Material.Drawable.Ripple.Touch.Light">

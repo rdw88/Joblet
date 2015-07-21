@@ -4,23 +4,18 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,18 +28,15 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.PopupMenu;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.jobs.R;
-import com.jobs.backend.Address;
 import com.jobs.backend.Profile;
-import com.jobs.backend.Resource;
 import com.jobs.fragment.CheckListings;
-import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.LandingPage;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.rey.material.app.ToolbarManager;
@@ -55,9 +47,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.List;
 
 //FragmentActivity was what it extended
 public class Main extends AppCompatActivity implements ActionBar.TabListener {
@@ -73,6 +63,7 @@ public class Main extends AppCompatActivity implements ActionBar.TabListener {
     private ToolbarManager mToolbarManager;
     private String data, notificationData;
     private Button logout;
+    private Fragment toStart;
 
     private TabPageIndicator tpi;
 
@@ -163,13 +154,41 @@ public class Main extends AppCompatActivity implements ActionBar.TabListener {
                 .withActivity(this)
                 .withFullscreen(false)
                 .withActionBarDrawerToggle(true)
+                .withSelectedItem(-1)
                 .withToolbar(mToolbar)
                 .withTranslucentStatusBar(false)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Sample")
+                        new PrimaryDrawerItem().withName("Edit Profile").withIcon(R.drawable.icon_user_32),
+                        new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withName("Active Jobs").withIcon(R.drawable.icon_briefcase_32),
+                        new PrimaryDrawerItem().withName("Active Listings").withIcon(R.drawable.icon_list_32),
+                        new PrimaryDrawerItem().withName("My Bids").withIcon(R.drawable.icon_gavel_32),
+                        new PrimaryDrawerItem().withName("Watchlist").withIcon(R.drawable.icon_star_32)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int position, long id, IDrawerItem iDrawerItem) {
+                        switch(position){
+                            case 0:
+                                Intent intent1 = new Intent(Main.this, EditProfile.class);
+                                startActivity(intent1);
+                                break;
+                            case 1:
+                                //Intent intent = new Intent(Main.this, MyActiveJobs.class);
+                                //startActivity(intent);
+                                break;
+                            case 2:
+                                Intent intent2 = new Intent(Main.this, MyListings.class);
+                                startActivity(intent2);
+                                break;
+                            case 3:
+                                Intent intent3 = new Intent(Main.this, MyListingBids.class);
+                                startActivity(intent3);
+                                break;
+                            case 4:
+                                //Intent intent4 = new Intent(Main.this, Watchlist.class);
+                                //startActivity(intent4);
+                                break;
+                        }
                         return false;
                     }
 

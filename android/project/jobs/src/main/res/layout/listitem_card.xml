@@ -28,6 +28,7 @@
                 android:textSize="@dimen/bigger_title_size"
                 tools:text="This is the title"/>
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,3 +75,4 @@
     </android.support.v7.widget.CardView>
 
 </com.jobs.ui.ListItemCardItemView>
+

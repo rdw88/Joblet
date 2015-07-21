@@ -3,10 +3,9 @@
     >
 
     <item android:id="@+id/morevert"
-        android:title="morevert"
         android:icon="@drawable/ic_more_vert_white_24dp"
         app:showAsAction="ifRoom"
         android:orderInCategory="100"
-         />
+        android:title="Options" />
 
 </menu>

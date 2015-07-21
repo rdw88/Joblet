@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/softwhite">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_jobtitle"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_job_title"
+            android:textSize="26sp"
+            android:textColor="@color/primary_information"
+            android:text="Job Title"
+            android:paddingLeft="@dimen/big_padding"
+            android:paddingRight="@dimen/big_padding"
+            android:paddingBottom="@dimen/mini_padding"
+            android:paddingTop="@dimen/mini_padding" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_belowtitle"
+        android:layout_below="@+id/container_jobtitle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_current_bid"
+            android:textSize="18sp"
+            android:textColor="#378E43"
+            android:text="Current bid"
+
+            android:padding="@dimen/small_padding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_tag"
+            android:textSize="18sp"
+            android:textColor="@color/secondary_information"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/small_padding" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_bottom"
+        android:layout_below="@+id/container_belowtitle"
+        android:background="@color/title_color">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_timeleft"
+            android:text="1d 20h 20m"
+            android:textSize="13sp"
+            android:textColor="@color/softwhite"
+            android:padding="@dimen/small_padding"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_text_ownerreputation"
+            android:text="Reputation:"
+            android:textColor="@color/softwhite"
+            android:textSize="13sp"
+            android:layout_toLeftOf="@+id/listing_ownerreputation"
+            android:paddingRight="@dimen/mini_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/small_padding" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_ownerreputation"
+            android:text="00"
+            android:textSize="13sp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/softwhite"
+            android:textIsSelectable="false"
+            android:paddingLeft="@dimen/mini_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_distance"
+            android:text="Distance:"
+            android:textSize="13sp"
+            android:textColor="@color/softwhite"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/mini_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_distanceaway"
+            android:textColor="@color/softwhite"
+            android:text="6.2 mi"
+            android:textSize="13sp"
+            android:layout_toRightOf="@+id/text_distance"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/mini_padding" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

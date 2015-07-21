@@ -1,106 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:genius="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/big_padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your city and state"
+        android:text="City and State"
         android:textSize="34sp"
         android:textColor="@color/primary_information"
-        android:layout_alignLeft="@+id/text_city"
-        android:layout_marginTop="45dp"
         android:id="@+id/text_citytitle"
-        android:layout_alignRight="@+id/text_city" />
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/big_padding" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter your city and state, this will be part of the address that is displayed on your profile"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textColor="@color/primary_information"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="26dp"
-        android:paddingLeft="2dp"
         android:id="@+id/text_city"
-        android:layout_below="@+id/text_citytitle" />
+        android:layout_below="@+id/text_citytitle"
+        android:padding="@dimen/big_padding"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp" />
 
     <EditText
         android:id="@+id/city"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@+id/text_city"
-        android:layout_centerHorizontal="true"
         android:hint="City"
         android:textColor="@color/primary_information"
         android:textColorHint="@color/secondary_information"
         android:paddingLeft="12dp"
-        android:textSize="14sp"
-        android:layout_marginTop="22dp"
-        />
+        android:textSize="16sp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_centerInParent="true" />
 
     <EditText
         android:id="@+id/state"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_below="@id/city"
         android:layout_centerHorizontal="true"
         android:hint="State"
         android:textColor="@color/primary_information"
         android:textColorHint="@color/secondary_information"
         android:paddingLeft="12dp"
-        android:textSize="14sp"
-        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
         />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/state"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp">
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/previous"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:text="Back"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_A="10dp"
-            genius:g_cornerRadii_D="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            />
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/next"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
-            android:text="Next"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginLeft="30dp"
-            genius:g_textAppearance="light"
-            android:enabled="false"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_B="10dp"
-            genius:g_cornerRadii_C="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            android:layout_toRightOf="@id/previous"
-            android:layout_toEndOf="@id/previous"
-            />
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:text="PREVIOUS"
+            app:rd_enable="true"
+            android:id="@+id/location_previous"
+            android:layout_toLeftOf="@+id/location_midanchor"
+            android:layout_marginRight="24dp" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:id="@+id/location_midanchor"
+            android:layout_centerHorizontal="true" />
+
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:layout_toRightOf="@+id/location_midanchor"
+            android:text="NEXT"
+            app:rd_enable="true"
+            android:id="@+id/location_next"
+            android:layout_marginLeft="24dp" />
+
 
     </RelativeLayout>
 

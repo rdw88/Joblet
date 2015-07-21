@@ -8,12 +8,12 @@
     android:icon="@drawable/logo"
     android:label="Browse Listings">
 
-    <com.dexafree.materialList.view.MaterialListView
+    <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listing_list"
         >
-    </com.dexafree.materialList.view.MaterialListView>
+    </ListView>
 
     <com.rey.material.widget.FloatingActionButton
         android:layout_width="wrap_content"

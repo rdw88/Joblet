@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background_light">
+    android:background="@color/softwhite"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:id="@+id/picture_swiper"
-            android:background="@color/background_light"/>
+            android:background="@color/softwhite"/>
 
         <TextView
             style="@style/insturctionsTitle"
@@ -27,18 +29,27 @@
             android:text="$ 6.20"
             android:textColor="@color/moneygreen"
             android:id="@+id/view_listing_current_bid"
-            />
+            android:textSize="64dp" />
 
         <TextView
             style="@style/listingdetails"
             android:text="Programming"
-            android:id="@+id/view_listing_tag" />
+            android:id="@+id/view_listing_tag"
+            android:textColor="@color/secondary_information"
+            android:textSize="22sp" />
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_colorblock"
+            android:background="@color/title_color"
+            android:paddingTop="24sp">
         <TextView
             style="@style/listingdetails"
             android:text="This is a sample listing description where  the details of the listing will be placed in the TextView with a maxium of 500 characters."
-            android:textColor="@color/primary_information"
-            android:id="@+id/listing_description"
-            />
+            android:textColor="@color/softwhite"
+            android:id="@+id/listing_description" />
 
         <RelativeLayout
         android:layout_width="fill_parent"
@@ -48,12 +59,13 @@
         android:paddingRight="@dimen/big_padding"
         android:paddingLeft="@dimen/big_padding"
         android:id="@+id/container_ownername"
-        >
+            android:layout_below="@+id/listing_description">
         <TextView
             style="@style/listinginfoNoPadding"
             android:id="@+id/text_ownername"
-            android:textColor="@color/secondary_information"
-            android:text="List Owner:" />
+            android:textColor="@color/softwhite"
+            android:text="List Owner:"
+            android:textSize="22sp" />
 
         <TextView
             style="@style/listinginfoNoPadding"
@@ -61,7 +73,11 @@
             android:paddingRight="@dimen/small_padding"
             android:paddingLeft="@dimen/small_padding"
             android:text="Anthony Altieri"
-            android:layout_toRightOf="@+id/text_ownername" />
+            android:layout_toRightOf="@+id/text_ownername"
+            android:textColor="@color/softwhite"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_marginLeft="4dp" />
 
         </RelativeLayout>
 
@@ -73,12 +89,13 @@
             android:paddingRight="@dimen/big_padding"
             android:paddingLeft="@dimen/big_padding"
             android:id="@+id/container_ownerreputation"
-            >
+            android:layout_below="@+id/container_ownername">
             <TextView
                 style="@style/listinginfoNoPadding"
                 android:id="@+id/text_ownerreputation"
-                android:textColor="@color/secondary_information"
-                android:text="Reputation:" />
+                android:textColor="@color/softwhite"
+                android:text="Reputation:"
+                android:textSize="22sp" />
 
             <TextView
                 style="@style/listinginfoNoPadding"
@@ -86,7 +103,10 @@
                 android:paddingRight="@dimen/small_padding"
                 android:paddingLeft="@dimen/small_padding"
                 android:text="620"
-                android:layout_toRightOf="@+id/text_ownerreputation" />
+                android:layout_toRightOf="@+id/text_ownerreputation"
+                android:textColor="@color/softwhite"
+                android:textStyle="bold"
+                android:textSize="22sp" />
 
         </RelativeLayout>
 
@@ -99,12 +119,13 @@
             android:paddingRight="@dimen/big_padding"
             android:paddingLeft="@dimen/big_padding"
             android:id="@+id/container_location"
-            >
+            android:layout_below="@+id/container_ownerreputation">
             <TextView
                 style="@style/listinginfoNoPadding"
                 android:id="@+id/text_location"
-                android:textColor="@color/secondary_information"
-                android:text="Location:" />
+                android:textColor="@color/softwhite"
+                android:text="Location:"
+                android:textSize="22sp" />
 
             <TextView
                 style="@style/listinginfoNoPadding"
@@ -112,7 +133,11 @@
                 android:paddingRight="@dimen/small_padding"
                 android:paddingLeft="@dimen/small_padding"
                 android:text="5007 Auckland Ave. North Hollywood CA, 91601"
-                android:layout_toRightOf="@+id/text_location" />
+                android:layout_toRightOf="@+id/text_location"
+                android:textColor="@color/softwhite"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginLeft="21dp" />
 
         </RelativeLayout>
 
@@ -124,12 +149,14 @@
             android:paddingRight="@dimen/big_padding"
             android:paddingLeft="@dimen/big_padding"
             android:id="@+id/container_timeleft"
-            >
+            android:layout_below="@+id/container_location"
+            android:layout_marginBottom="24dp">
             <TextView
                 style="@style/listinginfoNoPadding"
                 android:id="@+id/text_timeleft"
-                android:textColor="@color/secondary_information"
-                android:text="Time Left:" />
+                android:textColor="@color/softwhite"
+                android:text="Time Left:"
+                android:textSize="22sp" />
 
             <TextView
                 style="@style/listinginfoNoPadding"
@@ -137,41 +164,48 @@
                 android:paddingRight="@dimen/small_padding"
                 android:paddingLeft="@dimen/small_padding"
                 android:text="5d 10h 2m"
-                android:layout_toRightOf="@+id/text_timeleft" />
+                android:layout_toRightOf="@+id/text_timeleft"
+                android:textColor="@color/softwhite"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginLeft="12dp" />
 
         </RelativeLayout>
 
-        <com.rey.material.widget.Button
-            android:id="@+id/view_listing_make_bid"
-            android:layout_width="@dimen/button_widthwide"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="16dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textColor="#F9F9F9"
-            android:text="Place Bid"
-            android:textSize="@dimen/button_textsize"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/remembermeContainer"
-            android:layout_centerInParent="true"
-            style="@style/buttonWithRipple"
-            android:layout_marginBottom="12dp" />
+            <com.rey.material.widget.Button
+                android:id="@+id/view_listing_make_bid"
+                android:layout_width="@dimen/button_widthwide"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="16dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:textColor="#F9F9F9"
+                android:text="PLACE BID"
+                android:textSize="@dimen/button_textsize"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerInParent="true"
+                style="@style/buttonWithRipple"
+                android:layout_marginBottom="12dp"
+                android:layout_below="@+id/container_timeleft" />
 
-        <com.rey.material.widget.Button
-            android:id="@+id/view_listing_add_watchlist"
-            android:layout_width="@dimen/button_widthwide"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="12dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textColor="#F9F9F9"
-            android:text="Add to watchlist"
-            android:textSize="@dimen/button_textsize"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/remembermeContainer"
-            android:layout_centerInParent="true"
-            style="@style/buttonWithRipple"
-            android:layout_marginBottom="12dp" />
+            <com.rey.material.widget.Button
+                android:id="@+id/view_listing_add_watchlist"
+                android:layout_width="@dimen/button_widthwide"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="12dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:textColor="#F9F9F9"
+                android:text="ADD TO WATCHLIST"
+                android:textSize="@dimen/button_textsize"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/view_listing_make_bid"
+                android:layout_centerInParent="true"
+                style="@style/buttonWithRipple"
+                android:layout_marginBottom="38dp" />
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 

@@ -2,79 +2,106 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card">
-
-
-    <TextView
-        android:layout_width="wrap_content"
+    android:background="@color/softwhite">
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_listing_job_title"
-        android:textSize="20sp"
-        android:textColor="@color/primary_information"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:text="Job Title"
+        android:id="@+id/container_jobtitle"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_listing_job_title"
+            android:textSize="26sp"
+            android:textColor="@color/primary_information"
+            android:text="Job Title"
+            android:paddingLeft="@dimen/big_padding"
+            android:paddingRight="@dimen/big_padding"
+            android:paddingBottom="@dimen/mini_padding"
+            android:paddingTop="@dimen/mini_padding" />
 
-    />
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_listing_current_bid"
-        android:textSize="14sp"
-        android:textColor="#378E43"
-        android:text="Current bid"
-        android:layout_below="@+id/my_listing_job_title"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="3dp"
+        android:id="@+id/container_belowtitle"
+        android:layout_below="@+id/container_jobtitle">
 
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_listing_current_bid"
+            android:textSize="14sp"
+            android:textColor="#378E43"
+            android:text="Current bid"
 
-    <TextView
-        android:layout_width="wrap_content"
+            android:padding="@dimen/small_padding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_listing_tag"
+            android:textSize="12sp"
+            android:textColor="@color/secondary_information"
+            android:text="tag"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/small_padding" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_listing_tag"
-        android:textSize="12sp"
-        android:textColor="@color/secondary_information"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="3dp"
-        android:text="tag"
-        android:layout_below="@+id/my_listing_current_bid"
-        />
+        android:id="@+id/container_bottom"
+        android:layout_below="@+id/container_belowtitle">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/my_listing_is_active"
-        android:textSize="14sp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="3dp"
-        android:text="listing active?"
-        android:layout_below="@+id/my_listing_tag"
-        android:layout_marginBottom="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_timeleft"
+            android:text="1d 20h 20m"
+            android:textSize="12sp"
+            android:textColor="@color/secondary_information"
+            android:padding="@dimen/small_padding"
+            android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/static_view"
-        android:text="Views:"
-        android:textSize="12sp"
-        android:layout_toLeftOf="@+id/listing_views"
-        android:layout_marginRight="3dp"
-        android:textColor="@color/secondary_information"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/listing_views" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_views"
+            android:text="Views:"
+            android:textSize="12sp"
+            android:layout_toLeftOf="@+id/listing_ownerreputation"
+            android:paddingRight="@dimen/mini_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/small_padding" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listing_ownerreputation"
+            android:text="00"
+            android:textSize="12sp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/secondary_information"
+            android:textIsSelectable="false"
+            android:paddingLeft="@dimen/mini_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listing_views"
-        android:text="00"
-        android:textSize="12sp"
-        android:layout_marginRight="32dp"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/secondary_information"
-        android:layout_alignBottom="@+id/my_listing_is_active"
-        android:textIsSelectable="false" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_listing_is_active"
+            android:textSize="14sp"
+            android:text="listing active?"
+            android:padding="@dimen/small_padding" />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

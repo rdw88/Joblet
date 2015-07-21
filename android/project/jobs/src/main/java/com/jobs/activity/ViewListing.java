@@ -1,5 +1,6 @@
 package com.jobs.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,9 +11,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,55 +34,65 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class ViewListing extends Activity {
+public class ViewListing extends AppCompatActivity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag,
             textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription,
-            constantTextDescription, constantTextListEndsOn, textListEndsOn, constantTimeLeft, textTimeLeft;
+            constantTextDescription, constantTextListEndsOn, textListEndsOn, constantTimeLeft, textLocation, textTimeLeft,
+            textBidTimeLeft;
     private Button makeBid, addToWatchlist;
     private ImageView picture;
-    private Typeface robotoRegular, robotoBlack, robotoMedium;
+    private Typeface robotoRegular, robotoBlack, robotoMedium, robotoThin;
+    private android.support.v7.app.ActionBar actionBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_listing);
+        actionBar = getSupportActionBar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void onStart() {
         super.onStart();
 
+
         robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
         robotoBlack = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
+        robotoThin = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 
         title = (TextView) findViewById(R.id.view_listing_title);
         title.setTypeface(robotoRegular);
         currentBid = (TextView) findViewById(R.id.view_listing_current_bid);
         currentBid.setTypeface(robotoRegular);
         textOwnerReputation = (TextView) findViewById(R.id.text_ownerreputation);
-        textOwnerReputation.setTypeface(robotoMedium);
+        textOwnerReputation.setTypeface(robotoThin);
         ownerReputation = (TextView) findViewById(R.id.view_listing_owner_reputation);
-        ownerReputation.setTypeface(robotoRegular);
+        ownerReputation.setTypeface(robotoBlack);
         textJobLocation = (TextView) findViewById(R.id.text_location);
         textJobLocation.setTypeface(robotoMedium);
         jobLocation = (TextView) findViewById(R.id.view_listing_job_location);
-        jobLocation.setTypeface(robotoRegular);
+        jobLocation.setTypeface(robotoBlack);
         textOwnerName = (TextView) findViewById(R.id.text_ownername);
-        textOwnerName.setTypeface(robotoMedium);
+        textOwnerName.setTypeface(robotoThin);
         ownerName = (TextView) findViewById(R.id.view_listing_owner_name);
-        ownerName.setTypeface(robotoRegular);
+        ownerName.setTypeface(robotoBlack);
         tag = (TextView) findViewById(R.id.view_listing_tag);
-        tag.setTypeface(robotoRegular);
+        tag.setTypeface(robotoBlack);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
         makeBid.setTypeface(robotoMedium);
         picture = (ImageView) findViewById(R.id.picture_swiper);
         addToWatchlist = (Button) findViewById(R.id.view_listing_add_watchlist);
         addToWatchlist.setTypeface(robotoMedium);
+        textLocation = (TextView) findViewById(R.id.text_location);
+        textLocation.setTypeface(robotoThin);
+        textTimeLeft = (TextView) findViewById(R.id.text_timeleft);
+        textTimeLeft.setTypeface(robotoThin);
+        textBidTimeLeft = (TextView) findViewById(R.id.view_listing_timeleft);
+        textBidTimeLeft.setTypeface(robotoBlack);
         textDescription = (TextView) findViewById(R.id.listing_description);
         textDescription.setTypeface(robotoRegular);
-        textTimeLeft = (TextView) findViewById(R.id.view_listing_timeleft);
-        textTimeLeft.setTypeface(robotoRegular);
+
 
         makeBid.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
@@ -163,11 +177,20 @@ public class ViewListing extends Activity {
 
             protected void onPostExecute(String res) {
                 NumberFormat money = new DecimalFormat("#0.00");
+                NumberFormat wholeNumber = new DecimalFormat("#0");
 
                 try {
                     String loc = Resource.formatLocation(data.getString("address"), data.getString("city"), data.getString("state"));
                     title.setText(data.getString("job_title"));
-                    currentBid.setText("$" + money.format(data.getDouble("current_bid")));
+                    double curBid = data.getDouble("current_bid");
+                    String displayedBid = null;
+                    if(curBid < 10000){
+                        displayedBid = money.format(curBid);
+                    }
+                    else{
+                        displayedBid = wholeNumber.format(curBid);
+                    }
+                    currentBid.setText("$" + displayedBid);
                     ownerReputation.setText(data.getString("owner_reputation"));
                     jobLocation.setText(loc);
                     ownerName.setText(data.getString("owner_name"));

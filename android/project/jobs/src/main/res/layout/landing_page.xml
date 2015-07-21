@@ -3,14 +3,15 @@
     xmlns:genius="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
-<RelativeLayout
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
     android:layout_height="fill_parent"
     android:layout_width="fill_parent">
 
 <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:id="@+id/landing"
     android:background="@color/softwhite"
     android:weightSum="1"
@@ -19,7 +20,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="220dp"
+        android:layout_height="256dp"
         android:id="@+id/pictureFrame"
         android:background="#EEEEEE"
         android:layout_centerHorizontal="true"
@@ -37,364 +38,191 @@
             android:scaleType="centerCrop"/>
 
 
-        <RelativeLayout
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/card"
-            android:layout_marginTop="16dp">
-            <Space
-                android:layout_width="1px"
-                android:layout_height="2dp"
-                android:id="@+id/midanchor2"
-                android:layout_centerHorizontal="true" />
-
-
-            <ImageView android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:id="@+id/reputationUp"
-                android:src="@drawable/reputation_up"
-                android:layout_toLeftOf="@+id/midanchor2"
-                android:layout_marginTop="8dp" />
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00"
-                android:textColor="#DD000000"
-                android:id="@+id/positive_reputation"
-                android:textSize="12dp"
-                android:layout_toRightOf="@+id/reputationUp"
-                android:layout_marginLeft="3dp"
-                android:paddingBottom="1dp"
-                android:layout_marginTop="6dp" />
-
-            <ImageView android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:id="@+id/reputationDown"
-                android:src="@drawable/reputation_down"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/reputationUp"
-                android:layout_alignLeft="@+id/reputationUp"
-                android:layout_marginTop="5dp" />
-
-            <TextView android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/negative_reputation"
-                android:textSize="12dp"
-                android:text="00"
-                android:textColor="#DD000000"
-                android:layout_toRightOf="@+id/reputationDown"
-                android:layout_marginLeft="3dp"
-                android:layout_marginBottom="8dp"
-                android:paddingBottom="1dp"
-                android:layout_marginTop="26dp" />
-
-
-        </RelativeLayout>
-
-
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/card"
+        android:background="@color/softwhite"
         android:layout_below="@+id/pictureFrame"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
-        android:background="@drawable/card">
-
-
-        <Space android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/midanchor" />
-
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Lists:"
-            android:layout_marginTop="18dp"
-            android:textColor="@color/primary_information"
-            android:id="@+id/lists_label"
-            android:layout_toEndOf="@id/midanchor"
-            android:layout_toRightOf="@id/midanchor"
-            android:layout_marginLeft="60dp"
-            android:layout_marginStart="60dp"/>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="14sp"
-            android:hint="00"
-            android:textColor="@color/primary_information"
-            android:id="@+id/lists_completed"
-            android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@id/lists_label"
-            />
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="Jobs:"
-            android:textColor="#DD000000"
-            android:id="@+id/jobs_label"
-            android:layout_below="@id/lists_label"
-            android:layout_toRightOf="@id/midanchor"
-            android:layout_toEndOf="@id/midanchor"
-            android:layout_marginLeft="60dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginBottom="8dp" />
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:hint="00"
-            android:textColor="@color/primary_information"
-            android:id="@+id/jobs_completed"
-            android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@id/jobs_label"
-            android:layout_below="@id/lists_label"/>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="24dp"
-            android:textColor="@color/primary_information"
-            android:id="@+id/location"
-            android:text="@string/user_currentLocation"
-            android:paddingTop="3dp"
-            android:paddingRight="8dp"
-            android:paddingLeft="16dp"
-            android:layout_marginBottom="-5dp"/>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tags"
-            android:textColor="#89000000"
-            android:id="@+id/userTags"
-            android:layout_below="@id/location"
-            android:paddingLeft="16dp"
-            android:textSize="12dp" />
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/jobs_label"
-            android:id="@+id/container_myjobs"
-            android:layout_marginTop="8dp"
-            android:clickable="false">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:id="@+id/line1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Jobs"
-                android:textSize="32dp"
-                android:padding="@dimen/big_padding"
-                android:id="@+id/text_myjobs"
-                android:textColor="@color/primary_information"
-                />
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_currentJobs"
-                    android:textSize="22dp"
-                    android:paddingLeft="@dimen/big_padding"
-                    android:textColor="@color/secondary_information"
-                    android:id="@+id/user_currentJobsNumber"
-                    android:layout_toRightOf="@+id/text_currentjobs" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_currentjobs"
-                    android:text="Current Jobs:"
-                    android:paddingLeft="@dimen/big_padding"
-                    android:paddingBottom="@dimen/big_padding"
-                    android:textSize="22dp"
-                    android:textColor="#727272"
-                    android:layout_centerVertical="true"
-                    />
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/line2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/relative_bids"
-            android:layout_below="@+id/container_myjobs"
-            android:clickable="false">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Bids"
-                android:textSize="32sp"
-                android:padding="@dimen/big_padding"
-                android:id="@+id/text_mybids"
-                android:textColor="@color/primary_information"
-                />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/user_bidspending"
-                    android:textSize="22dp"
-                    android:paddingLeft="@dimen/big_padding"
-                    android:textColor="@color/secondary_information"
-                    android:id="@+id/user_currentBidsNumber"
-                    android:layout_toRightOf="@+id/text_bidspending" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_bidspending"
-                    android:text="Bids Pending:"
-                    android:paddingLeft="@dimen/big_padding"
-                    android:paddingBottom="@dimen/big_padding"
-                    android:textSize="22sp"
-                    android:textColor="@color/secondary_information"
-                    />
-
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:id="@+id/line3"
-                android:layout_alignParentBottom="true" />
-
-        </LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:id="@+id/btm"
-            android:layout_below="@+id/relative_bids"
-            android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:layout_alignParentRight="true">
-
-
-            <com.rey.material.widget.Button
-                android:id="@+id/my_listings"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:paddingRight="8dp"
-                android:paddingLeft="8dp"
-                android:text="MY LISTINGS"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/button_textsize"
-                android:layout_gravity="center_horizontal"
-                android:layout_toLeftOf="@+id/anchor_middle"
-                android:layout_marginRight="14dp"
-                android:layout_below="@+id/login"
-                style="@style/buttonWithRipple"
-                android:layout_centerVertical="true" />
-
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="10dp"
-                android:id="@+id/anchor_middle"
-                android:layout_centerHorizontal="true" />
-
-
-            <com.rey.material.widget.Button
-                android:id="@+id/watchlist"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:paddingRight="8dp"
-                android:paddingLeft="8dp"
-                android:text="WATCHLIST"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/button_textsize"
-                android:layout_gravity="center_horizontal"
-                android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/anchor_middle"
-                android:layout_alignTop="@+id/my_listings"
-                android:layout_marginLeft="14dp"
-                app:rd_enable="true"
-                app:rd_rippleType="wave"
-                android:layout_below="@+id/login"
-                style="@style/buttonWithRipple"
-                />
-
-
-        </RelativeLayout>
-
-            <RelativeLayout
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-                android:id="@+id/bottomrow"
-                android:layout_below="@+id/btm">
+            android:id="@+id/color_area"
+            android:background="@color/title_color">
 
-                <Button
-                    android:background="#FAFAFA"
-                    android:height="@dimen/button_height"
-                    android:id="@+id/edit_profile"
-                    android:layout_width="225dp"
-                    android:paddingRight="8dp"
-                    android:paddingLeft="8dp"
-                    android:layout_marginBottom="12dp"
-                    android:layout_height="40dp"
-                    android:textColor="#212121"
-                    android:text="Edit Profile"
-                    android:textSize="@dimen/button_textsize"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_centerInParent="true" />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_name"
+                android:textSize="32sp"
+                android:textColor="@color/softwhite"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/big_padding" />
 
-            </RelativeLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_location_on_white_24dp"
+                android:id="@+id/icon_location_on"
+                android:layout_marginLeft="@dimen/big_padding"
+                android:layout_alignBottom="@+id/listing_location_city"
+                android:layout_marginBottom="@dimen/big_padding" />
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listing_location_city"
+                android:text="La Jolla, California"
+                android:textSize="22dp"
+                android:textColor="@color/softwhite"
+                android:layout_toRightOf="@+id/icon_location_on"
+                android:layout_below="@+id/user_name"
+                android:padding="@dimen/big_padding"
+                android:elegantTextHeight="false" />
+
 
         </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/relative_username"
-        android:layout_alignBottom="@+id/pictureFrame">
         <TextView
-            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_name"
-            android:textSize="34sp"
-            android:textColor="#FCFCFC"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="10dp"
-            android:textIsSelectable="false"
-            android:layout_alignParentBottom="true"
-            android:textStyle="bold"
+            android:id="@+id/text_profileinformation"
+            android:text="Profile Information"
+            android:padding="@dimen/big_padding"
+            android:textSize="28sp"
+            android:textColor="@color/title_color"
+            android:layout_below="@+id/color_area"
             android:layout_centerHorizontal="true" />
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_activelisting"
+            android:layout_below="@+id/text_profileinformation"
+            android:layout_marginTop="24dp">
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Active Listings"
+                android:textColor="@color/primary_information"
+                android:id="@+id/lists_label"
+                android:paddingLeft="@dimen/big_padding"
+                android:paddingTop="@dimen/big_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingBottom="@dimen/big_padding" />
 
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/primary_information"
+                android:id="@+id/lists_completed"
+                android:layout_toRightOf="@id/lists_label"
+                android:layout_alignBottom="@+id/lists_label"
+                android:text="00"
+                android:layout_alignTop="@+id/lists_label"
+                android:layout_marginTop="@dimen/big_padding"
+                android:paddingRight="@dimen/big_padding" />
+
+            <com.rey.material.widget.Button
+                style="@style/buttonlanding"
+                android:layout_width="@dimen/button_widthshort"
+                android:layout_height="42dp"
+                android:layout_toRightOf="@+id/lists_completed"
+                android:text="VIEW"
+                app:rd_enable="true"
+                android:textColor="@color/primary_information"
+                android:id="@+id/btn_view_listings"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/big_padding" />
 
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_activejobs"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/container_activelisting">
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Active Jobs"
+                android:textColor="@color/primary_information"
+                android:id="@+id/jobs_label"
+                android:paddingLeft="@dimen/big_padding"
+                android:paddingTop="@dimen/big_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingBottom="@dimen/big_padding" />
+
+            <com.rey.material.widget.Button
+                style="@style/buttonlanding"
+                android:layout_width="@dimen/button_widthshort"
+                android:layout_height="42dp"
+                android:text="VIEW"
+                app:rd_enable="true"
+                android:textColor="@color/primary_information"
+                android:id="@+id/btn_view_jobs"
+                android:layout_toRightOf="@+id/jobs_completed"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/big_padding" />
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/primary_information"
+                android:id="@+id/jobs_completed"
+                android:text="00"
+                android:layout_marginTop="@dimen/big_padding"
+                android:layout_toRightOf="@+id/jobs_label"
+                android:layout_alignTop="@+id/jobs_label"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="28dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_userreputation"
+            android:layout_marginBottom="24dp"
+            android:layout_below="@+id/container_activejobs">
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="Reputation"
+                android:textColor="@color/secondary_information"
+                android:id="@+id/reputation_label"
+                android:paddingLeft="@dimen/big_padding"
+                android:paddingTop="@dimen/big_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingBottom="@dimen/big_padding" />
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/moneygreen"
+                android:id="@+id/user_reputation"
+                android:text="620"
+                android:layout_marginTop="@dimen/big_padding"
+                android:layout_toRightOf="@+id/reputation_label"
+                android:layout_alignTop="@+id/reputation_label"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="36dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

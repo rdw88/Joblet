@@ -62,7 +62,7 @@ public class CreateAccount extends FragmentActivity {
     private static Typeface robotoRegular, robotoMedium, robotoThin;
 
     private static final Fragment[] FRAGMENT_ORDER = {new EmailFragment(), new PasswordFragment(), new NameFragment(), new CityFragment(), new AgeFragment(), new BioFragment(),
-                                                            new ProfilePictureFragment(), new TagsFragment()};
+                                                            new ProfilePictureFragment()};
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +112,7 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_email);
             instructions.setTypeface(robotoMedium);
-            next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.email_next);
             next.setTypeface(robotoMedium);
             email = (EditText) v.findViewById(R.id.email);
             email.setTypeface(robotoRegular);
@@ -178,9 +178,9 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_password);
             instructions.setTypeface(robotoRegular);
-            next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.pass_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.pass_previous);
             previous.setTypeface(robotoMedium);
             password = (EditText) v.findViewById(R.id.password);
             password.setTypeface(robotoRegular);
@@ -243,9 +243,9 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_enteryourname);
             instructions.setTypeface(robotoRegular);
-            next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.name_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.name_previous);
             previous.setTypeface(robotoMedium);
             firstName = (EditText) v.findViewById(R.id.first_name);
             firstName.setTypeface(robotoRegular);
@@ -300,9 +300,9 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_city);
             instructions.setTypeface(robotoRegular);
-            next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.location_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.location_previous);
             previous.setTypeface(robotoMedium);
             city = (EditText) v.findViewById(R.id.city);
             city.setTypeface(robotoRegular);
@@ -368,9 +368,9 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_age);
             instructions.setTypeface(robotoRegular);
-            next = (Button) v.findViewById(R.id.next);
+            next = (Button) v.findViewById(R.id.age_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.age_previous);
             previous.setTypeface(robotoMedium);
             age = (EditText) v.findViewById(R.id.age);
             age.setTypeface(robotoRegular);
@@ -419,9 +419,9 @@ public class CreateAccount extends FragmentActivity {
             instructionsTitle.setTypeface(robotoThin);
             TextView instructions = (TextView) v.findViewById(R.id.text_bio);
             instructions.setTypeface(robotoRegular);
-            Button next = (Button) v.findViewById(R.id.next);
+            Button next = (Button) v.findViewById(R.id.bio_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.bio_previous);
             previous.setTypeface(robotoMedium);
             bio = (EditText) v.findViewById(R.id.bio);
             bio.setTypeface(robotoRegular);
@@ -457,50 +457,16 @@ public class CreateAccount extends FragmentActivity {
             View v = inflater.inflate(R.layout.create_account_profilepicture, container, false);
             TextView instructions = (TextView) v.findViewById(R.id.text_uploadpicture);
             instructions.setTypeface(robotoRegular);
-            Button next = (Button) v.findViewById(R.id.next);
+            Button next = (Button) v.findViewById(R.id.profilepic_next);
             next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
+            Button previous = (Button) v.findViewById(R.id.profilepic_previous);
             previous.setTypeface(robotoMedium);
-            ImageButton gallery = (ImageButton) v.findViewById(R.id.gallery);
-            ImageButton camera = (ImageButton) v.findViewById(R.id.camera);
             preview = (ImageView) v.findViewById(R.id.preview);
 
             if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-                camera.setVisibility(View.GONE);
+
             }
 
-            gallery.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, CreateAccount.ACTION_SELECT_PICTURE);
-                }
-            });
-
-            camera.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                    String imageFileName = "JPEG_" + timeStamp + "_";
-                    File imageFile = null;
-
-                    try {
-                        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                        imageFile = File.createTempFile(imageFileName, ".jpg", storageDir);
-                        profilePicturePath = imageFile.getAbsolutePath();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    if (takePicture.resolveActivity(getActivity().getPackageManager()) != null) {
-                        if (imageFile != null) {
-                            takePicture.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-                            startActivityForResult(takePicture, CreateAccount.ACTION_TAKE_PICTURE);
-                        }
-                    }
-                }
-            });
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -567,156 +533,6 @@ public class CreateAccount extends FragmentActivity {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static class TagsFragment extends Fragment {
-        private static final int MAX_TAGS = 3;
-        private TextView[] tagViews = new TextView[MAX_TAGS];
-        private int[] tagIDs = {R.id.tag1, R.id.tag2, R.id.tag3};
-        private static final ArrayList<String> SELECTED_TAGS = new ArrayList<>();
-        private Button next;
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View v = inflater.inflate(R.layout.create_account_tags, container, false);
-            TextView instructionsTitle = (TextView) v.findViewById(R.id.text_tagtitle);
-            instructionsTitle.setTypeface(robotoThin);
-            TextView instructions = (TextView) v.findViewById(R.id.text_Tag);
-            instructions.setTypeface(robotoRegular);
-            next = (Button) v.findViewById(R.id.next);
-            next.setTypeface(robotoMedium);
-            Button previous = (Button) v.findViewById(R.id.previous);
-            previous.setTypeface(robotoMedium);
-            ImageButton selectTags = (ImageButton) v.findViewById(R.id.selectTags);
-
-            for (int i = 0; i < tagViews.length; i++) {
-                tagViews[i] = (TextView) v.findViewById(tagIDs[i]);
-            }
-
-            selectTags.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
-                    ListView listView = (ListView) view.findViewById(R.id.tag_list);
-
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
-                            box.setChecked(!box.isChecked());
-
-                            if (box.isChecked())
-                                SELECTED_TAGS.add(Resource.TAGS.get(position));
-                            else
-                                SELECTED_TAGS.remove(Resource.TAGS.get(position));
-                        }
-                    });
-
-                    TagSelectorAdapter adapter = new TagSelectorAdapter(getActivity(), Resource.TAGS);
-                    listView.setAdapter(adapter);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-                    builder.setPositiveButton(R.string.done, new AlertDialog.OnClickListener(){
-                        public void onClick(DialogInterface di, int k) {
-                            if (SELECTED_TAGS.size() > MAX_TAGS) {
-                                CreateAccount.alertTooManyTags(getActivity());
-                                return;
-                            }
-
-                            if (SELECTED_TAGS.size() > 0)
-                                next.setEnabled(true);
-                            else
-                                next.setEnabled(false);
-
-                            for (int i = 0; i < tagViews.length; i++) {
-                                if (i >= SELECTED_TAGS.size()) {
-                                    tagViews[i].setText("");
-                                    tagViews[i].setVisibility(View.GONE);
-                                    continue;
-                                }
-
-                                tagViews[i].setVisibility(View.VISIBLE);
-                                tagViews[i].setText(SELECTED_TAGS.get(i));
-                            }
-                        }
-                    });
-
-                    builder.setTitle(R.string.ad_filter_title);
-                    builder.setView(view);
-                    builder.show();
-                }
-            });
-
-            previous.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View view) {
-                    CreateAccount.previousFragment(getActivity(), updateAccount(), getArguments().getInt(FRAGMENT_INDEX_KEY));
-                }
-            });
-
-            next.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View view) {
-                    if (tagViews[0].getText().toString() == null || tagViews[0].getText().toString().equals("")) {
-                        CreateAccount.alertNeedsTags(getActivity());
-                        return;
-                    }
-
-                    CreateAccount.createAccount(getActivity(), updateAccount());
-                }
-            });
-
-            return v;
-        }
-
-        private class TagSelectorAdapter extends ArrayAdapter<String> {
-            private ArrayList<String> items;
-            private Activity parent;
-
-            public TagSelectorAdapter(Activity context, ArrayList<String> items) {
-                super(context, R.layout.tag_list_item, items);
-                this.items = items;
-                this.parent = context;
-            }
-
-            public View getView(final int position, View currentView, ViewGroup parent) {
-                LayoutInflater inflater = this.parent.getLayoutInflater();
-                View row = inflater.inflate(R.layout.tag_list_item, parent, false);
-
-                TextView tag = (TextView) row.findViewById(R.id.tag_name);
-                tag.setText(items.get(position));
-                tag.setTypeface(robotoRegular);
-
-                final CheckBox box = (CheckBox) row.findViewById(R.id.tag_checkbox);
-                if (SELECTED_TAGS.contains(items.get(position))) {
-                    box.setChecked(true);
-                }
-
-                box.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v) {
-                        if (box.isChecked()) {
-                            SELECTED_TAGS.add(items.get(position));
-                        } else {
-                            SELECTED_TAGS.remove(items.get(position));
-                        }
-                    }
-                });
-
-                return row;
-            }
-        }
-
-        private HashMap<String, String> updateAccount() {
-            HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("account");
-            JSONArray array = new JSONArray();
-
-            for (int i = 0; i < tagViews.length; i++) {
-                String text = tagViews[i].getText().toString();
-
-                if (text != null && !text.equals("")) {
-                    array.put(text);
-                }
-            }
-
-            map.put("tags", array.toString());
-            return map;
-        }
-    }
 
     private static void createAccount(final Activity context, final HashMap<String, String> account) {
         new AsyncTask<String, Void, String>() {

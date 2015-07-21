@@ -1,117 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:genius="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="175dp"
+        android:layout_height="131.25dp"
         android:id="@+id/preview"
         android:src="@drawable/default_profile_picture"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        />
+        android:layout_below="@+id/text_password" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload a profile picture"
-        android:textSize="22sp"
+        android:text="Upload a profile picture, this will be the picture other users see when they view your profile."
+        android:textSize="20sp"
+        android:textColor="@color/primary_information"
+        android:id="@+id/text_password"
+        android:layout_below="@+id/text_uploadpicture"
+        android:padding="@dimen/big_padding"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile Picture"
+        android:textSize="34sp"
         android:textColor="@color/primary_information"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/text_uploadpicture"
-        android:layout_below="@+id/preview"/>
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="10dp"
+        android:padding="@dimen/big_padding" />
 
+    <com.rey.material.widget.Button
+        style="@style/buttonlanding"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:text="Upload Picture"
+        app:rd_enable="true"
+        android:id="@+id/upload_picture"
+        android:layout_below="@+id/preview"
         android:layout_centerHorizontal="true"
-        android:id="@+id/midanchor" />
+        android:layout_marginTop="24dp" />
 
-    <ImageButton
-        android:background="@drawable/dynamic_button_gallery"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/text_uploadpicture"
-        android:id="@+id/gallery"
-        android:layout_toLeftOf="@+id/midanchor"
-        android:layout_marginRight="20dp" />
-
-    <ImageButton
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:background="@drawable/dynamic_button_camera"
-        android:layout_toRightOf="@+id/gallery"
-        android:layout_marginLeft="20dp"
-        android:layout_alignTop="@+id/gallery"
-        android:id="@+id/camera"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_gallery"
-        android:text="Gallery"
-        android:textColor="@color/secondary_information"
-        android:layout_below="@+id/gallery"
-        android:layout_alignLeft="@+id/gallery"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="3dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_camera"
-        android:text="Camera"
-        android:textColor="@color/secondary_information"
-        android:layout_below="@+id/camera"
-        android:layout_alignLeft="@+id/camera"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="1dp" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_camera"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp"
+        android:layout_below="@+id/upload_picture">
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/previous"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:text="Back"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_A="10dp"
-            genius:g_cornerRadii_D="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            />
 
-        <net.qiujuer.genius.widget.GeniusButton
-            android:id="@+id/next"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:text="Next"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginLeft="30dp"
-            genius:g_textAppearance="light"
-            genius:g_theme="@array/ScubaBlue"
-            genius:g_touchEffect="ripple"
-            genius:g_cornerRadii_B="10dp"
-            genius:g_cornerRadii_C="10dp"
-            genius:g_blockButtonEffectHeight="2dp"
-            android:layout_toRightOf="@id/previous"
-            android:layout_toEndOf="@id/previous"
-            />
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:text="PREVIOUS"
+            app:rd_enable="true"
+            android:id="@+id/profilepic_previous"
+            android:layout_toLeftOf="@+id/profilepic_midanchor"
+            android:layout_marginRight="24dp" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:id="@+id/profilepic_midanchor"
+            android:layout_centerHorizontal="true" />
+
+        <com.rey.material.widget.Button
+            style="@style/buttonlanding"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:layout_toRightOf="@+id/profilepic_midanchor"
+            android:text="NEXT"
+            app:rd_enable="true"
+            android:id="@+id/profilepic_next"
+            android:layout_marginLeft="24dp" />
+
 
     </RelativeLayout>
 
 </RelativeLayout>
+    </ScrollView>
