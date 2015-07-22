@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.backend.Profile;
 import com.jobs.fragment.CheckListings;
+import com.jobs.fragment.EditProfile;
 import com.jobs.fragment.LandingPage;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;

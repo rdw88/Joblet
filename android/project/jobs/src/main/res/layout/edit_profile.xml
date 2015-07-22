@@ -6,14 +6,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#EEEEEE">
+        android:background="@color/title_color">
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/insturctionsTitle"
         android:text="Edit Profile"
         android:id="@+id/text_editprofile"
-        android:textSize="34sp"
-        android:textColor="@color/primary_information"
+        android:textColor="@color/softwhite"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"/>
 
@@ -23,12 +23,13 @@
         android:text="First Name"
         android:id="@+id/text_first_name"
         android:textSize="20sp"
-        android:textColor="@color/primary_information"
+        android:textColor="@color/softwhite"
         android:padding="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp" />
 
-    <EditText android:layout_width="fill_parent"
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint=" First Name"
         android:layout_marginTop="5dp"
@@ -46,8 +47,8 @@
         android:layout_height="wrap_content"
         android:text="Last Name"
         android:id="@+id/text_last_name"
+        android:textColor="@color/softwhite"
         android:textSize="20sp"
-        android:textColor="@color/primary_information"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:layout_marginTop="8dp" />
@@ -74,7 +75,7 @@
             android:text="Biography"
             android:id="@+id/text_bio"
             android:textSize="20sp"
-            android:textColor="#202020"
+            android:textColor="@color/softwhite"
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:layout_marginTop="8dp" />
@@ -101,7 +102,7 @@
         android:text="Email"
         android:id="@+id/text_email"
         android:textSize="20sp"
-        android:textColor="@color/primary_information"
+        android:textColor="@color/softwhite"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:layout_marginTop="8dp" />
@@ -127,7 +128,7 @@
         android:text="Password"
         android:id="@+id/text_password"
         android:textSize="20sp"
-        android:textColor="@color/primary_information"
+        android:textColor="@color/softwhite"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:layout_marginTop="8dp" />
@@ -166,11 +167,10 @@
             android:text="City"
             android:id="@+id/text_city"
             android:textSize="20sp"
-            android:textColor="@color/primary_information"
+            android:textColor="@color/softwhite"
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:layout_marginTop="8dp" />
-
 
 
     <AutoCompleteTextView
@@ -189,101 +189,69 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"/>
 
-        <RelativeLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Profile Picture"
+            android:id="@+id/text_profilepic"
+            android:textSize="20sp"
+            android:textColor="@color/softwhite"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:layout_marginTop="8dp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:padding="15dp"
+            android:layout_margin="@dimen/big_padding"
             android:background="#A9A9AA"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp">
 
             <ImageView
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
                 android:id="@+id/profile_picture"
                 android:layout_gravity="center_horizontal"
                 android:layout_centerInParent="true" />
 
             </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/anchor_mid" />
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/dynamic_button_gallery"
-                android:id="@+id/button_gallery"
-                android:layout_toLeftOf="@+id/anchor_mid"
-                android:layout_marginRight="40dp" />
-
-            <Button
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/dynamic_button_camera"
-                android:id="@+id/button_camera"
-                android:layout_toRightOf="@+id/anchor_mid"
-                android:layout_marginLeft="40dp" />
-
-            </RelativeLayout>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Current Tag(s):"
-            android:textSize="20sp"
-            android:textColor="@color/primary_information"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tag"
-            android:textSize="12sp"
-            android:textColor="@color/secondary_information"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:id="@+id/current_tags"
-            />
-
-        <Button
-            android:background="@drawable/dynamic_button_tag"
-            android:id="@+id/set_tag"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_gravity="center"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
-
-        <Button
-            android:background="@drawable/button_blue"
-            android:id="@+id/button_createListing_postListing"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="SAVE CHANGES"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="8dp"
+        <com.rey.material.widget.Button
+            android:id="@+id/upload_picture"
+            android:layout_width="@dimen/button_widthwide"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="12dp"
             android:paddingRight="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"/>
+            android:paddingLeft="8dp"
+            android:textColor="#F9F9F9"
+            android:text="Upload Photo"
+            android:textSize="@dimen/button_textsize"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            style="@style/buttonWithRipple"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@+id/container_timeleft" />
+
+
+
+        <com.rey.material.widget.Button
+            android:id="@+id/button_createListing_postListing"
+            android:layout_width="@dimen/button_widthwide"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="6dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:textColor="#F9F9F9"
+            android:text="SAVE CHANGES"
+            android:textSize="@dimen/button_textsize"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            style="@style/buttonWithRipple"
+            android:layout_marginBottom="22dp"
+            android:layout_below="@+id/container_timeleft" />
 
 
     </LinearLayout>
