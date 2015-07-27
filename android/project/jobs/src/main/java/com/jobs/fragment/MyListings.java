@@ -1,6 +1,6 @@
-package com.jobs.activity;
+package com.jobs.fragment;
 
-import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -18,12 +18,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.jobs.R;
+import com.jobs.activity.ViewListing;
 import com.jobs.backend.Listing;
 import com.jobs.backend.Profile;
 import com.jobs.ui.SwipeMenu;
 import com.jobs.ui.SwipeMenuCreator;
 import com.jobs.ui.SwipeMenuItem;
 import com.jobs.ui.SwipeMenuListView;
+import com.jobs.utility.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MyListings extends Activity {
+public class MyListings extends Fragment {
     private JSONObject data;
     private final ArrayList<Item> elements = new ArrayList<>();
     private Typeface customFont;
@@ -46,18 +48,15 @@ public class MyListings extends Activity {
     private int page;
     private boolean loading;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_listings);
+        data = ((Global) getActivity().getApplicationContext()).getUserData();
+    }
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        customFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
 
-        try {
-            data = new JSONObject(getIntent().getExtras().getString("data"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        return inflater.inflate(R.layout.my_listings, container, false);
     }
 
     public void onResume() {
@@ -73,7 +72,7 @@ public class MyListings extends Activity {
 
             protected String doInBackground(String... urls) {
                 try {
-                    JSONObject obj = Profile.getProfile(data.getString("profile_id"));
+                    JSONObject obj = Profile.getProfile(data.getString("email"));
                     JSONArray arr = new JSONArray(obj.getString("owned_listings"));
                     allListings = new JSONArray();
 
@@ -108,7 +107,7 @@ public class MyListings extends Activity {
     }
 
     private void fill(final JSONObject[] listings) throws JSONException {
-        SwipeMenuListView view = (SwipeMenuListView) findViewById(R.id.my_listings_list_view);
+        SwipeMenuListView view = (SwipeMenuListView) getActivity().findViewById(R.id.my_listings_list_view);
         adapter = new ListingAdapter();
 
         for (int i = 0; i < listings.length; i++) {
@@ -118,7 +117,7 @@ public class MyListings extends Activity {
 
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MyListings.this, ViewListing.class);
+                Intent intent = new Intent(getActivity(), ViewListing.class);
 
                 try {
                     intent.putExtra("listing_id", listings[position].getString("listing_id"));
@@ -151,7 +150,7 @@ public class MyListings extends Activity {
             public void create(SwipeMenu menu) {
                 switch (menu.getViewType()) {
                     case 0:   // IN THE CASE THAT THE LISTING IS *ACTIVE*
-                        SwipeMenuItem viewBids = new SwipeMenuItem(getApplicationContext());
+                        SwipeMenuItem viewBids = new SwipeMenuItem(getActivity().getApplicationContext());
                         viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
                         viewBids.setWidth(dpToPx(90));
                         viewBids.setTitle("Bids");
@@ -159,7 +158,7 @@ public class MyListings extends Activity {
                         viewBids.setTitleColor(Color.WHITE);
                         menu.addMenuItem(viewBids);
 
-                        SwipeMenuItem setInactive = new SwipeMenuItem(getApplicationContext());
+                        SwipeMenuItem setInactive = new SwipeMenuItem(getActivity().getApplicationContext());
                         setInactive.setBackground(new ColorDrawable(Color.rgb(0xf4, 0xa6, 0)));
                         setInactive.setWidth(dpToPx(90));
                         setInactive.setTitle("Set Inactive");
@@ -167,7 +166,7 @@ public class MyListings extends Activity {
                         setInactive.setTitleColor(Color.WHITE);
                         menu.addMenuItem(setInactive);
 
-                        SwipeMenuItem finish = new SwipeMenuItem(getApplicationContext());
+                        SwipeMenuItem finish = new SwipeMenuItem(getActivity().getApplicationContext());
                         finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
                         finish.setWidth(dpToPx(90));
                         finish.setTitle("Finish");
@@ -177,7 +176,7 @@ public class MyListings extends Activity {
                         break;
 
                     case 1:   // IN THE CASE THAT THE LISTING IS *INACTIVE*
-                        viewBids = new SwipeMenuItem(getApplicationContext());
+                        viewBids = new SwipeMenuItem(getActivity().getApplicationContext());
                         viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
                         viewBids.setWidth(dpToPx(90));
                         viewBids.setTitle("Bids");
@@ -185,7 +184,7 @@ public class MyListings extends Activity {
                         viewBids.setTitleColor(Color.WHITE);
                         menu.addMenuItem(viewBids);
 
-                        SwipeMenuItem setActive = new SwipeMenuItem(getApplicationContext());
+                        SwipeMenuItem setActive = new SwipeMenuItem(getActivity().getApplicationContext());
                         setActive.setBackground(new ColorDrawable(Color.rgb(0xf4, 0xa6, 0)));
                         setActive.setWidth(dpToPx(90));
                         setActive.setTitle("Set Active");
@@ -193,7 +192,7 @@ public class MyListings extends Activity {
                         setActive.setTitleColor(Color.WHITE);
                         menu.addMenuItem(setActive);
 
-                        finish = new SwipeMenuItem(getApplicationContext());
+                        finish = new SwipeMenuItem(getActivity().getApplicationContext());
                         finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
                         finish.setWidth(dpToPx(90));
                         finish.setTitle("Finish");
@@ -203,7 +202,7 @@ public class MyListings extends Activity {
                         break;
 
                     case 2:   // IN THE CASE THAT THE LISTING IS *COMPLETED OR PENDING*
-                        viewBids = new SwipeMenuItem(getApplicationContext());
+                        viewBids = new SwipeMenuItem(getActivity().getApplicationContext());
                         viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
                         viewBids.setWidth(dpToPx(90));
                         viewBids.setTitle("Bids");
@@ -211,7 +210,7 @@ public class MyListings extends Activity {
                         viewBids.setTitleColor(Color.WHITE);
                         menu.addMenuItem(viewBids);
 
-                        finish = new SwipeMenuItem(getApplicationContext());
+                        finish = new SwipeMenuItem(getActivity().getApplicationContext());
                         finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
                         finish.setWidth(dpToPx(90));
                         finish.setTitle("Finish");
@@ -232,7 +231,7 @@ public class MyListings extends Activity {
 
                 switch (index) {
                     case 0:
-                        Intent intent = new Intent(MyListings.this, MyListingBids.class);
+                        Intent intent = new Intent(getActivity(), MyListingBids.class);
                         intent.putExtra("listing_id", elements.get(position).listingID);
                         startActivity(intent);
                         break;
@@ -326,7 +325,7 @@ public class MyListings extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                getActivity().onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -337,7 +336,7 @@ public class MyListings extends Activity {
             View row = null;
 
             if (currentView == null) {
-                LayoutInflater inflater = getLayoutInflater();
+                LayoutInflater inflater = getActivity().getLayoutInflater();
                 row = inflater.inflate(R.layout.my_listings_list_item, parent, false);
             } else {
                 row = currentView;

@@ -9,9 +9,11 @@
     <color name="button">#2196f3</color>
     <color name="button_med">#ffdf81</color>
     <color name="title_color">#f05d5e</color>
+    <color name="title_color_tint">#E65B5B</color>
+    <color name="title_color_fade">#55f05d5e</color>
     <color name="background_light">#EAEAEA</color>
-    <color name="primary_information">#DD000000</color>
-    <color name="secondary_information">#89000000</color>
+    <color name="primary_information">#222</color>
+    <color name="secondary_information">#777</color>
     <color name="softwhite">#FAFAFA</color>
     <color name="moneygreen">#4CAF50</color>
     <color name="gradient_light_start">#30000000</color>
@@ -117,7 +119,7 @@
     </style>
 
     <style  name="TabPageIndicator"  parent="Material.Widget.TabPageIndicator.Light">
-        <item name="android:background">@color/title_color</item>
+        <item name="android:background">@color/title_color_tint</item>
         <item name="android:textColor">@color/softwhite</item>
         <item name="android:textSize">22sp</item>
         <item name="tpi_tabPadding">12dp</item>
@@ -160,19 +162,29 @@
 
     <!-- TextView theme -->
 
-    <style name="insturctionsTitle">
-        <item name="android:padding">@dimen/big_padding</item>
+    <style name="createListing_header">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
         <item name="android:textColor">@color/primary_information</item>
+
     </style>
 
-    <style name="instructionsSubTitle">
+    <style name="createListing_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/secondary_information</item>
+        <item name="android:layout_marginLeft">15dp</item>
+    </style>
+
+    <style name="createListing_description">
         <item name="android:padding">@dimen/big_padding</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/secondary_information</item>
     </style>
 

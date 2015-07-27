@@ -31,6 +31,7 @@ import com.jobs.activity.ViewListing;
 import com.jobs.backend.Error;
 import com.jobs.backend.Listing;
 import com.jobs.backend.Resource;
+import com.jobs.utility.Global;
 import com.nhaarman.listviewanimations.itemmanipulation.TouchEventHandler;
 import com.rey.material.widget.RippleManager;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -57,7 +58,7 @@ public class CreateListing extends Fragment implements
     DatePickerDialog.OnDateSetListener
 {
 
-    private String userData;
+    private JSONObject userData;
     private EditText jobTitle, startingAmount, minRep, city, address, state, jobDescription;
     private TextView tag, textGallery, textCamera;
     private Button create, listingEndTime, listingEndDate;
@@ -370,7 +371,7 @@ public class CreateListing extends Fragment implements
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        userData = getArguments().getString("data");
+        userData = ((Global) getActivity().getApplicationContext()).getUserData();
         View rootView = inflater.inflate(R.layout.create_listing, container, false);
 
         return rootView;
@@ -415,8 +416,7 @@ public class CreateListing extends Fragment implements
                 String description = jobDescription.getText().toString();
 
                 try {
-                    JSONObject obj = new JSONObject(userData);
-                    profileID = obj.getString("profile_id");
+                    profileID = userData.getString("profile_id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -462,8 +462,7 @@ public class CreateListing extends Fragment implements
             protected String doInBackground(String... urls) {
                 String email = null;
                 try {
-                    JSONObject obj = new JSONObject(userData);
-                    email = obj.getString("email");
+                    email = userData.getString("email");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

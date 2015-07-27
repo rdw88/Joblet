@@ -10,7 +10,7 @@
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/insturctionsTitle"
+        style="@style/createListing_title"
         android:text="Edit Profile"
         android:id="@+id/text_editprofile"
         android:textColor="@color/softwhite"

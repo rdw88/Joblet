@@ -18,12 +18,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
         switch (index) {
             case 0:
-                // Top Rated fragment activity
-                return new CreateListing();
-            case 1:
                 // Games fragment activity
                 return new LandingPage();
-            case 2:
+            case 1:
                 // Movies fragment activity
                 return new CheckListings();
         }
@@ -34,7 +31,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
-        return 3;
+        return 2;
     }
 
 }

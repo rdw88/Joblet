@@ -3,7 +3,7 @@ package com.jobs.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -30,6 +30,7 @@ import com.jobs.backend.Address;
 import com.jobs.backend.Listing;
 import com.jobs.backend.Profile;
 import com.jobs.backend.Resource;
+import com.jobs.utility.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,11 +105,7 @@ public class EditProfile extends Fragment {
             }
         }.execute();
 
-        try {
-            data = new JSONObject(getArguments().getString("data"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        data = ((Global) getActivity().getApplicationContext()).getUserData();
 
         try {
             //name.setText(data.getString("first_name") + " " + data.getString("last_name"));

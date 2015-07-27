@@ -1,10 +1,13 @@
-package com.jobs.activity;
+package com.jobs.fragment;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jobs.R;
+import com.jobs.activity.ViewBid;
 import com.jobs.backend.Bid;
 import com.jobs.backend.Listing;
 
@@ -25,22 +29,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MyListingBids extends Activity {
+public class MyListingBids extends Fragment {
     private List<Item> elements = new ArrayList<>();
     private static final String[] STATUSES = {"Undetermined", "Accepted", "Declined"};
     private static final int[] STATUS_COLORS = {0xfff99800, 0xff3dd33d, 0xffff0000};
     private BidAdapter adapter;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_listing_bids);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.my_listing_bids, container, false);
     }
 
     public void onStart() {
         super.onStart();
 
-        final String listingID = getIntent().getExtras().getString("listing_id");
-        adapter = new BidAdapter(this, elements);
+        final String listingID = getArguments().getString("listing_id");
+        adapter = new BidAdapter(getActivity(), elements);
 
         new AsyncTask<String, Void, String>() {
             private JSONObject[] bidData;
@@ -76,7 +79,7 @@ public class MyListingBids extends Activity {
             }
         }.execute();
 
-        ListView lv = (ListView) findViewById(R.id.my_listing_bids_list_view);
+        ListView lv = (ListView) getActivity().findViewById(R.id.my_listing_bids_list_view);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Item item = elements.get(position);
@@ -84,7 +87,7 @@ public class MyListingBids extends Activity {
                 if (item.bidStatus > 0)
                     return;
 
-                Intent intent = new Intent(MyListingBids.this, ViewBid.class);
+                Intent intent = new Intent(getActivity(), ViewBid.class);
                 intent.putExtra("bid_id", item.bidID);
                 intent.putExtra("email", item.email);
                 intent.putExtra("amount", item.bidAmount);
@@ -114,7 +117,7 @@ public class MyListingBids extends Activity {
         }
 
         public View getView(int position, View currentView, ViewGroup parent) {
-            View v = getLayoutInflater().inflate(R.layout.my_listing_bids_list_item, parent, false);
+            View v = getActivity().getLayoutInflater().inflate(R.layout.my_listing_bids_list_item, parent, false);
 
             TextView amount = (TextView) v.findViewById(R.id.bid_amount);
             TextView email = (TextView) v.findViewById(R.id.bidder_email);

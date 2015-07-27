@@ -29,8 +29,10 @@ import android.widget.TextView;
 
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
+import com.jobs.utility.Global;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -158,28 +160,26 @@ public class Login extends Activity {
 
     private void getProfileInfo(final String email, final String password) {
         new AsyncTask<String, Void, String>() {
-            private String response;
+            private JSONObject profileData;
+            private JSONArray notificationData;
 
             protected String doInBackground(String... urls) {
-                String profileID = Profile.getID(email);
-                JSONObject obj = Profile.getProfile(profileID);
+                profileData = Profile.getProfile(email);
                 try {
-                    obj.put("password", password);
+                    profileData.put("password", password);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                response = obj.toString();
+                notificationData = Profile.getNotifications(email, password);
                 return null;
             }
 
             protected void onPostExecute(String result) {
-                SharedPreferences prefs = getSharedPreferences("user", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("user_data", response);
-                editor.apply();
+                Global global = (Global) getApplicationContext();
+                global.setUserData(profileData);
+                global.setNotificationData(notificationData);
                 Intent intent = new Intent(Login.this, Main.class);
-                intent.putExtra("data", response);
                 startActivityForResult(intent, 0xff);
             }
         }.execute();

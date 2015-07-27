@@ -36,6 +36,8 @@ import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
 import com.jobs.ui.ListItemCard;
+import com.jobs.utility.Global;
+import com.rey.material.widget.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +53,8 @@ import java.util.List;
 public class CheckListings extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private ListView listings;
     private ListingAdapter adapter;
-    private String profileData;
+    private FloatingActionButton filter;
+    private JSONObject profileData;
     private final ArrayList<FeedItem> elements = new ArrayList<>();
     private final ArrayList<String> filtered = new ArrayList<>();
     private JSONArray allListings;
@@ -68,6 +71,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        profileData = ((Global) getActivity().getApplicationContext()).getUserData();
 
         robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
@@ -98,13 +103,16 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     public void onStart() {
         super.onStart();
 
-        listings = (ListView) getActivity().findViewById(R.id.listing_list);
+        if (listings == null) {
+            listings = (ListView) getActivity().findViewById(R.id.listing_list);
+            filter = (FloatingActionButton) getActivity().findViewById(R.id.checkListings_filter);
+        }
+
         adapter = new ListingAdapter(getActivity().getApplicationContext(), elements);
         listings.setAdapter(adapter);
         if (filtered.size() == 0) {
             try {
-                JSONObject obj = new JSONObject(profileData);
-                JSONArray tags = new JSONArray(obj.getString("tags"));
+                JSONArray tags = new JSONArray(profileData.getString("tags"));
 
                 try {
                     for (int i = 0; i < tags.length(); i++) {
@@ -118,7 +126,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             }
         }
 
-        com.rey.material.widget.FloatingActionButton filter = (com.rey.material.widget.FloatingActionButton    ) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
@@ -170,11 +177,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        profileData = getArguments().getString("data");
-
-        View rootView = inflater.inflate(R.layout.check_listings, container, false);
-
-        return rootView;
+        return inflater.inflate(R.layout.check_listings, container, false);
     }
 
     private void fill() {

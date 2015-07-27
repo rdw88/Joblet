@@ -9,13 +9,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            style="@style/insturctionsTitle"
+            style="@style/createListing_title"
             android:id="@+id/instructionsTitle"
             android:text="Job Listing Expiration Date and Time"
             />
 
         <TextView
-            style="@style/instructionsSubTitle"
+            style="@style/createListing_description"
             android:id="@+id/instructionsSubTitle"
             android:text="Choose the date and time that you would like to have the job listing expire if you have not chosen a contractor."
             />

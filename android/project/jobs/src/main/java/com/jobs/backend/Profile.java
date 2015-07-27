@@ -103,10 +103,10 @@ public class Profile {
 		}
 	}
 
-	public static JSONObject getProfile(String profileId) {
+	public static JSONObject getProfile(String email) {
 		Map<String, String> map = new HashMap<String, String>();
         map.put("request", "get");
-		map.put("profile_id", profileId);
+		map.put("email", email);
 
 		try {
 			return new JSONObject(Address.get(map, Address.PROFILE));

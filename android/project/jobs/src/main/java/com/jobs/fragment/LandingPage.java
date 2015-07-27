@@ -18,6 +18,7 @@ import com.jobs.R;
 import com.jobs.backend.Address;
 import com.jobs.backend.ImageHelper;
 import com.jobs.backend.Listing;
+import com.jobs.utility.Global;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,15 +50,13 @@ public class LandingPage extends Fragment {
         Typeface robotoThin = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
 
 
-        try {
-            data = new JSONObject(getArguments().getString("data"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        data = ((Global) getActivity().getApplicationContext()).getUserData();
 
         //TextViews
         name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(robotoRegular);
+        location = (TextView) view.findViewById(R.id.listing_location_city);
+        location.setTypeface(robotoRegular);
         listings = (TextView) view.findViewById(R.id.lists_completed);
         listings.setTypeface(robotoRegular);
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
@@ -86,9 +85,7 @@ public class LandingPage extends Fragment {
 
         try {
             name.setText(data.getString("first_name") + " " + data.getString("last_name"));
-            //location.setText(data.getString("city_code"));
-            //positiveReputation.setText(data.getString("positive_reputation"));
-            //negativeReputation.setText(data.getString("negative_reputation"));
+            location.setText(data.getString("city_code"));
             listings.setText(data.getString("listings_completed"));
             jobs.setText(data.getString("jobs_completed"));
 

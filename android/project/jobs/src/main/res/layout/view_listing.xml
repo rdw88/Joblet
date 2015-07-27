@@ -19,7 +19,7 @@
             android:background="@color/softwhite"/>
 
         <TextView
-            style="@style/insturctionsTitle"
+            style="@style/createListing_title"
             android:text="Sample listing title."
             android:id="@+id/view_listing_title"
             />

@@ -6,24 +6,29 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
     
+
+
     <TextView
-        style="@style/insturctionsTitle"
+        style="@style/createListing_header"
+        android:text="The Essentials"/>
+
+    <TextView
+        style="@style/createListing_title"
         android:id="@+id/instructionsTitle"
-        android:text="Job Listing Title"
+        android:text="Job Title"
         />
     
     <TextView
-        style="@style/instructionsSubTitle"
+        style="@style/createListing_description"
         android:id="@+id/instructionsSubTitle"
-        android:text="Create a name for your job listing that reflects the type of job that it is."/>
+        android:text="Create a brief and clear title for your job. This is what's going to stand out to people the most. (70 character max)"/>
 
     <com.rey.material.widget.EditText
         style="@style/edittextFullspan"
-        android:maxLength="100"
+        android:maxLength="70"
         android:id="@+id/listingTitle"
         app:et_inputId="@+id/listingTitleWrapper"
         app:et_supportMode="charCounter"
-        android:hint="Max 100 Characters"
         app:et_labelEnable="true"
         app:et_supportPadding="@dimen/small_padding"
         app:et_supportTextColor="@color/secondary_information"
@@ -38,22 +43,7 @@
             android:layout_width="@dimen/button_widthshort"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/button_med"
-            android:text="PREVIOUS"
-            android:id="@+id/listingTitlePrev"
-            android:layout_toLeftOf="@+id/midanchor"
-            />
-        <Space
-            android:layout_width="1dp"
-            android:layout_height="10dp"
-            android:id="@+id/midanchor"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp" />
-        <com.rey.material.widget.Button
-            style="@style/buttonmedWithRipple"
-            android:layout_width="@dimen/button_widthshort"
-            android:layout_height="@dimen/button_height"
-            android:background="@drawable/button_med"
+            android:layout_centerHorizontal="true"
             android:text="NEXT"
             android:id="@+id/listingTitleNext"
             android:layout_toRightOf="@+id/midanchor" />
