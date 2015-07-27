@@ -26,9 +26,10 @@ import java.io.IOException;
 
 public class LandingPage extends Fragment {
     private TextView name, location, positiveReputation, negativeReputation, listings, jobs, userTags, textMyBids,
-            textMyJobs, subTextMyJobs, textMyJobsNumber, subTextMyBids, textMyBidsNumber;
+            textMyJobs, subTextMyJobs, textMyJobsNumber, subTextMyBids, textMyBidsNumber, textProfileInformation,
+            listsLabel, listsCompleted, jobsLabel, jobsCompleted, reputationLabel, userReputation;
     private ImageView profilePicture;
-    private Button myListings, editProfile, watchlist, myBids;
+    private Button btnViewListings, btnViewJobs;
     private JSONObject data;
 
     private final Recent[] recentJobs = new Recent[2];
@@ -55,6 +56,12 @@ public class LandingPage extends Fragment {
             e.printStackTrace();
         }
 
+        //Buttons
+        btnViewListings = (Button) view.findViewById(R.id.btn_view_listings);
+        btnViewListings.setTypeface(robotoMedium);
+        btnViewJobs = (Button) view.findViewById(R.id.btn_view_jobs);
+        btnViewJobs.setTypeface(robotoMedium);
+
         //TextViews
         name = (TextView) view.findViewById(R.id.user_name);
         name.setTypeface(robotoRegular);
@@ -62,7 +69,20 @@ public class LandingPage extends Fragment {
         listings.setTypeface(robotoRegular);
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
         jobs.setTypeface(robotoRegular);
-
+        textProfileInformation = (TextView) view.findViewById(R.id.text_profileinformation);
+        textProfileInformation.setTypeface(robotoThin);
+        listsLabel = (TextView) view.findViewById(R.id.lists_label);
+        listsLabel.setTypeface(robotoRegular);
+        listsCompleted = (TextView) view.findViewById(R.id.lists_completed);
+        listsCompleted.setTypeface(robotoRegular);
+        jobsLabel = (TextView) view.findViewById(R.id.jobs_label);
+        jobsLabel.setTypeface(robotoRegular);
+        jobsCompleted = (TextView) view.findViewById(R.id.jobs_completed);
+        jobsCompleted.setTypeface(robotoRegular);
+        reputationLabel = (TextView) view.findViewById(R.id.reputation_label);
+        reputationLabel.setTypeface(robotoRegular);
+        userReputation = (TextView) view.findViewById(R.id.user_reputation);
+        userReputation.setTypeface(robotoRegular);
         //ImageView
 
         profilePicture = (ImageView) view.findViewById(R.id.profile_picture);

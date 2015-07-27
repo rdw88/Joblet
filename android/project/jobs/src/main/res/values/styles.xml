@@ -8,7 +8,11 @@
     <!-- Colors -->
     <color name="button">#2196f3</color>
     <color name="button_med">#ffdf81</color>
-    <color name="title_color">#f05d5e</color>
+    <color name="title_color">#EE0202</color>
+    <!-- original: f05d5e
+
+        first try: E92323
+    -->
     <color name="background_light">#EAEAEA</color>
     <color name="primary_information">#DD000000</color>
     <color name="secondary_information">#89000000</color>
@@ -23,6 +27,7 @@
     <!-- #00E5FF -->
     <color name="mdtp_accent_color">#f05d5e</color>
     <color name="mdtp_accent_color_dark">#f05d5e</color>
+    <color name="reputation_positive_green">#4CAF50</color>
 
     <!-- Material DEFAULT colors -->
     <color name="material_drawer_primary">#2196F3</color>
@@ -231,10 +236,15 @@
         <item name="rd_cornerRadius">45dp</item>
     </style>
 
+
+    <style name="defaultButtonWithRipple" parent="Material.Drawable.Ripple.Wave.Light">
+        <item name="rd_cornerRadius">2dp</item>
+    </style>
+
+
     <style name="buttonWithRipple" parent="Material.Drawable.Ripple.Wave.Light">
         <item name="android:background">@drawable/button</item>
         <item name="rd_cornerRadius">2dp</item>
-
     </style>
 
     <style name="buttonlanding" parent="buttonWithRipple">

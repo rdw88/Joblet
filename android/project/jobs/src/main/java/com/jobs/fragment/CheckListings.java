@@ -36,6 +36,7 @@ import com.jobs.activity.ViewListing;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
 import com.jobs.ui.ListItemCard;
+import com.rey.material.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +65,9 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     private double currentLongitude;
 
     private Typeface robotoRegular, robotoBold, robotoMedium, robotoThin, robotoBlack;
+    private TextView textDistance, listingDistanceaway, listingTimeleft, textOwnerreputation,
+            ownerReputation;
+    private Button filter;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
         robotoThin = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
         robotoBlack = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+
+
 
         googleClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
@@ -118,7 +124,9 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             }
         }
 
-        com.rey.material.widget.FloatingActionButton filter = (com.rey.material.widget.FloatingActionButton    ) getActivity().findViewById(R.id.checkListings_filter);
+
+
+        filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
@@ -126,7 +134,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        CheckBox box = (CheckBox) view.findViewById(R.id.tag_checkbox);
+                        com.rey.material.widget.CheckBox box = (com.rey.material.widget.CheckBox) view.findViewById(R.id.tag_checkbox);
                         box.setChecked(!box.isChecked());
 
                         if (box.isChecked())
@@ -151,6 +159,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                 builder.show();
             }
         });
+
 
         fill();
 
@@ -231,7 +240,18 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                 });
                 listings.setOnScrollListener(new AbsListView.OnScrollListener() {
 
-                    public void onScrollStateChanged(AbsListView view, int scrollStat) {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState){
+
+                        View c = listings.getChildAt(0);
+                        int scrolly = -c.getTop() + listings.getFirstVisiblePosition() * c.getHeight();
+                        if(scrolly > 0){
+                            filter.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            filter.setVisibility(View.VISIBLE);
+                        }
+
                     }
 
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
@@ -294,12 +314,13 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
         public View getView(final int position, View currentView, ViewGroup parent) {
             LayoutInflater inflater = getActivity().getLayoutInflater();
+
             View row = inflater.inflate(R.layout.tag_list_item, parent, false);
 
             TextView tag = (TextView) row.findViewById(R.id.tag_name);
             tag.setText(items.get(position));
 
-            final CheckBox box = (CheckBox) row.findViewById(R.id.tag_checkbox);
+            final com.rey.material.widget.CheckBox box = (com.rey.material.widget.CheckBox) row.findViewById(R.id.tag_checkbox);
             if (filtered.contains(items.get(position))) {
                 box.setChecked(true);
             }
@@ -338,13 +359,25 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             TextView currentBid = (TextView) row.findViewById(R.id.listing_current_bid);
             currentBid.setTypeface(robotoBlack);
             TextView tags = (TextView) row.findViewById(R.id.listing_tag);
-            tags.setTypeface(robotoBlack);
+            tags.setTypeface(robotoRegular);
             currentBid.setText("$" + format.format(feedItems.get(position).currentBid));
             TextView reputation = (TextView) row.findViewById(R.id.listing_ownerreputation);
             title.setText(feedItems.get(position).title);
             reputation.setText(Double.toString(feedItems.get(position).reputation));
             tags.setText(tags.getText() + feedItems.get(position).tag);
             TextView distance = (TextView) row.findViewById(R.id.listing_distanceaway);
+            distance.setTypeface(robotoRegular);
+
+            textDistance = (TextView) row.findViewById(R.id.text_distance);
+            textDistance.setTypeface(robotoRegular);
+            listingDistanceaway = (TextView) row.findViewById(R.id.listing_distanceaway);
+            listingDistanceaway.setTypeface(robotoRegular);
+            listingTimeleft = (TextView) row.findViewById(R.id.listing_timeleft);
+            listingTimeleft.setTypeface(robotoRegular);
+            textOwnerreputation = (TextView) row.findViewById(R.id.listing_text_ownerreputation);
+            textOwnerreputation.setTypeface(robotoRegular);
+            ownerReputation = (TextView) row.findViewById(R.id.listing_ownerreputation);
+            ownerReputation.setTypeface(robotoRegular);
 
             if (currentLatitude != 0 && currentLongitude != 0) {
                 double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, feedItems.get(position).latitude, feedItems.get(position).longitude);

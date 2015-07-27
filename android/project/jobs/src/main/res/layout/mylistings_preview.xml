@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/softwhite"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:id="@+id/picture_swiper"
+            android:background="@color/softwhite"/>
+
+        <TextView
+            style="@style/insturctionsTitle"
+            android:text="Sample listing title."
+            android:id="@+id/view_listing_title"
+            />
+
+        <TextView
+            style="@style/listingCurbid"
+            android:text="$ 6.20"
+            android:textColor="@color/moneygreen"
+            android:id="@+id/view_listing_current_bid"
+            android:textSize="38dp" />
+
+        <TextView
+            style="@style/listingdetails"
+            android:text="Programming"
+            android:id="@+id/view_listing_tag"
+            android:textColor="@color/secondary_information"
+            android:textSize="22sp" />
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_colorblock"
+            android:background="@color/title_color"
+            android:paddingTop="24sp">
+            <TextView
+                style="@style/listingdetails"
+                android:text="This is a sample listing description where  the details of the listing will be placed in the TextView with a maxium of 500 characters."
+                android:textColor="@color/softwhite"
+                android:id="@+id/listing_description" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="@dimen/big_padding"
+                android:id="@+id/container_ownername"
+                android:layout_below="@+id/listing_description">
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/text_ownername"
+                    android:textColor="@color/softwhite"
+                    android:text="List Owner:"
+                    android:textSize="22sp" />
+
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/view_listing_owner_name"
+                    android:paddingRight="@dimen/small_padding"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:text="Anthony Altieri"
+                    android:layout_toRightOf="@+id/text_ownername"
+                    android:textColor="@color/softwhite"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:layout_marginLeft="4dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="@dimen/big_padding"
+                android:id="@+id/container_ownerreputation"
+                android:layout_below="@+id/container_ownername">
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/text_ownerreputation"
+                    android:textColor="@color/softwhite"
+                    android:text="Reputation:"
+                    android:textSize="22sp" />
+
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/view_listing_owner_reputation"
+                    android:paddingRight="@dimen/small_padding"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:text="620"
+                    android:layout_toRightOf="@+id/text_ownerreputation"
+                    android:textColor="@color/softwhite"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="@dimen/big_padding"
+                android:id="@+id/container_location"
+                android:layout_below="@+id/container_ownerreputation">
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/text_location"
+                    android:textColor="@color/softwhite"
+                    android:text="Location:"
+                    android:textSize="22sp" />
+
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/view_listing_job_location"
+                    android:paddingRight="@dimen/small_padding"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:text="5007 Auckland Ave. North Hollywood CA, 91601"
+                    android:layout_toRightOf="@+id/text_location"
+                    android:textColor="@color/softwhite"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:layout_marginLeft="21dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/small_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingLeft="@dimen/big_padding"
+                android:id="@+id/container_timeleft"
+                android:layout_below="@+id/container_location"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/text_timeleft"
+                    android:textColor="@color/softwhite"
+                    android:text="Time Left:"
+                    android:textSize="22sp" />
+
+                <TextView
+                    style="@style/listinginfoNoPadding"
+                    android:id="@+id/view_listing_timeleft"
+                    android:paddingRight="@dimen/small_padding"
+                    android:paddingLeft="@dimen/small_padding"
+                    android:text="5d 10h 2m"
+                    android:layout_toRightOf="@+id/text_timeleft"
+                    android:textColor="@color/softwhite"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:layout_marginLeft="12dp" />
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_additional_info"
+            android:text="Additional Listing Information"
+            android:textSize="22sp"
+            android:textColor="@color/primary_information"
+            android:padding="@dimen/big_padding"
+            android:layout_gravity="center_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_views"
+            android:layout_below="@+id/container_timeleft"
+            android:paddingLeft="@dimen/big_padding"
+            android:paddingRight="@dimen/big_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding">
+
+            <TextView
+                style="@style/listinginfoNoPadding"
+                android:id="@+id/text_views"
+                android:textColor="@color/primary_information"
+                android:text="Views:"
+                android:textSize="22sp" />
+
+            <TextView
+                style="@style/listinginfoNoPadding"
+                android:id="@+id/views"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingLeft="@dimen/small_padding"
+                android:text="100"
+                android:layout_toRightOf="@+id/text_views"
+                android:textColor="@color/primary_information"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginLeft="46dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_bids"
+            android:layout_below="@+id/container_views"
+            android:paddingLeft="@dimen/big_padding"
+            android:paddingRight="@dimen/big_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding">
+            <TextView
+                style="@style/listinginfoNoPadding"
+                android:id="@+id/text_bids"
+                android:textColor="@color/primary_information"
+                android:text="Bids:"
+                android:textSize="22sp" />
+
+            <TextView
+                style="@style/listinginfoNoPadding"
+                android:id="@+id/bids"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingLeft="@dimen/small_padding"
+                android:text="58"
+                android:layout_toRightOf="@+id/text_bids"
+                android:textColor="@color/primary_information"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginLeft="62dp" />
+
+            <Button
+                android:layout_width="@dimen/button_width"
+                android:layout_height="@dimen/button_height"
+                android:id="@+id/btn_view_bids"
+                android:text="VIEW BIDS"
+                android:textSize="@dimen/button_textsize"
+
+                android:layout_below="@+id/text_bids"
+                android:layout_marginTop="@dimen/big_padding"
+                android:layout_marginRight="@dimen/small_padding"
+                android:layout_marginBottom="@dimen/big_padding" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

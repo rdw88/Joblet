@@ -1,59 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bidder_email"
-        android:textSize="21sp"
+        android:textSize="26sp"
+        android:text="Anthonyraltieri@gmail.com"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_marginTop="36dp"
+        android:textColor="@color/primary_information"
+        android:padding="@dimen/big_padding"
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bid_amount"
-        android:textSize="32sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center_horizontal"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp">
-
-        <Button android:layout_width="90dp"
+        android:id="@+id/container_reputation"
+        android:layout_below="@+id/view_bidder_account"
+        android:layout_marginTop="22dp">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/accept_bid"
-            android:text="Accept"
-            android:background="@drawable/button_blue"
-            />
+            android:id="@+id/text_repuation"
+            android:textSize="24sp"
+            android:text="Reputation"
+            android:textColor="@color/secondary_information"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/big_padding"
+            android:layout_toLeftOf="@+id/reputation_midanchor" />
 
-        <Button android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/decline_bid"
-            android:text="Decline"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_toEndOf="@id/accept_bid"
-            android:layout_toRightOf="@id/accept_bid"
-            android:background="@drawable/button_blue"
-            />
+        <Space
+            android:id="@+id/reputation_midanchor"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_centerHorizontal="true" />
 
-        <Button android:layout_width="90dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/close"
-            android:text="Close"
-            android:layout_toEndOf="@id/decline_bid"
-            android:layout_toRightOf="@id/decline_bid"
-            android:background="@drawable/button_blue"
-            />
+            android:id="@+id/bidder_reputation"
+            android:textSize="24sp"
+            android:text="20"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/reputation_positive_green"
+            android:layout_toRightOf="@+id/text_repuation"
+            android:padding="@dimen/big_padding" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_bid"
+            android:text="Bid"
+            android:textSize="24sp"
+            android:padding="@dimen/big_padding"
+
+            android:layout_alignLeft="@+id/text_repuation"
+            android:layout_below="@+id/text_repuation"
+            android:textColor="@color/secondary_information"
+            android:layout_marginTop="6sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bid_amount"
+            android:textSize="32sp"
+            android:text="$10000.00"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/moneygreen"
+            android:padding="@dimen/big_padding"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/text_bid"
+            android:layout_below="@+id/text_repuation" />
 
     </RelativeLayout>
 
-</LinearLayout>
+
+    <com.rey.material.widget.Button
+        style="@style/defaultButtonWithRipple"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:id="@+id/view_bidder_account"
+        android:layout_gravity="center_horizontal"
+        android:text="VIEW ACCOUNT"
+        android:textSize="@dimen/button_textsize"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/bidder_email"
+        android:layout_centerHorizontal="true"
+
+        android:padding="@dimen/mini_padding" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/action_container"
+        android:layout_marginTop="22dp"
+        android:layout_alignParentBottom="true">
+
+
+        <com.rey.material.widget.Button
+            style="@style/buttonWithRipple"
+            android:text="ACCEPT"
+            android:textColor="@color/softwhite"
+            android:textSize="@dimen/button_textsize"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/accept_bid"
+            android:layout_toLeftOf="@+id/midanchor"
+            android:layout_toStartOf="@+id/midanchor"
+            android:layout_marginLeft="@dimen/big_padding"
+            android:layout_marginTop="@dimen/big_padding"
+            android:layout_marginRight="@dimen/big_padding"
+            android:layout_marginBottom="@dimen/mini_padding" />
+
+        <Space
+            android:id="@+id/midanchor"
+            android:layout_width="0dp"
+            android:layout_height="10dp
+            "
+            android:layout_centerHorizontal="true" />
+
+
+
+        <com.rey.material.widget.Button
+            style="@style/buttonWithRipple"
+            android:text="DECLINE"
+            android:textColor="@color/softwhite"
+            android:textSize="@dimen/button_textsize"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/decline_bid"
+            android:layout_toRightOf="@+id/midanchor"
+            android:layout_marginLeft="@dimen/big_padding"
+            android:layout_marginRight="@dimen/big_padding"
+            android:layout_marginTop="@dimen/big_padding"
+            android:layout_marginBottom="@dimen/mini_padding" />
+
+
+        <com.rey.material.widget.Button
+            android:background="@color/transparent"
+            android:text="CLOSE"
+            android:textSize="@dimen/button_textsize"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/close"
+            android:longClickable="true"
+            android:layout_below="@+id/decline_bid"
+            android:layout_margin="@dimen/big_padding"
+            android:layout_centerHorizontal="true" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

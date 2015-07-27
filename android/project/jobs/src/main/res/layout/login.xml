@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:genius="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/title_color"
-    android:weightSum="1">
+    >
 
     <ImageView android:layout_width="225dp"
         android:layout_height="225dp"
@@ -52,16 +51,14 @@
         android:layout_below="@+id/password"
         android:layout_alignLeft="@+id/password">
 
-        <com.rey.material.widget.CheckBox
-            style="@style/Material.Drawable.CheckBox"
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkbox_remember_me"
-            android:layout_marginTop="3dp"
             android:layout_centerVertical="true"
-            app:cbd_boxSize="20dp"
-            app:cbd_strokeColor="#212121"
+            android:id="@+id/checkbox_remember_me"
+            app:cbd_strokeColor="@color/primary_information"
             />
+
 
 
         <TextView
@@ -71,9 +68,9 @@
             android:text="Remember me"
             android:textColor="@color/primary_information"
             android:layout_alignLeft="@+id/checkbox_remember_me"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="38dp" />
+            android:layout_marginLeft="36dp" />
     </RelativeLayout>
 
 
@@ -81,7 +78,7 @@
         android:id="@+id/login"
         android:layout_width="@dimen/button_widthwide"
         android:layout_height="@dimen/button_height"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="14dp"
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:textColor="#F9F9F9"

@@ -8,27 +8,21 @@
     android:icon="@drawable/logo"
     android:label="Browse Listings">
 
+    <com.rey.material.widget.Button
+        style="@style/buttonWithRipple"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/button_height"
+        android:textSize="@dimen/button_textsize"
+        android:textColor="@color/softwhite"
+        android:text="FILTER"
+        android:id="@+id/checkListings_filter"
+        android:layout_alignParentBottom="true" />
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listing_list"
-        >
+        android:layout_above="@+id/checkListings_filter">
     </ListView>
 
-    <com.rey.material.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="false"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        app:fab_backgroundColor="#FF4081"
-        app:fab_iconSrc="@drawable/ic_add_white_24dp"
-        app:rd_enable="true"
-        app:rd_rippleType="wave"
-        style="@style/Material.Widget.FloatingActionButton.Light"
-        android:id="@+id/checkListings_filter">
-
-    </com.rey.material.widget.FloatingActionButton>
 </RelativeLayout>

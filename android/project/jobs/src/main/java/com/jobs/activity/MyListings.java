@@ -1,12 +1,12 @@
 package com.jobs.activity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,15 +15,15 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jobs.R;
 import com.jobs.backend.Listing;
 import com.jobs.backend.Profile;
 import com.jobs.ui.SwipeMenu;
-import com.jobs.ui.SwipeMenuCreator;
-import com.jobs.ui.SwipeMenuItem;
 import com.jobs.ui.SwipeMenuListView;
+import com.rey.material.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,27 +34,29 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
 
-public class MyListings extends Activity {
+public class MyListings extends Fragment {
     private JSONObject data;
     private final ArrayList<Item> elements = new ArrayList<>();
-    private Typeface customFont;
+    private Typeface robotoRegular, robotoMedium;
     private ListingAdapter adapter;
+    private Button cancel, preview;
 
     private JSONArray allListings;
     private static final int NUM_LISTINGS_SHOWN = 10;
     private int page;
     private boolean loading;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_listings);
 
-        customFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
+        robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
         try {
-            data = new JSONObject(getIntent().getExtras().getString("data"));
+            data = new JSONObject(getActivity().getIntent().getExtras().getString("data"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -108,17 +110,18 @@ public class MyListings extends Activity {
     }
 
     private void fill(final JSONObject[] listings) throws JSONException {
-        SwipeMenuListView view = (SwipeMenuListView) findViewById(R.id.my_listings_list_view);
+        ListView listView = (ListView) getActivity().findViewById(R.id.my_listing_bids_list_view);
         adapter = new ListingAdapter();
+        listView.setAdapter(adapter);
 
         for (int i = 0; i < listings.length; i++) {
             elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"),
                     listings[i].getDouble("current_bid"), listings[i].getInt("status"), listings[i].getString("listing_id")));
         }
 
-        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MyListings.this, ViewListing.class);
+                Intent intent = new Intent(getActivity(), ViewListing.class);
 
                 try {
                     intent.putExtra("listing_id", listings[position].getString("listing_id"));
@@ -130,7 +133,7 @@ public class MyListings extends Activity {
             }
         });
 
-        view.setOnScrollListener(new AbsListView.OnScrollListener() {
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }
 
@@ -146,6 +149,8 @@ public class MyListings extends Activity {
                 }
             }
         });
+
+        /** Important: I made is a ListView so I don't know if we still need this
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             public void create(SwipeMenu menu) {
@@ -223,45 +228,27 @@ public class MyListings extends Activity {
             }
         };
 
+
+
         view.setMenuCreator(creator);
 
-        view.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
-                if (menu.getViewType() == 2 && index == 1)
-                    index = 2;
-
-                switch (index) {
-                    case 0:
-                        Intent intent = new Intent(MyListings.this, MyListingBids.class);
-                        intent.putExtra("listing_id", elements.get(position).listingID);
-                        startActivity(intent);
-                        break;
-
-                    case 1:
-                        if (menu.getViewType() == 0)
-                            elements.get(position).status = 1;
-                        else if (menu.getViewType() == 1)
-                            elements.get(position).status = 0;
-
-                        updateListing(position);
-
-                        adapter.notifyDataSetChanged();
-
-                        break;
-
-                    case 2:
-                        elements.get(position).status = 2;
-                        updateListing(position);
-                        adapter.notifyDataSetChanged();
-                        break;
-                }
-
-                return false;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                return;
             }
+
         });
 
-        view.setAdapter(adapter);
-    }
+        preview.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                final View view = getActivity().getLayoutInflater()
+            }
+        }
+
 
     private void loadMore() throws JSONException {
         loading = true;
@@ -346,13 +333,16 @@ public class MyListings extends Activity {
             NumberFormat format = new DecimalFormat("#0.00");
 
             TextView title = (TextView) row.findViewById(R.id.my_listing_job_title);
-            title.setTypeface(customFont);
+            title.setTypeface(robotoRegular);
             TextView currentBid = (TextView) row.findViewById(R.id.my_listing_current_bid);
-            currentBid.setTypeface(customFont);
+            currentBid.setTypeface(robotoRegular);
             TextView tag = (TextView) row.findViewById(R.id.my_listing_tag);
-            tag.setTypeface(customFont);
+            tag.setTypeface(robotoRegular);
             TextView isActive = (TextView) row.findViewById(R.id.my_listing_is_active);
-            isActive.setTypeface(customFont);
+            isActive.setTypeface(robotoRegular);
+            preview = (Button) row.findViewById(R.id.btn_preview);
+            preview.setTypeface(robotoMedium);
+            cancel = (Button) row.findViewById(R.id.btn_cancel);
 
             title.setText(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));
@@ -366,7 +356,7 @@ public class MyListings extends Activity {
                 text = "Inactive";
                 color = 0xffff0000;
             } else if (status == 2) {
-                text = "Job Completion Pending...";
+                text = "In Progress";
                 color = 0xffffac25;
             } else if (status == 3) {
                 text = "Completed";
@@ -423,3 +413,5 @@ public class MyListings extends Activity {
         return px;
     }
 }
+
+*/

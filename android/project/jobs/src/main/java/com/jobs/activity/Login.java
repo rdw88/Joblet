@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -40,7 +41,7 @@ import java.io.IOException;
 public class Login extends Activity {
     private EditText email;
     private EditText password;
-    private com.rey.material.widget.CheckBox rememberMe;
+    private CheckBox rememberMe;
     private TextView remembermeText;
 
     private ProgressDialog dialog;
@@ -82,12 +83,10 @@ public class Login extends Activity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
 
-        rememberMe = (com.rey.material.widget.CheckBox) findViewById(R.id.checkbox_remember_me);
+        rememberMe = (CheckBox) findViewById(R.id.checkbox_remember_me);
 
         com.rey.material.widget.Button login = (com.rey.material.widget.Button) findViewById(R.id.login);
 
-        final com.rey.material.widget.CheckBox rememberMe =
-                (com.rey.material.widget.CheckBox) findViewById(R.id.checkbox_remember_me);
         remembermeText = (TextView) findViewById(R.id.remembermeText);
         remembermeText.setTypeface(robotoRegular);
         SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);

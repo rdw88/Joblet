@@ -159,12 +159,12 @@ public class Main extends AppCompatActivity implements ActionBar.TabListener {
                 .withToolbar(mToolbar)
                 .withTranslucentStatusBar(false)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Edit Profile").withIcon(R.drawable.icon_user_32),
+                        new PrimaryDrawerItem().withName("Edit Profile").withIcon(R.drawable.icon_user_64),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName("Active Jobs").withIcon(R.drawable.icon_briefcase_32),
-                        new PrimaryDrawerItem().withName("Active Listings").withIcon(R.drawable.icon_list_32),
-                        new PrimaryDrawerItem().withName("My Bids").withIcon(R.drawable.icon_gavel_32),
-                        new PrimaryDrawerItem().withName("Watchlist").withIcon(R.drawable.icon_star_32)
+                        new PrimaryDrawerItem().withName("Active Jobs").withIcon(R.drawable.icon_briefcase_64),
+                        new PrimaryDrawerItem().withName("Active Listings").withIcon(R.drawable.icon_list_64),
+                        new PrimaryDrawerItem().withName("My Bids").withIcon(R.drawable.icon_gavel_64),
+                        new PrimaryDrawerItem().withName("Watchlist").withIcon(R.drawable.icon_star_64)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int position, long id, IDrawerItem iDrawerItem) {

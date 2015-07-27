@@ -100,6 +100,27 @@
             android:text="listing active?"
             android:padding="@dimen/small_padding" />
 
+        <com.rey.material.widget.Button
+            sytle="@style/defaultButtonWithRipple"
+            android:layout_height="@dimen/button_height"
+            android:layout_width="@dimen/button_width"
+            android:text="PREVIEW"
+            android:textSize="@dimen/button_textsize"
+            android:layout_below="@+id/my_listing_is_active"
+            android:layout_margin="@dimen/small_padding"
+            android:id="@+id/btn_preview" />
+
+        <com.rey.material.widget.Button
+            sytle="@style/defaultButtonWithRipple"
+            android:layout_height="@dimen/button_height"
+            android:layout_width="@dimen/button_width"
+            android:text="CANCEL"
+            android:textSize="@dimen/button_textsize"
+            android:layout_below="@+id/my_listing_is_active"
+            android:layout_margin="@dimen/small_padding"
+            android:id="@+id/btn_cancel"
+            android:layout_toRightOf="@+id/btn_preview" />
+
     </RelativeLayout>
 
 
