@@ -34,7 +34,7 @@ TODO: - Hash passwords.
 def create(args):
 	prof = Profile.objects.get(profile_id=args['profile_id'])
 
-	if prof.password != args['password']:
+	if not profile.check_password(args['password'], prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	dt = datetime.datetime.now()
@@ -164,7 +164,7 @@ def edit(args):
 	password = args['password']
 	prof = Profile.objects.get(email=email)
 
-	if str(prof.password) != password:
+	if not profile.check_password(password, prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args['listing_id']
@@ -191,7 +191,7 @@ def delete(args):
 	password = args['password']
 	prof = Profile.objects.get(email=email)
 
-	if prof.password != password:
+	if not profile.check_password(password, prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args['listing_id']
@@ -227,7 +227,7 @@ def upload(args, uploaded_file):
 
 	profile = Profile.objects.get(email=email)
 
-	if profile.password != password:
+	if not profile.check_password(password, profile):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing = listing[0]
