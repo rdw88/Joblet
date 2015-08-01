@@ -36,6 +36,10 @@ We want to limit personal information for users to prevent discrimination.
 def profile(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		
 		if hasattr(mod_profile, operation):
@@ -50,6 +54,9 @@ def profile(request):
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
 		del data['request']
@@ -84,6 +91,10 @@ Listings, like profiles will have unique listing_ids
 def listings(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		del data['request']
 
@@ -99,6 +110,9 @@ def listings(request):
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
 		del data['request']
@@ -141,6 +155,10 @@ def upload(request):
 def bid(request):
 	if request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		
 		if hasattr(bid_module, operation):
@@ -155,6 +173,10 @@ def bid(request):
 
 	elif request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+		
 		operation = data['request']
 		del data['request']
 
