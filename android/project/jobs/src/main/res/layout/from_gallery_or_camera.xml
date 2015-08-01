@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_gallery"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/title_color_fade"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_gallery"
+        android:id="@+id/gallery_text"
+        android:text="Gallery"
+        android:layout_marginLeft="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_camera"
+        android:layout_toRightOf="@id/button_gallery"
+        android:layout_toEndOf="@id/button_gallery"
+        android:src="@android:drawable/ic_menu_camera"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/title_color_fade"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/gallery_text"
+        android:layout_toRightOf="@id/gallery_text"
+        android:layout_below="@id/button_camera"
+        android:text="Camera"
+        android:layout_marginLeft="94dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        />
+
+</RelativeLayout>

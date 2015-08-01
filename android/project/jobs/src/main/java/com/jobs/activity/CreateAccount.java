@@ -470,7 +470,6 @@ public class CreateAccount extends FragmentActivity {
 
             }
 
-
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
                     CreateAccount.previousFragment(getActivity(), updateAccount(), getArguments().getInt(FRAGMENT_INDEX_KEY));

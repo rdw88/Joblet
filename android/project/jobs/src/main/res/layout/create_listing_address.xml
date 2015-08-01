@@ -26,25 +26,18 @@
             android:text="Enter the Address of the job."/>
 
 
+        <CheckBox
+            android:text="Use Current Location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/secondary_information"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/current_location_checkbox"/>
+
+
         <!-- TODO: MAKE AUTOCOMPLETE WITH STATE -->
-        <com.rey.material.widget.EditText
-            style="@style/edittextFullspan"
-            android:id="@+id/listingState"
-            app:et_inputId="@+id/listingStateWrapper"
-            android:hint="State"
-            app:et_labelEnable="true"
-            app:et_supportPadding="@dimen/small_padding"
-            app:et_supportTextColor="@color/secondary_information"
-            />
-        <com.rey.material.widget.EditText
-            style="@style/edittextFullspan"
-            android:id="@+id/listingCity"
-            app:et_inputId="@+id/listingCityWrapper"
-            android:hint="City"
-            app:et_labelEnable="true"
-            app:et_supportPadding="@dimen/small_padding"
-            app:et_supportTextColor="@color/secondary_information"
-            />
         <com.rey.material.widget.EditText
             style="@style/edittextFullspan"
             android:id="@+id/listingStreet"
@@ -54,6 +47,27 @@
             app:et_supportPadding="@dimen/small_padding"
             app:et_supportTextColor="@color/secondary_information"
             />
+
+        <com.rey.material.widget.EditText
+            style="@style/edittextFullspan"
+            android:id="@+id/listingCity"
+            app:et_inputId="@+id/listingCityWrapper"
+            android:hint="City"
+            app:et_labelEnable="true"
+            app:et_supportPadding="@dimen/small_padding"
+            app:et_supportTextColor="@color/secondary_information"
+            />
+
+        <com.rey.material.widget.EditText
+            style="@style/edittextFullspan"
+            android:id="@+id/listingState"
+            app:et_inputId="@+id/listingStateWrapper"
+            android:hint="State"
+            app:et_labelEnable="true"
+            app:et_supportPadding="@dimen/small_padding"
+            app:et_supportTextColor="@color/secondary_information"
+            />
+
         <RelativeLayout
             style="@style/nextprevContainer"
             android:layout_marginTop="8dp"

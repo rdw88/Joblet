@@ -50,7 +50,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CheckListings extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class CheckListings extends Fragment {
     private ListView listings;
     private ListingAdapter adapter;
     private FloatingActionButton filter;
@@ -62,31 +62,20 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
     private int page;
     private boolean loading;
 
-    private GoogleApiClient googleClient;
-    private double currentLatitude;
-    private double currentLongitude;
-
     private Typeface robotoRegular, robotoBold, robotoMedium, robotoThin, robotoBlack;
-
+    private Global global;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        profileData = ((Global) getActivity().getApplicationContext()).getUserData();
+        global = (Global) getActivity().getApplicationContext();
+        profileData = global.getUserData();
 
         robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
         robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
         robotoThin = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Thin.ttf");
         robotoBlack = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
-
-        googleClient = new GoogleApiClient.Builder(getActivity())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-
-        googleClient.connect();
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -160,8 +149,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         });
 
         fill();
-
-
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -271,22 +258,6 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         loading = false;
     }
 
-    public void onConnected(Bundle connectionHint) {
-        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleClient);
-
-        if (lastLocation != null) {
-            currentLatitude = lastLocation.getLatitude();
-            currentLongitude = lastLocation.getLongitude();
-        }
-    }
-
-    public void onConnectionFailed(ConnectionResult b) {
-        // TODO: Implement
-    }
-
-    public void onConnectionSuspended(int i) {
-    }
-
     private class FilterAdapter extends ArrayAdapter<String> {
         private ArrayList<String> items;
 
@@ -349,8 +320,8 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             tags.setText(tags.getText() + feedItems.get(position).tag);
             TextView distance = (TextView) row.findViewById(R.id.listing_distanceaway);
 
-            if (currentLatitude != 0 && currentLongitude != 0) {
-                double distanceAway = Resource.calculateDistanceInMiles(currentLatitude, currentLongitude, feedItems.get(position).latitude, feedItems.get(position).longitude);
+            if (global.getCurrentLatitude() != 0 && global.getCurrentLongitude() != 0) {
+                double distanceAway = Resource.calculateDistanceInMiles(global.getCurrentLatitude(), global.getCurrentLongitude(), feedItems.get(position).latitude, feedItems.get(position).longitude);
                 NumberFormat distanceFormat = new DecimalFormat("#0.0");
                 distance.setText(distanceFormat.format(distanceAway) + " mi");
             }
@@ -406,7 +377,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
     private double calcDistanceAway(FeedItem fi) {
         double distanceAway =
-                Resource.calculateDistanceInMiles(currentLatitude, currentLongitude,
+                Resource.calculateDistanceInMiles(global.getCurrentLatitude(), global.getCurrentLongitude(),
                 fi.latitude, fi.longitude);
         return distanceAway;
     }

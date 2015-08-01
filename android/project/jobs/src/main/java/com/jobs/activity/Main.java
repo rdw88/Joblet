@@ -1,6 +1,7 @@
 package com.jobs.activity;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -16,6 +17,9 @@ import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.PopupMenu;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.jobs.R;
 import com.jobs.backend.Profile;
 import com.jobs.fragment.CreateListing;
@@ -40,16 +44,27 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 
 
-public class Main extends AppCompatActivity {
+public class Main extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private Drawer drawer = null;
     private Toolbar mToolbar;
     private JSONObject data;
+
+    private Global global;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        data = ((Global) getApplicationContext()).getUserData();
+        global = (Global) getApplicationContext();
+        data = global.getUserData();
+
+        global.googleClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        global.googleClient.connect();
 
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
@@ -145,6 +160,22 @@ public class Main extends AppCompatActivity {
                 finish();
             }
         }.execute();
+    }
+
+    public void onConnected(Bundle connectionHint) {
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(global.googleClient);
+
+        if (lastLocation != null) {
+            global.setCurrentLatitude(lastLocation.getLatitude());
+            global.setCurrentLongitude(lastLocation.getLongitude());
+        }
+    }
+
+    public void onConnectionFailed(ConnectionResult b) {
+        // TODO: Implement
+    }
+
+    public void onConnectionSuspended(int i) {
     }
 
     @Override

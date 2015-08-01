@@ -1,27 +1,49 @@
 package com.jobs.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jobs.R;
+import com.jobs.backend.Resource;
+import com.jobs.utility.CurrencyFormatInputFilter;
+import com.jobs.utility.Global;
+import com.rey.material.app.Dialog;
 import com.rey.material.widget.Button;
 import com.rey.material.widget.EditText;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class CreateListingsNew extends Fragment {
     private static final String FRAGMENT_INDEX_KEY = "fragment_index";
@@ -98,7 +120,14 @@ public class CreateListingsNew extends Fragment {
 
     public static class RecommendedSettings extends Fragment {
         private String description;
-        private Bitmap[] pictures;
+        private List<String> picturePaths = new ArrayList<>();
+
+        private String lastCameraPicturePath;
+        private ImageView[] images = new ImageView[2];
+        private TextView more, viewDescription;
+        private EditText enterDescription;
+
+        private Dialog selector;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.create_listing_recommended, container, false);
@@ -115,7 +144,65 @@ public class CreateListingsNew extends Fragment {
             list.setOnItemClickListener(new ListView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (i == 0) {
+                        viewDescription.setText("Max 500 characters.");
+                        enterDescription.setVisibility(View.VISIBLE);
+                    } else if (i == 1) {
+                        selector = new Dialog(getActivity());
+                        selector.setCancelable(true);
+                        selector.negativeAction("Cancel");
+                        selector.negativeActionTextColor(0xfff05d5e);
+                        selector.negativeActionClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                selector.dismiss();
+                            }
+                        });
 
+                        selector.setContentView(R.layout.from_gallery_or_camera);
+                        selector.setTitle("Choose a Method");
+                        selector.titleColor(0xff444444);
+
+                        ImageButton gallery = (ImageButton) selector.findViewById(R.id.button_gallery);
+                        ImageButton camera = (ImageButton) selector.findViewById(R.id.button_camera);
+
+                        gallery.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_PICK);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 0xab);
+                            }
+                        });
+
+                        camera.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                                String imageFileName = "JPEG_" + timeStamp + "_";
+                                File imageFile = null;
+
+                                try {
+                                    File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                                    imageFile = File.createTempFile(imageFileName, ".jpg", storageDir);
+                                    lastCameraPicturePath = imageFile.getAbsolutePath();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                if (takePicture.resolveActivity(getActivity().getPackageManager()) != null) {
+                                    if (imageFile != null) {
+                                        takePicture.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
+                                        startActivityForResult(takePicture, 0xac);
+                                    }
+                                }
+                            }
+                        });
+
+                        selector.show();
+                    }
                 }
             });
 
@@ -137,10 +224,70 @@ public class CreateListingsNew extends Fragment {
             return view;
         }
 
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            switch (requestCode) {
+                case 0xab:
+                    if (resultCode == Activity.RESULT_OK) {
+                        picturePaths.add(Resource.getRealPathFromURI(getActivity(), data.getData()));
+                    }
+
+                    break;
+
+                case 0xac:
+                    if (resultCode == Activity.RESULT_OK) {
+                        picturePaths.add(lastCameraPicturePath);
+                    }
+
+                    break;
+            }
+
+            // TODO: Fix this bug. image1 not getting set, "more" TextView getting ignored.
+            if (resultCode == Activity.RESULT_OK) {
+                if (picturePaths.size() == 1) {
+                    setPic(picturePaths.get(0), 0);
+                } else if (picturePaths.size() > 1) {
+                    setPic(picturePaths.get(0), 0);
+                    setPic(picturePaths.get(1), 1);
+                }
+
+                if (picturePaths.size() > 2)
+                    more.setVisibility(View.VISIBLE);
+
+                selector.dismiss();
+            }
+        }
+
+        private void setPic(String path, int image) {
+            int targetW = images[image].getMeasuredWidth();
+            int targetH = images[image].getMeasuredHeight();
+
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(path, bmOptions);
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+
+            Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
+            images[image].setImageBitmap(bitmap);
+        }
+
         @SuppressWarnings("unchecked")
         private HashMap<String, String> updateListing() {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("listing");
             map.put("listing_description", description);
+            map.put("num_pictures", Integer.toString(picturePaths.size()));
+
+            for (int i = 0; i < picturePaths.size(); i++) {
+                map.put("picture_" + i, picturePaths.get(i));
+            }
+
             return map;
         }
 
@@ -155,7 +302,21 @@ public class CreateListingsNew extends Fragment {
             @Override
             public View getView(final int position, View currentView, ViewGroup parent) {
                 LayoutInflater inflater = getActivity().getLayoutInflater();
-                View row = inflater.inflate(R.layout.create_listing_optional_listview_item, parent, false);
+                View row = null;
+
+                if (position == 0) {
+                    row = inflater.inflate(R.layout.create_listing_add_description_list_item, parent, false);
+                    enterDescription = (EditText) row.findViewById(R.id.enter_description);
+                    enterDescription.setTextColor(0xff555555);
+                    viewDescription = (TextView) row.findViewById(R.id.description);
+                } else if (position == 1) {
+                    row = inflater.inflate(R.layout.create_listing_add_pictures_list_item, parent, false);
+
+                    images[0] = (ImageView) row.findViewById(R.id.add_pictures_preview_0);
+                    images[1] = (ImageView) row.findViewById(R.id.add_pictures_preview_1);
+
+                    more = (TextView) row.findViewById(R.id.more);
+                }
 
                 TextView title = (TextView) row.findViewById(R.id.title);
                 TextView description = (TextView) row.findViewById(R.id.description);
@@ -277,6 +438,8 @@ public class CreateListingsNew extends Fragment {
             Button prev = (Button) view.findViewById(R.id.listingPricePrev);
             price = (EditText) view.findViewById(R.id.listingMaxbid);
 
+            price.setFilters(new InputFilter[]{new CurrencyFormatInputFilter()});
+
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -306,12 +469,45 @@ public class CreateListingsNew extends Fragment {
         private EditText address, city, state;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final Global global = (Global) getActivity().getApplicationContext();
             View view = inflater.inflate(R.layout.create_listing_address, container, false);
             Button next = (Button) view.findViewById(R.id.listingAddressNext);
             Button prev = (Button) view.findViewById(R.id.listingAddressPrev);
             address = (EditText) view.findViewById(R.id.listingStreet);
             city = (EditText) view.findViewById(R.id.listingCity);
             state = (EditText) view.findViewById(R.id.listingState);
+            final CheckBox currentLoc = (CheckBox) view.findViewById(R.id.current_location_checkbox);
+
+            currentLoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (currentLoc.isChecked()) {
+                        Geocoder coder = new Geocoder(getActivity());
+                        List<Address> addresses = null;
+
+                        try {
+                            addresses = coder.getFromLocation(global.getCurrentLatitude(), global.getCurrentLongitude(), 1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (addresses == null || addresses.size() == 0) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Could not get location data!", Toast.LENGTH_LONG).show();
+                            currentLoc.setChecked(false);
+                            return;
+                        }
+
+                        Address addr = addresses.get(0);
+                        address.setText(addr.getThoroughfare());
+                        city.setText(addr.getLocality());
+                        state.setText(addr.getAdminArea());
+                    } else {
+                        address.setText("");
+                        city.setText("");
+                        state.setText("");
+                    }
+                }
+            });
 
 
             next.setOnClickListener(new View.OnClickListener() {
