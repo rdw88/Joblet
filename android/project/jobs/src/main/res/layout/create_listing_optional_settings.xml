@@ -7,31 +7,23 @@
     android:background="@color/background_light">
 
     <TextView
-        style="@style/insturctionsTitle"
-        android:id="@+id/instructionsTitle"
-        android:text="Job Listing Desciption"
-        />
+        style="@style/createListing_header"
+        android:text="Optional Settings"/>
 
     <TextView
-        style="@style/instructionsSubTitle"
-        android:id="@+id/instructionsSubTitle"
-        android:text="Create a description that further explains your job."/>
+        style="@style/createListing_description"
+        android:text="Feel free to use any of these optional settings."/>
 
-    <com.rey.material.widget.EditText
-        style="@style/edittextFullspan"
-        android:maxLength="500"
-        android:id="@+id/listingTitle"
-        app:et_inputId="@+id/listingDescriptionWrapper"
-        app:et_supportMode="charCounter"
-        android:hint="Max 500 Characters"
-        app:et_labelEnable="true"
-        app:et_supportPadding="@dimen/small_padding"
-        app:et_supportTextColor="@color/secondary_information"
-        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/optionalListingList"/>
 
     <RelativeLayout
         style="@style/nextprevContainer"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/listingDescriptionNextPrevContainer">
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
@@ -49,12 +41,13 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp" />
+
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
             android:layout_width="@dimen/button_widthshort"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/button_med"
-            android:text="NEXT"
+            android:text="REVIEW"
             android:id="@+id/listingDescriptionNext"
             android:layout_toRightOf="@+id/midanchor" />
 

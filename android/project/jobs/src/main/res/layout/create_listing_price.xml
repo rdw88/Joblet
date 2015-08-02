@@ -8,26 +8,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            style="@style/createListing_header"
+            android:text="The Essentials"/>
+
             <TextView
-                style="@style/insturctionsTitle"
+                style="@style/createListing_title"
                 android:id="@+id/instructionsTitle"
-                android:text="Job Listing Maximum Bid"
+                android:text="Job Listing Starting Bid"
                 />
 
             <TextView
-                style="@style/instructionsSubTitle"
+                style="@style/createListing_description"
                 android:id="@+id/instructionsSubTitle"
-                android:text="Enter the maximum you are willing to pay for this job, contractors will bid against eachother to give you the lowest price."/>
+                android:text="Enter the maximum you are willing to pay for this job. Contractors will bid against eachother to give you the lowest price."/>
 
             <!-- TODO: Incorporate CurrencyFormatInputFilter on the java file with the bid edittext -->
             <com.rey.material.widget.EditText
                 style="@style/edittextFullspan"
-                android:maxLength="500"
                 android:id="@+id/listingMaxbid"
                 android:inputType="number"
                 app:et_supportMode="helper"
                 app:et_inputId="@+id/listingMaxbidWrapper"
-                android:hint="Max Bid"
+                android:hint="Starting Bid"
                 app:et_helper="Enter valid denomination"
                 app:et_labelEnable="true"
                 app:et_supportPadding="@dimen/small_padding"

@@ -34,7 +34,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class ViewListing extends AppCompatActivity {
+public class ViewListing extends Activity {
     private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag,
             textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription,
             constantTextDescription, constantTextListEndsOn, textListEndsOn, constantTimeLeft, textLocation, textTimeLeft,
@@ -42,14 +42,13 @@ public class ViewListing extends AppCompatActivity {
     private Button makeBid, addToWatchlist;
     private ImageView picture;
     private Typeface robotoRegular, robotoBlack, robotoMedium, robotoThin;
-    private android.support.v7.app.ActionBar actionBar;
+    private ActionBar actionBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_listing);
-        actionBar = getSupportActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void onStart() {

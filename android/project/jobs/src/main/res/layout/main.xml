@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_dl"
+    android:background="@color/background_light"
     style="@style/MaterialDrawerTheme.Light.ActionBar">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -24,20 +25,13 @@
                 android:layout_width="match_parent"
                 android:background="@color/title_color"
                 />
-            <com.rey.material.widget.TabPageIndicator
-                style="@style/TabPageIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:id="@+id/main_tpi"
-                android:textColor="@color/softwhite"
-                />
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+        </FrameLayout>
 
-        </LinearLayout>
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_holder" />
+
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

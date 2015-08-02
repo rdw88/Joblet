@@ -1,9 +1,11 @@
-package com.jobs.activity;
+package com.jobs.fragment;
 
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jobs.R;
+import com.jobs.utility.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,27 +22,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Notifications extends Activity {
+public class Notifications extends Fragment {
     private NotificationAdapter adapter;
     private JSONArray notificationData;
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.notifications);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.notifications, container, false);
     }
 
     public void onStart() {
         super.onStart();
 
-        Bundle b = getIntent().getExtras();
-        if (b.containsKey("notification_data")) {
-            try {
-                notificationData = new JSONArray(b.getString("notification_data"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
+        notificationData = ((Global) getActivity().getApplicationContext()).getNotificationData();
         ArrayList<Item> items = null;
 
         try {
@@ -57,10 +51,14 @@ public class Notifications extends Activity {
             e.printStackTrace();
         }
 
+        ListView notifications = (ListView) getActivity().findViewById(R.id.notification_list);
         if (items != null) {
-            ListView notifications = (ListView) findViewById(R.id.notification_list);
-            adapter = new NotificationAdapter(this, items);
+            adapter = new NotificationAdapter(getActivity(), items);
             notifications.setAdapter(adapter);
+        } else {
+            notifications.setVisibility(ListView.GONE);
+            TextView text = (TextView) getActivity().findViewById(R.id.no_notifications);
+            text.setVisibility(TextView.VISIBLE);
         }
     }
 
@@ -74,7 +72,7 @@ public class Notifications extends Activity {
 
         @Override
         public View getView(final int position, View currentView, ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
+            LayoutInflater inflater = getActivity().getLayoutInflater();
             View row = inflater.inflate(R.layout.notification_list_item, parent, false);
 
             TextView title = (TextView) row.findViewById(R.id.notification_title);

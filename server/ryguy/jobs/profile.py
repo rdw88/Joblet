@@ -149,10 +149,12 @@ unique profile ID.
 '''
 
 def get(data):
-	profile_id = data['profile_id']
-	profile = _fetch(profile_id)
+	if 'email' in data:
+		profile = Profile.objects.filter(email=data['email'])
+	else:
+		profile = Profile.objects.filter(profile_id=data['profile_id'])
 
-	if not profile:
+	if len(profile) != 1:
 		return None, ERROR_NO_SUCH_PROFILE
 
 	vals = profile.values('first_name', 'last_name', 'age', 'email', 'city_code', 'tags', 'date_created', 
@@ -160,11 +162,11 @@ def get(data):
 		'recent_bids', 'recent_jobs', 'bio')[0]
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 
-	returned = dict()
-	for key in vals:
-		returned[key] = vals[key]
+	#returned = dict()
+	#for key in vals:
+#		returned[key] = vals[key]
 
-	return returned, None
+	return dict(vals), None
 
 
 

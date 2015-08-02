@@ -22,7 +22,8 @@
             android:allowBackup="true"
             android:icon="@drawable/logo_homescreen"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme2">
+            android:theme="@style/AppTheme2"
+            android:name="com.jobs.utility.Global">
 
         <service
             android:name="net.qiujuer.genius.command.CommandService"
@@ -65,7 +66,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme"/>
 
-        <activity android:name=".activity.MyListings"
+        <activity android:name=".fragment.MyListings"
             android:label="My Listings"/>
 
         <meta-data android:name="com.google.android.gms.version"
@@ -77,10 +78,10 @@
             android:excludeFromRecents="true"
             />
 
-        <activity android:name=".activity.MyListingBids"
+        <activity android:name=".fragment.MyListingBids"
             android:label="@string/app_name"/>
 
-        <activity android:name=".activity.Notifications"
+        <activity android:name=".fragment.Notifications"
             android:label="@string/app_name"/>
 
     </application>

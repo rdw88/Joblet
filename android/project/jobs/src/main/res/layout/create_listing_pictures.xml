@@ -9,13 +9,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            style="@style/insturctionsTitle"
+            style="@style/createListing_title"
             android:id="@+id/instructionsTitle"
             android:text="Job Listing Pictures"
             />
 
         <TextView
-            style="@style/instructionsSubTitle"
+            style="@style/createListing_description"
             android:id="@+id/instructionsSubTitle"
             android:text="Select or take up to five pictures that are relevant to the job."/>
 

@@ -11,13 +11,17 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/insturctionsTitle"
+            style="@style/createListing_header"
+            android:text="The Essentials"/>
+
+        <TextView
+            style="@style/createListing_title"
             android:id="@+id/instructionsTitle"
             android:text="Job Listing Address"
             />
 
         <TextView
-            style="@style/instructionsSubTitle"
+            style="@style/createListing_description"
             android:id="@+id/instructionsSubTitle"
             android:text="Enter the Address of the job."/>
 

@@ -1,7 +1,8 @@
-package com.jobs.activity;
+package com.jobs.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -19,11 +20,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jobs.R;
+import com.jobs.activity.ViewListing;
 import com.jobs.backend.Listing;
 import com.jobs.backend.Profile;
 import com.jobs.ui.SwipeMenu;
 import com.jobs.ui.SwipeMenuListView;
 import com.rey.material.widget.Button;
+import com.jobs.utility.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +37,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/*
-
 public class MyListings extends Fragment {
     private JSONObject data;
-    private final ArrayList<Item> elements = new ArrayList<>();
+    private final ArrayList<FeedItem> elements = new ArrayList<>();
     private Typeface robotoRegular, robotoMedium;
     private ListingAdapter adapter;
     private Button cancel, preview;
@@ -50,7 +51,6 @@ public class MyListings extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         robotoRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,6 +60,11 @@ public class MyListings extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.my_listings, container, false);
     }
 
     public void onResume() {
@@ -75,7 +80,7 @@ public class MyListings extends Fragment {
 
             protected String doInBackground(String... urls) {
                 try {
-                    JSONObject obj = Profile.getProfile(data.getString("profile_id"));
+                    JSONObject obj = Profile.getProfile(data.getString("email"));
                     JSONArray arr = new JSONArray(obj.getString("owned_listings"));
                     allListings = new JSONArray();
 
@@ -111,12 +116,15 @@ public class MyListings extends Fragment {
 
     private void fill(final JSONObject[] listings) throws JSONException {
         ListView listView = (ListView) getActivity().findViewById(R.id.my_listing_bids_list_view);
+
         adapter = new ListingAdapter();
         listView.setAdapter(adapter);
 
         for (int i = 0; i < listings.length; i++) {
-            elements.add(new Item(listings[i].getString("job_title"), listings[i].getString("tag"),
-                    listings[i].getDouble("current_bid"), listings[i].getInt("status"), listings[i].getString("listing_id")));
+            elements.add(new FeedItem(listings[i].getString("job_title"), listings[i].getString("tag"),
+                    listings[i].getDouble("current_bid"), listings[i].getInt("view_number"),
+                    listings[i].getString("listing_id"), listings[i].getInt("status"),
+                    listings[i].getString("time_left")));
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -150,86 +158,6 @@ public class MyListings extends Fragment {
             }
         });
 
-        /** Important: I made is a ListView so I don't know if we still need this
-
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-            public void create(SwipeMenu menu) {
-                switch (menu.getViewType()) {
-                    case 0:   // IN THE CASE THAT THE LISTING IS *ACTIVE*
-                        SwipeMenuItem viewBids = new SwipeMenuItem(getApplicationContext());
-                        viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
-                        viewBids.setWidth(dpToPx(90));
-                        viewBids.setTitle("Bids");
-                        viewBids.setTitleSize(18);
-                        viewBids.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(viewBids);
-
-                        SwipeMenuItem setInactive = new SwipeMenuItem(getApplicationContext());
-                        setInactive.setBackground(new ColorDrawable(Color.rgb(0xf4, 0xa6, 0)));
-                        setInactive.setWidth(dpToPx(90));
-                        setInactive.setTitle("Set Inactive");
-                        setInactive.setTitleSize(18);
-                        setInactive.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(setInactive);
-
-                        SwipeMenuItem finish = new SwipeMenuItem(getApplicationContext());
-                        finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
-                        finish.setWidth(dpToPx(90));
-                        finish.setTitle("Finish");
-                        finish.setTitleSize(18);
-                        finish.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(finish);
-                        break;
-
-                    case 1:   // IN THE CASE THAT THE LISTING IS *INACTIVE*
-                        viewBids = new SwipeMenuItem(getApplicationContext());
-                        viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
-                        viewBids.setWidth(dpToPx(90));
-                        viewBids.setTitle("Bids");
-                        viewBids.setTitleSize(18);
-                        viewBids.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(viewBids);
-
-                        SwipeMenuItem setActive = new SwipeMenuItem(getApplicationContext());
-                        setActive.setBackground(new ColorDrawable(Color.rgb(0xf4, 0xa6, 0)));
-                        setActive.setWidth(dpToPx(90));
-                        setActive.setTitle("Set Active");
-                        setActive.setTitleSize(18);
-                        setActive.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(setActive);
-
-                        finish = new SwipeMenuItem(getApplicationContext());
-                        finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
-                        finish.setWidth(dpToPx(90));
-                        finish.setTitle("Finish");
-                        finish.setTitleSize(18);
-                        finish.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(finish);
-                        break;
-
-                    case 2:   // IN THE CASE THAT THE LISTING IS *COMPLETED OR PENDING*
-                        viewBids = new SwipeMenuItem(getApplicationContext());
-                        viewBids.setBackground(new ColorDrawable(Color.rgb(0x4c, 0x9a, 0xde)));
-                        viewBids.setWidth(dpToPx(90));
-                        viewBids.setTitle("Bids");
-                        viewBids.setTitleSize(18);
-                        viewBids.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(viewBids);
-
-                        finish = new SwipeMenuItem(getApplicationContext());
-                        finish.setBackground(new ColorDrawable(Color.rgb(0x53, 0xd0, 0x62)));
-                        finish.setWidth(dpToPx(90));
-                        finish.setTitle("Finish");
-                        finish.setTitleSize(18);
-                        finish.setTitleColor(Color.WHITE);
-                        menu.addMenuItem(finish);
-                        break;
-                }
-            }
-        };
-
-
-
         view.setMenuCreator(creator);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -247,7 +175,7 @@ public class MyListings extends Fragment {
             public void onClick(View v) {
                 final View view = getActivity().getLayoutInflater()
             }
-        }
+        });
 
 
     private void loadMore() throws JSONException {
@@ -282,8 +210,11 @@ public class MyListings extends Fragment {
             protected void onPostExecute(String result) {
                 try {
                     for (int i = 0; i < response.length; i++) {
-                        Item item = new Item(response[i].getString("job_title"), response[i].getString("tag"), response[i].getDouble("current_bid"), response[i].getInt("status"), response[i].getString("listing_id"));
-                        elements.add(item);
+                        Item FeedItem = new FeedItem(response[i].getString("job_title"),
+                                response[i].getString("tag"), response[i].getDouble("current_bid"),
+                                response[i].getInt("status"), response[i].getString("listing_id"),
+                                );
+                        elements.add(FeedItem);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -313,10 +244,32 @@ public class MyListings extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                getActivity().onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class FeedItem {
+        public String title;
+        public String tag;
+        public double currentBid;
+        public int views;
+        public double latitude;
+        public double longitude;
+        public String listingID;
+        public int status;
+        public String timeLeft;
+        public FeedItem(String title, String tag, double currentBid, int views, String listingID,
+                        int status, String timeLeft) {
+            this.title = title;
+            this.tag = tag;
+            this.currentBid = currentBid;
+            this.views = views;
+            this.listingID = listingID;
+            this.status = status;
+            this.timeLeft = timeLeft;
+        }
     }
 
     private class ListingAdapter extends BaseAdapter {
@@ -324,7 +277,7 @@ public class MyListings extends Fragment {
             View row = null;
 
             if (currentView == null) {
-                LayoutInflater inflater = getLayoutInflater();
+                LayoutInflater inflater = getActivity().getLayoutInflater();
                 row = inflater.inflate(R.layout.my_listings_list_item, parent, false);
             } else {
                 row = currentView;
@@ -386,7 +339,7 @@ public class MyListings extends Fragment {
             return i;
         }
 
-        public Item getItem(int position) {
+        public FeedItem getItem(int position) {
             return elements.get(position);
         }
     }
@@ -414,4 +367,4 @@ public class MyListings extends Fragment {
     }
 }
 
-*/
+

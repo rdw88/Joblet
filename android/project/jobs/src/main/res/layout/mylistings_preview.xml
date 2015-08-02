@@ -20,9 +20,10 @@
 
         <TextView
             style="@style/insturctionsTitle"
-            android:text="Sample listing title."
+            android:text="This is a sample listing title."
             android:id="@+id/view_listing_title"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             style="@style/listingCurbid"

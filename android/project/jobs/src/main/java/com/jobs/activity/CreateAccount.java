@@ -82,6 +82,9 @@ public class CreateAccount extends FragmentActivity {
     }
 
     private static void nextFragment(Activity parent, HashMap<String, String> args, int currentIndex) {
+        if (currentIndex >= FRAGMENT_ORDER.length - 1)
+            return;
+
         Fragment fragment = FRAGMENT_ORDER[currentIndex + 1];
         Bundle bundle = new Bundle();
         bundle.putSerializable("account", args);
