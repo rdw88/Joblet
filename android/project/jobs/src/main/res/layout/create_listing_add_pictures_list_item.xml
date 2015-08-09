@@ -33,14 +33,12 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp"
-        android:src="@drawable/ic_check"
         android:id="@+id/add_pictures_preview_0"
         />
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_check"
         android:layout_toEndOf="@id/add_pictures_preview_0"
         android:layout_toRightOf="@id/add_pictures_preview_0"
         android:layout_centerVertical="true"

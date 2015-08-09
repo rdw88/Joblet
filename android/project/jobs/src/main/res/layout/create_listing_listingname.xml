@@ -10,18 +10,19 @@
 
     <TextView
         style="@style/createListing_header"
+        android:id="@+id/title"
         android:text="The Essentials"/>
 
     <TextView
         style="@style/createListing_title"
-        android:id="@+id/instructionsTitle"
+        android:id="@+id/subtitle"
         android:text="Job Title"
         />
     
     <TextView
         style="@style/createListing_description"
         android:id="@+id/instructionsSubTitle"
-        android:text="Create a brief and clear title for your job. This is what's going to stand out to people the most. (70 character max)"/>
+        android:text="Create a brief and clear title for your job. This is what's going to stand out to people the most. (Max 70 chars.)"/>
 
     <com.rey.material.widget.EditText
         style="@style/edittextFullspan"
@@ -31,6 +32,7 @@
         app:et_supportMode="charCounter"
         app:et_labelEnable="true"
         app:et_supportPadding="@dimen/small_padding"
+        app:et_dividerAnimDuration="1"
         app:et_supportTextColor="@color/secondary_information"
         />
 

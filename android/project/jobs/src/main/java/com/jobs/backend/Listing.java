@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 
+import org.apache.http.HttpStatus;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONArray;
@@ -37,25 +38,31 @@ import org.apache.http.util.EntityUtils;
 
 public class Listing {
 
-    public static JSONObject create(String title, String startingAmount, String minReputation, String activeTime,
+    public static JSONObject create(String title, String startingAmount, String minReputation, String expirationDate,
                                     String address, String city, String state, double latitude, double longitude,
-                                    String profileID, String tag, String password, String description) {
+                                    String email, String password, String description) {
 
         Map<String, String> map = new HashMap<>();
         map.put("request", "create");
         map.put("job_title", title);
         map.put("starting_amount", startingAmount);
-        map.put("min_reputation", minReputation);
-        map.put("active_until", activeTime);
-        map.put("profile_id", profileID);
-        map.put("tag", tag);
+        map.put("owner_email", email);
         map.put("password", password);
         map.put("address", address);
         map.put("city", city);
         map.put("state", state);
         map.put("latitude", Double.toString(latitude));
         map.put("longitude", Double.toString(longitude));
-        map.put("job_description", description);
+
+        // Optional, may be null
+        if (minReputation != null)
+            map.put("min_reputation", minReputation);
+
+        if (expirationDate != null)
+            map.put("expiration_date", expirationDate);
+
+        if (description != null)
+            map.put("job_description", description);
 
         try {
             return Address.post(map, Address.LISTING);
@@ -113,26 +120,6 @@ public class Listing {
 
         HttpPost httppost = new HttpPost(Address.UPLOAD);
         File file = new File(image);
-        //Bitmap original = BitmapFactory.decodeFile(file.getAbsolutePath());
-        //Matrix matrix = new Matrix();
-        //matrix.postRotate(getImageOrientation(file));
-        //Bitmap rotated = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
-
-        /*try {
-            FileOutputStream out = new FileOutputStream(file, false);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            rotated.compress(Bitmap.CompressFormat.PNG, 0, bos);
-            byte[] bitmapData = bos.toByteArray();
-
-            for (int i = 0; i < bitmapData.length; i++) {
-                out.write(bitmapData[i]);
-            }
-
-            out.close();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         try {
             MultipartEntity mpEntity = new MultipartEntity();
@@ -148,6 +135,11 @@ public class Listing {
             HttpEntity resEntity = response.getEntity();
 
             if (resEntity != null) {
+                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                    resEntity.consumeContent();
+                    return Error.ERROR_IMAGE_UPLOAD_FAILED;
+                }
+
                 resEntity.consumeContent();
             }
 

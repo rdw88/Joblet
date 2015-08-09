@@ -2,7 +2,6 @@ package com.jobs.activity;
 
 import com.jobs.fragment.CheckListings;
 import com.jobs.fragment.LandingPage;
-import com.jobs.fragment.CreateListing;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

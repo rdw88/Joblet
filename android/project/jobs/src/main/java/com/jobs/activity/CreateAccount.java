@@ -1,8 +1,8 @@
 package com.jobs.activity;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
@@ -37,6 +37,8 @@ import android.widget.TextView;
 import com.jobs.R;
 import com.jobs.backend.*;
 import com.jobs.backend.Error;
+import com.jobs.utility.Helper;
+import com.rey.material.app.Dialog;
 
 import net.qiujuer.genius.Genius;
 import net.qiujuer.genius.widget.GeniusEditText;
@@ -77,11 +79,11 @@ public class CreateAccount extends FragmentActivity {
         b.putInt(FRAGMENT_INDEX_KEY, 0);
         Fragment fragment = FRAGMENT_ORDER[0];
         fragment.setArguments(b);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment, fragment).commit();
     }
 
-    private static void nextFragment(Activity parent, HashMap<String, String> args, int currentIndex) {
+    private static void nextFragment(FragmentActivity parent, HashMap<String, String> args, int currentIndex) {
         if (currentIndex >= FRAGMENT_ORDER.length - 1)
             return;
 
@@ -90,17 +92,17 @@ public class CreateAccount extends FragmentActivity {
         bundle.putSerializable("account", args);
         bundle.putInt(FRAGMENT_INDEX_KEY, currentIndex + 1);
         fragment.setArguments(bundle);
-        FragmentTransaction transaction = parent.getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = parent.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment, fragment).commit();
     }
 
-    private static void previousFragment(Activity parent, HashMap<String, String> args, int currentIndex) {
+    private static void previousFragment(FragmentActivity parent, HashMap<String, String> args, int currentIndex) {
         Fragment fragment = FRAGMENT_ORDER[currentIndex - 1];
         Bundle bundle = new Bundle();
         bundle.putSerializable("account", args);
         bundle.putInt(FRAGMENT_INDEX_KEY, currentIndex - 1);
         fragment.setArguments(bundle);
-        FragmentTransaction transaction = parent.getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = parent.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment, fragment).commit();
     }
 
@@ -455,6 +457,7 @@ public class CreateAccount extends FragmentActivity {
     public static class ProfilePictureFragment extends Fragment {
         private String profilePicturePath;
         private ImageView preview;
+        private Dialog selector;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.create_account_profilepicture, container, false);
@@ -465,10 +468,15 @@ public class CreateAccount extends FragmentActivity {
             Button previous = (Button) v.findViewById(R.id.profilepic_previous);
             previous.setTypeface(robotoMedium);
             preview = (ImageView) v.findViewById(R.id.preview);
+            Button upload = (Button) v.findViewById(R.id.upload_picture);
 
-            if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-
-            }
+            upload.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    selector = Helper.galleryOrCameraDialog(ProfilePictureFragment.this);
+                    selector.show();
+                }
+            });
 
             previous.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
@@ -478,7 +486,7 @@ public class CreateAccount extends FragmentActivity {
 
             next.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View view) {
-                    CreateAccount.nextFragment(getActivity(), updateAccount(), getArguments().getInt(FRAGMENT_INDEX_KEY));
+                    CreateAccount.createAccount(getActivity(), updateAccount());
                 }
             });
 
@@ -489,19 +497,23 @@ public class CreateAccount extends FragmentActivity {
             super.onActivityResult(requestCode, resultCode, data);
 
             switch (requestCode) {
-                case ACTION_SELECT_PICTURE:
-                    if (resultCode == Activity.RESULT_OK) {
+                case Helper.RESULT_GALLERY:
+                    if (resultCode == FragmentActivity.RESULT_OK) {
+                        selector.dismiss();
                         String path = Resource.getRealPathFromURI(getActivity(), data.getData());
                         preview.setImageBitmap(BitmapFactory.decodeFile(path));
                         profilePicturePath = path;
+                        setPic();
                     }
 
                     break;
 
-                case ACTION_TAKE_PICTURE:
-                    if (resultCode == Activity.RESULT_OK) {
-                        //Bitmap b = BitmapFactory.decodeFile(profilePicturePath);
-                        //preview.setImageBitmap(b);
+                case Helper.RESULT_CAMERA:
+                    if (resultCode == FragmentActivity.RESULT_OK) {
+                        selector.dismiss();
+                        profilePicturePath = Helper.lastCameraPicturePath;
+                        Bitmap b = BitmapFactory.decodeFile(profilePicturePath);
+                        preview.setImageBitmap(b);
                         setPic();
                     }
 
@@ -536,7 +548,7 @@ public class CreateAccount extends FragmentActivity {
     }
 
 
-    private static void createAccount(final Activity context, final HashMap<String, String> account) {
+    private static void createAccount(final FragmentActivity context, final HashMap<String, String> account) {
         new AsyncTask<String, Void, String>() {
             private int response;
 
@@ -596,7 +608,7 @@ public class CreateAccount extends FragmentActivity {
         dialog.show();
     }
 
-    private static void alertCreateAccountSuccess(final Activity context) {
+    private static void alertCreateAccountSuccess(final FragmentActivity context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.ad_create_account_success);
         builder.setTitle(R.string.ad_create_account_success_title);

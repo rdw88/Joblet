@@ -17,6 +17,8 @@ from boto.s3.key import Key
 from PIL import Image
 import notification
 import hashlib
+import json
+import listing as listing_module
 
 '''
 
@@ -48,7 +50,7 @@ def create(args):
 	password = hash_password(args['password'], profile_id)
 
 	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=password, 
-		age=args['age'], tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
+		age=args['age'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
 
 	profile.save()
 	return True, None
@@ -127,21 +129,25 @@ def edit(args):
 
 '''
 
-Completely removes a user's profile from the database.
+Completely removes a user's profile from the database along with every 
+listing they own.
 
 '''
 
 def delete(args):
-	profile = _fetch(args['profile_id'])
+	try:
+		profile = Profile.objects.get(email=args['email'])
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
 
-	if not profile:
-		return None, ERROR_NO_SUCH_PROFILE
+	if not check_password(args['password'], profile):
+		return False, ERROR_INCORRECT_PASSWORD
 
-	if not check_password(args['password'], profile[0]):
-		return None, ERROR_INCORRECT_PASSWORD
+	owned_listings = json.loads(profile.owned_listings)
+	for listing_id in owned_listings:
+		listing_module.delete({'email': args['email'], 'password': args['password'], 'listing_id': listing_id})
 
-	profile[0].delete()
-	shutil.rmtree(os.path.join(BASE_DIR, 'static/jobs/%s' % args['profile_id']))
+	profile.delete()
 	return True, None
 
 
@@ -165,10 +171,6 @@ def get(data):
 		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings', 'profile_picture',
 		'recent_bids', 'recent_jobs', 'bio')[0]
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
-
-	#returned = dict()
-	#for key in vals:
-#		returned[key] = vals[key]
 
 	return dict(vals), None
 

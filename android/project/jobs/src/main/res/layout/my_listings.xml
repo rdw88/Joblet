@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#C1DFBD">
+    android:background="@color/softwhite">
 
     <com.jobs.ui.SwipeMenuListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:src="@drawable/card"
-        android:background="#C1dFBd"
+        android:background="@color/softwhite"
         android:divider="#C1DFBD"
         android:dividerHeight="8dp"
         android:layout_marginRight="8dp"
@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
-        android:id="@+id/my_listings_list_view"></com.jobs.ui.SwipeMenuListView>
+        android:id="@+id/my_listings_list_view"/>
         
 <!--    <Button
         android:background="@drawable/dynamic_button_filter"

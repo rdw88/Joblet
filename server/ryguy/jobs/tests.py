@@ -88,12 +88,11 @@ class ListingTests(TestCase):
 		'request':'create', 'bio': 'This is my random bio.'}
 
 		self.test_listing = {'password':'password',
-		'job_title' : 'random job', 'starting_amount' : 50, 'current_bid': 50, 'min_reputation':50,
-		'active_until':'1-23-2015 5:20PM', 'tag' : 'Programming', 'address' : '1234 h ln', 'city':'cityname',
-		'state':'CA', 'latitude' : 45, 'longitude': 55, 'job_description' : 'Random job description'}
+		'job_title' : 'Random job', 'starting_amount' : 50, 'address' : '1234 h ln', 'city':'Oakland',
+		'state':'CA', 'latitude' : 45, 'longitude': 55,
+		'owner_email': 'ryan@gmail.com'}
 
-	def test_listing_creation(self):
-		profile.create(self.test_profile)
+	def listing_creation(self):
 		prof_id = Profile.objects.get(email=self.test_profile['email']).profile_id
 		self.test_listing['profile_id'] = prof_id
 		response, error = listing.create(self.test_listing)	
@@ -103,11 +102,26 @@ class ListingTests(TestCase):
 		self.listing_id = response['listing_id']
 
 
-	def test_get_listing(self):
-		self.test_listing_creation()
+	def get_listing(self):
 		response, error = listing.get({'listing_id' : self.listing_id})
 		self.assertEqual(error, None)
 		
 		for key in response:
 			if key in self.test_listing:
 				self.assertEqual(self.test_listing[key], response[key])
+
+
+	def profile_deletion_with_listings(self):
+		profile.delete({'email': self.test_profile['email'], 'password': self.test_profile['password']})
+		profiles = Profile.objects.filter(email=self.test_profile['email'])
+		listings = Listing.objects.filter(owner_email=self.test_profile['email'])
+		self.assertEqual(len(listings), 0)
+		self.assertEqual(len(profiles), 0)
+
+
+	def test_start(self):
+		profile.create(self.test_profile)
+		self.listing_creation()
+		self.get_listing()
+		self.listing_creation()
+		self.profile_deletion_with_listings()

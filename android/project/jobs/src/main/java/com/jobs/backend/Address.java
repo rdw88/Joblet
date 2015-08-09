@@ -1,9 +1,14 @@
 package com.jobs.backend;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.net.Uri;
+import android.os.Environment;
+
+import com.jobs.utility.Helper;
 
 import org.apache.http.HttpStatus;
 import org.json.JSONException;
@@ -134,11 +139,26 @@ public class Address {
         else
             is = conn.getErrorStream();
 
+        FileWriter debugWriter = null;
+        if (Helper.IN_SERVER_DEBUG_MODE) {
+            File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            File htmlDebugFile = File.createTempFile("debug", ".html", storageDir);
+            debugWriter = new FileWriter(htmlDebugFile, false);
+        }
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String line;
         String response = "";
         while ((line = reader.readLine()) != null) {
             response += line;
+            if (debugWriter != null) {
+                debugWriter.write(line);
+                debugWriter.flush();
+            }
+        }
+
+        if (debugWriter != null) {
+            debugWriter.close();
         }
 
         //response = response.replaceAll("\"", "");
