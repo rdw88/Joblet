@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"
         style="@style/createListing_title"
         android:text="Edit Profile"
+        android:textSize="42dp"
         android:id="@+id/text_editprofile"
         android:textColor="@color/softwhite"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="18dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,14 +87,13 @@
         <EditText android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint=" Enter information about yourself \n(max 400 characters)"
-            android:layout_weight="2"
             android:layout_marginTop="10dp"
-            android:inputType="text"
             android:textSize="14sp"
             android:textColor="@color/primary_information"
             android:id="@+id/bio"
             android:background="#F8F9F9"
             android:padding="10dp"
+            android:inputType="textMultiLine"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
 
@@ -204,8 +205,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/big_padding"
-            android:background="#A9A9AA"
+            android:background="@color/softwhite"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp">
 

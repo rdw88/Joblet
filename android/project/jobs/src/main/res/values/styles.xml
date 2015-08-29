@@ -124,7 +124,7 @@
     </style>
 
     <style  name="TabPageIndicator"  parent="Material.Widget.TabPageIndicator.Light">
-        <item name="android:background">@color/title_color_tint</item>
+        <item name="android:background">@color/title_color</item>
         <item name="android:textColor">@color/softwhite</item>
         <item name="android:textSize">22sp</item>
         <item name="tpi_tabPadding">12dp</item>
@@ -142,6 +142,7 @@
     <style name="TabRippleStyle" parent="Material.Drawable.Ripple.Wave">
         <item name="android:background">@color/title_color</item>
         <item name="rd_rippleAnimDuration">300</item>
+        <item name="rd_rippleColor">#59FFFFFF</item>
         <item name="rd_maskType">rectangle</item>
         <item name="rd_cornerRadius">0dp</item>
         <item name="rd_padding">0dp</item>
@@ -170,7 +171,7 @@
     <style name="createListing_header">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">27sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:layout_marginTop">15dp</item>
         <item name="android:textColor">@color/primary_information</item>
@@ -180,7 +181,7 @@
     <style name="createListing_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/secondary_information</item>
         <item name="android:layout_marginLeft">15dp</item>
     </style>
@@ -189,8 +190,8 @@
         <item name="android:padding">@dimen/big_padding</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/secondary_information</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary_information</item>
     </style>
 
     <style name="listingCurbid">

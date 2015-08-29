@@ -158,7 +158,6 @@ public class MyListings extends Fragment {
             }
         });
 
-        view.setMenuCreator(creator);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -173,9 +172,11 @@ public class MyListings extends Fragment {
 
             @Override
             public void onClick(View v) {
-                final View view = getActivity().getLayoutInflater()
+                LayoutInflater inflater = LayoutInflater.from(getActivity().getApplicationContext());
+                View view = inflater.inflate(R.layout.mylistings_preview, null);
             }
         });
+    }
 
 
     private void loadMore() throws JSONException {
@@ -210,11 +211,12 @@ public class MyListings extends Fragment {
             protected void onPostExecute(String result) {
                 try {
                     for (int i = 0; i < response.length; i++) {
-                        Item FeedItem = new FeedItem(response[i].getString("job_title"),
+                        FeedItem fI = new FeedItem(response[i].getString("job_title"),
                                 response[i].getString("tag"), response[i].getDouble("current_bid"),
-                                response[i].getInt("status"), response[i].getString("listing_id"),
+                                response[i].getInt("views"), response[i].getString("listing_id"),
+                                response[i].getInt("status"), response[i].getString("time_left")
                                 );
-                        elements.add(FeedItem);
+                        elements.add(fI);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -240,6 +242,7 @@ public class MyListings extends Fragment {
             }
         }.execute();
     }
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -344,7 +347,7 @@ public class MyListings extends Fragment {
         }
     }
 
-    private class Item {
+    private class Item{
         public String title;
         public int status;
         public String tag;
@@ -352,6 +355,7 @@ public class MyListings extends Fragment {
         public String listingID;
 
         public Item(String title, String tag, double currentBid, int status, String listingID) {
+            super();
             this.title = title;
             this.tag = tag;
             this.currentBid = currentBid;

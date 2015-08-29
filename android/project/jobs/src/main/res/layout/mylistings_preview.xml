@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/softwhite"
-    >
+    android:background="@color/softwhite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -245,17 +245,22 @@
                 android:textSize="22sp"
                 android:layout_marginLeft="62dp" />
 
-            <Button
+            <com.rey.material.widget.Button
                 android:layout_width="@dimen/button_width"
                 android:layout_height="@dimen/button_height"
                 android:id="@+id/btn_view_bids"
+                android:textColor="@color/softwhite"
                 android:text="VIEW BIDS"
                 android:textSize="@dimen/button_textsize"
-
                 android:layout_below="@+id/text_bids"
-                android:layout_marginTop="@dimen/big_padding"
+                android:layout_marginTop="22sp"
                 android:layout_marginRight="@dimen/small_padding"
-                android:layout_marginBottom="@dimen/big_padding" />
+                android:layout_marginBottom="@dimen/big_padding"
+                app:rd_enable="true"
+                app:rd_rippleType="wave"
+                style="@style/buttonWithRipple"
+                android:layout_centerHorizontal="true" />
+
         </RelativeLayout>
 
 

@@ -69,15 +69,15 @@ public class Main extends AppCompatActivity {
                         //new PrimaryDrawerItem().withName("Active Listings").withIcon(R.drawable.icon_list_64),
                        // new PrimaryDrawerItem().withName("My Bids").withIcon(R.drawable.icon_gavel_64),
                        // new PrimaryDrawerItem().withName("Watchlist").withIcon(R.drawable.icon_star_64)
-                        new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.icon_user_64),
+                        new PrimaryDrawerItem().withName("Home").withIcon(R.drawable.icon_home_64),
                         new PrimaryDrawerItem().withName("Edit Profile").withIcon(R.drawable.icon_user_64),
-                        new PrimaryDrawerItem().withName("Notifications").withIcon(R.drawable.icon_user_64),
+                        new PrimaryDrawerItem().withName("Notifications").withIcon(R.drawable.icon_bell_64),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName("Create Listing").withIcon(R.drawable.icon_user_64),
+                        new PrimaryDrawerItem().withName("Create Listing").withIcon(R.drawable.icon_contract_64),
                         new PrimaryDrawerItem().withName("Active Jobs (TODO)").withIcon(R.drawable.icon_briefcase_64),
                         new PrimaryDrawerItem().withName("Active Listings").withIcon(R.drawable.icon_list_64),
                         new PrimaryDrawerItem().withName("Watchlist (TODO)").withIcon(R.drawable.icon_star_64),
-                        new PrimaryDrawerItem().withName("Logout").withIcon(R.drawable.icon_user_32)
+                        new PrimaryDrawerItem().withName("Logout").withIcon(R.drawable.icon_logout_64)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int position, long id, IDrawerItem iDrawerItem) {

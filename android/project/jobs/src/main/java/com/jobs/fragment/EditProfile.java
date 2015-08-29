@@ -74,13 +74,13 @@ public class EditProfile extends Fragment {
         password2 = (EditText) view.findViewById(R.id.password2);
         city = (EditText) view.findViewById(R.id.city);
 
-        text_firstname.setTypeface(robotoThin);
-        text_last_name.setTypeface(robotoThin);
-        text_bio.setTypeface(robotoThin);
-        text_email.setTypeface(robotoThin);
-        text_password.setTypeface(robotoThin);
-        text_city.setTypeface(robotoThin);
-        text_profilepic.setTypeface(robotoThin);
+        text_firstname.setTypeface(robotoRegular);
+        text_last_name.setTypeface(robotoRegular);
+        text_bio.setTypeface(robotoRegular);
+        text_email.setTypeface(robotoRegular);
+        text_password.setTypeface(robotoRegular);
+        text_city.setTypeface(robotoRegular);
+        text_profilepic.setTypeface(robotoRegular);
         firstName.setTypeface(robotoRegular);
         lastName.setTypeface(robotoRegular);
         bio.setTypeface(robotoRegular);

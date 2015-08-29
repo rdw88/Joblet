@@ -8,82 +8,102 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/softwhite">
 
         <TextView
             style="@style/createListing_header"
-            android:text="The Essentials"/>
+            android:text="The Essentials"
+            android:id="@+id/header"/>
 
         <TextView
             style="@style/createListing_title"
-            android:id="@+id/instructionsTitle"
+            android:id="@+id/title"
             android:text="Job Listing Address"
             />
 
         <TextView
             style="@style/createListing_description"
-            android:id="@+id/instructionsSubTitle"
-            android:text="Enter the Address of the job."/>
+            android:id="@+id/description"
+            android:text="Enter the Address of the job. This is where the contractor will be instructed to go for the job so make sure that the address is correct."/>
 
 
-        <!-- TODO: MAKE AUTOCOMPLETE WITH STATE -->
-        <com.rey.material.widget.EditText
-            style="@style/edittextFullspan"
-            android:id="@+id/listingState"
-            app:et_inputId="@+id/listingStateWrapper"
-            android:hint="State"
-            app:et_labelEnable="true"
-            app:et_supportPadding="@dimen/small_padding"
-            app:et_supportTextColor="@color/secondary_information"
-            />
-        <com.rey.material.widget.EditText
-            style="@style/edittextFullspan"
-            android:id="@+id/listingCity"
-            app:et_inputId="@+id/listingCityWrapper"
-            android:hint="City"
-            app:et_labelEnable="true"
-            app:et_supportPadding="@dimen/small_padding"
-            app:et_supportTextColor="@color/secondary_information"
-            />
-        <com.rey.material.widget.EditText
-            style="@style/edittextFullspan"
-            android:id="@+id/listingStreet"
-            app:et_inputId="@+id/listingStreetWrapper"
-            android:hint="Street"
-            app:et_labelEnable="true"
-            app:et_supportPadding="@dimen/small_padding"
-            app:et_supportTextColor="@color/secondary_information"
-            />
-        <RelativeLayout
-            style="@style/nextprevContainer"
-            android:layout_marginTop="8dp"
-            android:id="@+id/listingAddressNextPrevContainer">
-            <com.rey.material.widget.Button
-                style="@style/buttonmedWithRipple"
-                android:layout_width="@dimen/button_widthshort"
-                android:layout_height="@dimen/button_height"
-                android:background="@drawable/button_med"
-                android:text="PREVIOUS"
-                android:id="@+id/listingAddressPrev"
-                android:layout_toLeftOf="@+id/midanchor"
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/formContainer"
+            android:background="@color/background_light">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="6dp"
+                android:background="@drawable/shadow_with_gradient"
+                android:id="@+id/shadowForWell"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+            <!-- TODO: MAKE AUTOCOMPLETE WITH STATE -->
+            <com.rey.material.widget.EditText
+                style="@style/edittextFullspan"
+                android:id="@+id/listingState"
+                app:et_inputId="@+id/listingStateWrapper"
+                android:hint="State"
+                app:et_labelEnable="true"
+                app:et_supportPadding="@dimen/small_padding"
+                app:et_supportTextColor="@color/secondary_information"
                 />
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="10dp"
-                android:id="@+id/midanchor"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp" />
-            <com.rey.material.widget.Button
-                style="@style/buttonmedWithRipple"
-                android:layout_width="@dimen/button_widthshort"
-                android:layout_height="@dimen/button_height"
-                android:background="@drawable/button_med"
-                android:text="NEXT"
-                android:id="@+id/listingAddressNext"
-                android:layout_toRightOf="@+id/midanchor" />
-
-        </RelativeLayout>
+            <com.rey.material.widget.EditText
+                style="@style/edittextFullspan"
+                android:id="@+id/listingCity"
+                app:et_inputId="@+id/listingCityWrapper"
+                android:hint="City"
+                app:et_labelEnable="true"
+                app:et_supportPadding="@dimen/small_padding"
+                app:et_supportTextColor="@color/secondary_information"
+                />
+            <com.rey.material.widget.EditText
+                style="@style/edittextFullspan"
+                android:id="@+id/listingStreet"
+                app:et_inputId="@+id/listingStreetWrapper"
+                android:hint="Street"
+                app:et_labelEnable="true"
+                app:et_supportPadding="@dimen/small_padding"
+                app:et_supportTextColor="@color/secondary_information"
+                />
+            <RelativeLayout
+                style="@style/nextprevContainer"
+                android:layout_marginTop="8dp"
+                android:id="@+id/listingAddressNextPrevContainer">
+                <com.rey.material.widget.Button
+                    style="@style/buttonmedWithRipple"
+                    android:layout_width="@dimen/button_widthshort"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_med"
+                    android:text="PREVIOUS"
+                    android:id="@+id/listingAddressPrev"
+                    android:layout_toLeftOf="@+id/midanchor"
+                    />
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/midanchor"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp" />
+                <com.rey.material.widget.Button
+                    style="@style/buttonmedWithRipple"
+                    android:layout_width="@dimen/button_widthshort"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_med"
+                    android:text="NEXT"
+                    android:id="@+id/listingAddressNext"
+                    android:layout_toRightOf="@+id/midanchor" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

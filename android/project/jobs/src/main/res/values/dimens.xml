@@ -6,7 +6,8 @@
     <dimen name="button_width">180dp</dimen>
     <dimen name="button_widthwide">225dp</dimen>
     <dimen name="button_height">55dp</dimen>
-    <dimen name="button_widthshort">100dp</dimen>
+    <dimen name="button_widthshort">124dp</dimen>
+    <dimen name="button_widthmed">132dp</dimen>
     <dimen name="card_marginTop">3dp</dimen>
     <dimen name="card_marginLeft">14dp</dimen>
     <dimen name="card_marginRight">14dp</dimen>

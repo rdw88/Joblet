@@ -72,9 +72,9 @@
                 android:layout_height="24dp"
                 android:background="@drawable/ic_location_on_white_24dp"
                 android:id="@+id/icon_location_on"
-                android:layout_marginLeft="@dimen/big_padding"
-                android:layout_alignBottom="@+id/listing_location_city"
-                android:layout_marginBottom="@dimen/big_padding" />
+                android:layout_marginLeft="32dp"
+                android:layout_marginBottom="24dp"
+                android:layout_alignBottom="@+id/listing_location_city" />
 
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,6 +137,7 @@
                 android:layout_toRightOf="@+id/lists_completed"
                 android:text="VIEW"
                 app:rd_enable="true"
+                app:rd_rippleColor="#59FFFFFF"
                 android:textColor="@color/primary_information"
                 android:id="@+id/btn_view_listings"
                 android:layout_centerVertical="true"
@@ -170,6 +171,7 @@
                 android:layout_height="42dp"
                 android:text="VIEW"
                 app:rd_enable="true"
+                app:rd_rippleColor="#59FFFFFF"
                 android:textColor="@color/primary_information"
                 android:id="@+id/btn_view_jobs"
                 android:layout_toRightOf="@+id/jobs_completed"

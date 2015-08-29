@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_light">
-    
+    android:layout_height="fill_parent"
+    android:background="@color/softwhite">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
 
 
     <TextView
         style="@style/createListing_header"
-        android:text="The Essentials"/>
+        android:text="The Essentials"
+        android:id="@+id/theEssentials"/>
 
     <TextView
         style="@style/createListing_title"
@@ -21,23 +26,43 @@
     <TextView
         style="@style/createListing_description"
         android:id="@+id/instructionsSubTitle"
-        android:text="Create a brief and clear title for your job. This is what's going to stand out to people the most. (70 character max)"/>
+        android:text="Create a brief and clear title for your job. This is what&apos;s going to stand out to people the most. (70 character max)"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
 
-    <com.rey.material.widget.EditText
-        style="@style/edittextFullspan"
-        android:maxLength="70"
-        android:id="@+id/listingTitle"
-        app:et_inputId="@+id/listingTitleWrapper"
-        app:et_supportMode="charCounter"
-        app:et_labelEnable="true"
-        app:et_supportPadding="@dimen/small_padding"
-        app:et_supportTextColor="@color/secondary_information"
-        />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listing_title_well"
+        android:paddingBottom="12dp"
+        android:background="@color/background_light">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/shadow_with_gradient"
+            android:id="@+id/shadowForWell"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <com.rey.material.widget.EditText
+            style="@style/edittextFullspan"
+            android:maxLength="70"
+            android:id="@+id/listingTitle"
+            android:paddingLeft="12dp"
+            app:et_inputId="@+id/listingTitleWrapper"
+            app:et_supportMode="charCounter"
+            app:et_labelEnable="true"
+            app:et_dividerColor="@color/black_button"
+            app:et_supportPadding="@dimen/small_padding"
+            app:et_supportTextColor="@color/secondary_information" />
+    </RelativeLayout>
 
     <RelativeLayout
         style="@style/nextprevContainer"
-        android:layout_marginTop="8dp"
-        android:id="@+id/listingTitleNextPrevContainer">
+        android:id="@+id/listingTitleNextPrevContainer"
+        android:background="@color/background_light">
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
             android:layout_width="@dimen/button_widthshort"
@@ -50,4 +75,6 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -11,6 +11,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -136,6 +137,9 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
         filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                if(filter.getVisibility() == View.INVISIBLE){// if button is visible, it can't be clicked
+                    return;
+                }
                 final View view = getActivity().getLayoutInflater().inflate(R.layout.tag_selector, null);
                 ListView listView = (ListView) view.findViewById(R.id.tag_list);
 
@@ -266,10 +270,31 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
 
                             }
                         }
+                        if(canScrollUp(view)){
+                            filter.setVisibility(View.INVISIBLE);
+                        }
+                        else{
+                            filter.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
             }
         }.execute();
+    }
+
+    public boolean canScrollUp(View view) {
+        if (android.os.Build.VERSION.SDK_INT < 14) {
+            if (view instanceof AbsListView) {
+                final AbsListView absListView = (AbsListView) view;
+                return absListView.getChildCount() > 0
+                        && (absListView.getFirstVisiblePosition() > 0 || absListView
+                        .getChildAt(0).getTop() < absListView.getPaddingTop());
+            } else {
+                return view.getScrollY() > 0;
+            }
+        } else {
+            return ViewCompat.canScrollVertically(view, -1);
+        }
     }
 
     private void loadMore() throws JSONException {

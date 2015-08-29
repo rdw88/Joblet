@@ -1,56 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
-
-    <TextView
-        style="@style/createListing_header"
-        android:text="Optional Settings"/>
-
-    <TextView
-        style="@style/createListing_description"
-        android:text="Feel free to use any of these optional settings."/>
-
-
-    <ListView
-        android:layout_width="match_parent"
+    android:background="@color/softwhite">
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/optionalListingList"/>
+        android:orientation="vertical">
+        <TextView
+            style="@style/createListing_header"
+            android:text="Optional Settings"
+            android:id="@+id/header"/>
 
-    <RelativeLayout
-        style="@style/nextprevContainer"
-        android:layout_marginTop="80dp"
-        android:id="@+id/listingDescriptionNextPrevContainer">
-        <com.rey.material.widget.Button
-            style="@style/buttonmedWithRipple"
-            android:layout_width="@dimen/button_widthshort"
-            android:layout_height="@dimen/button_height"
-            android:background="@drawable/button_med"
-            android:text="PREVIOUS"
-            android:id="@+id/listingDescriptionPrev"
-            android:layout_toLeftOf="@+id/midanchor"
-            />
-        <Space
-            android:layout_width="1dp"
-            android:layout_height="10dp"
-            android:id="@+id/midanchor"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp" />
+        <TextView
+            style="@style/createListing_title"
+            android:text="Set your extra settings"
+            android:id="@+id/title"/>
 
-        <com.rey.material.widget.Button
-            style="@style/buttonmedWithRipple"
-            android:layout_width="@dimen/button_widthshort"
-            android:layout_height="@dimen/button_height"
-            android:background="@drawable/button_med"
-            android:text="REVIEW"
-            android:id="@+id/listingDescriptionNext"
-            android:layout_toRightOf="@+id/midanchor" />
+        <TextView
+            style="@style/createListing_description"
+            android:text="Feel free to use any of these optional settings."
+            android:id="@+id/description"/>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/background_light">
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="6dp"
+                android:background="@drawable/shadow_with_gradient"
+                android:id="@+id/shadowForWell"
+                android:layout_alignParentTop="true"
+                />
 
-</LinearLayout>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/optionalListingList"/>
+
+            <RelativeLayout
+                style="@style/nextprevContainer"
+                android:layout_marginTop="80dp"
+                android:id="@+id/listingDescriptionNextPrevContainer">
+                <com.rey.material.widget.Button
+                    style="@style/buttonmedWithRipple"
+                    android:layout_width="@dimen/button_widthshort"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_med"
+                    android:text="PREVIOUS"
+                    android:id="@+id/listingDescriptionPrev"
+                    android:layout_toLeftOf="@+id/midanchor"
+                    />
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/midanchor"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp" />
+
+                <com.rey.material.widget.Button
+                    style="@style/buttonmedWithRipple"
+                    android:layout_width="@dimen/button_widthshort"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@drawable/button_med"
+                    android:text="REVIEW"
+                    android:id="@+id/listingDescriptionReview"
+                    android:layout_toRightOf="@+id/midanchor" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
