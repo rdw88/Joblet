@@ -52,7 +52,7 @@ public class CreateListingsNew extends Fragment {
 
         final EditText name = (EditText) view.findViewById(R.id.listingTitle);
         name.setTypeface(robotoRegular);
-        TextView theEssentials = (TextView) view.findViewById(R.id.theEssentials);
+        TextView theEssentials = (TextView) view.findViewById(R.id.header);
         theEssentials.setTypeface(robotoRegular);
         TextView jobTitle = (TextView) view.findViewById(R.id.instructionsTitle);
         jobTitle.setTypeface(robotoRegular);
@@ -100,7 +100,7 @@ public class CreateListingsNew extends Fragment {
 
             final EditText name = (EditText) view.findViewById(R.id.listingTitle);
             name.setTypeface(robotoRegular);
-            TextView theEssentials = (TextView) view.findViewById(R.id.theEssentials);
+            TextView theEssentials = (TextView) view.findViewById(R.id.header);
             theEssentials.setTypeface(robotoRegular);
             TextView instructionsTitle = (TextView) view.findViewById(R.id.instructionsTitle);
             instructionsTitle.setTypeface(robotoRegular);
@@ -128,6 +128,7 @@ public class CreateListingsNew extends Fragment {
             View view = inflater.inflate(R.layout.create_listing_recommended, container, false);
             Button next = (Button) view.findViewById(R.id.listingDescriptionReview);
             Button prev = (Button) view.findViewById(R.id.listingDescriptionPrev);
+
             TextView header = (TextView) view.findViewById(R.id.header);
             TextView title = (TextView) view.findViewById(R.id.title);
             TextView description = (TextView) view.findViewById(R.id.description);
@@ -420,8 +421,6 @@ public class CreateListingsNew extends Fragment {
         private String pID = null;
         private String title = info.get("listing_name");
         private String mr = info.get("m");
-
-
 
     }
 

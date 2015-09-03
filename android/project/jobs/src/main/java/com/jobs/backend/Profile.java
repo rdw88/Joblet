@@ -34,6 +34,8 @@ public class Profile {
 	public static JSONObject createProfile(HashMap<String, String> map) {
 		map.put("request", "create");
         JSONObject response = null;
+        String profilePicturePath = map.get("profile_picture");
+        map.remove("profile_picture");
 
 		try {
 			response = Address.post(map, Address.PROFILE);
@@ -50,7 +52,7 @@ public class Profile {
             return error;
 		}
 
-        int res = Profile.upload(map.get("profile_picture"), map.get("email"), map.get("password"));
+        int res = Profile.upload(profilePicturePath, map.get("email"), map.get("password"));
         try {
             response.put("error", res);
         } catch (JSONException e) {

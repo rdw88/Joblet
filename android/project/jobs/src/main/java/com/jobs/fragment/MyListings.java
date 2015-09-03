@@ -36,6 +36,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MyListings extends Fragment {
     private JSONObject data;
@@ -63,7 +64,6 @@ public class MyListings extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.my_listings, container, false);
     }
 
@@ -76,7 +76,7 @@ public class MyListings extends Fragment {
         super.onStart();
 
         new AsyncTask<String, Void, String>() {
-            private JSONObject[] response;
+            private List<JSONObject> response = new ArrayList<>();
 
             protected String doInBackground(String... urls) {
                 try {
@@ -90,10 +90,10 @@ public class MyListings extends Fragment {
 
                     int len = allListings.length() > NUM_LISTINGS_SHOWN ? NUM_LISTINGS_SHOWN : allListings.length();
 
-                    response = new JSONObject[len];
-
                     for (int i = 0; i < len; i++) {
-                        response[i] = Listing.get(allListings.getString(i));
+                        JSONObject list = Listing.get(allListings.getString(i));
+                        if (!list.has("error"))
+                            response.add(list);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -104,9 +104,10 @@ public class MyListings extends Fragment {
 
             protected void onPostExecute(String result) {
                 elements.removeAll(elements);
+                JSONObject[] jsonObjArray = (JSONObject[]) response.toArray();
 
                 try {
-                    fill(response);
+                    fill(jsonObjArray);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -116,7 +117,6 @@ public class MyListings extends Fragment {
 
     private void fill(final JSONObject[] listings) throws JSONException {
         ListView listView = (ListView) getActivity().findViewById(R.id.my_listing_bids_list_view);
-
         adapter = new ListingAdapter();
         listView.setAdapter(adapter);
 
@@ -302,7 +302,6 @@ public class MyListings extends Fragment {
 
             title.setText(elements.get(position).title);
             currentBid.setText("Current Bid: $" + format.format(elements.get(position).currentBid));
-            tag.setText(elements.get(position).tag);
 
             String text = "Active";
             int color = 0xff00ff00;
@@ -350,14 +349,12 @@ public class MyListings extends Fragment {
     private class Item{
         public String title;
         public int status;
-        public String tag;
         public double currentBid;
         public String listingID;
 
         public Item(String title, String tag, double currentBid, int status, String listingID) {
             super();
             this.title = title;
-            this.tag = tag;
             this.currentBid = currentBid;
             this.status = status;
             this.listingID = listingID;

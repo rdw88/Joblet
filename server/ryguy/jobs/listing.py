@@ -7,7 +7,7 @@ import os
 import locale
 from PIL import Image
 from models import Listing, Profile, Bid
-from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD, ERROR_NO_BID_MADE, ERROR_BID_DOES_NOT_EXIST
+from error import ERROR_NO_SUCH_LISTING, ERROR_INCORRECT_PASSWORD, ERROR_NO_BID_MADE, ERROR_BID_DOES_NOT_EXIST, ERROR_NO_SUCH_PROFILE
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from ryguy.settings import BASE_DIR
@@ -27,14 +27,15 @@ also includes generating a unique listing id. A listing's unique ID is stored
 in the creator's profile model so we can reference it in relation to their
 profile.
 
-TODO: - Hash passwords.
-
 '''
 
 def create(args):
-	prof = Profile.objects.get(profile_id=args['profile_id'])
+	try:
+		prof = Profile.objects.get(email=args['owner_email'])
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
 
-	if prof.password != args['password']:
+	if not profile.check_password(args['password'], prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	dt = datetime.datetime.now()
@@ -46,11 +47,17 @@ def create(args):
 	rep = (pos / (pos + neg)) * 100 if pos + neg != 0 else 0
 	owner_name = '%s %s' % (prof.first_name, prof.last_name)
 
+	# Check to see if optional params were given upon creation
+	expiration_date = args['expiration_date'].replace('/', '-') if 'expiration_date' in args else None
+	min_reputation = args['min_reputation'] if 'min_reputation' in args else None
+	job_description = args['job_description'] if 'job_description' in args else None
+	# End optional settings
+
 	listing = Listing(job_title=args['job_title'], job_picture='[]', starting_amount=args['starting_amount'],
-		current_bid=args['starting_amount'], min_reputation=args['min_reputation'],
-		active_until=args['active_until'], owner_name=owner_name, profile_id=args['profile_id'], listing_id=listing_id,
-		time_created=time_created, tag=args['tag'], owner_reputation=rep, status=0, bids='[]', address=args['address'],
-		city=args['city'], state=args['state'], lat=args['latitude'], long=args['longitude'], job_description=args['job_description'])
+		current_bid=args['starting_amount'], min_reputation=min_reputation,
+		expiration_date=expiration_date, owner_name=owner_name, owner_email=args['owner_email'], listing_id=listing_id,
+		time_created=time_created, owner_reputation=rep, status=0, bids='[]', address=args['address'],
+		city=args['city'], state=args['state'], lat=args['latitude'], long=args['longitude'], job_description=job_description)
 
 	listing.save()
 
@@ -75,8 +82,8 @@ def get(args):
 	if len(listings) == 0:
 		return None, ERROR_NO_SUCH_LISTING
 
-	vals = listings.values('job_title', 'job_picture', 'job_description', 'starting_amount', 'current_bid', 'min_reputation', 'profile_id', 'time_created', 
-		'status', 'owner_reputation', 'owner_name', 'tag', 'thumbnail', 'listing_id', 'address', 'city', 'state', 'lat', 'long')[0]
+	vals = listings.values('job_title', 'job_picture', 'job_description', 'starting_amount', 'current_bid', 'min_reputation', 'time_created', 
+		'status', 'owner_reputation', 'owner_name', 'thumbnail', 'listing_id', 'address', 'city', 'state', 'lat', 'long')[0]
 	returned = dict()
 	for val in vals:
 		returned[val] = vals[val]
@@ -89,15 +96,18 @@ def get(args):
 Searches the database for listings that match the specified parameters.
 If more than one listing is found, we want to sort the results by the given token.
 
+TODO: REDO
+
 '''
 
 def search(tokens):
+	return [], None
 	tags = json.loads(tokens['tags'])
 	results_list = list()
 
 	for tag in tags:
-		results = Listing.objects.filter(tag=tag).filter(status=0)
-		results_list.append(list(results.values('job_title', 'tag', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'active_until', 'thumbnail', 'lat', 'long')))
+		results = Listing.objects.filter(email=tag).filter(status=0)
+		results_list.append(list(results.values('job_title', 'owner_reputation', 'current_bid', 'listing_id', 'status', 'expiration_date', 'thumbnail', 'lat', 'long')))
 
 	for i in range(1, len(results_list)):
 		for k in range(len(results_list[i])):
@@ -164,7 +174,7 @@ def edit(args):
 	password = args['password']
 	prof = Profile.objects.get(email=email)
 
-	if str(prof.password) != password:
+	if not profile.check_password(password, prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args['listing_id']
@@ -191,14 +201,19 @@ def delete(args):
 	password = args['password']
 	prof = Profile.objects.get(email=email)
 
-	if prof.password != password:
+	if not profile.check_password(password, prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing_id = args['listing_id']
 	listing = Listing.objects.get(listing_id=listing_id)
 
-	if str(listing.profile_id) != str(prof.profile_id):
+	if str(listing.owner_email) != str(prof.email):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
+
+	all_bids = json.loads(listing.bids)
+	for bid_id in all_bids:
+		bid = Bid.objects.get(bid_id=bid_id)
+		bid.delete()
 
 	owned_listings = json.loads(prof.owned_listings)
 	owned_listings.remove(listing_id)
@@ -225,13 +240,13 @@ def upload(args, uploaded_file):
 	if len(listing) == 0:
 		return False, ERROR_NO_SUCH_LISTING
 
-	profile = Profile.objects.get(email=email)
+	prof = Profile.objects.get(email=email)
 
-	if profile.password != password:
+	if not profile.check_password(password, prof):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	listing = listing[0]
-	if str(listing.profile_id) != str(profile.profile_id):
+	if str(listing.owner_email) != str(prof.email):
 		return False, ERROR_INCORRECT_LISTING_OWNERSHIP
 
 	file_name = os.path.join(BASE_DIR, 'static/jobs/%s.png' % name)

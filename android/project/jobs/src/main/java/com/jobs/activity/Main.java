@@ -1,6 +1,6 @@
 package com.jobs.activity;
 
-import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -8,18 +8,17 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
-import android.widget.PopupMenu;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.jobs.R;
 import com.jobs.backend.Profile;
 import com.jobs.fragment.CreateListing;
-import com.jobs.fragment.CreateListingsNew;
 import com.jobs.fragment.EditProfile;
 import com.jobs.fragment.Home;
 import com.jobs.fragment.MyListings;
@@ -27,29 +26,37 @@ import com.jobs.fragment.Notifications;
 import com.jobs.utility.Global;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.adapter.DrawerAdapter;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.rey.material.app.ToolbarManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 
 
-public class Main extends AppCompatActivity {
+public class Main extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private Drawer drawer = null;
     private Toolbar mToolbar;
     private JSONObject data;
+
+    private Global global;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        data = ((Global) getApplicationContext()).getUserData();
+        global = (Global) getApplicationContext();
+        data = global.getUserData();
+
+        global.googleClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        global.googleClient.connect();
 
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
@@ -94,7 +101,7 @@ public class Main extends AppCompatActivity {
                                 transaction.replace(R.id.fragment_holder, new Notifications()).commit();
                                 break;
                             case 4:
-                                transaction.replace(R.id.fragment_holder, new CreateListingsNew()).commit();
+                                transaction.replace(R.id.fragment_holder, new CreateListing()).commit();
                                 break;
                             case 5:
                                 break;
@@ -151,6 +158,22 @@ public class Main extends AppCompatActivity {
                 finish();
             }
         }.execute();
+    }
+
+    public void onConnected(Bundle connectionHint) {
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(global.googleClient);
+
+        if (lastLocation != null) {
+            global.setCurrentLatitude(lastLocation.getLatitude());
+            global.setCurrentLongitude(lastLocation.getLongitude());
+        }
+    }
+
+    public void onConnectionFailed(ConnectionResult b) {
+        // TODO: Implement
+    }
+
+    public void onConnectionSuspended(int i) {
     }
 
     @Override

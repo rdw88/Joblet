@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '6i+x!y(-$u9#r092x9ng73#lc1t7imp4tg5d7x!fs6$=40zigl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'home',
     'music',
     'jobs',
+	'newmusic',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,10 +66,18 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'asdf79269473',
         'HOST': 'localhost' 
+    },
+
+    'music': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'music',
+        'USER': 'postgres',
+        'PASSWORD': 'asdf79269473',
+        'HOST': 'musicsuite.co'
     }
 }
 
-DATABASE_ROUTERS = ['ryguy.routes.JobletRoute']
+DATABASE_ROUTERS = ['ryguy.routes.JobletRoute', 'ryguy.routes.MusicRoute']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/

@@ -206,6 +206,14 @@ public class Login extends Activity {
         builder.setMessage(R.string.ad_wrong_password);
         builder.setTitle(R.string.ad_wrong_password_title);
 
+        SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+        if (prefs.contains("password")) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.remove("password");
+            editor.putBoolean("isLoggedIn", false);
+            editor.apply();
+        }
+
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
              public void onClick(DialogInterface di, int i) {
                  password.setText("");

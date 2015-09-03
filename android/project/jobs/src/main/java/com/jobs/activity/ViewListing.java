@@ -1,7 +1,7 @@
 package com.jobs.activity;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,8 +35,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class ViewListing extends Activity {
-    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated, tag,
+public class ViewListing extends AppCompatActivity {
+    private TextView title, currentBid, ownerReputation, jobLocation, ownerName, timeCreated,
             textCurrentBid, textOwnerReputation, textJobLocation, textOwnerName, textTimeCreated, textTag, textDescription,
             constantTextDescription, constantTextListEndsOn, textListEndsOn, constantTimeLeft, textLocation, textTimeLeft,
             textBidTimeLeft;
@@ -47,13 +48,17 @@ public class ViewListing extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_listing);
-        actionBar = getActionBar();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.view_listing_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.softwhite));
+
+        actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void onStart() {
         super.onStart();
-
 
         robotoRegular = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
         robotoMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
@@ -76,8 +81,6 @@ public class ViewListing extends Activity {
         textOwnerName.setTypeface(robotoThin);
         ownerName = (TextView) findViewById(R.id.view_listing_owner_name);
         ownerName.setTypeface(robotoBlack);
-        tag = (TextView) findViewById(R.id.view_listing_tag);
-        tag.setTypeface(robotoBlack);
         makeBid = (Button) findViewById(R.id.view_listing_make_bid);
         makeBid.setTypeface(robotoMedium);
         picture = (ImageView) findViewById(R.id.picture_swiper);
@@ -159,10 +162,12 @@ public class ViewListing extends Activity {
 
             protected String doInBackground(String... args) {
                 try {
-                    String pictureURL = data.getString("thumbnail");
+                    JSONArray pictureArray = new JSONArray(data.getString("job_picture"));
+                    if (pictureArray.length() == 0)
+                        return null;
 
                     try {
-                        bitmap = Address.fetchPicture(pictureURL);
+                        bitmap = Address.fetchPicture(pictureArray.getString(0));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -197,9 +202,9 @@ public class ViewListing extends Activity {
                      *much time is left and then use that to set the text for timeleft
                      */
                     //timeCreated.setText(data.getString("time_created"));
-                    tag.setText(data.getString("tag"));
                     textDescription.setText(data.getString("job_description"));
-                    picture.setImageBitmap(bitmap);
+                    if (bitmap != null)
+                        picture.setImageBitmap(bitmap);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

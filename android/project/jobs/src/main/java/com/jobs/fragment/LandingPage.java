@@ -69,7 +69,7 @@ public class LandingPage extends Fragment {
         jobs = (TextView) view.findViewById(R.id.jobs_completed);
         jobs.setTypeface(robotoRegular);
         textProfileInformation = (TextView) view.findViewById(R.id.text_profileinformation);
-        textProfileInformation.setTypeface(robotoThin);
+        textProfileInformation.setTypeface(robotoRegular);
         listsLabel = (TextView) view.findViewById(R.id.lists_label);
         listsLabel.setTypeface(robotoRegular);
         listsCompleted = (TextView) view.findViewById(R.id.lists_completed);

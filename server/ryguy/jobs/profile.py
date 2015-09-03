@@ -16,6 +16,9 @@ from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from PIL import Image
 import notification
+import hashlib
+import json
+import listing as listing_module
 
 '''
 
@@ -44,11 +47,14 @@ def create(args):
 	date_created = '%s-%s-%s' % (date_time.year, date_time.month, date_time.day)
 	profile_id = base64.b64encode(encode, '-_')
 
-	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=args['password'], 
-		age=args['age'], tags=args['tags'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
+	password = hash_password(args['password'], profile_id)
+
+	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=password, 
+		age=args['age'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
 
 	profile.save()
 	return True, None
+
 
 '''
 
@@ -67,7 +73,7 @@ def login(args):
 	except Profile.DoesNotExist:
 		return False, ERROR_NO_SUCH_PROFILE
 
-	if password != profile.password:
+	if not check_password(password, profile):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	return True, None
@@ -109,7 +115,7 @@ def edit(args):
 	del args['profile_id']
 	prof = prof[0]
 
-	if str(prof.password) != args['password']:
+	if not check_password(args['password'], prof):
 		return None, ERROR_INCORRECT_PASSWORD
 
 	del args['password']
@@ -123,21 +129,25 @@ def edit(args):
 
 '''
 
-Completely removes a user's profile from the database.
+Completely removes a user's profile from the database along with every 
+listing they own.
 
 '''
 
 def delete(args):
-	profile = _fetch(args['profile_id'])
+	try:
+		profile = Profile.objects.get(email=args['email'])
+	except Profile.DoesNotExist:
+		return False, ERROR_NO_SUCH_PROFILE
 
-	if not profile:
-		return None, ERROR_NO_SUCH_PROFILE
+	if not check_password(args['password'], profile):
+		return False, ERROR_INCORRECT_PASSWORD
 
-	if str(profile[0].password) != args['password']:
-		return None, ERROR_INCORRECT_PASSWORD
+	owned_listings = json.loads(profile.owned_listings)
+	for listing_id in owned_listings:
+		listing_module.delete({'email': args['email'], 'password': args['password'], 'listing_id': listing_id})
 
-	profile[0].delete()
-	shutil.rmtree(os.path.join(BASE_DIR, 'static/jobs/%s' % args['profile_id']))
+	profile.delete()
 	return True, None
 
 
@@ -162,10 +172,6 @@ def get(data):
 		'recent_bids', 'recent_jobs', 'bio')[0]
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')
 
-	#returned = dict()
-	#for key in vals:
-#		returned[key] = vals[key]
-
 	return dict(vals), None
 
 
@@ -179,7 +185,7 @@ def get_notifications(data):
 	except Profile.DoesNotExist:
 		return False, ERROR_NO_SUCH_PROFILE
 
-	if password != profile.password:
+	if not check_password(password, profile):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	return notification.get_all_notifications(profile), None
@@ -202,7 +208,7 @@ def upload(args, uploaded_file):
 	except Profile.DoesNotExist:
 		return False, ERROR_NO_SUCH_PROFILE
 
-	if profile.password != password:
+	if not check_password(password, profile):
 		return False, ERROR_INCORRECT_PASSWORD
 
 	file_name = os.path.join(BASE_DIR, 'static/jobs/%s.png' % name) # Temporary File
@@ -240,6 +246,19 @@ def upload(args, uploaded_file):
 	profile.save()
 
 	return True, None
+
+
+
+def check_password(attempt, profile):
+	return hash_password(attempt, profile.profile_id) == str(profile.password)
+
+
+def hash_password(password, profile_id):
+	md5 = hashlib.md5()
+	salt = '%s%s' % (password, profile_id[:5])
+	md5.update(salt)
+	return md5.hexdigest()
+
 
 
 '''

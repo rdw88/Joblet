@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="85">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/createListing_header"
+                android:id="@+id/header"
+                android:text="Review"
+                />
+
+            <TextView
+                style="@style/createListing_description"
+                android:layout_below="@id/header"
+                android:id="@+id/review_description"
+                android:text="Review the specifics of your job listing before submitting it into public view."/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider"
+                android:layout_below="@id/review_description"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_job_name"
+                android:layout_below="@id/divider"
+                android:text="Job Name"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_job_name"
+                android:id="@+id/description_job_name"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider1"
+                android:layout_below="@id/description_job_name"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_starting_bid"
+                android:layout_below="@id/divider1"
+                android:text="Starting Bid"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_starting_bid"
+                android:id="@+id/description_starting_bid"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider2"
+                android:layout_below="@id/description_starting_bid"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_address"
+                android:layout_below="@id/divider2"
+                android:text="Address"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_address"
+                android:id="@+id/description_address"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider3"
+                android:layout_below="@id/description_address"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_job_description"
+                android:layout_below="@id/divider3"
+                android:text="Job Description"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_job_description"
+                android:id="@+id/description_job_description"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider4"
+                android:layout_below="@id/description_job_description"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_pictures"
+                android:layout_below="@id/divider4"
+                android:text="Pictures"/>
+
+            <RelativeLayout
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_pictures"
+                android:id="@+id/review_pictures_layout">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/preview_image_0" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/preview_image_1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/preview_image_0"
+                    android:layout_toEndOf="@id/preview_image_0" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/preview_image_2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/preview_image_1"
+                    android:layout_toEndOf="@id/preview_image_1" />
+
+                <TextView
+                    style="@style/createListing_review_description"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/more"
+                    android:visibility="invisible"
+                    android:layout_toRightOf="@id/preview_image_2"
+                    android:layout_toEndOf="@id/preview_image_2"
+                    android:text="More..."/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider5"
+                android:layout_below="@id/review_pictures_layout"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_expiration_date"
+                android:layout_below="@id/divider5"
+                android:text="Expiration Date/Time"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_expiration_date"
+                android:id="@+id/description_expiration_date"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:id="@+id/divider6"
+                android:layout_below="@id/description_expiration_date"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                style="@style/createListing_review_title"
+                android:id="@+id/title_min_rep"
+                android:layout_below="@id/divider6"
+                android:text="Minimum Applicant Reputation"/>
+
+            <TextView
+                style="@style/createListing_review_description"
+                android:layout_below="@id/title_min_rep"
+                android:id="@+id/description_min_rep"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:layout_gravity="center_horizontal"
+        android:background="#EEE">
+
+        <com.rey.material.widget.Button
+            style="@style/buttonmedWithRipple"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button_med"
+            android:text="PREVIOUS"
+            android:layout_centerVertical="true"
+            android:id="@+id/previous"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+             />
+
+        <com.rey.material.widget.Button
+            style="@style/buttonmedWithRipple"
+            android:layout_width="@dimen/button_widthshort"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button_med"
+            android:text="CREATE LISTING"
+            android:layout_centerVertical="true"
+            android:id="@+id/create_listing"
+            android:layout_toRightOf="@id/previous"
+            android:layout_toEndOf="@id/previous"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

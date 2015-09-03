@@ -10,14 +10,12 @@
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/createListing_title"
+        style="@style/editProfile_title"
         android:text="Edit Profile"
         android:textSize="42dp"
         android:id="@+id/text_editprofile"
         android:textColor="@color/softwhite"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="18dp"/>
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -57,6 +57,7 @@
                     app:et_error="Re-enter denomination, the format is incorrect."
                     app:et_dividerErrorColor="#F44336"
                     app:et_supportTextErrorColor="#F44336"
+                    app:et_dividerColor="@color/black_button"
                     />
 
                 <RelativeLayout

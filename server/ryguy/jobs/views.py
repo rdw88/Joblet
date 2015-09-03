@@ -4,6 +4,7 @@ import profile as mod_profile
 import listing
 import bid as bid_module
 import json
+from error import ERROR_INVALID_SERVER_REQUEST
 
 '''
 
@@ -35,9 +36,16 @@ We want to limit personal information for users to prevent discrimination.
 def profile(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		
-		result, err_code = getattr(mod_profile, operation)(data)
+		if hasattr(mod_profile, operation):
+			result, err_code = getattr(mod_profile, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if not err_code: # result will be a dictionary to send back to client.
 			return HttpResponse(json.dumps(result), content_type='application/json')
@@ -46,11 +54,17 @@ def profile(request):
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
 		del data['request']
 
-		result, err_code = getattr(mod_profile, operation)(data)
+		if hasattr(mod_profile, operation):
+			result, err_code = getattr(mod_profile, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error': -1 }), content_type='application/json')
@@ -77,10 +91,17 @@ Listings, like profiles will have unique listing_ids
 def listings(request):
 	if request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		del data['request']
 
-		result, err_code = getattr(listing, operation)(data)
+		if hasattr(listing, operation):
+			result, err_code = getattr(listing, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if not err_code:
 			return HttpResponse(json.dumps(result), content_type='application/json')
@@ -89,11 +110,17 @@ def listings(request):
 
 	elif request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 		
 		operation = data['request'] # operation will be an exact string representation of the associated function name in profile.py
 		del data['request']
 
-		result, err_code = getattr(listing, operation)(data)
+		if hasattr(listing, operation):
+			result, err_code = getattr(listing, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if result:
 			response = None
@@ -128,9 +155,16 @@ def upload(request):
 def bid(request):
 	if request.method == 'POST':
 		data = request.POST.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+
 		operation = data['request']
 		
-		result, err_code = getattr(bid_module, operation)(data)
+		if hasattr(bid_module, operation):
+			result, err_code = getattr(bid_module, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if not err_code:
 			return HttpResponse(json.dumps({ 'error' : -1 }), content_type='application/json')
@@ -139,10 +173,17 @@ def bid(request):
 
 	elif request.method == 'GET':
 		data = request.GET.copy()
+
+		if 'request' not in data:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
+		
 		operation = data['request']
 		del data['request']
 
-		result, err_code = getattr(bid_module, operation)(data)
+		if hasattr(bid_module, operation):
+			result, err_code = getattr(bid_module, operation)(data)
+		else:
+			return HttpResponse(json.dumps({'error': ERROR_INVALID_SERVER_REQUEST}), content_type='application/json', status=422)
 
 		if not err_code:
 			return HttpResponse(json.dumps(result), content_type='application/json')

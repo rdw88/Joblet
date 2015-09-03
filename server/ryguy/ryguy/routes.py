@@ -24,3 +24,31 @@ class JobletRoute(object):
             return False
 
         return None
+
+
+class MusicRoute(object):
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label == 'music':
+            return 'music'
+
+        return None
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label == 'music':
+            return 'music'
+
+        return None
+
+    def allow_relation(self, obj1, obj2, **hints):
+        if obj1._meta.app_label == 'music' or obj2._meta.app_label == 'music':
+           return True
+
+        return None
+
+    def allow_migrate(self, db, model):
+        if db == 'music':
+            return model._meta.app_label == 'music'         
+        elif model._meta.app_label == 'music':
+            return False
+
+        return None

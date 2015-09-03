@@ -14,18 +14,18 @@
 
     <TextView
         style="@style/createListing_header"
-        android:text="The Essentials"
-        android:id="@+id/theEssentials"/>
+        android:id="@+id/header"
+        android:text="The Essentials"/>
 
     <TextView
         style="@style/createListing_title"
-        android:id="@+id/instructionsTitle"
+        android:id="@+id/title"
         android:text="Job Title"
         />
     
     <TextView
         style="@style/createListing_description"
-        android:id="@+id/instructionsSubTitle"
+        android:id="@+id/description"
         android:text="Create a brief and clear title for your job. This is what&apos;s going to stand out to people the most. (70 character max)"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
@@ -55,14 +55,16 @@
             app:et_supportMode="charCounter"
             app:et_labelEnable="true"
             app:et_dividerColor="@color/black_button"
-            app:et_supportPadding="@dimen/small_padding"
+            app:et_supportPadding="12dp"
             app:et_supportTextColor="@color/secondary_information" />
+
     </RelativeLayout>
 
     <RelativeLayout
         style="@style/nextprevContainer"
         android:id="@+id/listingTitleNextPrevContainer"
         android:background="@color/background_light">
+
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
             android:layout_width="@dimen/button_widthshort"

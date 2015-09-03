@@ -2,7 +2,8 @@
 *.class
 .gradle
 /local.properties
-/.idea
+/.idea/workspace.xml
+/.idea/libraries
 .DS_Store
 /build
 server/ryguy/templates
@@ -13,3 +14,4 @@ server/ryguy/restart
 server/ryguy/.ssh
 server/ryguy/music
 server/ryguy/manage.py
+server/ryguy/jobs/migrations/

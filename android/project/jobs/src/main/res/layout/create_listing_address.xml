@@ -28,7 +28,6 @@
             android:text="Enter the Address of the job. This is where the contractor will be instructed to go for the job so make sure that the address is correct."/>
 
 
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -46,6 +45,34 @@
                 android:layout_alignParentEnd="true" />
 
 
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/container_curLocation"
+                android:layout_marginTop="@dimen/big_padding"
+                android:layout_marginBottom="@dimen/big_padding">
+
+                <com.rey.material.widget.CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    app:cbd_strokeColor="@color/black_button"
+                    android:id="@+id/current_location_checkbox"
+                    android:layout_marginLeft="32dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkboxText"
+                    android:textSize="18dp"
+                    android:text="Current Location"
+                    android:textColor="@color/primary_information"
+                    android:layout_toRightOf="@+id/current_location_checkbox"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp" />
+
+            </RelativeLayout>
+
             <!-- TODO: MAKE AUTOCOMPLETE WITH STATE -->
             <com.rey.material.widget.EditText
                 style="@style/edittextFullspan"
@@ -55,6 +82,7 @@
                 app:et_labelEnable="true"
                 app:et_supportPadding="@dimen/small_padding"
                 app:et_supportTextColor="@color/secondary_information"
+                app:et_dividerColor="@color/black_button"
                 />
             <com.rey.material.widget.EditText
                 style="@style/edittextFullspan"
@@ -64,6 +92,7 @@
                 app:et_labelEnable="true"
                 app:et_supportPadding="@dimen/small_padding"
                 app:et_supportTextColor="@color/secondary_information"
+                app:et_dividerColor="@color/black_button"
                 />
             <com.rey.material.widget.EditText
                 style="@style/edittextFullspan"
@@ -73,10 +102,11 @@
                 app:et_labelEnable="true"
                 app:et_supportPadding="@dimen/small_padding"
                 app:et_supportTextColor="@color/secondary_information"
+                app:et_dividerColor="@color/black_button"
                 />
             <RelativeLayout
                 style="@style/nextprevContainer"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="18dp"
                 android:id="@+id/listingAddressNextPrevContainer">
                 <com.rey.material.widget.Button
                     style="@style/buttonmedWithRipple"

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -8,13 +8,14 @@
     <!-- Colors -->
     <color name="button">#2196f3</color>
     <color name="button_med">#ffdf81</color>
-    <color name="title_color">#EE0202</color>
+    <color name="title_color">#E65100</color>
     <!-- original: f05d5e
 
         first try: E92323
     -->
     <color name="title_color_tint">#E65B5B</color>
-    <color name="title_color_fade">#55f05d5e</color>
+    <color name="title_color_fade">#88f05d5e</color>
+    <color name="title_color_ultra_fade">#22f05d5e</color>
     <color name="background_light">#EAEAEA</color>
     <color name="primary_information">#222</color>
     <color name="secondary_information">#777</color>
@@ -73,6 +74,10 @@
         <item name="material_drawer_selected">@color/material_drawer_selected</item>
         <item name="material_drawer_selected_text">@color/material_drawer_selected_text</item>
         <item name="material_drawer_header_selection_text">@color/material_drawer_header_selection_text</item>
+    </style>
+
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/title_color</item>
     </style>
 
 
@@ -168,6 +173,25 @@
 
     <!-- TextView theme -->
 
+    <style name="createListing_review_title">
+    	<item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+		<item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/primary_information</item>
+    </style>
+
+    <style name="createListing_review_description">
+    	<item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/secondary_information</item>
+    </style>
+
     <style name="createListing_header">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -178,12 +202,27 @@
 
     </style>
 
+    <style name="viewListing_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:layout_marginLeft">@dimen/small_padding</item>
+        <item name="android:textColor">#DDD</item>
+    </style>
+
     <style name="createListing_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/secondary_information</item>
         <item name="android:layout_marginLeft">15dp</item>
+    </style>
+
+    <style name="editProfile_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/secondary_information</item>
     </style>
 
     <style name="createListing_description">
@@ -195,10 +234,7 @@
     </style>
 
     <style name="listingCurbid">
-        <item name="android:paddingTop">@dimen/small_padding</item>
-        <item name="android:paddingBottom">@dimen/small_padding</item>
-        <item name="android:paddingRight">@dimen/big_padding</item>
-        <item name="android:paddingLeft">@dimen/big_padding</item>
+        <item name="android:paddingLeft">@dimen/small_padding</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
@@ -244,6 +280,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/big_padding</item>
+        <item name="android:textSize">22dp</item>
     </style>
 
 
