@@ -1,6 +1,6 @@
 '''
 
-All functions connected to the request field in the POST data in this file 
+All functions connected to the request field in the POST data in this file
 MUST return either meaningful data, a success flag, or an error code.
 
 '''
@@ -49,7 +49,7 @@ def create(args):
 
 	password = hash_password(args['password'], profile_id)
 
-	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=password, 
+	profile = Profile(email=email, first_name=args['first_name'], last_name=args['last_name'], password=password,
 		age=args['age'], city_code=args['city_code'], profile_id=profile_id, date_created=date_created, bio=args['bio'])
 
 	profile.save()
@@ -129,7 +129,7 @@ def edit(args):
 
 '''
 
-Completely removes a user's profile from the database along with every 
+Completely removes a user's profile from the database along with every
 listing they own.
 
 '''
@@ -167,7 +167,7 @@ def get(data):
 	if len(profile) != 1:
 		return None, ERROR_NO_SUCH_PROFILE
 
-	vals = profile.values('first_name', 'last_name', 'age', 'email', 'city_code', 'tags', 'date_created', 
+	vals = profile.values('first_name', 'last_name', 'age', 'email', 'city_code', 'tags', 'date_created',
 		'positive_reputation', 'negative_reputation', 'jobs_completed', 'listings_completed', 'profile_id', 'owned_listings', 'profile_picture',
 		'recent_bids', 'recent_jobs', 'bio')[0]
 	vals['date_created'] = vals['date_created'].strftime('%m-%d-%Y')

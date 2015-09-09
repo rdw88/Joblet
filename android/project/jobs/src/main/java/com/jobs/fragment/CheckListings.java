@@ -214,7 +214,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             protected void onPostExecute(String result) {
                 try {
                     if (allListings.length() != 0) {
-                        if (allListings.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
+                        if ((int) allListings.get(0) == Error.ERROR_SERVER_COMMUNICATION) {
                             alertErrorServer();
                         }
                         elements.removeAll(elements);
