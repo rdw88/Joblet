@@ -616,6 +616,7 @@ public class CreateListing extends Fragment {
 
     public static class ListingAddress extends Fragment {
         private EditText address, city, state;
+        private String stateCode;
 
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final Global global = (Global) getActivity().getApplicationContext();
@@ -674,6 +675,19 @@ public class CreateListing extends Fragment {
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String s = state.getText().toString();
+                    if (s.length() != 2) {
+                        String correction = Helper.stateToStateCode(s);
+                        if (correction == null) {
+                            Toast.makeText(getActivity(), "Check spelling of the state!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        stateCode = correction;
+                    } else {
+                        stateCode = s;
+                    }
+
                     hideKeyboard(getActivity(), view);
                     CreateListing.nextFragment(getActivity(), updateListing(), getArguments().getInt(FRAGMENT_INDEX_KEY));
                 }
@@ -695,7 +709,7 @@ public class CreateListing extends Fragment {
             HashMap<String, String> map = (HashMap<String, String>) getArguments().getSerializable("listing");
             map.put("listing_address", address.getText().toString());
             map.put("listing_city", city.getText().toString());
-            map.put("listing_state", state.getText().toString());
+            map.put("listing_state", stateCode);
             return map;
         }
     }
