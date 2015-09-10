@@ -134,7 +134,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
             }
         }
 
-
+        /*
 
         filter = (Button) getActivity().findViewById(R.id.checkListings_filter);
         filter.setOnClickListener(new View.OnClickListener(){
@@ -172,7 +172,7 @@ public class CheckListings extends Fragment implements GoogleApiClient.Connectio
                 builder.show();
             }
         });
-
+        */
 
         fill();
     }

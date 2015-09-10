@@ -62,7 +62,7 @@
 
                 <RelativeLayout
                     style="@style/nextprevContainer"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="92dp"
                     android:id="@+id/listingPriceNextPrevContainer">
                     <com.rey.material.widget.Button
                         style="@style/buttonmedWithRipple"

@@ -168,7 +168,7 @@
     <style name="nextprevContainer">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:padding">@dimen/big_padding</item>
+        <item name="android:padding">18dp</item>
     </style>
 
     <!-- TextView theme -->
@@ -176,16 +176,16 @@
     <style name="createListing_review_title">
     	<item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginLeft">@dimen/big_padding</item>
 		<item name="android:layout_marginTop">10dp</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/primary_information</item>
     </style>
 
     <style name="createListing_review_description">
     	<item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginLeft">@dimen/big_padding</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textSize">16sp</item>
@@ -312,6 +312,11 @@
         <item name="fab_iconSize">24dp</item>
         <item name="fab_interpolator">@android:anim/decelerate_interpolator</item>
         <item name="fab_animDuration">@android:integer/config_mediumAnimTime</item>
+    </style>
+
+    <style name="SnackBarSingleLine" parent="Material.Widget.SnackBar.Mobile">
+        <item name="sb_text">Profile information saved.</item>
+        <item name="sb_actionText">CLOSE</item>
     </style>
 
 </resources>

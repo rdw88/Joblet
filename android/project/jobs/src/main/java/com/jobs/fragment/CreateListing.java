@@ -127,11 +127,12 @@ public class CreateListing extends Fragment {
             name.setTypeface(robotoRegular);
             TextView theEssentials = (TextView) view.findViewById(R.id.header);
             theEssentials.setTypeface(robotoRegular);
-            TextView instructionsTitle = (TextView) view.findViewById(R.id.instructionsTitle);
+            TextView instructionsTitle = (TextView) view.findViewById(R.id.title);
             instructionsTitle.setTypeface(robotoRegular);
-            TextView instructionsSubTitle = (TextView) view.findViewById(R.id.instructionsSubTitle);
+            TextView instructionsSubTitle = (TextView) view.findViewById(R.id.description);
             instructionsSubTitle.setTypeface(robotoRegular);
             Button next = (Button) view.findViewById(R.id.listingTitleNext);
+            next.setTypeface(robotoMedium);
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -221,6 +222,7 @@ public class CreateListing extends Fragment {
                     }
                 }
             });
+
 
 
             next.setOnClickListener(new View.OnClickListener() {
@@ -382,6 +384,8 @@ public class CreateListing extends Fragment {
             View view = inflater.inflate(R.layout.create_listing_optional_settings, container, false);
             Button next = (Button) view.findViewById(R.id.listingDescriptionReview);
             Button prev = (Button) view.findViewById(R.id.listingDescriptionPrev);
+            next.setTypeface(robotoMedium);
+            prev.setTypeface(robotoMedium);
 
             TextView header = (TextView) view.findViewById(R.id.header);
             TextView title = (TextView) view.findViewById(R.id.title);
@@ -458,6 +462,7 @@ public class CreateListing extends Fragment {
                         final NumberPicker picker = (NumberPicker) dialog.findViewById(R.id.min_rep_picker);
                         picker.setMinValue(0);
                         picker.setMaxValue(100);
+                        picker.setValue(10);
                         picker.setValue(minReputation);
 
                         dialog.positiveAction("Save");
@@ -708,7 +713,7 @@ public class CreateListing extends Fragment {
             Button prev = (Button) view.findViewById(R.id.previous);
             prev.setTypeface(robotoMedium);
             Button create = (Button) view.findViewById(R.id.create_listing);
-            prev.setTypeface(robotoMedium);
+            create.setTypeface(robotoMedium);
             final HashMap<String, String> data = (HashMap<String, String>) getArguments().getSerializable("listing");
             userData = ((Global) getActivity().getApplicationContext()).getUserData();
 

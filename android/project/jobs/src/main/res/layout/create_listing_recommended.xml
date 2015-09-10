@@ -21,7 +21,7 @@
 
         <TextView
             style="@style/createListing_description"
-            android:text="Although these settings are not required, they will help people better understand what you are offering them. If your job is not simple it is recommended that you write a description so contractors know the job they are bidding for."
+            android:text="Although these settings are not required, they will help people better understand what you are offering them."
             android:id="@+id/description"/>
 
         <LinearLayout
@@ -40,8 +40,7 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="220dp"
                 android:id="@+id/optionalListingList"/>
 
             <RelativeLayout

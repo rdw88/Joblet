@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:background="@color/softwhite">
 
     <LinearLayout
@@ -32,7 +32,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="190dp"
         android:id="@+id/listing_title_well"
         android:paddingBottom="12dp"
         android:background="@color/background_light">
@@ -56,14 +56,16 @@
             app:et_labelEnable="true"
             app:et_dividerColor="@color/black_button"
             app:et_supportPadding="12dp"
-            app:et_supportTextColor="@color/secondary_information" />
+            app:et_supportTextColor="@color/secondary_information"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 
     <RelativeLayout
         style="@style/nextprevContainer"
         android:id="@+id/listingTitleNextPrevContainer"
-        android:background="@color/background_light">
+        android:background="@color/background_light"
+        android:layout_gravity="bottom">
 
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"

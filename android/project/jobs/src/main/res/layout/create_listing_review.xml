@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="fill_parent"
         android:layout_weight="85">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/softwhite"
+            >
 
             <TextView
                 style="@style/createListing_header"
@@ -22,19 +24,18 @@
                 style="@style/createListing_description"
                 android:layout_below="@id/header"
                 android:id="@+id/review_description"
-                android:text="Review the specifics of your job listing before submitting it into public view."/>
+                android:background="@color/title_color"
+                android:textColor="@color/softwhite"
+                android:text="Review the specifics of your job listing before submitting it into public view. Once the listing has been made there will be no opportunity to edit any of this information."
+                android:layout_marginTop="22dp"
+                />
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:id="@+id/divider"
-                android:layout_below="@id/review_description"
-                android:background="@android:color/darker_gray"/>
+
 
             <TextView
                 style="@style/createListing_review_title"
                 android:id="@+id/title_job_name"
-                android:layout_below="@id/divider"
+                android:layout_below="@id/review_description"
                 android:text="Job Name"/>
 
             <TextView
@@ -48,7 +49,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider1"
                 android:layout_below="@id/description_job_name"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -67,7 +68,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider2"
                 android:layout_below="@id/description_starting_bid"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -86,7 +87,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider3"
                 android:layout_below="@id/description_address"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -105,7 +106,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider4"
                 android:layout_below="@id/description_job_description"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -158,7 +159,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider5"
                 android:layout_below="@id/review_pictures_layout"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -177,7 +178,7 @@
                 android:layout_height="1dp"
                 android:id="@+id/divider6"
                 android:layout_below="@id/description_expiration_date"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/title_color"/>
 
             <TextView
                 style="@style/createListing_review_title"
@@ -189,17 +190,16 @@
                 style="@style/createListing_review_description"
                 android:layout_below="@id/title_min_rep"
                 android:id="@+id/description_min_rep"
-                />
+                android:layout_marginBottom="126dp" />
         </RelativeLayout>
     </ScrollView>
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_gravity="center_horizontal"
-        android:background="#EEE">
+        style="@style/nextprevContainer"
+        android:background="@android:color/transparent"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
 
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
@@ -211,20 +211,28 @@
             android:id="@+id/previous"
             android:layout_marginRight="8dp"
             android:layout_marginEnd="8dp"
-             />
+            android:layout_toLeftOf="@+id/midanchor" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:id="@+id/midanchor"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp" />
 
         <com.rey.material.widget.Button
             style="@style/buttonmedWithRipple"
             android:layout_width="@dimen/button_widthshort"
             android:layout_height="@dimen/button_height"
             android:background="@drawable/button_med"
-            android:text="CREATE LISTING"
+            android:text="CREATE"
             android:layout_centerVertical="true"
             android:id="@+id/create_listing"
-            android:layout_toRightOf="@id/previous"
+            android:layout_toRightOf="@+id/midanchor"
             android:layout_toEndOf="@id/previous"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

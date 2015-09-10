@@ -9,6 +9,10 @@ import com.google.android.gms.location.LocationServices;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.lang.Integer;
+
 /*
 Class that can be accessed anywhere for global needs.
  */

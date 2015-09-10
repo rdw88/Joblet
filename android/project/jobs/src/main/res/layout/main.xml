@@ -25,13 +25,23 @@
                 android:layout_width="match_parent"
                 android:background="@color/title_color"
                 />
+
+            <com.rey.material.widget.SnackBar
+                android:id="@+id/main_sn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:visibility="invisible"
+                android:layout_gravity="bottom"/>
         </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fragment_holder" />
 
+
     </LinearLayout>
+
 
 </android.support.v4.widget.DrawerLayout>

@@ -38,13 +38,12 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="240dp"
                 android:id="@+id/optionalListingList"/>
 
             <RelativeLayout
                 style="@style/nextprevContainer"
-                android:layout_marginTop="80dp"
+                android:background="@color/transparent"
                 android:id="@+id/listingDescriptionNextPrevContainer">
                 <com.rey.material.widget.Button
                     style="@style/buttonmedWithRipple"

@@ -21,6 +21,7 @@ import com.jobs.backend.Profile;
 import com.jobs.fragment.CreateListing;
 import com.jobs.fragment.EditProfile;
 import com.jobs.fragment.Home;
+import com.jobs.fragment.LandingPage;
 import com.jobs.fragment.MyListings;
 import com.jobs.fragment.Notifications;
 import com.jobs.utility.Global;
@@ -29,6 +30,7 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.rey.material.widget.SnackBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +42,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
     private Drawer drawer = null;
     private Toolbar mToolbar;
     private JSONObject data;
+    private SnackBar snackBar;
 
     private Global global;
 
@@ -92,7 +95,7 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
 
                         switch(position){
                             case 0:
-                                transaction.replace(R.id.fragment_holder, new Home()).commit();
+                                transaction.replace(R.id.fragment_holder, new LandingPage()).commit();
                                 break;
                             case 1:
                                 transaction.replace(R.id.fragment_holder, new EditProfile()).commit();
@@ -134,6 +137,8 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
         } catch (Exception ex) {
             // Ignore
         }
+
+        snackBar = (SnackBar)findViewById(R.id.main_sn);
 
        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
        transaction.add(R.id.fragment_holder, new Home()).commit();
@@ -193,5 +198,9 @@ public class Main extends AppCompatActivity implements GoogleApiClient.Connectio
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public SnackBar getSnackBar(){
+        return this.snackBar;
     }
 }
